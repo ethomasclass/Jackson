@@ -227,10 +227,10 @@ UI.Dialogue = {
 // player mini-portrait: the sprite's head, blown up
 UI.playerPortrait = function () {
   const s = Assets.sprites.player;
-  const c = document.createElement('canvas'); c.width = 96; c.height = 96;
+  const c = document.createElement('canvas'); c.width = 128; c.height = 128;
   const ctx = c.getContext('2d'); ctx.imageSmoothingEnabled = false;
-  ctx.fillStyle = '#3a3034'; ctx.fillRect(0, 0, 96, 96);
-  ctx.drawImage(s.im, 4, 0, 24, 32, 12, 8, 72, 96);
+  ctx.fillStyle = '#3a3034'; ctx.fillRect(0, 0, 128, 128);
+  ctx.drawImage(s.im, 4, 0, 24, 32, 16, 8, 96, 128);
   c.style.imageRendering = 'pixelated';
   return c;
 };
