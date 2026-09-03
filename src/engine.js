@@ -200,6 +200,7 @@ const World = {
     this.player.x = sp.x * TILE + 16; this.player.y = sp.y * TILE + 30; this.player.dir = sp.dir || 'down';
     this.player.moving = false;
     this.updateCamera(true);
+    Atmosphere.collect(room);
   },
 
   // --- collision --------------------------------------------------------
@@ -270,7 +271,7 @@ const World = {
   },
 
   update(dt) {
-    this.t += dt;
+    this.t += dt; this.lastDt = dt;
     this.movePlayer(dt);
     this.player.animate(dt);
     for (const n of this.npcs) n.animate(dt);
@@ -319,15 +320,8 @@ const World = {
       const bob = Math.round(Math.sin(this.t * 6) * 2);
       ctx.drawImage(Assets.ui.arrow, Math.round(p.x - 8 - cam.x), Math.round(p.y - cam.y + bob), 16, 16);
     }
-    // ambient: night/winter vignette
-    if (this.room.outdoor) {
-      const g = ctx.createRadialGradient(VIEW_W / 2, VIEW_H / 2, 200, VIEW_W / 2, VIEW_H / 2, 460);
-      g.addColorStop(0, 'rgba(20,22,40,0)'); g.addColorStop(1, 'rgba(20,22,40,0.35)');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, VIEW_W, VIEW_H);
-    } else if (this.room.dim) {
-      ctx.fillStyle = 'rgba(10,8,14,0.22)'; ctx.fillRect(0, 0, VIEW_W, VIEW_H);
-    }
-    if (this.room.fx === 'snow') this.drawSnow(ctx, cam);
+    // lighting, smoke, breath, snow
+    Atmosphere.draw(ctx, cam, this.lastDt || 0.016);
   },
   drawObject(ctx, o, cam) {
     if (o.kind === 'tile') Assets.drawTile(ctx, o.name, o.x - cam.x, o.y - cam.y);

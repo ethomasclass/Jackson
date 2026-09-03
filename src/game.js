@@ -149,7 +149,7 @@ const Game = {
     this.state = this.freshState();
     const f = UI.screen(`<div class="scene"><div class="center"><h2>LOADING</h2><div id="loadbar" style="width:200px;height:6px;border:1px solid #6a5636;margin-top:10px"><i style="display:block;height:100%;background:#d0a448;width:0"></i></div></div></div>`);
     await Assets.load(p => { const i = f.querySelector('#loadbar i'); if (i) i.style.width = Math.round(p * 100) + '%'; });
-    UI.init(); UI.Dialogue.init(); Touch.init();
+    UI.init(); UI.Dialogue.init(); Touch.init(); Atmosphere.init();
     requestAnimationFrame(t => this.frame(t));
     await Scenes.title();
   },

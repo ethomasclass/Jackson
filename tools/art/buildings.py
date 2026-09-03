@@ -12,9 +12,10 @@ T = 32
 objs = {}
 
 
-def reg(name, c, door=None, solid=None):
-    """door: (x, y, w, h) in pixels of the walkable entrance strip at the base."""
-    objs[name] = {"c": c, "door": door, "solid": solid}
+def reg(name, c, door=None, solid=None, lights=None, smoke=None):
+    """door: (x, y, w, h) walkable entrance strip. lights: [(x, y, radius, kind)] in pixels.
+    smoke: [(x, y)] chimney tops."""
+    objs[name] = {"c": c, "door": door, "solid": solid, "lights": lights or [], "smoke": smoke or []}
     return c
 
 
@@ -244,13 +245,14 @@ def white_house():
     door(c, cx - 8, 108, 16, 26, colour=PAL["wood3"], fanlight=True, steps=2)
     c.rect(0, 140, W, 20, PAL["lstone"])
     c.hline(0, 140, W, PAL["marble"])
-    return reg("white_house", c, door=(cx - 14, H - 20, 28, 20))
+    return reg("white_house", c, door=(cx - 14, H - 20, 28, 20), smoke=[(44, 6), (W - 44, 6)], lights=[(cx, 118, 44, "window")])
 
 
 def rowhouse(name, w_tiles=4, h_tiles=4, wall="brick", sign_icon=None, sign_text=True,
              door_col=PAL["wood2"], shutter=None, seed=0, roof_col=PAL["slate"], lit=False, sign_w=None):
     W, H = T * w_tiles, T * h_tiles
     c = Canvas(W, H)
+    lights, smoke = [], [(W - 20, -2)]
     roof(c, 0, 12, W, 20, colour=roof_col, seed=seed)
     chimney(c, W - 24, 0)
     wy, wh = 32, H - 32 - 12
@@ -269,6 +271,8 @@ def rowhouse(name, w_tiles=4, h_tiles=4, wall="brick", sign_icon=None, sign_text
     n = w_tiles
     for i in range(n):
         window(c, 10 + i * 32, 40, 12, 16, shutters=shutter, lit=lit and i % 2 == 0)
+        if lit and i % 2 == 0:
+            lights.append((16 + i * 32, 48, 34, "window"))
     # ground floor: door at centre-left, windows elsewhere
     dx = (W // 2) - 7 if w_tiles % 2 == 0 else 10 + (w_tiles // 2) * 32
     for i in range(n):
@@ -276,6 +280,8 @@ def rowhouse(name, w_tiles=4, h_tiles=4, wall="brick", sign_icon=None, sign_text
         if abs(x - dx) < 20:
             continue
         window(c, x, H - 46, 12, 18, shutters=shutter, lit=lit)
+        if lit:
+            lights.append((x + 6, H - 37, 40, "window"))
     door(c, dx, H - 46, 14, 24, colour=door_col, fanlight=w_tiles > 3)
     if sign_icon or sign_text:
         sw = sign_w or min(W - 16, 60)
@@ -283,7 +289,7 @@ def rowhouse(name, w_tiles=4, h_tiles=4, wall="brick", sign_icon=None, sign_text
     # ground shadow strip
     c.rect(0, H - 12, W, 12, PAL["shadow"])
     c.noise_fill(0, H - 12, W, 12, [PAL["mud2"], PAL["mud3"]], seed=seed)
-    return reg(name, c, door=(dx - 4, H - 12, 22, 12))
+    return reg(name, c, door=(dx - 4, H - 12, 22, 12), lights=lights, smoke=smoke)
 
 
 def jail():
@@ -303,7 +309,7 @@ def jail():
     c.rect(W // 2 - 8, H - 48, 16, 3, PAL["slate"])
     sign(c, W // 2 - 26, 60, 52, text_col=PAL["cream"], board=PAL["shadow"])
     c.noise_fill(0, H - 12, W, 12, [PAL["mud2"], PAL["mud3"]], seed=33)
-    return reg("jail", c, door=(W // 2 - 11, H - 12, 22, 12))
+    return reg("jail", c, door=(W // 2 - 11, H - 12, 22, 12), lights=[(W // 2, H - 34, 30, "window")])
 
 
 def hotel():
@@ -324,7 +330,8 @@ def hotel():
     c.rect(W // 2 - 40, 68, 6, 8, PAL["red"]); c.rect(W // 2 - 39, 66, 4, 2, PAL["gold"])
     c.hline(W // 2 - 30, 70, 64, PAL["red"]); c.hline(W // 2 - 28, 73, 56, PAL["ink"])
     c.noise_fill(0, H - 12, W, 12, [PAL["mud2"], PAL["mud3"]], seed=43)
-    return reg("hotel", c, door=(W // 2 - 11, H - 12, 22, 12))
+    return reg("hotel", c, door=(W // 2 - 11, H - 12, 22, 12), smoke=[(34, -2), (W - 36, -2)],
+               lights=[(16 + i * 32, 48, 30, "window") for i in (0, 2, 4, 6)] + [(W // 2, H - 30, 40, "window")])
 
 
 # --- props -----------------------------------------------------------------
@@ -354,7 +361,7 @@ def lamp_post():
     c.rect(11, 58, 10, 4, PAL["ink"])
     c.rect(10, 2, 12, 12, PAL["ink"]); c.rect(12, 4, 8, 8, PAL["candle"]); c.put(15, 6, PAL["white"])
     c.rect(13, 0, 6, 2, PAL["ink"])
-    return reg("lamp_post", c, solid=(11, 56, 10, 6))
+    return reg("lamp_post", c, solid=(11, 56, 10, 6), lights=[(16, 8, 70, "lamp")])
 
 
 def fence(w_tiles=3):
@@ -449,7 +456,7 @@ def build_all():
     index = {}
     for name, o in objs.items():
         o["c"].save(f"buildings/{name}.png")
-        index[name] = {"w": o["c"].w, "h": o["c"].h, "door": o["door"], "solid": o["solid"]}
+        index[name] = {"w": o["c"].w, "h": o["c"].h, "door": o["door"], "solid": o["solid"], "lights": o["lights"], "smoke": o["smoke"]}
     with open(os.path.join(ASSETS, "buildings", "index.json"), "w") as f:
         json.dump(index, f)
     return [o["c"] for o in objs.values()]
