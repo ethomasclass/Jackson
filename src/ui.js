@@ -19,7 +19,7 @@ const UI = {
     for (const s of SUSPECTS) {
       const d = document.createElement('div');
       d.className = 'sus'; d.dataset.id = s.id; d.title = s.name;
-      const im = document.createElement('img'); im.src = `assets/portraits/${s.portrait}.png`; im.className = 'px';
+      const im = document.createElement('img'); im.src = Assets.url(`assets/portraits/${s.portrait}.png`); im.className = 'px';
       d.appendChild(im);
       box.appendChild(d);
     }
@@ -82,7 +82,10 @@ UI.Dialogue = {
   el: null, typing: false, _skip: null, _advance: null,
   init() {
     this.el = $('#dialogue');
-    this.el.addEventListener('click', (e) => { if (e.target.tagName !== 'BUTTON' && !e.target.classList.contains('term')) this.tap(); });
+    this.el.addEventListener('click', (e) => {
+      if (e.target.classList.contains('term')) { const was = e.target.classList.contains('open'); for (const t of this.el.querySelectorAll('.term.open')) t.classList.remove('open'); if (!was) e.target.classList.add('open'); return; }
+      if (e.target.tagName !== 'BUTTON') this.tap();
+    });
     window.addEventListener('keydown', (e) => {
       if (this.el.classList.contains('hidden')) return;
       if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); this.tap(); }
@@ -103,7 +106,7 @@ UI.Dialogue = {
     const p = $('#dlg-portrait');
     p.innerHTML = ''; p.className = '';
     if (portrait === 'player') { p.appendChild(UI.playerPortrait()); }
-    else if (portrait) { const im = document.createElement('img'); im.src = `assets/portraits/${portrait}.png`; p.appendChild(im); }
+    else if (portrait) { const im = document.createElement('img'); im.src = Assets.url(`assets/portraits/${portrait}.png`); p.appendChild(im); }
     else { p.style.visibility = 'hidden'; return; }
     p.style.visibility = 'visible';
   },
@@ -247,7 +250,7 @@ UI.Tray = {
       const slot = document.createElement('div');
       slot.className = 'slot' + (id ? ' filled' : '');
       if (id) {
-        const im = document.createElement('img'); im.src = `assets/evidence/${id}.png`; slot.appendChild(im);
+        const im = document.createElement('img'); im.src = Assets.url(`assets/evidence/${id}.png`); slot.appendChild(im);
         slot.onclick = () => {
           if (mode === 'pick') { this._pick && this._pick(id); this.close(); return; }
           for (const s of grid.children) s.classList.remove('sel');
@@ -274,7 +277,7 @@ UI.Card = {
   show(id, where) {
     const e = EVIDENCE[id];
     const pop = $('#card-pop');
-    pop.querySelector('.card-art').innerHTML = `<img src="assets/evidence/${id}.png">`;
+    pop.querySelector('.card-art').innerHTML = `<img src="${Assets.url(`assets/evidence/${id}.png`)}">`;
     pop.querySelector('.card-title').textContent = e.name;
     pop.querySelector('.card-where').textContent = `Found: ${where}  ·  ${e.tier} evidence`;
     pop.querySelector('.card-desc').innerHTML = UI.markup(e.desc);

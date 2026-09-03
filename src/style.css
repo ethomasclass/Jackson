@@ -273,3 +273,28 @@ img.px { image-rendering: pixelated; image-rendering: crisp-edges; }
 .help { position: absolute; inset: 40px 80px; background: var(--paper); color: var(--ink); border: 3px solid #6a5636; padding: 12px 16px; font-size: 11px; line-height: 1.5; box-sizing: border-box; }
 .help h3 { font-family: var(--font-display); font-weight: normal; margin: 0 0 6px; font-size: 16px; }
 .help kbd { background: #fff; border: 1px solid #6a5636; padding: 0 4px; font-family: inherit; font-size: 10px; }
+
+/* ---------- Touch controls ---------- */
+#touch { position: absolute; inset: 0; pointer-events: none; }
+#touch button {
+  pointer-events: auto; touch-action: none; -webkit-tap-highlight-color: transparent;
+  background: rgba(30,24,28,.55); border: 2px solid rgba(208,164,72,.55); color: rgba(232,220,196,.9);
+  font-family: var(--font-display); font-size: 16px; border-radius: 8px; padding: 0; cursor: pointer;
+}
+#touch button.on { background: rgba(208,164,72,.45); }
+#dpad { position: absolute; left: 10px; bottom: 10px; width: 108px; height: 108px; display: grid; grid-template-columns: 36px 36px 36px; grid-template-rows: 36px 36px 36px; }
+#dpad button[data-d="up"] { grid-column: 2; grid-row: 1; }
+#dpad button[data-d="left"] { grid-column: 1; grid-row: 2; }
+#dpad button[data-d="right"] { grid-column: 3; grid-row: 2; }
+#dpad button[data-d="down"] { grid-column: 2; grid-row: 3; }
+#btn-a { position: absolute; right: 14px; bottom: 18px; width: 64px; height: 64px; border-radius: 50% !important; font-size: 13px !important; letter-spacing: 1px; }
+body.touch #dlg-hint { display: none; }
+body.touch #dlg-choices button { padding: 4px 6px; }
+body.touch #dialogue { height: 132px; }
+#rotate { position: absolute; inset: 0; background: #121013; color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 22px; text-align: center; z-index: 50; }
+/* tappable glossary */
+#dlg-text .term.open::after {
+  content: attr(data-def); position: absolute; left: 0; bottom: 110%; width: 220px;
+  background: #0f0c0e; border: 1px solid var(--gold); color: var(--paper); padding: 4px 6px;
+  font-size: 9.5px; line-height: 1.35; z-index: 5; font-style: normal;
+}

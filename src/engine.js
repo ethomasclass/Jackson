@@ -11,15 +11,20 @@ const VIEW_W = 640, VIEW_H = 360;
 const Assets = {
   images: {}, atlas: null, atlasIndex: null, sprites: {}, buildings: {}, portraits: {}, evidence: {}, ui: {},
 
+  // When bundled into a single file, window.EMBEDDED maps asset paths to data URIs / parsed JSON.
+  url(src) { return (window.EMBEDDED && window.EMBEDDED[src]) || src; },
   img(src) {
     return new Promise((res, rej) => {
       const im = new Image();
       im.onload = () => res(im);
       im.onerror = () => rej(new Error('missing ' + src));
-      im.src = src;
+      im.src = this.url(src);
     });
   },
-  json(src) { return fetch(src).then(r => r.json()); },
+  json(src) {
+    if (window.EMBEDDED && window.EMBEDDED[src]) return Promise.resolve(window.EMBEDDED[src]);
+    return fetch(src).then(r => r.json());
+  },
 
   async load(onProgress) {
     const jobs = [];
@@ -63,9 +68,11 @@ const Input = {
     window.addEventListener('keyup', e => { this.down[e.key] = false; });
     window.addEventListener('blur', () => { this.down = {}; });
   },
+  touch: { x: 0, y: 0 },
   axis() {
     if (!this.enabled) return { x: 0, y: 0 };
     let x = 0, y = 0;
+    if (this.touch.x || this.touch.y) return { x: this.touch.x, y: this.touch.y };
     if (this.down.ArrowLeft || this.down.a || this.down.A) x -= 1;
     if (this.down.ArrowRight || this.down.d || this.down.D) x += 1;
     if (this.down.ArrowUp || this.down.w || this.down.W) y -= 1;
@@ -343,7 +350,8 @@ function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 // Stage scaling
 // ---------------------------------------------------------------------------
 function fitStage() {
-  const s = Math.max(1, Math.floor(Math.min(window.innerWidth / VIEW_W, window.innerHeight / VIEW_H)));
+  const raw = Math.min(window.innerWidth / VIEW_W, window.innerHeight / VIEW_H);
+  const s = raw >= 1 ? Math.floor(raw) : Math.max(0.3, raw);   // integer scale on big screens, fit-to-screen on phones
   const stage = document.getElementById('stage');
   stage.style.transform = `scale(${s})`;
   stage.style.left = Math.floor((window.innerWidth - VIEW_W * s) / 2) + 'px';

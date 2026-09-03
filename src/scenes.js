@@ -38,10 +38,11 @@ const Scenes = {
         <button class="btn" id="new">New Case</button>
         ${saved && saved.phase === 'play' ? '<button class="btn" id="cont">Continue</button>' : ''}
       </div>
+      ${saved && saved.phase === 'play' ? '<div style="font-size:9px;color:#8a7a60;margin-top:6px">A saved investigation exists. New Case erases it.</div>' : ''}
       <div style="position:absolute;bottom:10px;font-size:9px;color:#8a7a60">Arrow keys or WASD to walk · Space to talk and examine · Tab for evidence</div>`;
     sc.appendChild(c);
     await new Promise(res => {
-      c.querySelector('#new').onclick = () => { if (saved && saved.phase === 'play' && !confirm('Start a new case? Your saved investigation will be erased.')) return; Game.clearSave(); res('new'); };
+      c.querySelector('#new').onclick = () => { Game.clearSave(); res('new'); };
       const cont = c.querySelector('#cont'); if (cont) cont.onclick = () => res('cont');
     }).then(async (r) => { if (r === 'cont') await Game.continueGame(saved); else await Game.newGame(); });
   },
@@ -75,8 +76,8 @@ const Scenes = {
     sc.style.background = '#2a2226';
     // magistrate's introduction
     await this.textCards(sc, [
-      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="assets/portraits/magistrate.png" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"Sit down. Lawrence fired the pistols; two hundred people saw him. That part is settled. What is <i>not</i> settled is whether anybody put him up to it."</div></div>`,
-      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="assets/portraits/magistrate.png" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"The President says it was the Bank. The Whigs say it was the President's own tyranny. Here is my difficulty: in six years this man has made more enemies than any president in the history of the country. I have five files. Read them."</div></div>`,
+      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="${Assets.url(`assets/portraits/magistrate.png`)}" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"Sit down. Lawrence fired the pistols; two hundred people saw him. That part is settled. What is <i>not</i> settled is whether anybody put him up to it."</div></div>`,
+      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="${Assets.url(`assets/portraits/magistrate.png`)}" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"The President says it was the Bank. The Whigs say it was the President's own tyranny. Here is my difficulty: in six years this man has made more enemies than any president in the history of the country. I have five files. Read them."</div></div>`,
     ]);
     // dossiers
     const read = new Set();
@@ -90,12 +91,12 @@ const Scenes = {
     const show = (s) => {
       read.add(s.id);
       for (const b of list.querySelectorAll('button[data-id]')) { b.classList.toggle('sel', b.dataset.id === s.id); b.classList.toggle('read', read.has(b.dataset.id)); }
-      doss.innerHTML = `<img class="big" src="assets/portraits/${s.portrait}.png"><div class="body"><h3>${s.name}</h3><div class="meta">${s.title}<br>${s.born} · ${s.where}</div>${s.dossier.map(p => `<p style="margin:0 0 5px">${UI.markup(p)}</p>`).join('')}<div class="grudge">${UI.markup(s.grudge)}</div></div><div class="stamp">${s.topic}</div>`;
+      doss.innerHTML = `<img class="big" src="${Assets.url(`assets/portraits/${s.portrait}.png`)}"><div class="body"><h3>${s.name}</h3><div class="meta">${s.title}<br>${s.born} · ${s.where}</div>${s.dossier.map(p => `<p style="margin:0 0 5px">${UI.markup(p)}</p>`).join('')}<div class="grudge">${UI.markup(s.grudge)}</div></div><div class="stamp">${s.topic}</div>`;
       if (read.size === SUSPECTS.length) done.disabled = false;
     };
     for (const s of SUSPECTS) {
       const b = document.createElement('button'); b.dataset.id = s.id;
-      b.innerHTML = `<img src="assets/portraits/${s.portrait}.png">${s.name.split(' ').slice(-1)[0]}`;
+      b.innerHTML = `<img src="${Assets.url(`assets/portraits/${s.portrait}.png`)}">${s.name.split(' ').slice(-1)[0]}`;
       b.onclick = () => show(s);
       list.insertBefore(b, done);
     }
@@ -103,7 +104,7 @@ const Scenes = {
     await new Promise(res => { done.onclick = res; });
     wrap.remove();
     await this.textCards(sc, [
-      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="assets/portraits/magistrate.png" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"Any one of them had reason. That is precisely the problem. Go and talk to them — all five — and to anyone else who'll talk to a clerk. Bring me <i>things</i>. When you've seen everyone and have a case in your hands, come back, and we'll put a name before a jury."</div></div>`,
+      `<div style="display:flex;gap:12px;align-items:flex-start"><img class="px" src="${Assets.url(`assets/portraits/magistrate.png`)}" style="width:96px;height:96px;border:2px solid #6a5636"><div><b style="color:#d0a448">The Magistrate</b><br>"Any one of them had reason. That is precisely the problem. Go and talk to them — all five — and to anyone else who'll talk to a clerk. Bring me <i>things</i>. When you've seen everyone and have a case in your hands, come back, and we'll put a name before a jury."</div></div>`,
       `<b>Your task:</b> Interview all five suspects. Collect evidence — at least six pieces. Show evidence to people; some of them will have something to say about it. Keep your <b>worksheet</b> up to date as you go: the game will not do it for you.<br><br><span style="color:#d0a448">There is no single right answer.</span> What matters is whether you can back your accusation with evidence when it goes to trial.`,
     ]);
   },
@@ -129,8 +130,8 @@ const Scenes = {
     const f = UI.screen(`<div class="scene"><div class="court">
       <div class="bench">
         <div class="jury">THE JURY<div class="meter"><i></i></div><div id="jury-word" style="margin-top:2px">unconvinced</div></div>
-        <div class="who"><img src="assets/portraits/magistrate.png"><span>The Court</span></div>
-        <div class="who accused"><img src="assets/portraits/${s.portrait}.png"><span>${s.name}</span></div>
+        <div class="who"><img src="${Assets.url(`assets/portraits/magistrate.png`)}"><span>The Court</span></div>
+        <div class="who accused"><img src="${Assets.url(`assets/portraits/${s.portrait}.png`)}"><span>${s.name}</span></div>
       </div>
       <div class="floor">
         <div class="speech" id="speech"></div>
@@ -163,7 +164,7 @@ const Scenes = {
       const pick = await new Promise(res => {
         for (const id of available) {
           const d = document.createElement('div'); d.className = 'slot'; d.title = EVIDENCE[id].name;
-          d.innerHTML = `<img src="assets/evidence/${id}.png">`;
+          d.innerHTML = `<img src="${Assets.url(`assets/evidence/${id}.png`)}">`;
           d.onclick = () => res(id);
           rack.appendChild(d);
         }
@@ -242,7 +243,8 @@ const Scenes = {
     </div></div>`);
     await new Promise(res => {
       f.querySelector('#close').onclick = res;
-      f.querySelector('#restart').onclick = () => { if (confirm('Erase this investigation and start a new case?')) { Game.clearSave(); location.reload(); } };
+      const rb = f.querySelector('#restart');
+      rb.onclick = () => { if (rb.dataset.armed) { Game.clearSave(); location.reload(); } else { rb.dataset.armed = '1'; rb.textContent = 'Tap again to erase and restart'; } };
     });
     UI.closeScreen(); Game.modal = false;
   },
