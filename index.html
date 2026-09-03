@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Capitol Steps — An 1835 Investigation</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="640" height="360"></canvas>
+  <div id="overlay">
+    <div id="hud">
+      <div id="suspects" title="Suspects interviewed"></div>
+      <button id="evidence-btn" title="Evidence (Tab)"><span class="icon"></span><span id="evidence-count">0</span></button>
+      <button id="help-btn" title="Help">?</button>
+    </div>
+    <div id="location-banner"></div>
+    <div id="toast"></div>
+    <div id="dialogue" class="hidden">
+      <div id="dlg-portrait"></div>
+      <div id="dlg-body">
+        <div id="dlg-name"></div>
+        <div id="dlg-text"></div>
+        <div id="dlg-choices"></div>
+        <div id="dlg-hint">Space / click to continue</div>
+      </div>
+    </div>
+    <div id="tray" class="hidden">
+      <div class="panel">
+        <div class="panel-head"><span id="tray-title">Evidence</span><button class="close" id="tray-close">×</button></div>
+        <div id="tray-grid"></div>
+        <div id="tray-detail"></div>
+      </div>
+    </div>
+    <div id="card-pop" class="hidden">
+      <div class="card">
+        <div class="card-art"></div>
+        <div class="card-title"></div>
+        <div class="card-where"></div>
+        <div class="card-desc"></div>
+        <div class="card-hint">Write this down. Click to continue.</div>
+      </div>
+    </div>
+    <div id="fullscreen" class="hidden"></div>
+  </div>
+</div>
+<script src="data/evidence.js"></script>
+<script src="data/suspects.js"></script>
+<script src="data/rooms.js"></script>
+<script src="data/dialogue.js"></script>
+<script src="src/engine.js"></script>
+<script src="src/ui.js"></script>
+<script src="src/scenes.js"></script>
+<script src="src/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+tools/art/preview/
+tools/shots/
+__pycache__/
+.DS_Store
