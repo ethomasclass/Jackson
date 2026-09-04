@@ -108,7 +108,7 @@ function rug(colour, x, y, w, h) {
     npcs: [
       { id: 'newsboy', sprite: 'boy', x: 15, y: 9, dir: 'down' },
       { id: 'street_gentleman', sprite: 'gentleman', x: 24, y: 9, dir: 'left' },
-      { id: 'street_lady', sprite: 'lady2', x: 31, y: 8, dir: 'down' },
+      { id: 'street_lady', sprite: 'lady2', x: 36, y: 9, dir: 'down' },
       { id: 'coachman', sprite: 'coachman', x: 43, y: 15, dir: 'left' },
       { id: 'labourer', sprite: 'labourer', x: 5, y: 19, dir: 'right' },
       { id: 'doorman', sprite: 'servant', x: 7, y: 7, dir: 'down' },
