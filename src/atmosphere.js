@@ -3,7 +3,7 @@
 'use strict';
 
 const Atmosphere = {
-  lights: [], smoke: [], particles: [], lm: null, glow: null, t: 0,
+  lights: [], smoke: [], particles: [], patches: [], lm: null, glow: null, t: 0,
   // ambient tints (multiplied over the scene). Warm interiors, a cold blue dusk outside.
   ambient: {
     outdoor: [140, 150, 196],
@@ -19,13 +19,18 @@ const Atmosphere = {
   },
 
   init() {
-    this.lm = document.createElement('canvas'); this.lm.width = VIEW_W; this.lm.height = VIEW_H;
-    this.glow = document.createElement('canvas'); this.glow.width = VIEW_W; this.glow.height = VIEW_H;
+    this.lm = document.createElement('canvas');
+    this.glow = document.createElement('canvas');
+    this.resize();
+  },
+  resize() {
+    this.lm.width = VIEW_W; this.lm.height = VIEW_H;
+    this.glow.width = VIEW_W; this.glow.height = VIEW_H;
   },
 
   // Called by World.load: gather light sources and smoke points from the room.
   collect(room) {
-    this.lights = []; this.smoke = []; this.particles = [];
+    this.lights = []; this.smoke = []; this.particles = []; this.patches = [];
     for (const o of World.objects) {
       if (o.kind === 'building') {
         const bd = Assets.buildings[o.name];
@@ -45,7 +50,7 @@ const Atmosphere = {
     // interior windows let in cold daylight; wall lamps would go here too
     for (let ty = 0; ty < room.h; ty++) for (let tx = 0; tx < room.w; tx++) {
       const n = World.ground[ty][tx];
-      if (n && n.endsWith('_win')) this.lights.push({ x: tx * TILE + 16, y: ty * TILE + 12, r: 90, kind: 'daylight', seed: 0 });
+      if (n && n.endsWith('_win')) { this.lights.push({ x: tx * TILE + 16, y: ty * TILE + 12, r: 90, kind: 'daylight', seed: 0 }); this.patches.push({ x: tx * TILE, y: (ty + 1) * TILE }); }
     }
     for (const l of (room.lights || [])) this.lights.push({ x: l.x * TILE + 16, y: l.y * TILE + 16, r: l.r || 80, kind: l.kind || 'lamp', seed: Math.random() * 100 });
     // interiors get a soft central fill so rooms without fires aren't gloomy
@@ -93,6 +98,15 @@ const Atmosphere = {
         g2.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
         gc.fillStyle = g2; gc.fillRect(x - rg, y - rg, rg * 2, rg * 2);
       }
+    }
+    // daylight through the windows lands on the floor
+    for (const p of this.patches) {
+      const x = p.x - cam.x, y = p.y - cam.y;
+      if (x < -120 || x > VIEW_W + 60 || y < -20 || y > VIEW_H + 120) continue;
+      const g = lc.createLinearGradient(0, y, 0, y + 110);
+      g.addColorStop(0, 'rgba(210,222,245,0.55)'); g.addColorStop(1, 'rgba(210,222,245,0)');
+      lc.fillStyle = g;
+      lc.beginPath(); lc.moveTo(x + 4, y); lc.lineTo(x + 28, y); lc.lineTo(x + 46, y + 110); lc.lineTo(x - 14, y + 110); lc.closePath(); lc.fill();
     }
     ctx.save();
     ctx.globalCompositeOperation = 'multiply';

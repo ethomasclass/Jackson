@@ -3,7 +3,7 @@
 'use strict';
 
 const TILE = 32;
-const VIEW_W = 640, VIEW_H = 360;
+let VIEW_W = 640, VIEW_H = 360;   // recomputed by fitStage so the game fills the window
 
 // ---------------------------------------------------------------------------
 // Assets
@@ -291,13 +291,25 @@ const World = {
   // --- drawing -----------------------------------------------------------
   draw(ctx) {
     const cam = { x: Math.round(this.cam.x), y: Math.round(this.cam.y) };
-    ctx.fillStyle = '#121013';
-    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+    // beyond the room: a dark textured void so nothing reads as empty screen
+    const voidTile = this.room.outside || (this.room.outdoor ? 'grass_snow1' : 'void');
+    for (let vy = -((cam.y % TILE) + TILE) % TILE; vy < VIEW_H; vy += TILE) for (let vx = -((cam.x % TILE) + TILE) % TILE; vx < VIEW_W; vx += TILE) Assets.drawTile(ctx, voidTile, vx, vy);
+    if (!this.room.outdoor) { ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.fillRect(0, 0, VIEW_W, VIEW_H); }
     const tx0 = Math.max(0, Math.floor(cam.x / TILE)), ty0 = Math.max(0, Math.floor(cam.y / TILE));
     const tx1 = Math.min(this.room.w - 1, Math.ceil((cam.x + VIEW_W) / TILE)), ty1 = Math.min(this.room.h - 1, Math.ceil((cam.y + VIEW_H) / TILE));
     for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
       const n = this.ground[ty][tx];
       if (n) Assets.drawTile(ctx, n, tx * TILE - cam.x, ty * TILE - cam.y);
+    }
+    // soft shadows under furniture and people
+    ctx.fillStyle = 'rgba(10,6,8,0.28)';
+    for (const o of this.objects) {
+      if (o.def.flat || o.kind === 'building' || (o.def.solid === false && !o.def.shadow)) continue;
+      const sx = o.x + o.w / 2 - cam.x, sy = o.y + o.h - 2 - cam.y;
+      ctx.beginPath(); ctx.ellipse(sx, sy, o.w / 2 + 2, 5, 0, 0, Math.PI * 2); ctx.fill();
+    }
+    for (const e of [this.player, ...this.npcs]) {
+      ctx.beginPath(); ctx.ellipse(e.x - cam.x, e.y - 1 - cam.y, 9, 4, 0, 0, Math.PI * 2); ctx.fill();
     }
     // depth sort: objects by bottom edge, entities by feet
     const list = [];
@@ -354,12 +366,26 @@ function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 // Stage scaling
 // ---------------------------------------------------------------------------
 function fitStage() {
-  const raw = Math.min(window.innerWidth / VIEW_W, window.innerHeight / VIEW_H);
-  const s = raw >= 1 ? Math.floor(raw) : Math.max(0.3, raw);   // integer scale on big screens, fit-to-screen on phones
+  // Pick the largest integer scale that fits a 640x360 design frame, then widen/heighten the
+  // view to cover the whole window at that scale so there are no black margins.
+  const raw = Math.min(window.innerWidth / 640, window.innerHeight / 360);
+  const s = raw >= 1 ? Math.floor(raw) : Math.max(0.3, raw);
+  VIEW_W = Math.ceil(window.innerWidth / s);
+  VIEW_H = Math.ceil(window.innerHeight / s);
+  const canvas = document.getElementById('game');
+  if (canvas.width !== VIEW_W || canvas.height !== VIEW_H) {
+    canvas.width = VIEW_W; canvas.height = VIEW_H;
+    canvas.getContext('2d').imageSmoothingEnabled = false;
+  }
+  for (const id of ['stage', 'game', 'overlay']) {
+    const el = document.getElementById(id);
+    el.style.width = VIEW_W + 'px'; el.style.height = VIEW_H + 'px';
+  }
   const stage = document.getElementById('stage');
   stage.style.transform = `scale(${s})`;
-  stage.style.left = Math.floor((window.innerWidth - VIEW_W * s) / 2) + 'px';
-  stage.style.top = Math.floor((window.innerHeight - VIEW_H * s) / 2) + 'px';
+  stage.style.left = '0px'; stage.style.top = '0px';
   window.STAGE_SCALE = s;
+  if (window.Atmosphere && Atmosphere.lm) Atmosphere.resize();
+  if (window.World && World.room) World.updateCamera(true);
 }
 window.addEventListener('resize', fitStage);

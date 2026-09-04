@@ -268,25 +268,23 @@ def wall(kind, seed=0, base=None):
         base = base or PAL["cream"]
         c.noise_fill(0, 0, T, T, [base, shade(base, 0.97), shade(base, 1.02)], seed=seed)
         c.hline(0, 3, T, shade(base, 0.8)); c.hline(0, 4, T, shade(base, 1.1))
-        wainscot(c)
     elif kind == "paper":
         base = base or (206, 190, 156)
-        c.noise_fill(0, 0, 20, T, [base, shade(base, 0.97)], seed=seed)
+        c.noise_fill(0, 0, T, T, [base, shade(base, 0.97)], seed=seed)
         for x in (4, 20):   # stripes
-            c.vline(x, 0, 20, shade(base, 0.9)); c.vline(x + 1, 0, 20, shade(base, 0.9))
-        for y in range(2, 20, 8):
+            c.vline(x, 0, T, shade(base, 0.9)); c.vline(x + 1, 0, T, shade(base, 0.9))
+        for y in range(4, T, 10):
             for x in (10, 26):
                 c.put(x, y, (86, 110, 70)); c.put(x + 1, y + 1, (86, 110, 70)); c.put(x - 1, y + 1, (86, 110, 70))
                 c.put(x, y + 2, (150, 60, 60)); c.put(x, y + 3, (86, 110, 70))
         c.hline(0, 3, T, shade(base, 0.8))
-        wainscot(c)
     elif kind == "panel":
         base = base or PAL["wood1"]
         c.rect(0, 0, T, T, base)
         c.outline(2, 2, 28, 16, shade(base, 0.55)); c.rect(3, 3, 26, 14, shade(base, 1.08))
         c.hline(3, 3, 26, shade(base, 1.3)); c.vline(3, 3, 14, shade(base, 1.3))
         c.hline(3, 16, 26, shade(base, 0.8)); c.vline(28, 3, 14, shade(base, 0.8))
-        wainscot(c, tone=base)
+        c.outline(2, 20, 28, 10, shade(base, 0.55)); c.rect(3, 21, 26, 8, shade(base, 1.08)); c.hline(3, 21, 26, shade(base, 1.3))
     elif kind == "brick":
         c.rect(0, 0, T, T, (196, 182, 160))
         for row in range(8):
@@ -324,7 +322,6 @@ def wall(kind, seed=0, base=None):
                 x0 = col * 16 + off
                 b = r.choice([base, shade(base, 0.97), shade(base, 1.02)])
                 c.rect(x0 + 1, row * 8 + 1, 14, 6, b); c.hline(x0 + 1, row * 8 + 1, 14, shade(b, 1.08))
-        c.hline(0, 20, T, PAL["lstone"]); c.hline(0, 21, T, PAL["stone"])    # dado
     return c
 
 
@@ -350,48 +347,147 @@ def wall_top():
 reg("wall_top", wall_top())
 
 
-def window_in_wall(wallname, curtains=False):
+def wall_lower(kind, seed=0, base=None):
+    """The lower band of a two-tile wall: wainscot, dado or continued masonry."""
     c = Canvas(T, T)
-    c.blit(tiles[wallname], 0, 0)
-    c.rect(5, 1, 22, 19, (40, 32, 30))
-    for yy in range(2, 19):
-        for xx in range(6, 26):
-            t = (yy - 2) / 17
-            col = mix((186, 206, 222), (110, 140, 168), t)
-            if (xx + yy) % 8 == 0:
-                col = mix(col, (236, 244, 250), 0.4)
-            c.put(xx, yy, col)
+    r = random.Random(seed + 77)
+    if kind in ("plaster", "paper", "panel", "marble"):
+        tone = {"plaster": PAL["wood2"], "paper": (110, 80, 50), "panel": base or PAL["wood1"], "marble": PAL["lstone"]}[kind]
+        if kind == "marble":
+            c.rect(0, 0, T, T, PAL["lstone"]); c.hline(0, 0, T, PAL["marble"]); c.hline(0, 1, T, PAL["stone"])
+            for x in range(0, T, 16):
+                c.outline(x + 2, 6, 12, 20, PAL["stone"]); c.rect(x + 3, 7, 10, 18, shade(PAL["lstone"], 1.05))
+            c.hline(0, T - 2, T, PAL["stone"]); c.hline(0, T - 1, T, PAL["shadow"])
+        else:
+            c.rect(0, 0, T, T, tone)
+            c.hline(0, 0, T, shade(tone, 1.45)); c.hline(0, 1, T, shade(tone, 0.6))     # chair rail
+            for x in range(0, T, 16):
+                c.outline(x + 2, 5, 12, 20, shade(tone, 0.55)); c.rect(x + 3, 6, 10, 18, shade(tone, 1.12))
+                c.hline(x + 3, 6, 10, shade(tone, 1.3)); c.vline(x + 3, 6, 18, shade(tone, 1.3))
+            c.hline(0, T - 3, T, shade(tone, 1.2)); c.rect(0, T - 2, T, 2, shade(tone, 0.5))   # baseboard
+    else:
+        c.blit(wall(kind, seed + 1), 0, 0)
+        c.rect(0, T - 2, T, 2, (30, 26, 28))
+    return c
+
+
+for k, nm in [("plaster", "wall_plaster"), ("plaster", "wall_plaster_b"), ("brick", "wall_brick"), ("stone", "wall_stone"), ("log", "wall_log"), ("panel", "wall_panel"), ("paper", "wall_paper"), ("marble", "wall_marble")]:
+    reg(nm + "_lower", wall_lower(k, seed=len(nm), base=(216, 208, 190) if nm == "wall_plaster_b" else None))
+
+
+def tall_window(wallname, part, curtains=False):
+    """A two-tile sash window: part 'upper' (head, upper sash) or 'lower' (lower sash, sill)."""
+    c = Canvas(T, T)
+    c.blit(tiles[wallname if part == "upper" else wallname + "_lower"], 0, 0)
+    y0 = 6 if part == "upper" else -26          # window spans y 6..46 across the two tiles
+    c.rect(5, max(0, y0 - 1), 22, T, (40, 32, 30)) if part == "upper" else c.rect(5, 0, 22, 21, (40, 32, 30))
+    for yy in range(0, 40):
+        gy = y0 + yy
+        if 0 <= gy < T:
+            for xx in range(6, 26):
+                t = yy / 40
+                # cold winter sky fading to snowy ground, a bare tree silhouette
+                col = mix((176, 196, 214), (128, 150, 176), t) if t < 0.62 else mix((214, 220, 230), (196, 204, 216), (t - 0.62) / 0.38)
+                if 0.3 < t < 0.62 and abs(xx - 14 - int(3 * (t - 0.3) * 4)) < 2 and (xx + yy) % 3:
+                    col = (70, 56, 48)
+                if (xx + yy) % 11 == 0 and t < 0.5:
+                    col = mix(col, (240, 246, 250), 0.5)
+                c.put(xx, gy, col)
     bar = (226, 220, 206)
-    c.vline(12, 2, 17, bar); c.vline(19, 2, 17, bar); c.hline(6, 10, 20, bar); c.hline(6, 6, 20, shade(bar, 0.9)); c.hline(6, 15, 20, shade(bar, 0.9))
-    c.hline(6, 10, 20, shade(bar, 0.75))
-    c.rect(4, 19, 24, 2, (222, 214, 196)); c.hline(4, 21, 24, (150, 140, 120))
+    for gy in range(y0, y0 + 40):
+        if 0 <= gy < T:
+            c.put(12, gy, bar); c.put(19, gy, bar)
+    for k in (8, 14, 20, 26, 32):   # horizontal glazing bars, meeting rail at 20
+        gy = y0 + k
+        if 0 <= gy < T:
+            c.hline(6, gy, 20, shade(bar, 0.8) if k == 20 else bar)
+            if k == 20:
+                c.hline(6, gy - 1, 20, bar)
+    if part == "upper":
+        c.rect(4, 4, 24, 2, (222, 214, 196)); c.hline(4, 6, 24, (150, 140, 120))     # head casing
+        c.vline(5, 6, 26, (236, 230, 216)); c.vline(26, 6, 26, (236, 230, 216))
+    else:
+        c.vline(5, 0, 20, (236, 230, 216)); c.vline(26, 0, 20, (236, 230, 216))
+        c.rect(3, 20, 26, 3, (222, 214, 196)); c.hline(3, 23, 26, (150, 140, 120)); c.hline(3, 20, 26, (240, 236, 224))   # sill
     if curtains:
-        for x0 in (3, 25):
-            for yy in range(0, 19):
-                w = 4 if yy < 12 else 2
-                for k in range(w):
-                    c.put(x0 + k if x0 < 16 else x0 + 3 - k, yy, (150, 50, 50) if k % 2 else (170, 64, 60))
-        c.rect(3, 0, 26, 2, (110, 80, 50)); c.hline(3, 0, 26, PAL["gold"])
+        for x0 in (2, 26):
+            for yy in range(0, T):
+                gy = yy + (0 if part == "upper" else 32)
+                if gy < 46:
+                    w = 4 if gy < 30 else 3
+                    for k in range(w):
+                        c.put(x0 + k if x0 < 16 else x0 + 3 - k, yy, (150, 50, 50) if (k + yy) % 3 else (176, 66, 60))
+        if part == "upper":
+            c.rect(1, 1, 30, 3, (110, 80, 50)); c.hline(1, 1, 30, PAL["gold"]); c.put(0, 2, PAL["gold1"]); c.put(31, 2, PAL["gold1"])
+        else:
+            c.rect(1, 12, 5, 2, PAL["gold"]); c.rect(26, 12, 5, 2, PAL["gold"])   # tie-backs
     return c
 
 
 for wn in ["wall_plaster", "wall_plaster_b", "wall_paper", "wall_panel", "wall_log", "wall_marble", "wall_brick", "wall_stone"]:
-    reg(wn + "_win", window_in_wall(wn, curtains=wn in ("wall_paper", "wall_plaster")))
+    cur = wn in ("wall_paper", "wall_plaster")
+    reg(wn + "_win", tall_window(wn, "upper", curtains=cur))
+    reg(wn + "_win_lower", tall_window(wn, "lower", curtains=cur))
 
 
-def door_in_wall(wallname):
+def tall_door(wallname, part):
     c = Canvas(T, T)
-    c.blit(tiles[wallname], 0, 0)
-    c.rect(4, 0, 24, T, (222, 214, 196)); c.vline(4, 0, T, (236, 230, 216)); c.vline(27, 0, T, (150, 140, 120))
-    c.rect(7, 2, 18, 30, PAL["wood2"])
-    for (px, py, pw, ph) in [(9, 4, 6, 10), (17, 4, 6, 10), (9, 17, 6, 13), (17, 17, 6, 13)]:
-        c.rect(px, py, pw, ph, shade(PAL["wood2"], 0.8)); c.rect(px + 1, py + 1, pw - 2, ph - 2, shade(PAL["wood2"], 1.15))
-    c.put(15, 18, PAL["gold1"]); c.put(15, 19, PAL["gold"])
+    c.blit(tiles[wallname if part == "upper" else wallname + "_lower"], 0, 0)
+    col = PAL["wood2"]
+    if part == "upper":
+        c.rect(3, 8, 26, 24, (222, 214, 196)); c.vline(3, 8, 24, (236, 230, 216)); c.vline(28, 8, 24, (150, 140, 120))
+        c.rect(1, 5, 30, 3, (226, 218, 200)); c.hline(1, 7, 30, (150, 140, 120))
+        c.rect(6, 12, 20, 20, col); c.rect(6, 11, 20, 1, (30, 24, 22))
+        for (px, py, pw, ph) in [(8, 14, 7, 8), (17, 14, 7, 8), (8, 24, 7, 8), (17, 24, 7, 8)]:
+            c.rect(px, py, pw, ph, shade(col, 0.8)); c.rect(px + 1, py + 1, pw - 2, ph - 2, shade(col, 1.15)); c.hline(px + 1, py + 1, pw - 2, shade(col, 1.3))
+    else:
+        c.rect(3, 0, 26, 28, (222, 214, 196)); c.vline(3, 0, 28, (236, 230, 216)); c.vline(28, 0, 28, (150, 140, 120))
+        c.rect(6, 0, 20, 26, col)
+        for (px, py, pw, ph) in [(8, 2, 7, 10), (17, 2, 7, 10), (8, 14, 7, 10), (17, 14, 7, 10)]:
+            c.rect(px, py, pw, ph, shade(col, 0.8)); c.rect(px + 1, py + 1, pw - 2, ph - 2, shade(col, 1.15)); c.hline(px + 1, py + 1, pw - 2, shade(col, 1.3))
+        c.put(23, 4, PAL["gold1"]); c.put(23, 5, PAL["gold"])
+        c.rect(4, 26, 24, 3, PAL["stone"]); c.hline(4, 26, 24, PAL["lstone"])   # threshold
     return c
 
 
 for wn in ["wall_plaster", "wall_plaster_b", "wall_paper", "wall_panel", "wall_log", "wall_marble", "wall_stone", "wall_brick"]:
-    reg(wn + "_door", door_in_wall(wn))
+    reg(wn + "_door", tall_door(wn, "upper"))
+    reg(wn + "_door_lower", tall_door(wn, "lower"))
+
+
+def wall_side(kind="dark"):
+    """Room side wall seen edge-on: a dark band with a lit inner edge."""
+    c = Canvas(T, T)
+    c.rect(0, 0, T, T, (26, 22, 24))
+    c.noise_fill(0, 0, T, T, [(26, 22, 24), (32, 26, 28), (22, 18, 20)], seed=3)
+    return c
+
+
+reg("wall_side", wall_side())
+
+
+def wall_bottom():
+    c = Canvas(T, T)
+    c.rect(0, 0, T, T, (26, 22, 24))
+    c.noise_fill(0, 4, T, T - 4, [(26, 22, 24), (32, 26, 28), (22, 18, 20)], seed=5)
+    c.hline(0, 0, T, (60, 48, 40)); c.hline(0, 1, T, (44, 36, 32)); c.hline(0, 2, T, (34, 28, 26))   # wall top lip, lit
+    return c
+
+
+reg("wall_bottom", wall_bottom())
+
+
+def void_tile():
+    c = Canvas(T, T)
+    c.noise_fill(0, 0, T, T, [(18, 16, 18), (22, 18, 20), (16, 14, 16)], seed=9)
+    return c
+
+
+reg("void", void_tile())
+
+
+
+
 
 
 def exit_mat():
@@ -1079,6 +1175,118 @@ def mirror():
 
 reg("mirror", mirror())
 
+
+
+def fireplace_big():
+    """Chimney breast rising through the wall band, mantel, andirons, a proper fire. 3x2 tiles."""
+    c = Canvas(T * 3, T * 2)
+    c.rect(0, 0, T * 3, T * 2, PAL["brick2"])
+    r = random.Random(2)
+    for y in range(0, T * 2, 4):
+        for x in range((y // 4 % 2) * 4, T * 3, 8):
+            b = r.choice([PAL["brick2"], PAL["brick1"], PAL["brick3"]])
+            c.rect(x, y, 7, 3, b); c.hline(x, y + 2, 7, shade(b, 0.8))
+    c.speckle(20, 0, 56, 14, (60, 50, 50), 0.3, seed=4)                       # soot above the mantel
+    c.rect(8, 24, 80, 6, W2); c.hline(8, 24, 80, W0); c.hline(8, 29, 80, W3)   # mantel shelf
+    c.rect(10, 30, 6, 32, W2); c.rect(80, 30, 6, 32, W2)
+    c.rect(16, 30, 64, 32, (18, 14, 14)); c.rect(20, 34, 56, 26, (8, 6, 6))
+    c.rect(24, 50, 48, 6, W3); c.rect(28, 46, 40, 5, W2); c.rect(34, 42, 28, 4, shade(W3, 0.8))
+    for (x, y, col) in [(30, 40, PAL["flame"]), (40, 30, PAL["flame"]), (50, 36, PAL["flame"]), (36, 36, PAL["candle"]), (46, 42, PAL["candle"]),
+                        (34, 32, PAL["red1"]), (56, 40, PAL["red1"]), (42, 26, PAL["red1"]), (28, 44, PAL["red1"]), (60, 38, PAL["flame"]),
+                        (44, 34, (255, 236, 180)), (38, 44, (255, 236, 180)), (52, 44, PAL["candle"])]:
+        c.rect(x, y, 3, 3, col); c.put(x + 1, y - 1, col)
+    for x in (24, 70):
+        c.vline(x, 40, 16, (40, 36, 40)); c.put(x, 39, PAL["gold"]); c.put(x, 38, PAL["gold1"]); c.put(x + 1, 38, PAL["gold1"])
+    c.rect(4, 61, 88, 3, PAL["stone"]); c.hline(4, 61, 88, PAL["lstone"])     # hearth
+    c.rect(28, 18, 4, 6, PAL["gold"]); c.put(29, 16, PAL["cream"]); c.put(29, 15, PAL["flame"])    # candlestick
+    c.rect(44, 14, 10, 10, (40, 36, 40)); c.rect(46, 16, 6, 6, (236, 228, 208)); c.put(48, 19, (30, 26, 28)); c.put(49, 18, (30, 26, 28))   # mantel clock
+    c.rect(64, 18, 8, 6, (60, 80, 60)); c.put(66, 16, (150, 40, 40)); c.put(69, 15, (150, 40, 40))   # vase
+    return c
+
+
+reg("fireplace3", fireplace_big())
+
+
+def bed_big():
+    """Four-poster, 2x3 tiles: turned posts, tester, patterned coverlet, bolster."""
+    c = Canvas(T * 2, T * 3)
+    for x in (3, 58):
+        for k in range(0, 90):
+            w = 3 if k % 6 else 4
+            c.rect(x, 2 + k, w, 1, W2 if k % 6 != 3 else shade(W2, 0.75))
+        c.rect(x - 1, 0, 6, 3, W1)
+    c.rect(6, 4, 52, 8, (60, 44, 70)); c.hline(6, 4, 52, (90, 70, 100)); c.hline(6, 11, 52, (40, 30, 48))   # tester valance
+    for x in range(8, 58, 6):
+        c.put(x, 10, PAL["gold"])
+    c.rect(7, 12, 50, 78, PAL["cream"])
+    c.rect(10, 16, 44, 14, (246, 240, 226)); c.hline(10, 16, 44, (255, 255, 250)); c.hline(10, 29, 44, PAL["lstone"])   # bolster
+    cov = (80, 60, 110)
+    c.rect(7, 34, 50, 52, cov); c.hline(7, 34, 50, PAL["cream"]); c.hline(7, 35, 50, (246, 240, 226))
+    for y in range(40, 84, 8):
+        for x in range(10, 54, 8):
+            c.put(x, y, shade(cov, 1.5)); c.put(x + 1, y + 1, shade(cov, 1.5)); c.put(x - 1, y + 1, shade(cov, 1.5)); c.put(x, y + 2, shade(cov, 1.5)); c.put(x + 4, y + 4, PAL["gold"])
+    c.rect(5, 86, 54, 6, W2); c.hline(5, 86, 54, W1); c.hline(5, 91, 54, W3)
+    return c
+
+
+reg("bed2", bed_big())
+
+
+def bar4():
+    c = Canvas(T * 4, T)
+    c.blit(bar_counter(3), 0, 0)
+    d = Canvas(T, T)
+    d.rect(0, 6, T, 10, shade(W0, 1.05)); d.hline(0, 6, T, shade(W0, 1.3)); d.hline(0, 7, T, shade(W0, 1.15))
+    d.rect(0, 16, T, 14, W2); d.outline(2, 18, 6, 10, W3); d.rect(3, 19, 4, 8, shade(W2, 1.1)); d.outline(12, 18, 6, 10, W3); d.rect(13, 19, 4, 8, shade(W2, 1.1)); d.outline(22, 18, 6, 10, W3); d.rect(23, 19, 4, 8, shade(W2, 1.1))
+    d.hline(0, 16, T, W3); d.hline(0, 29, T, PAL["gold"]); d.hline(0, 30, T, W3)
+    d.rect(6, 9, 5, 6, (176, 170, 160)); d.hline(6, 9, 5, (210, 206, 196)); d.put(11, 11, (176, 170, 160))
+    d.rect(18, 8, 8, 6, (236, 228, 208)); d.hline(19, 10, 6, (90, 80, 70))   # the tally book
+    c.blit(d, T * 3, 0)
+    return c
+
+
+reg("bar4", bar4())
+
+
+def cage4():
+    """Two-tile-high caged back bar for the wall band: bottle shelves behind a lattice."""
+    c = Canvas(T * 4, T * 2)
+    c.rect(0, 0, T * 4, T * 2, shade(W2, 0.8))
+    r = random.Random(6)
+    for y in (12, 26, 40, 54):
+        c.hline(2, y, T * 4 - 4, W3); c.hline(2, y + 1, T * 4 - 4, W1)
+        x = 4
+        while x < T * 4 - 6:
+            col = r.choice([(40, 70, 50), (90, 60, 30), (60, 80, 100), (150, 140, 120), (120, 40, 40)])
+            h = r.choice([7, 8, 9])
+            c.rect(x, y - h, 3, h, col); c.put(x + 1, y - h - 2, col); c.put(x + 1, y - h - 1, col); c.put(x, y - h + 2, shade(col, 1.5))
+            x += r.choice([4, 5, 6, 7])
+    for x in (6, 30, 54, 78, 102):
+        c.rect(x, 56, 6, 6, (176, 170, 160)); c.put(x + 6, 58, (176, 170, 160))
+    for k in range(-T * 2, T * 4, 10):
+        for i in range(T * 2):
+            xx = k + i
+            if 0 <= xx < T * 4:
+                c.put(xx, i, PAL["wood3"]); c.put(T * 4 - 1 - xx, i, PAL["wood3"])
+    c.outline(0, 0, T * 4, T * 2, W3); c.hline(1, 1, T * 4 - 2, W1)
+    c.rect(52, 22, 24, 20, (40, 30, 24)); c.outline(52, 22, 24, 20, W3)   # the serving hatch
+    return c
+
+
+reg("cage4", cage4())
+
+
+def beam():
+    """Ceiling beam for the cornice row of a taproom or cell."""
+    c = Canvas(T, T)
+    c.blit(tiles["wall_top"], 0, 0)
+    c.rect(0, 12, T, 10, W3); c.hline(0, 12, T, W1); c.hline(0, 21, T, (30, 22, 18))
+    for x in range(3, T, 9):
+        c.put(x, 16, shade(W3, 0.7))
+    return c
+
+
+reg("beam", beam())
 
 # ---------------------------------------------------------------------------
 # packing

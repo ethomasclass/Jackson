@@ -158,12 +158,12 @@ def sash_window(c, x, y, w=12, h=18, lit=False, shutters=None, lintel="stone", p
     c.rect(x - 2, y + h + 1, w + 4, 2, PAL["lstone"]); c.hline(x - 2, y + h + 3, w + 4, PAL["shadow"])
     c.hline(x - 2, y + h + 1, w + 4, SNOW)
     if shutters:
-        for sx in (x - 6, x + w + 2):
-            c.rect(sx, y - 1, 4, h + 2, shutters)
-            c.vline(sx, y - 1, h + 2, shade(shutters, 1.25)); c.vline(sx + 3, y - 1, h + 2, shade(shutters, 0.6))
+        for sx in (x - 5, x + w + 2):
+            c.rect(sx, y - 1, 3, h + 2, shutters)
+            c.vline(sx, y - 1, h + 2, shade(shutters, 1.25)); c.vline(sx + 2, y - 1, h + 2, shade(shutters, 0.6))
             for yy in range(y + 2, y + h - 1, 2):
-                c.hline(sx + 1, yy, 2, shade(shutters, 0.72))
-            c.hline(sx, y + h // 2, 4, shade(shutters, 1.2))
+                c.put(sx + 1, yy, shade(shutters, 0.72))
+            c.hline(sx, y + h // 2, 3, shade(shutters, 1.2))
 
 
 def panel_door(c, x, y, w=14, h=24, colour=PAL["wood2"], fanlight=True, pilasters=True, steps=2, lamp=False):
@@ -327,14 +327,14 @@ def painted_band(c, x, y, w, text_col=PAL["cream"], board=(90, 40, 34)):
 def house(name, w_tiles=4, stories=2, wall="brick", roof_col=PAL["slate"], door_col=PAL["wood2"],
           shutter=None, sign=None, sign_band=None, lit=False, dormers=0, seed=0, fanlight=True, pilasters=True,
           wall_base=None, lamp=False, chimneys=2, door_pos=None, steps=2):
-    side = 8
+    side = 10
     W = T * w_tiles
-    story_h = 30
-    roof_h = 22 if stories < 3 else 26
-    ground = 12
-    wall_h = stories * story_h + 6
+    story_h = 48
+    roof_h = 30 if stories < 3 else 34
+    ground = 14
+    wall_h = stories * story_h + 8
     H_body = roof_h + wall_h + ground
-    H = ((H_body + 16 + 31) // 32) * 32
+    H = ((H_body + 18 + 31) // 32) * 32
     c = Canvas(W, H)
     y_roof = H - ground - wall_h - roof_h
     y_wall = H - ground - wall_h
@@ -350,77 +350,80 @@ def house(name, w_tiles=4, stories=2, wall="brick", roof_col=PAL["slate"], door_
         rubble(c, 0, y_wall, bw, wall_h, seed=seed + 1); base_col = PAL["stone"]
     else:
         plaster(c, 0, y_wall, bw, wall_h, base=wall_base or PAL["cream"], seed=seed + 1); base_col = wall_base or PAL["cream"]
-    c.rect(0, H - ground - 5, bw, 5, PAL["stone"]); c.hline(0, H - ground - 5, bw, PAL["lstone"]); c.hline(0, H - ground - 1, bw, PAL["shadow"])
-    c.rect(0, y_wall, bw, 3, shade(base_col, 0.5)); c.hline(0, y_wall + 3, bw, shade(base_col, 0.7))
+    c.rect(0, H - ground - 7, bw, 7, PAL["stone"]); c.hline(0, H - ground - 7, bw, PAL["lstone"]); c.hline(0, H - ground - 1, bw, PAL["shadow"])
+    for x in range(0, bw, 14):
+        c.vline(x, H - ground - 6, 5, shade(PAL["stone"], 0.8))
+    c.rect(0, y_wall, bw, 4, shade(base_col, 0.5)); c.hline(0, y_wall + 4, bw, shade(base_col, 0.7)); c.hline(0, y_wall + 1, bw, shade(base_col, 0.62))
     side_wall(c, bw, y_wall, side, wall_h, base_col)
     pitched_roof(c, 0, y_roof, W, roof_h, roof_col, seed=seed + 2, side=side)
-    cxs = [W - side - 14] if chimneys == 1 else [6, W - side - 14]
+    cxs = [W - side - 18] if chimneys == 1 else [8, W - side - 18]
     for i, cx in enumerate(cxs[:chimneys]):
-        chimney(c, cx, y_roof - 12, seed=seed + 3 + i)
-        smoke.append((cx + 4, y_roof - 16))
+        chimney(c, cx, y_roof - 14, w=10, h=22, seed=seed + 3 + i)
+        smoke.append((cx + 5, y_roof - 18))
     for i in range(dormers):
-        dx = 12 + i * ((bw - 26) // max(1, dormers - 1)) if dormers > 1 else bw // 2 - 7
-        dormer(c, dx, y_roof + 2, roof_col)
+        dx = 14 + i * ((bw - 30) // max(1, dormers - 1)) if dormers > 1 else bw // 2 - 8
+        dormer(c, dx, y_roof + 4, roof_col)
     bays = w_tiles
-    dx = door_pos if door_pos is not None else (bw // 2 - 7 if bays % 2 == 0 else 10 + (bays // 2) * 32)
+    dx = door_pos if door_pos is not None else (bw // 2 - 9 if bays % 2 == 0 else 7 + (bays // 2) * 32)
     lintel = "brick" if wall == "brick" else "stone"
     for s in range(stories):
-        wy = y_wall + 8 + s * story_h
+        wy = y_wall + 12 + s * story_h
         last = s == stories - 1
         for i in range(bays):
-            wx = 10 + i * 32
-            if last and abs(wx - dx) < 20:
+            wx = 7 + i * 32
+            if last and abs(wx - dx) < 26:
                 continue
-            h = 18 if last else 16
+            h = 30 if last else 26
             is_lit = lit and ((i + s) % 2 == 0 or last)
-            sash_window(c, wx, wy, 12, h, lit=is_lit, shutters=shutter, lintel=lintel)
+            sash_window(c, wx, wy, 18, h, lit=is_lit, shutters=shutter, lintel=lintel, panes=(3, 3))
             if is_lit:
-                lights.append((wx + 6, wy + h + 8, 36 if last else 30, "window"))
-    dy = y_wall + 8 + (stories - 1) * story_h - 2
-    panel_door(c, dx, dy, 14, 24, colour=door_col, fanlight=fanlight, pilasters=pilasters, steps=steps, lamp=lamp)
+                lights.append((wx + 9, wy + h + 10, 46 if last else 38, "window"))
+    dy = y_wall + 12 + (stories - 1) * story_h - 6
+    panel_door(c, dx, dy, 18, 36, colour=door_col, fanlight=fanlight, pilasters=pilasters, steps=steps, lamp=lamp)
     if lamp:
-        lights.append((dx - 9, dy, 46, "lamp"))
+        lights.append((dx - 10, dy + 2, 56, "lamp"))
     if sign:
-        hanging_sign(c, dx + 20 if dx + 40 < bw else dx - 24, dy - 10, sign)
+        hanging_sign(c, dx + 24 if dx + 46 < bw else dx - 26, dy - 12, sign)
     if sign_band:
-        painted_band(c, 6, y_wall + 6 + (stories - 1) * story_h - 14, bw - 12, board=sign_band)
+        painted_band(c, 8, y_wall + 10 + (stories - 1) * story_h - 18, bw - 16, board=sign_band)
     c.noise_fill(0, H - ground, W, ground, [PAL["mud2"], PAL["mud3"], PAL["mud1"]], seed=seed)
     ground_shadow(c, 0, H - ground, W, ground, side=side)
-    return reg(name, c, door=(dx - 5, H - ground, 24, ground), lights=lights, smoke=smoke)
+    return reg(name, c, door=(dx - 5, H - ground, 28, ground), lights=lights, smoke=smoke)
 
 
 # ---------------------------------------------------------------------------
 # the Capitol (1835: Bulfinch's tall copper dome, east portico, two wings)
 # ---------------------------------------------------------------------------
 def capitol():
-    W, H = T * 14, T * 8
+    W, H = T * 21, T * 12
     c = Canvas(W, H)
-    ground = 40
+    ground = 48
     base = (214, 208, 196)
-    for wx in (0, W - 140):
-        ashlar(c, wx, 96, 140, H - ground - 96, base=base, seed=11 + wx, quoins=True)
-        c.rect(wx, 92, 140, 4, PAL["marble"]); c.hline(wx, 96, 140, PAL["stone"])
-        c.rect(wx, H - ground - 30, 140, 30, shade(base, 0.9))
-        for yy in range(H - ground - 30, H - ground, 6):
-            c.hline(wx, yy, 140, shade(base, 0.7))
-        for i in range(3):
-            sash_window(c, wx + 18 + i * 42, 108, 14, 22, lintel="stone", panes=(3, 3))
-            sash_window(c, wx + 18 + i * 42, 148, 14, 18, lintel="stone")
-        c.hline(wx, 92, 140, SNOW)
-    ashlar(c, 130, 78, W - 260, H - ground - 78, base=base, seed=13, quoins=False)
-    c.rect(130, 74, W - 260, 4, PAL["marble"]); c.hline(130, 74, W - 260, SNOW)
+    wing_w = 210
+    for wx in (0, W - wing_w):
+        ashlar(c, wx, 150, wing_w, H - ground - 150, base=base, seed=11 + wx, quoins=True)
+        c.rect(wx, 144, wing_w, 6, PAL["marble"]); c.hline(wx, 150, wing_w, PAL["stone"])
+        c.rect(wx, H - ground - 44, wing_w, 44, shade(base, 0.9))
+        for yy in range(H - ground - 44, H - ground, 8):
+            c.hline(wx, yy, wing_w, shade(base, 0.7))
+        for i in range(4):
+            sash_window(c, wx + 22 + i * 48, 166, 20, 34, lintel="stone", panes=(3, 4))
+            sash_window(c, wx + 22 + i * 48, 224, 20, 28, lintel="stone", panes=(3, 3))
+        c.hline(wx, 144, wing_w, SNOW)
+    ashlar(c, 190, 120, W - 380, H - ground - 120, base=base, seed=13, quoins=False)
+    c.rect(190, 114, W - 380, 6, PAL["marble"]); c.hline(190, 114, W - 380, SNOW)
     cx = W // 2
-    drum_y = 46
-    c.rect(cx - 48, drum_y, 96, 30, shade(base, 0.95))
-    for i in range(6):
-        c.rect(cx - 42 + i * 15, drum_y + 6, 6, 16, (84, 104, 130)); c.vline(cx - 42 + i * 15 + 6, drum_y + 6, 16, PAL["marble"])
-    c.hline(cx - 50, drum_y, 100, PAL["marble"]); c.hline(cx - 50, drum_y + 29, 100, PAL["stone"])
+    drum_y = 70
+    c.rect(cx - 72, drum_y, 144, 44, shade(base, 0.95))
+    for i in range(8):
+        c.rect(cx - 64 + i * 17, drum_y + 8, 8, 24, (84, 104, 130)); c.vline(cx - 64 + i * 17 + 8, drum_y + 8, 24, PAL["marble"])
+    c.hline(cx - 76, drum_y, 152, PAL["marble"]); c.hline(cx - 76, drum_y + 43, 152, PAL["stone"])
     copper = (112, 138, 116)
-    for y in range(4, drum_y + 1):
-        t = (y - 4) / (drum_y - 4)
-        half = int(60 * (t ** 0.45)) if t < 0.9 else 60
+    for y in range(6, drum_y + 1):
+        t = (y - 6) / (drum_y - 6)
+        half = int(90 * (t ** 0.45)) if t < 0.9 else 90
         for x in range(cx - half, cx + half):
-            nx = (x - cx) / 60
+            nx = (x - cx) / 90
             col = copper
             if nx < -0.45:
                 col = shade(copper, 0.78)
@@ -431,84 +434,87 @@ def capitol():
             if (y // 3) % 2 == 0 and abs(nx) > 0.2:
                 col = shade(col, 0.94)
             c.put(x, y, col)
-        if y < 12:
+        if y < 16:
             c.put(cx - half, y, SNOW); c.put(cx + half - 1, y, SNOW)
-    c.rect(cx - 5, 0, 10, 6, PAL["marble"]); c.rect(cx - 3, 0, 6, 2, PAL["lstone"]); c.hline(cx - 5, 0, 10, SNOW)
-    c.hline(cx - 60, drum_y - 1, 120, SNOW)
-    for y in range(58, 78):
-        half = (y - 58) * 6
+    c.rect(cx - 7, 0, 14, 8, PAL["marble"]); c.rect(cx - 4, 0, 8, 3, PAL["lstone"]); c.hline(cx - 7, 0, 14, SNOW)
+    c.hline(cx - 90, drum_y - 1, 180, SNOW)
+    for y in range(88, 120):
+        half = (y - 88) * 6
         c.hline(cx - half, y, half * 2, (230, 226, 214))
-    c.hline(cx - 120, 78, 240, PAL["lstone"])
-    c.rect(cx - 24, 66, 48, 10, (190, 184, 172))
-    c.rect(cx - 118, 78, 236, 6, PAL["marble"]); c.hline(cx - 118, 83, 236, PAL["stone"])
-    c.rect(cx - 110, 84, 220, 96, (176, 170, 160))
-    for i in (0, 3):
-        sash_window(c, cx - 96 + i * 62, 100, 14, 26, lintel="stone", panes=(3, 3))
-    c.rect(cx - 16, 130, 32, 50, PAL["wood3"]); c.rect(cx - 14, 132, 28, 48, PAL["wood2"])
-    c.rect(cx - 12, 134, 10, 20, shade(PAL["wood2"], 1.15)); c.rect(cx + 2, 134, 10, 20, shade(PAL["wood2"], 1.15))
-    c.rect(cx - 12, 156, 10, 22, shade(PAL["wood2"], 1.15)); c.rect(cx + 2, 156, 10, 22, shade(PAL["wood2"], 1.15))
+    c.hline(cx - 190, 120, 380, PAL["lstone"])
+    c.rect(cx - 36, 100, 72, 16, (190, 184, 172))
+    c.rect(cx - 180, 120, 360, 8, PAL["marble"]); c.hline(cx - 180, 127, 360, PAL["stone"])
+    c.rect(cx - 170, 128, 340, 148, (176, 170, 160))
+    for i in (0, 4):
+        sash_window(c, cx - 150 + i * 70, 150, 20, 40, lintel="stone", panes=(3, 4))
+    c.rect(cx - 24, 196, 48, 80, PAL["wood3"]); c.rect(cx - 21, 199, 42, 77, PAL["wood2"])
+    for (px, py, pw, ph) in [(cx - 18, 202, 16, 32), (cx + 2, 202, 16, 32), (cx - 18, 238, 16, 34), (cx + 2, 238, 16, 34)]:
+        c.rect(px, py, pw, ph, shade(PAL["wood2"], 1.15)); c.hline(px, py, pw, shade(PAL["wood2"], 1.35))
+    c.rect(cx - 30, 188, 60, 8, PAL["marble"]); c.hline(cx - 30, 195, 60, PAL["stone"])
     for i in range(8):
-        x = cx - 112 + i * 30
-        for y in range(84, 182):
-            c.put(x, y, PAL["stone"]); c.put(x + 1, y, PAL["lstone"]); c.put(x + 2, y, PAL["marble"])
-            c.put(x + 3, y, PAL["white"]); c.put(x + 4, y, PAL["marble"]); c.put(x + 5, y, PAL["lstone"]); c.put(x + 6, y, PAL["stone"])
-        c.rect(x - 2, 84, 11, 5, PAL["marble"]); c.rect(x - 1, 86, 9, 3, PAL["lstone"])
-        c.rect(x - 2, 180, 11, 4, PAL["marble"])
-    for s in range(9):
-        y = 184 + s * 4
-        w = 240 + s * 14
+        x = cx - 172 + i * 46
+        for y in range(128, 274):
+            c.put(x, y, PAL["stone"]); c.put(x + 1, y, PAL["lstone"]); c.put(x + 2, y, PAL["marble"]); c.put(x + 3, y, PAL["marble"])
+            c.put(x + 4, y, PAL["white"]); c.put(x + 5, y, PAL["white"]); c.put(x + 6, y, PAL["marble"]); c.put(x + 7, y, PAL["lstone"]); c.put(x + 8, y, PAL["stone"])
+            if y % 14 == 0:
+                c.put(x + 4, y, PAL["marble"]); c.put(x + 5, y, PAL["marble"])
+        c.rect(x - 3, 128, 15, 7, PAL["marble"]); c.rect(x - 2, 131, 13, 4, PAL["lstone"]); c.put(x - 3, 134, PAL["stone"]); c.put(x + 11, 134, PAL["stone"])
+        c.rect(x - 3, 272, 15, 5, PAL["marble"])
+    for s in range(12):
+        y = 278 + s * 4
+        w = 360 + s * 20
         c.rect(cx - w // 2, y, w, 3, PAL["marble"] if s % 2 == 0 else PAL["lstone"])
         c.hline(cx - w // 2, y + 3, w, PAL["stone"])
         if s % 3 == 0:
             c.hline(cx - w // 2, y, w, SNOW)
     c.rect(0, H - ground, W, ground, PAL["lstone"])
-    for x in range(0, W, 16):
+    for x in range(0, W, 24):
         c.vline(x, H - ground, ground, PAL["stone"])
-    for y in range(H - ground, H, 10):
+    for y in range(H - ground, H, 12):
         c.hline(0, y, W, PAL["stone"])
     c.hline(0, H - ground, W, PAL["marble"])
-    return reg("capitol", c, door=(cx - 20, H - ground, 40, ground), lights=[(cx, 150, 60, "window")], smoke=[])
+    return reg("capitol", c, door=(cx - 24, H - ground, 48, ground), lights=[(cx, 236, 80, "window")], smoke=[])
 
 
 # ---------------------------------------------------------------------------
 # the President's House (north front with the 1830 portico)
 # ---------------------------------------------------------------------------
 def white_house():
-    W, H = T * 10, T * 6
+    W, H = T * 15, T * 9
     c = Canvas(W, H)
-    ground = 22
+    ground = 26
     base = (240, 236, 226)
-    y_wall, wall_h = 44, H - ground - 44
-    ashlar(c, 8, y_wall, W - 16, wall_h, base=base, seed=22, quoins=False)
-    for x in range(10, W - 10, 5):
-        c.rect(x, 34, 3, 8, PAL["marble"]); c.vline(x + 2, 34, 8, PAL["lstone"])
-    c.rect(8, 32, W - 16, 3, PAL["marble"]); c.rect(8, 42, W - 16, 2, PAL["lstone"]); c.hline(8, 32, W - 16, SNOW)
-    for y in range(22, 32):
-        c.hline(8 + (32 - y), y, W - 16 - 2 * (32 - y), (120, 118, 112))
-    c.hline(18, 22, W - 36, SNOW)
-    chimney(c, 40, 8, seed=31); chimney(c, W - 48, 8, seed=32)
-    for i in range(3):
-        for wx in (24 + i * 30, W - 36 - i * 30):
-            sash_window(c, wx, 56, 12, 18, shutters=(60, 80, 60), lintel="stone")
-            sash_window(c, wx, 100, 12, 20, shutters=(60, 80, 60), lintel="stone")
-    c.hline(8, 90, W - 16, PAL["lstone"]); c.hline(8, 91, W - 16, PAL["stone"])
-    cx = W // 2
-    c.rect(cx - 58, 46, 116, 8, PAL["marble"]); c.hline(cx - 58, 53, 116, PAL["stone"]); c.hline(cx - 58, 46, 116, SNOW)
-    c.rect(cx - 52, 54, 104, 82, (214, 208, 196))
-    panel_door(c, cx - 8, 104, 16, 26, colour=PAL["wood3"], fanlight=True, pilasters=True, steps=2, lamp=True)
-    sash_window(c, cx - 36, 62, 12, 18, lintel="stone"); sash_window(c, cx + 24, 62, 12, 18, lintel="stone")
+    y_wall, wall_h = 64, H - ground - 64
+    ashlar(c, 10, y_wall, W - 20, wall_h, base=base, seed=22, quoins=False)
+    for x in range(12, W - 12, 6):
+        c.rect(x, 50, 4, 12, PAL["marble"]); c.vline(x + 3, 50, 12, PAL["lstone"])
+    c.rect(10, 46, W - 20, 4, PAL["marble"]); c.rect(10, 62, W - 20, 2, PAL["lstone"]); c.hline(10, 46, W - 20, SNOW)
+    for y in range(32, 46):
+        c.hline(10 + (46 - y), y, W - 20 - 2 * (46 - y), (120, 118, 112))
+    c.hline(24, 32, W - 48, SNOW)
+    chimney(c, 60, 12, w=10, h=22, seed=31); chimney(c, W - 70, 12, w=10, h=22, seed=32)
     for i in range(4):
-        x = cx - 50 + i * 30
-        for y in range(54, 138):
-            c.put(x, y, PAL["lstone"]); c.put(x + 1, y, PAL["marble"]); c.put(x + 2, y, PAL["white"]); c.put(x + 3, y, PAL["white"])
-            c.put(x + 4, y, PAL["marble"]); c.put(x + 5, y, PAL["stone"])
-        c.rect(x - 2, 54, 10, 4, PAL["marble"]); c.put(x - 2, 56, PAL["lstone"]); c.put(x + 7, 56, PAL["lstone"])
-        c.rect(x - 1, 136, 8, 3, PAL["marble"])
+        for wx in (28 + i * 36, W - 46 - i * 36):
+            sash_window(c, wx, 80, 18, 28, shutters=(60, 80, 60), lintel="stone", panes=(3, 3))
+            sash_window(c, wx, 146, 18, 32, shutters=(60, 80, 60), lintel="stone", panes=(3, 3))
+    c.hline(10, 132, W - 20, PAL["lstone"]); c.hline(10, 133, W - 20, PAL["stone"])
+    cx = W // 2
+    c.rect(cx - 86, 66, 172, 12, PAL["marble"]); c.hline(cx - 86, 77, 172, PAL["stone"]); c.hline(cx - 86, 66, 172, SNOW)
+    c.rect(cx - 78, 78, 156, 124, (214, 208, 196))
+    panel_door(c, cx - 11, 156, 22, 40, colour=PAL["wood3"], fanlight=True, pilasters=True, steps=3, lamp=True)
+    sash_window(c, cx - 56, 90, 18, 28, lintel="stone", panes=(3, 3)); sash_window(c, cx + 38, 90, 18, 28, lintel="stone", panes=(3, 3))
+    for i in range(4):
+        x = cx - 76 + i * 46
+        for y in range(78, 204):
+            c.put(x, y, PAL["lstone"]); c.put(x + 1, y, PAL["marble"]); c.put(x + 2, y, PAL["white"]); c.put(x + 3, y, PAL["white"]); c.put(x + 4, y, PAL["white"])
+            c.put(x + 5, y, PAL["marble"]); c.put(x + 6, y, PAL["lstone"]); c.put(x + 7, y, PAL["stone"])
+        c.rect(x - 3, 78, 14, 6, PAL["marble"]); c.put(x - 3, 82, PAL["lstone"]); c.put(x + 10, 82, PAL["lstone"]); c.rect(x - 2, 84, 12, 2, PAL["lstone"])
+        c.rect(x - 2, 202, 12, 4, PAL["marble"])
     c.noise_fill(0, H - ground, W, ground, [PAL["lstone"], PAL["stone"], (186, 180, 168)], seed=23)
     c.hline(0, H - ground, W, PAL["marble"])
     ground_shadow(c, 0, H - ground, W, ground, side=0)
-    return reg("white_house", c, door=(cx - 14, H - ground, 28, ground), smoke=[(44, 4), (W - 44, 4)],
-               lights=[(cx, 122, 50, "window"), (cx - 18, 108, 40, "lamp")])
+    return reg("white_house", c, door=(cx - 16, H - ground, 32, ground), smoke=[(65, 8), (W - 65, 8)],
+               lights=[(cx, 190, 70, "window"), (cx - 22, 160, 50, "lamp")])
 
 
 # ---------------------------------------------------------------------------
@@ -547,16 +553,16 @@ def tree_bare():
 
 
 def lamp_post():
-    c = Canvas(T, T * 2)
-    c.rect(14, 14, 4, 46, (34, 30, 34)); c.vline(15, 14, 46, (70, 64, 70))
-    c.rect(11, 58, 10, 5, (34, 30, 34)); c.hline(11, 58, 10, (70, 64, 70))
-    c.rect(13, 50, 6, 2, (34, 30, 34))
-    c.rect(9, 2, 14, 13, (34, 30, 34))
-    c.rect(11, 4, 10, 9, (250, 214, 130)); c.rect(13, 6, 6, 5, (255, 240, 200)); c.put(15, 8, PAL["white"])
-    c.vline(15, 4, 9, (60, 50, 40))
-    c.rect(11, 0, 10, 2, (120, 90, 60)); c.hline(9, 2, 14, (150, 110, 70))
-    c.hline(11, 0, 10, SNOW)
-    return reg("lamp_post", c, solid=(11, 56, 10, 6), lights=[(16, 8, 76, "lamp")])
+    c = Canvas(T, T * 3)
+    c.rect(14, 18, 4, 74, (34, 30, 34)); c.vline(15, 18, 74, (70, 64, 70))
+    c.rect(11, 90, 10, 5, (34, 30, 34)); c.hline(11, 90, 10, (70, 64, 70))
+    c.rect(13, 60, 6, 2, (34, 30, 34)); c.rect(13, 30, 6, 2, (34, 30, 34))
+    c.rect(8, 2, 16, 17, (34, 30, 34))
+    c.rect(10, 4, 12, 13, (250, 214, 130)); c.rect(12, 7, 8, 7, (255, 240, 200)); c.rect(14, 9, 4, 3, PAL["white"])
+    c.vline(15, 4, 13, (60, 50, 40)); c.hline(10, 10, 12, (60, 50, 40))
+    c.rect(10, 0, 12, 2, (120, 90, 60)); c.hline(8, 2, 16, (150, 110, 70))
+    c.hline(10, 0, 12, SNOW)
+    return reg("lamp_post", c, solid=(11, 88, 10, 6), lights=[(16, 10, 90, "lamp")])
 
 
 def fence(w_tiles=3):

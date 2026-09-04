@@ -5,24 +5,23 @@ const Scenes = {
   // A pixel backdrop built from a building sprite, tiled ground and falling snow.
   backdrop(building, opts = {}) {
     const bd = Assets.buildings[building];
-    const c = document.createElement('canvas'); c.width = 640; c.height = 360; c.className = 'bg';
+    const W = VIEW_W, H = VIEW_H;
+    const c = document.createElement('canvas'); c.width = W; c.height = H; c.className = 'bg';
     const ctx = c.getContext('2d'); ctx.imageSmoothingEnabled = false;
-    const g = ctx.createLinearGradient(0, 0, 0, 360);
+    const g = ctx.createLinearGradient(0, 0, 0, H);
     g.addColorStop(0, '#1a1c2c'); g.addColorStop(1, '#3a3446');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, 640, 360);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     const scale = opts.scale || 2;
     const w = bd.w * scale, h = bd.h * scale;
-    const x = Math.round((640 - w) / 2), y = opts.y != null ? opts.y : Math.round(360 - h - 40);
-    // ground
-    for (let tx = 0; tx < 640; tx += 64) for (let ty = y + h - 60; ty < 360; ty += 64) {
+    const x = Math.round((W - w) / 2), y = opts.y != null ? opts.y + Math.round((H - 360) / 2) : Math.round(H - h - 40);
+    for (let tx = 0; tx < W; tx += 64) for (let ty = y + h - 60; ty < H; ty += 64) {
       const t = Assets.tile(tx % 128 ? 'flag0' : 'flag1');
       ctx.drawImage(Assets.atlas, t.x, t.y, 32, 32, tx, ty, 64, 64);
     }
     ctx.drawImage(bd.im, x, y, w, h);
-    // snow
     ctx.fillStyle = 'rgba(230,232,240,0.6)';
-    for (let i = 0; i < 90; i++) ctx.fillRect((i * 173) % 640, (i * 97) % 360, 2, 2);
-    ctx.fillStyle = 'rgba(10,8,14,0.35)'; ctx.fillRect(0, 0, 640, 360);
+    for (let i = 0; i < 90 * (W * H) / 230400; i++) ctx.fillRect((i * 173) % W, (i * 97) % H, 2, 2);
+    ctx.fillStyle = 'rgba(10,8,14,0.35)'; ctx.fillRect(0, 0, W, H);
     return c;
   },
 
@@ -59,9 +58,11 @@ const Scenes = {
   async opening() {
     const f = UI.screen(`<div class="scene"></div>`);
     const sc = f.querySelector('.scene');
-    const litho = document.createElement('canvas'); litho.width = 640; litho.height = 360; litho.className = 'bg';
-    const lc = litho.getContext('2d'); lc.imageSmoothingEnabled = false; lc.drawImage(Assets.ui.opening, 0, 0);
-    lc.fillStyle = 'rgba(10,8,14,0.25)'; lc.fillRect(0, 0, 640, 360);
+    const litho = document.createElement('canvas'); litho.width = VIEW_W; litho.height = VIEW_H; litho.className = 'bg';
+    const lc = litho.getContext('2d'); lc.imageSmoothingEnabled = false;
+    const k = Math.max(VIEW_W / 640, VIEW_H / 360);   // cover
+    lc.drawImage(Assets.ui.opening, Math.round((VIEW_W - 640 * k) / 2), Math.round((VIEW_H - 360 * k) / 2), Math.round(640 * k), Math.round(360 * k));
+    lc.fillStyle = 'rgba(10,8,14,0.25)'; lc.fillRect(0, 0, VIEW_W, VIEW_H);
     sc.appendChild(litho);
     const cap = document.createElement('div'); cap.style.cssText = 'position:absolute;left:10px;top:8px;font-size:8.5px;color:#c8b890;font-style:italic;text-shadow:0 1px 0 #000';
     cap.textContent = '"The Attempted Assassination of the President of the United States" — lithograph, 1835';

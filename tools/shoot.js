@@ -33,8 +33,9 @@ fs.mkdirSync(OUT, { recursive: true });
   await page.keyboard.press('Space'); await page.waitForTimeout(200); await page.keyboard.press('Space');
   await page.waitForTimeout(900);
   await page.screenshot({ path: `${OUT}/06_magistrate_office.png` });
-  // walk up to the magistrate and talk
-  await page.keyboard.down('ArrowUp'); await page.waitForTimeout(1000); await page.keyboard.up('ArrowUp');
+  // stand at the magistrate's desk and talk
+  await page.evaluate(() => { World.player.x = 8 * 32 + 16; World.player.y = 6 * 32 + 30; World.player.dir = 'up'; });
+  await page.waitForTimeout(200);
   await page.keyboard.press('Space'); await page.waitForTimeout(2500);
   await page.screenshot({ path: `${OUT}/07_dialogue.png` });
   await untilChoices();
@@ -42,12 +43,13 @@ fs.mkdirSync(OUT, { recursive: true });
   // leave the conversation (last option)
   const btns = await page.$$('#dlg-choices button'); if (btns.length) await btns[btns.length - 1].click();
   await page.waitForTimeout(300);
-  // walk to the street: down and out the door
+  // walk to the street: down and out the door (exit gap is at columns 9-10)
+  await page.evaluate(() => { World.player.x = 9 * 32 + 16; });
   await page.keyboard.down('ArrowDown'); await page.waitForTimeout(1600); await page.keyboard.up('ArrowDown');
   await page.waitForTimeout(1200);
   await page.screenshot({ path: `${OUT}/09_street.png` });
   // pick up the hat at the Capitol steps
-  await page.evaluate(() => { World.load('capitol_steps', 'default'); Game.state.room = 'capitol_steps'; World.player.x = 8 * 32 + 16; World.player.y = 9 * 32 + 30; World.player.dir = 'up'; });
+  await page.evaluate(() => { World.load('capitol_steps', 'default'); Game.state.room = 'capitol_steps'; World.player.x = 10 * 32 + 16; World.player.y = 14 * 32 + 30; World.player.dir = 'up'; });
   await page.waitForTimeout(200);
   await page.keyboard.press('Space'); await page.waitForTimeout(2500);
   await page.screenshot({ path: `${OUT}/09a_look.png` });
@@ -55,7 +57,7 @@ fs.mkdirSync(OUT, { recursive: true });
   await page.screenshot({ path: `${OUT}/09b_card.png` });
   await page.keyboard.press('Space'); await page.waitForTimeout(300);
   // show the hat to Gregory
-  await page.evaluate(() => { World.load('hat_shop', 'default'); Game.state.room = 'hat_shop'; World.player.x = 4 * 32 + 16; World.player.y = 4 * 32 + 30; World.player.dir = 'up'; });
+  await page.evaluate(() => { World.load('hat_shop', 'default'); Game.state.room = 'hat_shop'; World.player.x = 8 * 32 + 16; World.player.y = 6 * 32 + 30; World.player.dir = 'up'; });
   await page.waitForTimeout(200);
   await page.keyboard.press('Space'); await page.waitForTimeout(300);
   await untilChoices();
@@ -75,10 +77,10 @@ fs.mkdirSync(OUT, { recursive: true });
     await page.screenshot({ path: `${OUT}/10_${r}.png` });
   }
   // street overview at a few camera spots
-  await page.evaluate(() => { World.load('street', 'default'); World.player.x = 1500; World.player.y = 300; World.updateCamera(true); });
+  await page.evaluate(() => { World.load('street', 'default'); World.player.x = 1500; World.player.y = 480; World.updateCamera(true); });
   await page.waitForTimeout(250);
   await page.screenshot({ path: `${OUT}/11_street_east.png` });
-  await page.evaluate(() => { World.player.x = 800; World.player.y = 560; World.updateCamera(true); });
+  await page.evaluate(() => { World.player.x = 800; World.player.y = 860; World.updateCamera(true); });
   await page.waitForTimeout(250);
   await page.screenshot({ path: `${OUT}/12_street_south.png` });
   // evidence tray with everything
