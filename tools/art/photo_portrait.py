@@ -23,6 +23,7 @@ PORTRAITS = {
     "calhoun": dict(box=(38, 8, 168, 138), colors=24, contrast=1.2, gamma=1.0, sharpen=1.2),
     "ross": dict(box=(115, 55, 425, 365), colors=26, contrast=1.1, gamma=1.0),
     "key": dict(box=(240, 110, 900, 770), colors=24, contrast=1.15, gamma=1.0),
+    "lawrence": dict(box=(0.32, 0.17, 0.66, 0.51), colors=22, contrast=1.2, gamma=1.0),
     "magistrate": dict(box=(0.30, 0.10, 0.72, 0.52), colors=24, contrast=1.2, gamma=1.0),
 }
 SIZE = 128

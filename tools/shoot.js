@@ -47,7 +47,7 @@ fs.mkdirSync(OUT, { recursive: true });
   await page.waitForTimeout(1200);
   await page.screenshot({ path: `${OUT}/09_street.png` });
   // pick up the hat at the Capitol steps
-  await page.evaluate(() => { World.load('capitol_steps', 'default'); Game.state.room = 'capitol_steps'; World.player.x = 7 * 32 + 16; World.player.y = 8 * 32 + 30; World.player.dir = 'up'; });
+  await page.evaluate(() => { World.load('capitol_steps', 'default'); Game.state.room = 'capitol_steps'; World.player.x = 8 * 32 + 16; World.player.y = 9 * 32 + 30; World.player.dir = 'up'; });
   await page.waitForTimeout(200);
   await page.keyboard.press('Space'); await page.waitForTimeout(2500);
   await page.screenshot({ path: `${OUT}/09a_look.png` });
