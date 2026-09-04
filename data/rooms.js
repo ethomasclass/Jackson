@@ -167,7 +167,7 @@ interior('post_office', {
   name: 'The Post Office', w: 12, h: 8, wall: 'wall_plaster', floor: 'floor_wood1', windows: [1, 10],
   objects: [
     { t: 'pigeonholes', x: 2, y: 1 }, { t: 'pigeonholes', x: 7, y: 1 },
-    { t: 'notice_board', x: 5, y: 1, solid: false, evidence: 'poster', where: 'the Post Office wall', look: "An election poster from 1828, faded now: *JACKSON AND REFORM! The Hero of New Orleans — the People's Candidate.* Someone has scratched the word *KING* across his name with a pen-knife." },
+    { t: 'notice_board', x: 5, y: 1, solid: false, evidence: 'poster', where: 'the Post Office wall', look: "A handbill from the 1828 election, brown with age: six black coffins in a row, and beneath them *Some Account of some of the Bloody Deeds of GENERAL JACKSON.* His enemies' work. Someone has scratched the word *KING* across his name with a pen-knife." },
     { t: 'counter3', x: 4, y: 3 }, { t: 'desk1', x: 9, y: 3 }, { t: 'barrel', x: 0, y: 5 }, { t: 'crate', x: 0, y: 6 }, { t: 'crate', x: 11, y: 6 },
     { t: 'chair_down', x: 9, y: 4, solid: false }, { t: 'argand_lamp', x: 2, y: 3 }, { t: 'paper_stack', x: 3, y: 5, solid: false }, { t: 'sconce', x: 9, y: 1, solid: false },
   ],

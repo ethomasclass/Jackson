@@ -1354,5 +1354,53 @@
   "h": 4000,
   "file": "resolutions/01_The_Kentucky_State_Capitol_Building_png.jpg",
   "key": "resolutions"
+ },
+ {
+  "title": "File:Ammi Phillips - Portrait of Sherman Bassett WP 20180527 091 (cropped).jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Ammi_Phillips_-_Portrait_of_Sherman_Bassett_WP_20180527_091_%28cropped%29.jpg/1280px-Ammi_Phillips_-_Portrait_of_Sherman_Bassett_WP_20180527_091_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Ammi_Phillips_-_Portrait_of_Sherman_Bassett_WP_20180527_091_(cropped).jpg",
+  "licence": "Public domain pd",
+  "artist": "Jane023",
+  "date": "27 May 2018",
+  "w": 1405,
+  "h": 1683,
+  "file": "young_man/00_Ammi_Phillips_Portrait_of_Sherman_Bassett_WP_20180527_091_cr.jpg",
+  "key": "young_man"
+ },
+ {
+  "title": "File:Domenico Ghirlandaio - Portrait of a Man.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Domenico_Ghirlandaio_-_Portrait_of_a_Man.jpg/1280px-Domenico_Ghirlandaio_-_Portrait_of_a_Man.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Domenico_Ghirlandaio_-_Portrait_of_a_Man.jpg",
+  "licence": "Public domain pd",
+  "artist": "Domenico Ghirlandaio",
+  "date": "1478\u00a0<span class=\"mw-valign-text-top nop",
+  "w": 3984,
+  "h": 4960,
+  "file": "young_man/01_Domenico_Ghirlandaio_Portrait_of_a_Man_jpg.jpg",
+  "key": "young_man"
+ },
+ {
+  "title": "File:India - Delhi portrait of a man - 4780.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/India_-_Delhi_portrait_of_a_man_-_4780.jpg/1280px-India_-_Delhi_portrait_of_a_man_-_4780.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:India_-_Delhi_portrait_of_a_man_-_4780.jpg",
+  "licence": "CC BY-SA 3.0 cc-by-sa-3.0",
+  "artist": "Jorge Royan",
+  "date": "2005",
+  "w": 3504,
+  "h": 2336,
+  "file": "young_man/02_India_Delhi_portrait_of_a_man_4780_jpg.jpg",
+  "key": "young_man"
+ },
+ {
+  "title": "File:Portrait of a Man, Said to be Christopher Columbus.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Portrait_of_a_Man%2C_Said_to_be_Christopher_Columbus.jpg/1280px-Portrait_of_a_Man%2C_Said_to_be_Christopher_Columbus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Portrait_of_a_Man,_Said_to_be_Christopher_Columbus.jpg",
+  "licence": "Public domain pd",
+  "artist": "Sebastiano del Piombo",
+  "date": "before 1519<div style=\"display: none;\">d",
+  "w": 4266,
+  "h": 5161,
+  "file": "young_man/03_Portrait_of_a_Man_Said_to_be_Christopher_Columbus_jpg.jpg",
+  "key": "young_man"
  }
 ]

@@ -57,8 +57,21 @@ tools/art/          Pillow scripts that generate all the art:  ./tools/art/build
 tools/shoot.js      Playwright smoke test that screenshots every scene
 ```
 
-All art is procedural + hand-authored pixel grids in `tools/art/`. Regenerate with `tools/art/build.sh`
-(needs Python 3 and Pillow).
+All art is generated in `tools/art/` (Python 3, Pillow, numpy). Regenerate with `tools/art/build.sh`.
+
+- `buildings.py` — 3/4-view facades drawn against period references (Gadsby's Tavern, the Brown's Indian
+  Queen Hotel lithograph, Cooke's 1833 views of the Capitol, the 1846 daguerreotypes of the Capitol and the
+  President's House).
+- `tiles.py` — interiors: Windsor chairs, a Columbian hand press, a caged taproom bar, Franklin stove, Argand
+  lamps, ingrain carpets, wainscot and sprigged wallpaper.
+- `sprites.py` + `shade.py` — characters authored as material maps and auto-shaded (5-tone ramps, selective
+  outlines, 1830s gigot sleeves), with blink and idle-breathing metadata.
+- `photo_portrait.py` — dialogue portraits derived from public-domain paintings: Sully's Jackson, Neagle's
+  Clay, Healy's Calhoun, Sully's Biddle, the McKenney & Hall lithograph of John Ross, Joseph Wood's Francis
+  Scott Key; two anonymous period portraits stand in for the magistrate and John Gregory.
+- `evidence.py` — evidence cards; the King Andrew cartoon and the 1828 Coffin Handbill are the real prints.
+- `fetch_refs.py` — pulls the references from Wikimedia Commons with licence checks; attributions in
+  `tools/art/ref/CREDITS.md`.
 
 ## Historical notes
 

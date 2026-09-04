@@ -23,6 +23,8 @@ QUERIES = {
     "ross": ["John Ross Cherokee chief portrait", "John Ross Charles Bird King"],
     "biddle": ["Nicholas Biddle portrait banker", "Nicholas Biddle 1786"],
     "lawrence": ["Richard Lawrence assassination attempt Jackson 1835", "attempted assassination President Jackson 1835 lithograph"],
+    "lawrence_face": ["Richard Lawrence 1835 assassin portrait", "Richard Lawrence house painter Jackson"],
+    "young_man": ["portrait of a young man 1830s American painting", "Ammi Phillips portrait man"],
     "key": ["Francis Scott Key portrait"],
     "jackson": ["Andrew Jackson Ralph Earl portrait 1835", "Andrew Jackson 1837 portrait"],
     "clay_older": ["Henry Clay portrait 1840s", "Henry Clay Neagle"],

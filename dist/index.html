@@ -396,8 +396,8 @@ const EVIDENCE = {
     },
   },
   poster: {
-    name: '1828 Campaign Poster', tier: 'Document',
-    desc: "*Jackson and Reform!* — a poster from the 1828 election, hanging in the Post Office. The new postmaster put it up the day he took John Gregory's job. Someone has scratched *KING* across Jackson's name.",
+    name: '1828 Coffin Handbill', tier: 'Document',
+    desc: "The notorious *Coffin Handbill* from the 1828 election: six black coffins for six militiamen Jackson had shot for desertion, printed by his enemies to call him a murderer. The new postmaster pinned it up the day he took John Gregory's job, as a trophy. Someone has scratched *KING* across Jackson's name.",
     links: {
       gregory: "Gregory was fired to make room for a Jackson loyalist, and left this poster defaced on his way out.",
     },
@@ -699,7 +699,7 @@ interior('post_office', {
   name: 'The Post Office', w: 12, h: 8, wall: 'wall_plaster', floor: 'floor_wood1', windows: [1, 10],
   objects: [
     { t: 'pigeonholes', x: 2, y: 1 }, { t: 'pigeonholes', x: 7, y: 1 },
-    { t: 'notice_board', x: 5, y: 1, solid: false, evidence: 'poster', where: 'the Post Office wall', look: "An election poster from 1828, faded now: *JACKSON AND REFORM! The Hero of New Orleans — the People's Candidate.* Someone has scratched the word *KING* across his name with a pen-knife." },
+    { t: 'notice_board', x: 5, y: 1, solid: false, evidence: 'poster', where: 'the Post Office wall', look: "A handbill from the 1828 election, brown with age: six black coffins in a row, and beneath them *Some Account of some of the Bloody Deeds of GENERAL JACKSON.* His enemies' work. Someone has scratched the word *KING* across his name with a pen-knife." },
     { t: 'counter3', x: 4, y: 3 }, { t: 'desk1', x: 9, y: 3 }, { t: 'barrel', x: 0, y: 5 }, { t: 'crate', x: 0, y: 6 }, { t: 'crate', x: 11, y: 6 },
     { t: 'chair_down', x: 9, y: 4, solid: false }, { t: 'argand_lamp', x: 2, y: 3 }, { t: 'paper_stack', x: 3, y: 5, solid: false }, { t: 'sconce', x: 9, y: 1, solid: false },
   ],
@@ -1167,7 +1167,7 @@ D('postmaster', {
       ], set: { pm_lawrence: true }, next: 'hub',
     },
     poster: {
-      text: "Jackson and Reform, 1828. I put it up the day I took this desk. Somebody's scratched it — you'll see. Go on, take a look. I never took it down. Reminds me not everyone voted our way.",
+      text: "The Coffin Handbill, 1828. The Adams men printed it against the General — six coffins for six deserters he had shot in the war. Called him a murderer. He won anyway. I pinned it up the day I took this desk, as a trophy. Somebody's scratched it since — go and look.",
       next: 'hub',
     },
   },
@@ -1533,7 +1533,7 @@ D('printer', {
   onEvidence: { cartoon: 'c', poster: 'p' },
 });
 DIALOGUE.printer.nodes.c = { text: "Mine. Gregory's words, my press. Free country — or it was. Though I'll say this: he writes like a man who wants the President *gone*. Whether that means out of office or out of the world, I couldn't tell you.", next: 'hub' };
-DIALOGUE.printer.nodes.p = { text: "1828 — I printed *that* too. For Jackson. Times change, customers change. The ink's the same.", next: 'hub' };
+DIALOGUE.printer.nodes.p = { text: "The Coffin Handbill! I printed *that* — for the Adams men, 1828. Then I printed for Jackson. Now I print against him. Customers change. The ink's the same.", next: 'hub' };
 
 // ===========================================================================
 // THE BOARDING HOUSE — John C. Calhoun

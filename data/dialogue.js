@@ -324,7 +324,7 @@ D('postmaster', {
       ], set: { pm_lawrence: true }, next: 'hub',
     },
     poster: {
-      text: "Jackson and Reform, 1828. I put it up the day I took this desk. Somebody's scratched it — you'll see. Go on, take a look. I never took it down. Reminds me not everyone voted our way.",
+      text: "The Coffin Handbill, 1828. The Adams men printed it against the General — six coffins for six deserters he had shot in the war. Called him a murderer. He won anyway. I pinned it up the day I took this desk, as a trophy. Somebody's scratched it since — go and look.",
       next: 'hub',
     },
   },
@@ -690,7 +690,7 @@ D('printer', {
   onEvidence: { cartoon: 'c', poster: 'p' },
 });
 DIALOGUE.printer.nodes.c = { text: "Mine. Gregory's words, my press. Free country — or it was. Though I'll say this: he writes like a man who wants the President *gone*. Whether that means out of office or out of the world, I couldn't tell you.", next: 'hub' };
-DIALOGUE.printer.nodes.p = { text: "1828 — I printed *that* too. For Jackson. Times change, customers change. The ink's the same.", next: 'hub' };
+DIALOGUE.printer.nodes.p = { text: "The Coffin Handbill! I printed *that* — for the Adams men, 1828. Then I printed for Jackson. Now I print against him. Customers change. The ink's the same.", next: 'hub' };
 
 // ===========================================================================
 // THE BOARDING HOUSE — John C. Calhoun

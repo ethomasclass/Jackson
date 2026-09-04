@@ -44,8 +44,8 @@ const EVIDENCE = {
     },
   },
   poster: {
-    name: '1828 Campaign Poster', tier: 'Document',
-    desc: "*Jackson and Reform!* — a poster from the 1828 election, hanging in the Post Office. The new postmaster put it up the day he took John Gregory's job. Someone has scratched *KING* across Jackson's name.",
+    name: '1828 Coffin Handbill', tier: 'Document',
+    desc: "The notorious *Coffin Handbill* from the 1828 election: six black coffins for six militiamen Jackson had shot for desertion, printed by his enemies to call him a murderer. The new postmaster pinned it up the day he took John Gregory's job, as a trophy. Someone has scratched *KING* across Jackson's name.",
     links: {
       gregory: "Gregory was fired to make room for a Jackson loyalist, and left this poster defaced on his way out.",
     },
