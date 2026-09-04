@@ -38,8 +38,8 @@ const Assets = {
     for (const n of Object.keys(spriteIndex)) jobs.push(track(this.img(`assets/sprites/${n}.png`)).then(im => { this.sprites[n] = { im, ...spriteIndex[n] }; }));
     for (const n of Object.keys(buildingIndex)) jobs.push(track(this.img(`assets/buildings/${n}.png`)).then(im => { this.buildings[n] = { im, ...buildingIndex[n] }; }));
     for (const n of evidenceIndex) jobs.push(track(this.img(`assets/evidence/${n}.png`)).then(im => { this.evidence[n] = im; }));
-    for (const n of ['jackson', 'calhoun', 'clay', 'biddle', 'ross', 'gregory', 'lawrence', 'magistrate']) jobs.push(track(this.img(`assets/portraits/${n}.png`)).then(im => { this.portraits[n] = im; }));
-    for (const n of ['bang', 'arrow', 'spark']) jobs.push(track(this.img(`assets/ui/${n}.png`)).then(im => { this.ui[n] = im; }));
+    for (const n of ['jackson', 'calhoun', 'clay', 'biddle', 'ross', 'gregory', 'lawrence', 'magistrate', 'key']) jobs.push(track(this.img(`assets/portraits/${n}.png`)).then(im => { this.portraits[n] = im; }));
+    for (const n of ['bang', 'arrow', 'spark', 'opening']) jobs.push(track(this.img(`assets/ui/${n}.png`)).then(im => { this.ui[n] = im; }));
     await Promise.all(jobs);
   },
 

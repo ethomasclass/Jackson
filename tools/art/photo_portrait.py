@@ -17,9 +17,11 @@ REF = os.path.join(os.path.dirname(__file__), "ref")
 # name -> (crop box in source pixels, colours, extra adjustments)
 PORTRAITS = {
     "jackson": dict(box=(250, 0, 1400, 1150), colors=24, contrast=1.15, gamma=1.0),
-    "biddle": dict(box=(52, 30, 142, 120), colors=18, contrast=1.3, gamma=0.95, sharpen=1.4),
+    "biddle": dict(box=(300, 210, 1060, 970), colors=24, contrast=1.15, gamma=1.0, tint=True),
     "clay": dict(box=(62, 30, 202, 170), colors=24, contrast=1.15, gamma=1.0, sharpen=1.2),
     "calhoun": dict(box=(38, 8, 168, 138), colors=24, contrast=1.2, gamma=1.0, sharpen=1.2),
+    "ross": dict(box=(115, 55, 425, 365), colors=26, contrast=1.1, gamma=1.0),
+    "key": dict(box=(240, 110, 900, 770), colors=24, contrast=1.15, gamma=1.0),
 }
 SIZE = 128
 
@@ -33,6 +35,9 @@ def make(name, size=SIZE, colors=None, dither=0.0):
     spec = PORTRAITS[name]
     im = Image.open(os.path.join(REF, name + ".jpg")).convert("RGB")
     im = im.crop(spec["box"])
+    if spec.get("tint"):   # monochrome photograph of a painting: warm duotone so it sits with the colour portraits
+        g = ImageOps.autocontrast(im.convert("L"), cutoff=1)
+        im = ImageOps.colorize(g, black=(26, 18, 16), mid=(150, 104, 78), white=(244, 220, 190), midpoint=140)
     # gentle pre-clean at high res, then area-average down
     if spec.get("sharpen"):   # low-res sources: recover edges before we downsample
         im = im.resize((size * 2, size * 2), Image.LANCZOS)

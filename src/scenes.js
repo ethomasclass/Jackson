@@ -59,7 +59,13 @@ const Scenes = {
   async opening() {
     const f = UI.screen(`<div class="scene"></div>`);
     const sc = f.querySelector('.scene');
-    sc.appendChild(this.backdrop('capitol', { scale: 2, y: 20 }));
+    const litho = document.createElement('canvas'); litho.width = 640; litho.height = 360; litho.className = 'bg';
+    const lc = litho.getContext('2d'); lc.imageSmoothingEnabled = false; lc.drawImage(Assets.ui.opening, 0, 0);
+    lc.fillStyle = 'rgba(10,8,14,0.25)'; lc.fillRect(0, 0, 640, 360);
+    sc.appendChild(litho);
+    const cap = document.createElement('div'); cap.style.cssText = 'position:absolute;left:10px;top:8px;font-size:8.5px;color:#c8b890;font-style:italic;text-shadow:0 1px 0 #000';
+    cap.textContent = '"The Attempted Assassination of the President of the United States" — lithograph, 1835';
+    sc.appendChild(cap);
     await this.textCards(sc, [
       "<b>January 30th, 1835.</b> A cold, wet morning. Inside the Capitol, Congress is burying one of its own — Warren Davis of South Carolina.",
       "President Andrew Jackson, sixty-seven years old and walking with a cane, follows the coffin out onto the East Portico. Two hundred mourners crowd the steps.",
@@ -131,6 +137,7 @@ const Scenes = {
       <div class="bench">
         <div class="jury">THE JURY<div class="meter"><i></i></div><div id="jury-word" style="margin-top:2px">unconvinced</div></div>
         <div class="who"><img src="${Assets.url(`assets/portraits/magistrate.png`)}"><span>The Court</span></div>
+        <div class="who"><img src="${Assets.url(`assets/portraits/key.png`)}"><span>F. S. Key, prosecuting</span></div>
         <div class="who accused"><img src="${Assets.url(`assets/portraits/${s.portrait}.png`)}"><span>${s.name}</span></div>
       </div>
       <div class="floor">
