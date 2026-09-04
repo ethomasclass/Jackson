@@ -131,7 +131,8 @@ interior('magistrate', {
     { t: 'wall_map', x: 4, y: 1, solid: false }, { t: 'portrait_red', x: 7, y: 1, solid: false }, { t: 'notice_board', x: 10, y: 1, solid: false },
     { t: 'bookshelf2', x: 0, y: 1 }, { t: 'desk3', x: 4, y: 3 }, { t: 'chair_up', x: 5, y: 2, solid: false },
     { t: 'armchair', x: 1, y: 4 }, { t: 'candle_table', x: 10, y: 3 }, { t: 'strongbox', x: 0, y: 6 }, { t: 'bars', x: 11, y: 4, solid: false, flat: true }, { t: 'bars', x: 11, y: 5, solid: false, flat: true },
-    { t: 'crate', x: 10, y: 6 },
+    { t: 'crate', x: 10, y: 6 }, { t: 'tall_clock', x: 2, y: 1 }, { t: 'coat_stand', x: 8, y: 6 }, { t: 'spittoon', x: 7, y: 5, solid: false },
+    { t: 'sconce', x: 6, y: 1, solid: false }, { t: 'sconce', x: 9, y: 1, solid: false },
   ],
   npcs: [{ id: 'magistrate', sprite: 'magistrate', x: 5, y: 2, dir: 'down', reach: { d: 44 } }],
   hotspots: [
@@ -148,7 +149,7 @@ interior('jail', {
     { t: 'cot', x: 0, y: 2 }, { t: 'bars', x: 3, y: 2, solid: true, flat: true }, { t: 'bars', x: 3, y: 3, solid: true, flat: true }, { t: 'bars_door', x: 3, y: 4, solid: true, flat: true }, { t: 'bars', x: 3, y: 5, solid: true, flat: true }, { t: 'bars', x: 3, y: 6, solid: true, flat: true },
     { t: 'table1', x: 6, y: 4, evidence: 'bank_note', where: "Lawrence's pockets, at the jail", look: "The prisoner's effects, laid out on the table: a comb, a few coins, and a crisp new ten-dollar note from the Bank of the United States. Fresh from the Washington branch." },
     { t: 'crate', x: 8, y: 5, evidence: 'address_card', where: "Lawrence's coat, at the jail", look: "The prisoner's coat, folded in a crate. In the breast pocket, a printed card: *420 Chestnut Street, Philadelphia.* The address of the Bank of the United States." },
-    { t: 'candle_table', x: 6, y: 2 }, { t: 'barrel', x: 8, y: 2 },
+    { t: 'candle_table', x: 6, y: 2 }, { t: 'barrel', x: 8, y: 2 }, { t: 'sconce', x: 5, y: 1, solid: false },
     { t: 'bars', x: 9, y: 3, solid: false, flat: true }, { t: 'bars_door', x: 9, y: 4, solid: false, flat: true }, { t: 'bars', x: 9, y: 5, solid: false, flat: true },
   ],
   npcs: [
@@ -168,7 +169,7 @@ interior('post_office', {
     { t: 'pigeonholes', x: 2, y: 1 }, { t: 'pigeonholes', x: 7, y: 1 },
     { t: 'notice_board', x: 5, y: 1, solid: false, evidence: 'poster', where: 'the Post Office wall', look: "An election poster from 1828, faded now: *JACKSON AND REFORM! The Hero of New Orleans — the People's Candidate.* Someone has scratched the word *KING* across his name with a pen-knife." },
     { t: 'counter3', x: 4, y: 3 }, { t: 'desk1', x: 9, y: 3 }, { t: 'barrel', x: 0, y: 5 }, { t: 'crate', x: 0, y: 6 }, { t: 'crate', x: 11, y: 6 },
-    { t: 'chair_down', x: 9, y: 4, solid: false },
+    { t: 'chair_down', x: 9, y: 4, solid: false }, { t: 'argand_lamp', x: 2, y: 3 }, { t: 'paper_stack', x: 3, y: 5, solid: false }, { t: 'sconce', x: 9, y: 1, solid: false },
   ],
   npcs: [
     { id: 'postmaster', sprite: 'postmaster', x: 5, y: 2, dir: 'down', reach: { d: 44 } },
@@ -181,7 +182,7 @@ interior('hat_shop', {
   objects: [
     { t: 'hat_rack', x: 0, y: 2, look: "A rack of finished hats. Turn one over: a small running stag is stamped into every leather sweatband. The shop's mark." },
     { t: 'hat_rack', x: 9, y: 2 },
-    { t: 'hat_counter', x: 3, y: 3 }, { t: 'wall_sign', x: 4, y: 1, solid: false }, { t: 'crate', x: 0, y: 5 }, { t: 'crate', x: 9, y: 5 }, { t: 'candle_table', x: 6, y: 5 },
+    { t: 'hat_counter', x: 3, y: 3 }, { t: 'wall_sign', x: 4, y: 1, solid: false }, { t: 'mirror', x: 6, y: 1, solid: false }, { t: 'sconce', x: 1, y: 1, solid: false }, { t: 'crate', x: 0, y: 5 }, { t: 'crate', x: 9, y: 5 }, { t: 'candle_table', x: 6, y: 5 },
     { t: 'desk1', x: 8, y: 3, look: "The order book. Hats sold this winter, by name — pages of them. Gregory keeps it in a very neat hand." },
   ],
   npcs: [
@@ -193,7 +194,8 @@ interior('hat_shop', {
 interior('tavern', {
   name: "Gadsby's Tavern", w: 14, h: 8, wall: 'wall_log', floor: 'floor_wood_dark', windows: [3, 8], dim: true,
   objects: [
-    { t: 'bar3', x: 1, y: 2 }, { t: 'fireplace', x: 10, y: 1 }, { t: 'barrel', x: 13, y: 3 }, { t: 'barrel', x: 0, y: 6 }, { t: 'bookshelf1', x: 5, y: 1, solid: false },
+    { t: 'bar3', x: 1, y: 2 }, { t: 'cage_shelf', x: 1, y: 1, solid: false }, { t: 'fireplace', x: 10, y: 1 }, { t: 'barrel', x: 13, y: 3 }, { t: 'barrel', x: 0, y: 6 }, { t: 'sconce', x: 6, y: 1, solid: false },
+    { t: 'spittoon', x: 5, y: 6, solid: false }, { t: 'argand_lamp', x: 9, y: 5 },
     { t: 'table2', x: 7, y: 4, evidence: 'whiskey', where: "Henry Clay's table at the tavern", look: "Clay's table. A bottle of Kentucky bourbon, half gone, and two glasses. Two." },
     { t: 'chair_up', x: 7, y: 3, solid: false }, { t: 'chair_down', x: 8, y: 5, solid: false },
     { t: 'table1', x: 12, y: 5, evidence: 'playing_cards', where: 'the back table at the tavern', look: "The back table, where the serious card games happen. A deck left behind. Several cards carry a faint fingernail mark on the back — someone was cheating." },
@@ -210,7 +212,8 @@ interior('bank_office', {
   name: 'Bank of the United States — Washington Office', w: 12, h: 8, wall: 'wall_marble', floor: 'floor_marble', windows: [1, 10],
   objects: [
     { t: 'pillar', x: 3, y: 1, solidH: 30 }, { t: 'pillar', x: 8, y: 1, solidH: 30 }, { t: 'wall_map', x: 5, y: 1, solid: false }, { t: 'portrait_blue', x: 10, y: 1, solid: false },
-    { t: 'counter3', x: 4, y: 3 }, { t: 'desk2', x: 8, y: 4 }, { t: 'chair_up', x: 9, y: 3, solid: false }, { t: 'globe', x: 11, y: 5 }, { t: 'bookshelf2', x: 0, y: 1 },
+    { t: 'counter_bank', x: 4, y: 3 }, { t: 'desk2', x: 8, y: 4 }, { t: 'chair_up', x: 9, y: 3, solid: false }, { t: 'globe', x: 11, y: 5 }, { t: 'bookshelf2', x: 0, y: 1 },
+    { t: 'tall_clock', x: 11, y: 1 }, { t: 'argand_lamp', x: 2, y: 5 }, { t: 'paper_stack', x: 10, y: 3, solid: false },
     { t: 'strongbox', x: 0, y: 4, evidence: 'check', where: "the Bank's ledger, Washington office", look: "The branch ledger lies open on the strongbox. One entry, 1830: *$5,700,000 — loans to members of Congress and friends of the Bank.* A list of names follows. Henry Clay is near the top. So is Daniel Webster." },
   ],
   npcs: [
@@ -222,7 +225,8 @@ interior('bank_office', {
 interior('print_shop', {
   name: "Duff Green's Print Shop", w: 10, h: 7, wall: 'wall_brick', floor: 'floor_wood2', windows: [8],
   objects: [
-    { t: 'press', x: 1, y: 2 }, { t: 'counter2', x: 5, y: 4 }, { t: 'crate', x: 8, y: 2 }, { t: 'barrel', x: 8, y: 3 }, { t: 'table1', x: 1, y: 5 },
+    { t: 'press', x: 1, y: 2 }, { t: 'counter2', x: 5, y: 4 }, { t: 'type_case', x: 8, y: 2 }, { t: 'barrel', x: 8, y: 3 }, { t: 'table1', x: 1, y: 5 },
+    { t: 'paper_stack', x: 1, y: 4, solid: false }, { t: 'paper_stack', x: 4, y: 5 }, { t: 'sconce', x: 2, y: 1, solid: false },
     { t: 'notice_board', x: 4, y: 1, solid: false, evidence: 'cartoon', where: 'the print shop wall', look: "Pinned to the wall, fresh from the press: *KING ANDREW THE FIRST.* Jackson in a crown and ermine robe, a veto in one hand, the Constitution torn under his boot. Beneath it, a paragraph of furious prose." },
     { t: 'wall_sign', x: 6, y: 1, solid: false },
   ],
@@ -234,7 +238,7 @@ interior('boarding_house', {
   objects: [
     ...rug('green', 4, 3, 4, 3),
     { t: 'fireplace', x: 5, y: 1 }, { t: 'bookshelf1', x: 10, y: 1 }, { t: 'portrait_blue', x: 2, y: 1, solid: false }, { t: 'sofa', x: 1, y: 4 }, { t: 'candle_table', x: 0, y: 2 },
-    { t: 'armchair', x: 9, y: 3 },
+    { t: 'armchair', x: 9, y: 3 }, { t: 'mirror', x: 8, y: 1, solid: false }, { t: 'argand_lamp', x: 3, y: 5 }, { t: 'washstand', x: 11, y: 2 },
     { t: 'table1', x: 10, y: 5, evidence: 'resolutions', where: "Calhoun's papers at the boarding house", look: "Calhoun's papers, stacked with military neatness. On top: a printed copy of the *Virginia and Kentucky Resolutions* of 1798, underlined so heavily in places the pen has cut the paper." },
     { t: 'chair_down', x: 10, y: 6, solid: false },
   ],
@@ -249,7 +253,7 @@ interior('hotel', {
   objects: [
     ...rug('red', 3, 3, 5, 3),
     { t: 'wall_map', x: 7, y: 1, solid: false }, { t: 'portrait_red', x: 3, y: 1, solid: false }, { t: 'sofa', x: 8, y: 2 }, { t: 'counter2', x: 0, y: 2 }, { t: 'candle_table', x: 11, y: 4 }, { t: 'table2', x: 1, y: 5 }, { t: 'chair_up', x: 1, y: 4, solid: false }, { t: 'chair_up', x: 2, y: 4, solid: false },
-    { t: 'crate', x: 11, y: 6 },
+    { t: 'crate', x: 11, y: 6 }, { t: 'coat_stand', x: 10, y: 2 }, { t: 'mirror', x: 5, y: 1, solid: false }, { t: 'argand_lamp', x: 8, y: 6 }, { t: 'spittoon', x: 2, y: 6, solid: false },
     { t: 'wall_sign', x: 0, y: 1, solid: false, look: "The hotel's register. The Cherokee delegation has been here three weeks, petitioning Congress. Their bill is paid in advance, in full." },
   ],
   npcs: [
@@ -262,7 +266,8 @@ interior('white_house', {
   name: "The President's House — the Office", w: 12, h: 8, wall: 'wall_plaster', floor: 'floor_wood_pale', windows: [3, 8],
   objects: [
     ...rug('blue', 4, 3, 4, 3),
-    { t: 'fireplace', x: 5, y: 1 }, { t: 'portrait_red', x: 1, y: 1, solid: false }, { t: 'portrait_blue', x: 10, y: 1, solid: false }, { t: 'bookshelf2', x: 8, y: 1 }, { t: 'bookshelf2', x: 2, y: 1 },
+    { t: 'fireplace', x: 5, y: 1 }, { t: 'portrait_washington', x: 1, y: 1, solid: false }, { t: 'portrait_jackson', x: 10, y: 1, solid: false }, { t: 'bookshelf2', x: 8, y: 1 }, { t: 'bookshelf2', x: 2, y: 1 },
+    { t: 'tall_clock', x: 4, y: 1 }, { t: 'argand_lamp', x: 9, y: 5 }, { t: 'spittoon', x: 8, y: 4, solid: false }, { t: 'coat_stand', x: 11, y: 2 },
     { t: 'desk3', x: 1, y: 3, look: "The President's desk. A stack of bills from Congress, and on top of each, in a furious scrawl: *VETO.* Jackson has rejected more laws than the six presidents before him put together." },
     { t: 'chair_up', x: 2, y: 2, solid: false }, { t: 'armchair', x: 10, y: 4 }, { t: 'globe', x: 11, y: 6 }, { t: 'candle_table', x: 0, y: 6 },
   ],

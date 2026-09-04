@@ -37,6 +37,9 @@ const Atmosphere = {
         if (n === 'fireplace') this.lights.push({ x: o.x + 32, y: o.y + 22, r: 120, kind: 'fire', seed: Math.random() * 100 });
         else if (n === 'candle_table') this.lights.push({ x: o.x + 15, y: o.y + 8, r: 52, kind: 'candle', seed: Math.random() * 100 });
         else if (n === 'stove') this.lights.push({ x: o.x + 16, y: o.y + 16, r: 70, kind: 'fire', seed: Math.random() * 100 });
+        else if (n === 'argand_lamp') this.lights.push({ x: o.x + 16, y: o.y + 6, r: 88, kind: 'lamp', seed: Math.random() * 100 });
+        else if (n === 'sconce') this.lights.push({ x: o.x + 16, y: o.y + 12, r: 64, kind: 'candle', seed: Math.random() * 100 });
+        else if (n === 'desk2' || n === 'desk3') this.lights.push({ x: o.x + o.w - 10, y: o.y + 14, r: 46, kind: 'candle', seed: Math.random() * 100 });
       }
     }
     // interior windows let in cold daylight; wall lamps would go here too

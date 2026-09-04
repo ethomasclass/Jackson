@@ -15,7 +15,14 @@ const { chromium } = require('playwright');
     ['tavern', 7 * 32, 6 * 32, '33_atmo_tavern'],
     ['white_house', 6 * 32, 6 * 32, '34_atmo_whitehouse'],
     ['jail', 6 * 32, 5 * 32, '35_atmo_jail'],
-    ['capitol_steps', 8 * 32, 9 * 32, '36_atmo_steps'],
+    ['capitol_steps', 9 * 32, 10 * 32, '36_atmo_steps'],
+    ['magistrate', 5 * 32, 6 * 32, '37_atmo_magistrate'],
+    ['bank_office', 5 * 32, 6 * 32, '38_atmo_bank'],
+    ['print_shop', 4 * 32, 5 * 32, '39_atmo_print'],
+    ['boarding_house', 5 * 32, 6 * 32, '40_atmo_boarding'],
+    ['hotel', 5 * 32, 6 * 32, '41_atmo_hotel'],
+    ['post_office', 5 * 32, 6 * 32, '42_atmo_post'],
+    ['hat_shop', 4 * 32, 5 * 32, '43_atmo_hat'],
   ];
   for (const [room, x, y, name] of shots) {
     await page.evaluate(([room, x, y]) => { World.load(room, 'default'); Game.state.room = room; World.player.x = x + 16; World.player.y = y + 30; World.updateCamera(true); }, [room, x, y]);

@@ -64,7 +64,7 @@ def bank_note():
 
 
 def pipe():
-    return from_photo("pipe/00_*", (0.05, 0.05, 0.95, 0.5), colors=12, contrast=1.2, pad=2, white_key=200)
+    return from_photo("pipe/01_*", (0.02, 0.1, 0.98, 0.9), colors=10, contrast=1.3, pad=2, white_key=215)
 
 
 def whiskey():
