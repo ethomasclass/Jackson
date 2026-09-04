@@ -75,31 +75,32 @@ function rug(colour, x, y, w, h) {
       F: ['flag0', 'flag1'], c: ['cobble0', 'cobble1'],
     },
     buildings: [
-      // north side
-      { b: 'white_house', x: 1, y: 2, to: 'white_house', label: "The President's House" },
+      // north side (bottoms on row 7, the Capitol's terrace spills onto the paving)
+      { b: 'white_house', x: 0, y: 1, to: 'white_house', label: "The President's House" },
       { b: 'post_office', x: 12, y: 3, to: 'post_office' },
       { b: 'bank_office', x: 17, y: 3, to: 'bank_office' },
       { b: 'print_shop', x: 22, y: 3, to: 'print_shop' },
       { b: 'hotel', x: 26, y: 2, to: 'hotel' },
-      { b: 'house_c', x: 34, y: 4 },
-      { b: 'house_a', x: 39, y: 4 },
-      { b: 'capitol', x: 43, y: 0, to: 'capitol_steps' },
-      // south side
+      { b: 'house_c', x: 34, y: 3 },
+      { b: 'house_a', x: 39, y: 3 },
+      { b: 'capitol', x: 42, y: 0, to: 'capitol_steps' },
+      // south side (bottoms on row 18, doors onto the back lane)
       { b: 'jail', x: 2, y: 14, to: 'magistrate' },
-      { b: 'house_b', x: 7, y: 15 },
-      { b: 'tavern', x: 11, y: 14, to: 'tavern' },
-      { b: 'house_d', x: 17, y: 15 },
+      { b: 'house_b', x: 7, y: 14 },
+      { b: 'tavern', x: 11, y: 13, to: 'tavern' },
+      { b: 'house_d', x: 17, y: 14 },
       { b: 'hat_shop', x: 20, y: 14, to: 'hat_shop' },
-      { b: 'house_b', x: 24, y: 15 },
+      { b: 'house_b', x: 24, y: 14 },
       { b: 'boarding_house', x: 28, y: 14, to: 'boarding_house' },
-      { b: 'house_a', x: 33, y: 15 },
+      { b: 'house_a', x: 33, y: 14 },
       // props
-      { b: 'tree_bare', x: 0, y: 0 }, { b: 'tree_bare', x: 11, y: 0 }, { b: 'tree_bare', x: 24, y: 0 }, { b: 'tree_bare', x: 36, y: 1 }, { b: 'tree_bare', x: 41, y: 0 },
+      { b: 'tree_bare', x: 10, y: 0 }, { b: 'tree_bare', x: 24, y: 0 }, { b: 'tree_bare', x: 37, y: 0 }, { b: 'tree_bare', x: 40, y: 0 },
       { b: 'tree_bare', x: 38, y: 14 }, { b: 'tree_bare', x: 50, y: 15 }, { b: 'tree_bare', x: 6, y: 21 }, { b: 'tree_bare', x: 22, y: 21 }, { b: 'tree_bare', x: 44, y: 21 }, { b: 'tree_bare', x: 54, y: 20 },
-      { b: 'lamp_post', x: 11, y: 6 }, { b: 'lamp_post', x: 25, y: 6 }, { b: 'lamp_post', x: 42, y: 6 }, { b: 'lamp_post', x: 10, y: 12 }, { b: 'lamp_post', x: 27, y: 12 },
+      { b: 'lamp_post', x: 11, y: 6 }, { b: 'lamp_post', x: 25, y: 6 }, { b: 'lamp_post', x: 41, y: 6 }, { b: 'lamp_post', x: 10, y: 12 }, { b: 'lamp_post', x: 27, y: 12 }, { b: 'lamp_post', x: 19, y: 19 }, { b: 'lamp_post', x: 36, y: 19 },
       { b: 'fence3', x: 13, y: 2 }, { b: 'fence3', x: 17, y: 2 }, { b: 'fence3', x: 21, y: 2 }, { b: 'fence2', x: 34, y: 2 }, { b: 'fence3', x: 38, y: 2 },
       { b: 'fence3', x: 40, y: 17 }, { b: 'fence3', x: 43, y: 17 }, { b: 'fence3', x: 46, y: 17 },
-      { b: 'hitching_post', x: 16, y: 7 }, { b: 'hitching_post', x: 33, y: 7 }, { b: 'hitching_post', x: 15, y: 18 },
+      { b: 'hitching_post', x: 16, y: 7 }, { b: 'hitching_post', x: 34, y: 7 }, { b: 'hitching_post', x: 15, y: 18 },
+      { b: 'trough', x: 38, y: 7 }, { b: 'coach', x: 31, y: 8 },
       { b: 'wagon', x: 40, y: 14 }, { b: 'well', x: 46, y: 14 }, { b: 'barrels2', x: 25, y: 18 }, { b: 'barrels2', x: 8, y: 18 },
       { b: 'signpost', x: 36, y: 12 }, { b: 'signpost', x: 12, y: 12 },
       { b: 'snow_pile', x: 5, y: 8 }, { b: 'snow_pile', x: 30, y: 13 }, { b: 'snow_pile', x: 52, y: 10 }, { b: 'snow_pile', x: 38, y: 19 },
@@ -273,30 +274,30 @@ interior('white_house', {
 
 // --- the crime scene: exterior in front of the Capitol ----------------------
 (function () {
-  const W = 16, H = 11;
+  const W = 18, H = 12;
   const g = grid(W, H, 'F');
-  paint(g, 0, 0, W, 7, 'g');
-  paint(g, 0, 9, W, 2, 'm');
+  paint(g, 0, 0, W, 8, 'g');
+  paint(g, 0, 10, W, 2, 'm');
   scatter(g, 's', [[0, 8], [15, 8], [1, 9], [14, 10]]);
   ROOMS.capitol_steps = {
     name: 'The Capitol Steps — East Portico', w: W, h: H, ground: g, outdoor: true, fx: 'snow',
     legend: { F: ['flag0', 'flag1'], g: ['grass_snow0', 'grass_snow1'], m: ['mud0', 'mud1'], s: 'grass_snow1' },
     buildings: [
       { b: 'capitol', x: 2, y: 0 },
-      { b: 'tree_bare', x: 0, y: 4 }, { b: 'tree_bare', x: 14, y: 4 }, { b: 'lamp_post', x: 1, y: 7 }, { b: 'lamp_post', x: 14, y: 7 },
-      { b: 'snow_pile', x: 0, y: 9 }, { b: 'snow_pile', x: 15, y: 10 },
+      { b: 'tree_bare', x: 0, y: 5 }, { b: 'tree_bare', x: 16, y: 5 }, { b: 'lamp_post', x: 1, y: 8 }, { b: 'lamp_post', x: 16, y: 8 },
+      { b: 'snow_pile', x: 0, y: 10 }, { b: 'snow_pile', x: 17, y: 11 },
     ],
     npcs: [
-      { id: 'guard', sprite: 'guard', x: 4, y: 8, dir: 'right' },
-      { id: 'witness', sprite: 'gentleman2', x: 11, y: 8, dir: 'left' },
-      { id: 'mourner', sprite: 'lady', x: 13, y: 9, dir: 'left' },
+      { id: 'guard', sprite: 'guard', x: 5, y: 9, dir: 'right' },
+      { id: 'witness', sprite: 'gentleman2', x: 12, y: 9, dir: 'left' },
+      { id: 'mourner', sprite: 'lady', x: 14, y: 10, dir: 'left' },
     ],
     hotspots: [
-      { x: 7, y: 7, evidence: 'hat', where: 'the Capitol steps, where the pistols were fired', look: "Here, at the foot of the steps. A gentleman's hat lies where it fell — trampled a little, but a good hat. Beaver felt. Inside the band: a small stamped stag." },
-      { x: 9, y: 7, evidence: 'pipe', where: 'the Capitol steps, beside the hat', look: "A few feet from the hat, a long clay pipe, snapped in two. The bowl is carved with a palmetto — the tree on South Carolina's flag." },
-      { x: 8, y: 6, look: "Two dark scorch-marks on the marble where the pistols flashed. Both misfired. The powder was damp, or the caps were bad, or — as half the city is saying — Providence stepped in." },
+      { x: 8, y: 8, evidence: 'hat', where: 'the Capitol steps, where the pistols were fired', look: "Here, at the foot of the steps. A gentleman's hat lies where it fell — trampled a little, but a good hat. Beaver felt. Inside the band: a small stamped stag." },
+      { x: 10, y: 8, evidence: 'pipe', where: 'the Capitol steps, beside the hat', look: "A few feet from the hat, a long clay pipe, snapped in two. The bowl is carved with a palmetto — the tree on South Carolina's flag." },
+      { x: 9, y: 7, look: "Two dark scorch-marks on the marble where the pistols flashed. Both misfired. The powder was damp, or the caps were bad, or — as half the city is saying — Providence stepped in." },
     ],
-    exits: [{ x: 0, y: 10, w: W, h: 1, to: 'street', spawn: 'from_capitol' }],
-    spawns: { default: { x: 8, y: 9, dir: 'up' } },
+    exits: [{ x: 0, y: 11, w: W, h: 1, to: 'street', spawn: 'from_capitol' }],
+    spawns: { default: { x: 9, y: 10, dir: 'up' } },
   };
 })();

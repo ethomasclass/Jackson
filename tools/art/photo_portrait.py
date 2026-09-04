@@ -18,7 +18,8 @@ REF = os.path.join(os.path.dirname(__file__), "ref")
 PORTRAITS = {
     "jackson": dict(box=(250, 0, 1400, 1150), colors=24, contrast=1.15, gamma=1.0),
     "biddle": dict(box=(300, 210, 1060, 970), colors=24, contrast=1.15, gamma=1.0, tint=True),
-    "clay": dict(box=(62, 30, 202, 170), colors=24, contrast=1.15, gamma=1.0, sharpen=1.2),
+    "clay": dict(box=(0.30, 0.16, 0.74, 0.60), colors=24, contrast=1.15, gamma=1.0),
+    "gregory": dict(box=(0.26, 0.05, 0.70, 0.49), colors=22, contrast=1.15, gamma=1.0),
     "calhoun": dict(box=(38, 8, 168, 138), colors=24, contrast=1.2, gamma=1.0, sharpen=1.2),
     "ross": dict(box=(115, 55, 425, 365), colors=26, contrast=1.1, gamma=1.0),
     "key": dict(box=(240, 110, 900, 770), colors=24, contrast=1.15, gamma=1.0),
@@ -34,7 +35,11 @@ def bayer(n=4):
 def make(name, size=SIZE, colors=None, dither=0.0):
     spec = PORTRAITS[name]
     im = Image.open(os.path.join(REF, name + ".jpg")).convert("RGB")
-    im = im.crop(spec["box"])
+    box = spec["box"]
+    if all(v <= 1 for v in box):   # fractional box
+        W, H = im.size
+        box = (int(box[0] * W), int(box[1] * H), int(box[2] * W), int(box[3] * H))
+    im = im.crop(box)
     if spec.get("tint"):   # monochrome photograph of a painting: warm duotone so it sits with the colour portraits
         g = ImageOps.autocontrast(im.convert("L"), cutoff=1)
         im = ImageOps.colorize(g, black=(26, 18, 16), mid=(150, 104, 78), white=(244, 220, 190), midpoint=140)
