@@ -680,61 +680,106 @@ SKINS = {
 }
 
 
+MATERIAL = {"s": "skin", "S": "skin", "c": "coat", "C": "coat", "l": "coat", "w": "shirt", "v": "vest", "n": "cravat",
+            "p": "trousers", "P": "trousers", "b": "boots", "B": "boots", "h": "hair", "H": "hair", "k": "hat", "K": "hat", "o": "outline"}
+
+# 1830s gigot ("leg of mutton") sleeves for the dress body: widen the upper arms
+DRESS_SLEEVES = """
+................................
+.......ccc.............ccc......
+......ccccc...........ccccc.....
+......ccccc...........ccccc.....
+.......ccc.............ccc......
+"""
+
+
 def character(coat, skin="pale", hair="short", hair_col=(60, 44, 36), hat=None, hat_col=PAL["ink"],
               vest=None, trousers=None, shirt=PAL["white"], cravat=None, boots=PAL["ink"],
-              eye=(24, 20, 22), dress=False):
-    """Return dict of direction -> list of 4 frames (Canvas)."""
+              eye=(24, 20, 22), dress=False, buttons=True):
+    """Return dict of direction -> list of 4 frames (Canvas), plus eye positions for blinking."""
+    from shade import material_map, render, ramp5
     skin_dark, skin_light = SKINS[skin]
     vest = vest or shade(coat, 0.8)
     trousers = trousers or shade(coat, 0.75)
     cravat = cravat or shirt
-    key = {
-        "o": PAL["ink"], "s": skin_light, "S": skin_dark,
-        "c": coat, "C": shade(coat, 0.65), "l": shade(coat, 0.5),
-        "w": shirt, "v": vest, "n": cravat,
-        "p": trousers, "P": shade(trousers, 0.7),
-        "b": boots, "B": shade(boots, 1.6),
-        "h": hair_col, "H": shade(hair_col, 0.6),
-        "k": hat_col, "K": shade(hat_col, 0.6),
-        "E": shade(skin_dark, 0.7), "e": eye, "m": shade(skin_dark, 0.85),
+    ramps = {
+        "skin": [shade(skin_dark, 0.8), skin_dark, skin_light, shade(skin_light, 1.06), shade(skin_light, 1.12)],
+        "coat": ramp5(coat), "shirt": ramp5(shirt), "vest": ramp5(vest), "cravat": ramp5(cravat),
+        "trousers": ramp5(trousers), "boots": [shade(boots, 0.6), shade(boots, 0.85), boots, shade(boots, 1.5), shade(boots, 2.2)],
+        "hair": ramp5(hair_col), "hat": ramp5(hat_col),
     }
     out = {}
+    eyes = {}
     for d in ["down", "side", "up"]:
         body = {"down": BODY_DOWN, "side": BODY_SIDE, "up": BODY_UP}[d]
         legs = {"down": LEGS_DOWN, "side": LEGS_SIDE, "up": LEGS_DOWN}[d]
         frames = []
         for leg in ["stand", "l", "stand", "r"]:
-            c = Canvas(FW, FH)
-            c.grid(body, key)
-            # replace leg block (rows 35..46)
-            c.rect(0, 35, FW, 12, (0, 0, 0, 0))
+            rows = body.strip("\n").split("\n")
+            rows = [r.ljust(FW, ".") for r in rows][:FH]
+            # swap the leg block
             if dress:
-                # long skirt instead of legs
-                for y in range(35, 46):
+                for y in range(35, 47):
                     half = 5 + (y - 35) // 2
-                    for x in range(16 - half, 16 + half + 1):
-                        col = coat if (x + y) % 3 else shade(coat, 0.85)
-                        if x in (16 - half, 16 + half):
-                            col = PAL["ink"]
-                        c.put(x, y, col)
-                c.hline(16 - 10, 46, 21, PAL["ink"])
-                if leg != "stand":
-                    c.put(15 if leg == "l" else 17, 45, boots)
+                    row = list(rows[y]) if y < len(rows) else list("." * FW)
+                    for x in range(FW):
+                        row[x] = "c" if (16 - half <= x <= 16 + half and y < 46) else ("o" if y == 46 and 16 - half - 1 <= x <= 16 + half + 1 else ".")
+                    if leg != "stand" and y == 45:
+                        row[15 if leg == "l" else 17] = "b"
+                    rows[y] = "".join(row)
+                sl = DRESS_SLEEVES.strip("\n").split("\n")
+                for j, r in enumerate(sl):
+                    y = 21 + j
+                    row = list(rows[y])
+                    for x, ch in enumerate(r):
+                        if ch != ".":
+                            row[x] = ch
+                    rows[y] = "".join(row)
             else:
-                c.grid(legs[leg], key, 0, 35)
+                lg = legs[leg].strip("\n").split("\n")
+                for j in range(12):
+                    y = 35 + j
+                    rows[y] = (lg[j] if j < len(lg) else "").ljust(FW, ".")[:FW]
+            # hair and hat are part of the material map so they shade with everything else
+            for ov, cond in ((HAIR.get(hair, {}).get(d), hair in HAIR), (HATS.get(hat, {}).get(d), hat in HATS)):
+                if not cond or not ov:
+                    continue
+                for j, r in enumerate(ov.strip("\n").split("\n")):
+                    if j >= FH:
+                        break
+                    row = list(rows[j])
+                    for x, ch in enumerate(r):
+                        if ch not in ". " and x < FW:
+                            row[x] = ch
+                    rows[j] = "".join(row)
+            grid = material_map(rows, MATERIAL)
+            c = Canvas(FW, FH)
+            render(grid, ramps, c)
+            # face
             if d == "down":
-                c.grid(FACE_DOWN, key)
+                for ex in (12, 18):
+                    c.put(ex, 10, (250, 246, 240)); c.put(ex + 1, 10, eye)
+                    c.put(ex, 9, ramps["skin"][1]); c.put(ex + 1, 9, ramps["skin"][1])   # brow
+                c.put(15, 13, ramps["skin"][1]); c.put(16, 13, ramps["skin"][1])          # nose shadow
+                c.put(15, 15, shade(skin_dark, 0.9)); c.put(16, 15, shade(skin_dark, 0.9))  # mouth
+                eyes[d] = [(12, 10), (13, 10), (18, 10), (19, 10)]
             elif d == "side":
-                c.grid(FACE_SIDE, key)
-            if hair in HAIR:
-                c.grid(HAIR[hair][d], key)
-            if hat and hat in HATS:
-                c.grid(HATS[hat][d], key)
+                c.put(18, 10, (250, 246, 240)); c.put(19, 10, eye)
+                c.put(18, 9, ramps["skin"][1]); c.put(19, 9, ramps["skin"][1])
+                c.put(20, 12, ramps["skin"][1])
+                c.put(19, 14, shade(skin_dark, 0.9))
+                eyes[d] = [(18, 10), (19, 10)]
+            # coat details: buttons and lapel edge
+            if buttons and not dress and d == "down":
+                c.put(16, 27, PAL["gold1"]); c.put(16, 30, PAL["gold1"]); c.put(16, 33, PAL["gold1"])
             frames.append(c)
         out[d] = frames
-    # left = flipped right
     out["left"] = [f.flip_h() for f in out["side"]]
     out["right"] = out.pop("side")
+    eyes["right"] = eyes.get("side", [])
+    eyes["left"] = [(FW - 1 - x, y) for (x, y) in eyes["right"]]
+    out["_eyes"] = eyes
+    out["_skin"] = skin_light
     return out
 
 
@@ -779,7 +824,7 @@ def build_all():
             for i, f in enumerate(frames[d]):
                 sheet.blit(f, i * FW, r * FH)
         sheet.save(f"sprites/{name}.png")
-        index[name] = {"fw": FW, "fh": FH, "rows": order, "frames": 4}
+        index[name] = {"fw": FW, "fh": FH, "rows": order, "frames": 4, "eyes": frames["_eyes"], "skin": list(frames["_skin"])}
         sheets.append(sheet)
     with open(os.path.join(ASSETS, "sprites", "index.json"), "w") as f:
         json.dump(index, f)

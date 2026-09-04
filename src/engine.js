@@ -100,7 +100,17 @@ class Entity {
     const s = this.sprite;
     const row = s.rows.indexOf(this.dir);
     const fr = this.moving ? this.frame : 0;
-    ctx.drawImage(s.im, fr * s.fw, row * s.fh, s.fw, s.fh, Math.round(this.x - 16 - cam.x), Math.round(this.y - 46 - cam.y), s.fw, s.fh);
+    // idle breathing: the whole figure settles 1px for a moment on a slow cycle
+    const t = World.t + this.bob;
+    const breathe = !this.moving && ((t % 3.1) < 0.45) ? 1 : 0;
+    const dx = Math.round(this.x - 16 - cam.x), dy = Math.round(this.y - 46 - cam.y) + breathe;
+    ctx.drawImage(s.im, fr * s.fw, row * s.fh, s.fw, s.fh, dx, dy, s.fw, s.fh);
+    // blink: cover the eye pixels with skin for a few frames every few seconds
+    const eyes = s.eyes && s.eyes[this.dir];
+    if (eyes && eyes.length && ((t * 0.37) % 4.3) < 0.12) {
+      ctx.fillStyle = `rgb(${s.skin[0]},${s.skin[1]},${s.skin[2]})`;
+      for (const [ex, ey] of eyes) ctx.fillRect(dx + ex, dy + ey, 1, 1);
+    }
   }
   animate(dt) {
     if (this.moving) {
