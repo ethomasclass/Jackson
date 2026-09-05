@@ -10,6 +10,7 @@ const Game = {
     return {
       flags: {}, evidence: [], evidenceWhere: {}, interviewed: [], shown: {}, seen: {},
       room: 'magistrate', spawn: 'default', phase: 'title', accused: null, verdict: null, started: Date.now(),
+      act: 1, clock: 0, prelim: null,
     };
   },
   save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(this.state)); } catch (e) { /* private mode etc. */ } },
@@ -27,10 +28,11 @@ const Game = {
     this.state.evidenceWhere[id] = where;
     UI.updateHud(); UI.flashEvidence();
     await UI.Card.show(id, where);
+    Story.onEvidence(id);
     this.save();
   },
   markInterviewed(id) {
-    if (!this.state.interviewed.includes(id)) { this.state.interviewed.push(id); UI.updateHud(); UI.toast(`Suspect interviewed: ${SUSPECTS.find(s => s.id === id).name}`); }
+    if (!this.state.interviewed.includes(id)) { this.state.interviewed.push(id); UI.updateHud(); UI.toast(`Suspect interviewed: ${SUSPECTS.find(s => s.id === id).name}`); Story.onInterviewed(id); }
   },
   warrantMissing() {
     const S = this.state, miss = [];
@@ -42,7 +44,7 @@ const Game = {
 
   // does this NPC have something new to say? (drives the "!" marker)
   npcHasNew(npc) {
-    const def = DIALOGUE[npc.def.talk || npc.id];
+    const def = DIALOGUE[npc.def ? (npc.def.talk || npc.id) : npc.id];
     if (!def) return false;
     const S = this.state;
     if (def.isNew) return def.isNew(S);
@@ -67,6 +69,7 @@ const Game = {
     this.save();
     await this.fadeIn();
     this.busy = false;
+    await Story.onEnter(roomId);
   },
   fadeOut() { return new Promise(res => { this.fadeDir = 1; this._fadeDone = res; }); },
   fadeIn() { return new Promise(res => { this.fadeDir = -1; this._fadeDone = res; }); },
@@ -77,6 +80,12 @@ const Game = {
     if (!t) return;
     this.busy = true;
     World.player.moving = false;
+    if (t.kind === 'follower') {
+      t.npc.face(World.player.x, World.player.y);
+      await UI.Dialogue.run(DIALOGUE.toby, { npc: t.npc });
+      this.busy = false;
+      return;
+    }
     if (t.kind === 'npc') {
       const npc = t.npc;
       npc.face(World.player.x, World.player.y);
@@ -107,6 +116,7 @@ const Game = {
   frame(ts) {
     const dt = Math.min(0.05, (ts - this.last) / 1000 || 0);
     this.last = ts;
+    Story.tick(dt);
     if (this.state.phase === 'play' && World.room) {
       if (!this.busy && !this.modal) {
         World.update(dt);
@@ -149,7 +159,7 @@ const Game = {
     this.state = this.freshState();
     const f = UI.screen(`<div class="scene"><div class="center"><h2>LOADING</h2><div id="loadbar" style="width:200px;height:6px;border:1px solid #6a5636;margin-top:10px"><i style="display:block;height:100%;background:#d0a448;width:0"></i></div></div></div>`);
     await Assets.load(p => { const i = f.querySelector('#loadbar i'); if (i) i.style.width = Math.round(p * 100) + '%'; });
-    UI.init(); UI.Dialogue.init(); Touch.init(); Atmosphere.init();
+    UI.init(); UI.Dialogue.init(); Touch.init(); Atmosphere.init(); Story.init();
     requestAnimationFrame(t => this.frame(t));
     await Scenes.title();
   },
@@ -162,21 +172,28 @@ const Game = {
     await Scenes.opening();
     await Scenes.briefing();
     this.state.flags.briefed = true;
+    this.state.clock = 0;
+    await Scenes.actCard(1);
     World.load('magistrate', 'default');
     UI.closeScreen();
     UI.banner(ROOMS.magistrate.name);
     this.fade = 1; await this.fadeIn();
+    Story.updateHud();
     this.save();
   },
   async continueGame(saved) {
     this.state = saved;
     this.state.phase = 'play';
+    this.state.act = this.state.act || 1; this.state.clock = this.state.clock || 0;
     World.player = null;
+    Story.follower = null; World.follower = null;
     UI.updateHud();
     World.load(saved.room || 'magistrate', saved.spawn || 'default');
+    if (saved.flags.toby) { Story.attachToby(); Story.placeFollower(); }
     UI.closeScreen();
     UI.banner(ROOMS[World.roomId].name);
     this.fade = 1; await this.fadeIn();
+    Story.updateHud();
   },
 
   // --- accusation & trial ----------------------------------------------------

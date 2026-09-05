@@ -32,6 +32,9 @@ fs.mkdirSync(OUT, { recursive: true });
   await page.waitForTimeout(300);
   await page.keyboard.press('Space'); await page.waitForTimeout(200); await page.keyboard.press('Space');
   await page.waitForTimeout(900);
+  await page.screenshot({ path: `${OUT}/05b_actcard.png` });
+  const goBtn = await page.$('.actcard #go'); if (goBtn) await goBtn.click();
+  await page.waitForTimeout(900);
   await page.screenshot({ path: `${OUT}/06_magistrate_office.png` });
   // stand at the magistrate's desk and talk
   await page.evaluate(() => { World.player.x = 8 * 32 + 16; World.player.y = 6 * 32 + 30; World.player.dir = 'up'; });
@@ -46,8 +49,12 @@ fs.mkdirSync(OUT, { recursive: true });
   // walk to the street: down and out the door (exit gap is at columns 9-10)
   await page.evaluate(() => { World.player.x = 9 * 32 + 16; });
   await page.keyboard.down('ArrowDown'); await page.waitForTimeout(1600); await page.keyboard.up('ArrowDown');
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(2500);
   await page.screenshot({ path: `${OUT}/09_street.png` });
+  // Toby introduces himself and attaches
+  for (let i = 0; i < 12; i++) { await page.keyboard.press('Space'); await page.waitForTimeout(150); }
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: `${OUT}/09_street_toby.png` });
   // pick up the hat at the Capitol steps
   await page.evaluate(() => { World.load('capitol_steps', 'default'); Game.state.room = 'capitol_steps'; World.player.x = 10 * 32 + 16; World.player.y = 14 * 32 + 30; World.player.dir = 'up'; });
   await page.waitForTimeout(200);

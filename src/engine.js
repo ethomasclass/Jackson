@@ -38,7 +38,7 @@ const Assets = {
     for (const n of Object.keys(spriteIndex)) jobs.push(track(this.img(`assets/sprites/${n}.png`)).then(im => { this.sprites[n] = { im, ...spriteIndex[n] }; }));
     for (const n of Object.keys(buildingIndex)) jobs.push(track(this.img(`assets/buildings/${n}.png`)).then(im => { this.buildings[n] = { im, ...buildingIndex[n] }; }));
     for (const n of evidenceIndex) jobs.push(track(this.img(`assets/evidence/${n}.png`)).then(im => { this.evidence[n] = im; }));
-    for (const n of ['jackson', 'calhoun', 'clay', 'biddle', 'ross', 'gregory', 'lawrence', 'magistrate', 'key']) jobs.push(track(this.img(`assets/portraits/${n}.png`)).then(im => { this.portraits[n] = im; }));
+    for (const n of ['jackson', 'calhoun', 'clay', 'biddle', 'ross', 'gregory', 'lawrence', 'magistrate', 'key', 'poindexter']) jobs.push(track(this.img(`assets/portraits/${n}.png`)).then(im => { this.portraits[n] = im; }));
     for (const n of ['bang', 'arrow', 'spark', 'opening']) jobs.push(track(this.img(`assets/ui/${n}.png`)).then(im => { this.ui[n] = im; }));
     await Promise.all(jobs);
   },
@@ -112,6 +112,10 @@ class Entity {
       for (const [ex, ey] of eyes) ctx.fillRect(dx + ex, dy + ey, 1, 1);
     }
   }
+  face(px, py) {
+    const dx = px - this.x, dy = py - this.y;
+    this.dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+  }
   animate(dt) {
     if (this.moving) {
       this.animT += dt;
@@ -138,6 +142,7 @@ class NPC extends Entity {
 // ---------------------------------------------------------------------------
 const World = {
   room: null, roomId: null, w: 0, h: 0, ground: [], solids: [], objects: [], npcs: [], exits: [], hotspots: [],
+  extras: [], follower: null, camOverride: null,
   player: null, cam: { x: 0, y: 0 }, t: 0,
 
   load(roomId, spawnName) {
@@ -146,6 +151,7 @@ const World = {
     this.room = room; this.roomId = roomId;
     this.w = room.w * TILE; this.h = room.h * TILE;
     this.solids = []; this.objects = []; this.npcs = []; this.exits = []; this.hotspots = [];
+    this.extras = []; this.camOverride = null;
     // ground: expand legend (variant arrays picked deterministically)
     this.ground = [];
     let seed = 7;
@@ -209,6 +215,7 @@ const World = {
     if (!this.player) this.player = new Entity('player', 0, 0);
     this.player.x = sp.x * TILE + 16; this.player.y = sp.y * TILE + 30; this.player.dir = sp.dir || 'down';
     this.player.moving = false;
+    if (window.Story && Story.follower) Story.placeFollower();
     this.updateCamera(true);
     Atmosphere.collect(room);
   },
@@ -256,6 +263,10 @@ const World = {
       const nb = { x: n.x - 18 - (r.l || 0), y: n.y - 34 - (r.u || 0), w: 36 + (r.l || 0) + (r.r || 0), h: 46 + (r.u || 0) + (r.d || 0) };
       if (overlap(probe, nb)) return { kind: 'npc', npc: n };
     }
+    if (this.follower) {
+      const f = this.follower, fb = { x: f.x - 18, y: f.y - 34, w: 36, h: 46 };
+      if (overlap(probe, fb)) return { kind: 'follower', npc: f };
+    }
     for (const h of live) {
       const hb = { x: h.x - 4, y: h.y - 4, w: h.w + 8, h: h.h + 8 };
       if (overlap(probe, hb)) return { kind: 'hotspot', hotspot: h };
@@ -270,8 +281,9 @@ const World = {
 
   // --- camera ------------------------------------------------------------
   updateCamera(snap) {
-    const p = this.player;
+    const p = this.camOverride || this.player;
     let cx = p.x - VIEW_W / 2, cy = p.y - 24 - VIEW_H / 2;
+    if (this.camOverride) { cx = p.x; cy = p.y; }
     cx = clamp(cx, 0, Math.max(0, this.w - VIEW_W));
     cy = clamp(cy, 0, Math.max(0, this.h - VIEW_H));
     if (this.w < VIEW_W) cx = -(VIEW_W - this.w) / 2;
@@ -308,7 +320,8 @@ const World = {
       const sx = o.x + o.w / 2 - cam.x, sy = o.y + o.h - 2 - cam.y;
       ctx.beginPath(); ctx.ellipse(sx, sy, o.w / 2 + 2, 5, 0, 0, Math.PI * 2); ctx.fill();
     }
-    for (const e of [this.player, ...this.npcs]) {
+    const people = [this.player, ...this.npcs, ...(this.follower ? [this.follower] : []), ...this.extras.filter(e => e.kind !== 'prop')];
+    for (const e of people) {
       ctx.beginPath(); ctx.ellipse(e.x - cam.x, e.y - 1 - cam.y, 9, 4, 0, 0, Math.PI * 2); ctx.fill();
     }
     // depth sort: objects by bottom edge, entities by feet
@@ -318,11 +331,17 @@ const World = {
       list.push({ y: o.y + o.h - (o.def.sortBias || 0), draw: () => this.drawObject(ctx, o, cam) });
     }
     for (const n of this.npcs) list.push({ y: n.y, draw: () => n.draw(ctx, cam) });
+    if (this.follower) list.push({ y: this.follower.y, draw: () => this.follower.draw(ctx, cam) });
+    for (const e of this.extras) {
+      if (e.kind === 'prop') list.push({ y: e.y + e.h, draw: () => ctx.drawImage(e.im, Math.round(e.x - cam.x), Math.round(e.y - cam.y)) });
+      else list.push({ y: e.y, draw: () => e.draw(ctx, cam) });
+    }
     list.push({ y: this.player.y, draw: () => this.player.draw(ctx, cam) });
     list.sort((a, b) => a.y - b.y);
     for (const it of list) it.draw();
     // markers over NPCs with something new
-    for (const n of this.npcs) {
+    const marked = [...this.npcs, ...(this.follower ? [this.follower] : [])];
+    for (const n of marked) {
       if (Game.npcHasNew(n)) {
         const bob = Math.round(Math.sin(this.t * 4 + n.bob) * 2);
         ctx.drawImage(Assets.ui.bang, Math.round(n.x - 8 - cam.x), Math.round(n.y - 66 - cam.y + bob), 16, 16);

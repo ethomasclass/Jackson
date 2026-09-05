@@ -26,6 +26,7 @@ QUERIES = {
     "lawrence_face": ["Richard Lawrence 1835 assassin portrait", "Richard Lawrence house painter Jackson"],
     "young_man": ["portrait of a young man 1830s American painting", "Ammi Phillips portrait man"],
     "key": ["Francis Scott Key portrait"],
+    "poindexter": ["George Poindexter senator Mississippi portrait", "George Poindexter 1779"],
     "jackson": ["Andrew Jackson Ralph Earl portrait 1835", "Andrew Jackson 1837 portrait"],
     "clay_older": ["Henry Clay portrait 1840s", "Henry Clay Neagle"],
     "gentleman": ["portrait of a gentleman Thomas Sully", "portrait of a man 1830s American oil"],

@@ -1402,5 +1402,29 @@
   "h": 5161,
   "file": "young_man/03_Portrait_of_a_Man_Said_to_be_Christopher_Columbus_jpg.jpg",
   "key": "young_man"
+ },
+ {
+  "title": "File:GeorgePoindexter.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/GeorgePoindexter.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:GeorgePoindexter.jpg",
+  "licence": "Public domain pd",
+  "artist": "U.S. Senate Historical Office",
+  "date": "before 1853<div style=\"display: none;\">d",
+  "w": 341,
+  "h": 434,
+  "file": "poindexter/00_GeorgePoindexter_jpg.jpg",
+  "key": "poindexter"
+ },
+ {
+  "title": "File:Governor George Poindexter, Jan. 5, 1820 to Jan. 7, 1822 (14119968572).jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Governor_George_Poindexter%2C_Jan._5%2C_1820_to_Jan._7%2C_1822_%2814119968572%29.jpg/1280px-Governor_George_Poindexter%2C_Jan._5%2C_1820_to_Jan._7%2C_1822_%2814119968572%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Governor_George_Poindexter,_Jan._5,_1820_to_Jan._7,_1822_(14119968572).jpg",
+  "licence": "No restrictions",
+  "artist": "Mississippi Department of Archives and History",
+  "date": "2008-09-30 10:38",
+  "w": 1476,
+  "h": 1719,
+  "file": "poindexter/01_Governor_George_Poindexter_Jan_5_1820_to_Jan_7_1822_14119968.jpg",
+  "key": "poindexter"
  }
 ]

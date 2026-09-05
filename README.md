@@ -20,20 +20,40 @@ python3 -m http.server 8080      # then open http://localhost:8080
 or push the repository to GitHub Pages. It targets classroom Chromebooks: a 640×360 pixel-art canvas,
 integer-scaled to the window, with a DOM layer for text. Total assets are under 1 MB.
 
-**Controls:** arrow keys / WASD to walk · Space or Enter to talk and examine · Tab for the evidence tray.
+**Controls:** arrow keys / WASD to walk · Space or Enter to talk and examine · Tab for the evidence tray. On a
+phone or tablet a D-pad and TALK button appear.
 Progress autosaves to the browser (`localStorage`), so a student can reload and continue.
 
-## Structure of a play session (~60 minutes)
+## Structure of a play session (a hard 45 minutes)
 
-1. **Opening** — the attack on the East Portico, in text over the Capitol.
-2. **Briefing** — the magistrate's five dossiers. Students must open all five before the game continues.
-3. **Investigation** — the street, ten interiors, the crime scene. Evidence is picked up by examining
-   objects; conversations open new lines when the player *shows* someone an item.
-4. **The warrant** — the magistrate will not accept an accusation until all five suspects have been
-   interviewed and at least six pieces of evidence are in hand. This guarantees coverage of every topic.
-5. **The trial** — Francis Scott Key prosecutes; the student supplies three pieces of evidence; defense
-   counsel rebuts anything that does not actually connect to the accused.
-6. **Epilogue** — what really happened, and a prompt to compare accusations with classmates.
+The game runs on a real clock. It opens at noon on January 30th and the in-game time (top of the screen)
+reaches eight in the evening after 45 real minutes. The afternoon is split into three acts. Each act has
+goals; when the goals are met *or* the act's deadline passes, Toby the newsboy fetches the student back to
+the magistrate and the story moves on. Nothing a student does can stretch the session past 45 minutes.
+
+| | Act | Ends by | Goals | Break |
+|---|---|---|---|---|
+| 0 | Opening & briefing | ~4 min | read the five dossiers | Act I title card, worksheet setup |
+| I | *Who Wanted Him Dead?* | 14 min | search the Capitol steps; interview two suspects | Warren Davis's funeral procession crosses the Avenue; the suspects talk among themselves |
+| II | *The Case That Fell Apart* | 27 min | hear both witnesses; find two holes in their story | a crowd outside the Bank; Mr. Thorne collects the clerk; the magistrate demands a **preliminary name** for the President's desk |
+| III | *Name Someone Anyway* | 37 min | all five suspects; six pieces of evidence; the warrant | the paper has printed the name; the person named reacts; at 37 minutes the magistrate forces the accusation |
+| — | Trial & epilogue | 45 min | present three pieces of evidence | compare notes |
+
+Act II is the historical reversal: two house painters, Foy and Stewart, swear they saw Lawrence at Senator
+Poindexter's house, exactly as happened in 1835. The story has five holes (they disagree on the day; Foy has
+a brand-new government job; Stewart was drunk that night; the Senator has an alibi; Lawrence has never
+heard the name). Students need two. Whatever they find, the magistrate then forces a name onto paper, so
+that Act III opens with the cost of a wrong accusation.
+
+Recurring characters carry the pressure: **Toby**, a newsboy who follows the player and comments (turn
+around and talk to him for hints); **Mr. Thorne** of the party Committee, who politely reminds the clerk
+that their job is a political appointment; and **Richard Lawrence**, who is a king in Act I, a lucid
+house painter in Act II, and does not remember the player in Act III.
+
+At each act break the game shows a card of things to write on the physical worksheet.
+
+Teacher options: `?minutes=40` scales every deadline (5 to 180). `?fast=4` runs the clock at four real
+seconds per story minute, for previewing the whole arc in about six minutes.
 
 John Ross deliberately has *no* physical evidence against him. Accusing him is possible, and the trial
 makes the lesson explicit: motive is not evidence.
@@ -46,15 +66,18 @@ Nothing is typed into the game. Students keep a physical worksheet of suspects, 
 index.html          page shell
 src/engine.js       canvas renderer, tilemap, collision, entities, camera
 src/ui.js           dialogue runner, evidence tray, cards, HUD
-src/scenes.js       title, opening, briefing, trial, epilogue, help
+src/scenes.js       title, opening, briefing, act cards, trial, epilogue, help
+src/story.js        the clock, acts, act breaks and set pieces, Toby the follower, cutscene tools
 src/game.js         state, saving, main loop, accusation flow
 data/rooms.js       every map (street + interiors), in tile coordinates
-data/dialogue.js    every conversation
+data/story.js       act definitions, goals, worksheet prompts, Toby's remarks, set-piece scripts
+data/dialogue.js    every conversation (9th-grade reading level; act-dependent branches)
 data/evidence.js    the ten evidence items, trial links, glossary
 data/suspects.js    the five dossiers
 assets/             generated PNGs (do not edit by hand)
 tools/art/          Pillow scripts that generate all the art:  ./tools/art/build.sh
 tools/shoot.js      Playwright smoke test that screenshots every scene
+tools/shoot_story.js  plays all three acts on the fast clock
 ```
 
 All art is generated in `tools/art/` (Python 3, Pillow, numpy). Regenerate with `tools/art/build.sh`.
@@ -76,6 +99,7 @@ All art is generated in `tools/art/` (Python 3, Pillow, numpy). Regenerate with 
 ## Historical notes
 
 Lawrence, the misfires, Jackson's cane, Warren Davis's funeral, Francis Scott Key as prosecutor, the
-five-minute insanity verdict, Jackson's accusation of Senator Poindexter and the Senate's finding of nothing
-are all historical. John Gregory is a fictional stand-in for the hundreds of clerks removed under the spoils
+five-minute insanity verdict, Jackson's accusation of Senator Poindexter, the two witnesses (Foy and Stewart)
+whose story collapsed, and the Senate's finding of nothing are all historical. Toby and Mr. Thorne are
+invented. John Gregory is a fictional stand-in for the hundreds of clerks removed under the spoils
 system. The evidence items and their placement are invented for the game.

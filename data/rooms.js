@@ -116,7 +116,6 @@ function rug(colour, x, y, w, h) {
       { b: 'snow_pile', x: 5, y: 13 }, { b: 'snow_pile', x: 30, y: 18 }, { b: 'snow_pile', x: 56, y: 15 }, { b: 'snow_pile', x: 38, y: 27 }, { b: 'snow_pile', x: 62, y: 13 },
     ],
     npcs: [
-      { id: 'newsboy', sprite: 'boy', x: 19, y: 14, dir: 'down' },
       { id: 'street_gentleman', sprite: 'gentleman', x: 28, y: 14, dir: 'left' },
       { id: 'street_lady', sprite: 'lady2', x: 42, y: 15, dir: 'down' },
       { id: 'coachman', sprite: 'coachman', x: 39, y: 14, dir: 'left' },
@@ -128,7 +127,7 @@ function rug(colour, x, y, w, h) {
       { x: 12, y: 17, h: 2, look: "A signpost: *POST OFFICE · BANK · PRINTER* to the north side of the Avenue, *TAVERN · HATTER · LODGINGS* along the lane behind you." },
       { x: 46, y: 20, w: 2, h: 2, look: "The public well. A film of ice on the bucket. Washington in January is bitter, and the whole city is talking about one thing." },
     ],
-    spawns: { default: { x: 4, y: 27, dir: 'right' } },
+    spawns: { default: { x: 4, y: 27, dir: 'right' }, watch_funeral: { x: 53, y: 15, dir: 'up' }, watch_bank: { x: 23, y: 15, dir: 'up' } },
   };
 })();
 
@@ -146,7 +145,12 @@ interior('magistrate', {
     { t: 'strongbox', x: 1, y: 9 }, { t: 'crate', x: 17, y: 9 }, { t: 'paper_stack', x: 12, y: 5, solid: false },
     { t: 'bars', x: 19, y: 6, solid: false, flat: true }, { t: 'bars_door', x: 19, y: 7, solid: false, flat: true },
   ],
-  npcs: [{ id: 'magistrate', sprite: 'magistrate', x: 8, y: 4, dir: 'down', reach: { d: 44 } }],
+  npcs: [
+    { id: 'magistrate', sprite: 'magistrate', x: 8, y: 4, dir: 'down', reach: { d: 44 } },
+    { id: 'foy', sprite: 'clerk', x: 13, y: 8, dir: 'left', cond: (S) => (S.act || 1) === 2 },
+    { id: 'stewart', sprite: 'labourer', x: 15, y: 8, dir: 'left', cond: (S) => (S.act || 1) === 2 },
+    { id: 'thorne', sprite: 'gentleman', x: 4, y: 8, dir: 'right', cond: (S) => (S.act || 1) >= 2 },
+  ],
   hotspots: [
     { x: 6, y: 1, look: "Notices pinned to the board. *REWARD* — for information on any confederate of the prisoner Lawrence. Beneath it, a broadside: *THE PRESIDENT IS ALIVE. THE ASSASSIN IS TAKEN.*" },
     { x: 11, y: 1, w: 2, look: "A map of the District of Columbia. The Capitol at one end of the Avenue, the President's House at the other, and not much between them but mud, boarding houses and ambition." },
@@ -279,6 +283,7 @@ interior('hotel', {
   npcs: [
     { id: 'ross', sprite: 'ross', x: 9, y: 7, dir: 'down' },
     { id: 'delegate', sprite: 'delegate', x: 14, y: 8, dir: 'left' },
+    { id: 'poindexter', sprite: 'gentleman2', x: 16, y: 8, dir: 'left', cond: (S) => (S.act || 1) >= 2 },
   ],
 });
 

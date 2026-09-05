@@ -627,6 +627,50 @@ def coach():
     return reg("coach", c, solid=(6, 30, 84, 28))
 
 
+def horse(c, x, y, col=(28, 24, 26)):
+    """Side view, facing left. Feet on y+34, ~30px long."""
+    hi = shade(col, 1.6); lo = shade(col, 0.7)
+    c.rect(x + 6, y + 10, 22, 12, col)                 # barrel
+    c.hline(x + 7, y + 10, 20, hi)
+    c.rect(x + 2, y + 4, 8, 10, col); c.rect(x - 2, y + 2, 8, 6, col)   # neck, head
+    c.put(x - 1, y + 3, hi); c.put(x + 1, y + 1, col); c.put(x + 3, y + 1, col)  # ears
+    c.put(x - 2, y + 6, (200, 190, 170))                                  # muzzle
+    for lx in (x + 7, x + 11, x + 21, x + 25):                            # legs
+        c.rect(lx, y + 22, 3, 12, col); c.put(lx, y + 33, lo)
+    c.rect(x + 27, y + 8, 4, 12, lo)                                     # tail
+    c.rect(x + 8, y + 12, 10, 6, (40, 34, 30)); c.vline(x + 12, y + 8, 16, (60, 50, 40))  # harness
+
+
+def hearse():
+    c = Canvas(T * 6, T * 2)
+    body = (26, 22, 26)
+    horse(c, 6, 20); horse(c, 40, 22)
+    c.rect(66, 30, 40, 4, (60, 50, 40)); c.rect(64, 20, 2, 14, (60, 50, 40))   # traces / pole
+    # carriage body: glass-sided, plumed
+    c.rect(96, 16, 84, 32, body); c.outline(96, 16, 84, 32, (70, 62, 68))
+    c.rect(102, 20, 72, 22, (54, 64, 84)); c.outline(102, 20, 72, 22, (70, 62, 68))   # glass
+    for gx in (120, 138, 156):
+        c.vline(gx, 20, 22, (70, 62, 68))
+    c.rect(108, 30, 60, 8, (86, 50, 34)); c.hline(108, 30, 60, (120, 80, 50)); c.rect(112, 27, 52, 3, (86, 50, 34))   # coffin
+    c.hline(103, 21, 70, (140, 160, 190))                                          # glass highlight
+    c.rect(96, 10, 84, 6, (40, 34, 40)); c.hline(96, 10, 84, (90, 84, 92))          # roof
+    for px in (100, 118, 136, 154, 172):                                            # plumes
+        c.rect(px, 0, 4, 10, (24, 22, 26)); c.put(px + 1, 0, (70, 66, 74)); c.put(px + 2, 2, (70, 66, 74)); c.put(px, 4, (60, 56, 64))
+    c.rect(84, 26, 14, 10, body); c.rect(86, 22, 10, 6, (40, 34, 40))              # driver box
+    c.rect(88, 14, 6, 8, (30, 26, 30)); c.rect(89, 10, 4, 5, (200, 190, 170)); c.rect(88, 8, 6, 3, (20, 18, 20))   # driver
+    for x, rr in ((110, 9), (166, 11)):
+        for y in range(48 - rr, 48 + rr + 1):
+            for xx in range(x - rr, x + rr + 1):
+                d = ((xx - x) / rr) ** 2 + ((y - 48) / rr) ** 2
+                if 0.62 < d <= 1:
+                    c.put(xx, y, (34, 28, 26) if (xx + y) % 2 else (90, 84, 92))
+                elif d <= 0.12:
+                    c.put(xx, y, (90, 84, 92))
+        c.vline(x, 48 - rr + 2, rr * 2 - 3, (90, 84, 92)); c.hline(x - rr + 2, 48, rr * 2 - 3, (90, 84, 92))
+    c.rect(8, 56, 176, 4, (30, 26, 28))
+    return reg("hearse", c, solid=(0, 20, 192, 40))
+
+
 def signpost():
     c = Canvas(T, T * 2)
     c.rect(14, 10, 4, 50, PAL["wood2"]); c.vline(15, 10, 50, PAL["wood1"])
@@ -700,7 +744,7 @@ def build_all():
     house("house_b", 3, 2, wall="plaster", roof_col=(90, 70, 60), shutter=(80, 50, 40), seed=110, chimneys=1, steps=1, pilasters=False)
     house("house_c", 4, 2, wall="brick", roof_col=PAL["slate"], seed=120)
     house("house_d", 2, 2, wall="clap", wall_base=(196, 192, 184), roof_col=(70, 66, 70), seed=130, chimneys=1, steps=1, pilasters=False, fanlight=False)
-    tree_bare(); lamp_post(); fence(3); fence(2); hitching_post(); wagon(); coach(); signpost(); barrels(); well(); trough(); snow_pile()
+    tree_bare(); lamp_post(); fence(3); fence(2); hitching_post(); wagon(); coach(); hearse(); signpost(); barrels(); well(); trough(); snow_pile()
     index = {}
     for name, o in objs.items():
         o["c"].save(f"buildings/{name}.png")

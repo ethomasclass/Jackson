@@ -25,6 +25,7 @@ PORTRAITS = {
     "key": dict(box=(240, 110, 900, 770), colors=24, contrast=1.15, gamma=1.0),
     "lawrence": dict(box=(0.32, 0.17, 0.66, 0.51), colors=22, contrast=1.2, gamma=1.0),
     "magistrate": dict(box=(0.30, 0.10, 0.72, 0.52), colors=24, contrast=1.2, gamma=1.0),
+    "poindexter": dict(box=(0.31, 0.16, 0.61, 0.46), colors=24, contrast=1.25, gamma=0.68),
 }
 SIZE = 128
 
