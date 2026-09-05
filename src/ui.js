@@ -161,7 +161,7 @@ UI.Dialogue = {
   },
 
   show() { this.el.classList.remove('hidden'); },
-  hide() { this.el.classList.add('hidden'); this._advance = null; this._skip = null; },
+  hide() { this.el.classList.add('hidden'); this._advance = null; this._skip = null; Input.pressedKeys = {}; Game.inputLockUntil = performance.now() + 250; },
 
   /* Run a dialogue definition. def = { name, portrait, start(S)->id, nodes:{...}, onEvidence:{...} } */
   async run(def, ctx = {}) {
@@ -283,7 +283,7 @@ UI.Card = {
     pop.querySelector('.card-desc').innerHTML = UI.markup(e.desc);
     pop.classList.remove('hidden');
     return new Promise(res => {
-      const done = () => { this._resolve = null; window.removeEventListener('keydown', kd); pop.classList.add('hidden'); res(); };
+      const done = () => { this._resolve = null; window.removeEventListener('keydown', kd); pop.classList.add('hidden'); Input.pressedKeys = {}; Game.inputLockUntil = performance.now() + 250; res(); };
       const kd = (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); done(); } };
       setTimeout(() => { this._resolve = done; window.addEventListener('keydown', kd); }, 300);
     });

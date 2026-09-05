@@ -130,7 +130,7 @@ const Game = {
           } else {
             this.goto(ex.to, ex.spawn);
           }
-        } else if (Input.pressed(' ', 'Enter', 'e', 'E')) {
+        } else if (Input.pressed(' ', 'Enter', 'e', 'E') && !(this.inputLockUntil > performance.now())) {
           this.interact();
         } else if (Input.pressed('Tab', 'i', 'I')) {
           UI.Tray.open();
@@ -138,7 +138,7 @@ const Game = {
       } else if (this.modal && Input.pressed('Tab', 'Escape')) {
         UI.Tray.close();
       }
-      World.draw(this.ctx);
+      try { World.draw(this.ctx); } catch (e) { console.error(e); }
     }
     // fade
     if (this.fadeDir) {

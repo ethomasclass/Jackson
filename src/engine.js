@@ -357,7 +357,7 @@ const World = {
     // interaction arrow
     const t = this.target();
     if (t && !Game.busy) {
-      const p = t.kind === 'npc' ? { x: t.npc.x, y: t.npc.y - 66 } : { x: t.hotspot.x + t.hotspot.w / 2, y: t.hotspot.y - 14 };
+      const p = t.npc ? { x: t.npc.x, y: t.npc.y - 66 } : { x: t.hotspot.x + t.hotspot.w / 2, y: t.hotspot.y - 14 };
       const bob = Math.round(Math.sin(this.t * 6) * 2);
       ctx.drawImage(Assets.ui.arrow, Math.round(p.x - 8 - cam.x), Math.round(p.y - cam.y + bob), 16, 16);
     }
