@@ -1,0 +1,64 @@
+# The Age of Jackson — explainer videos
+
+Three ~12-minute classroom explainers, built as code with [Remotion](https://www.remotion.dev)
+(React → MP4). The look is an 1830s broadside: aged paper, wood type, one vermilion, and real
+public-domain prints and portraits as torn-paper cutouts.
+
+## Pipeline
+
+```
+script/*.txt ──voice.py──▶ public/audio/<name>.wav + <name>.words.json (word timings)
+                                         │
+public/img (archival scans) ─prep_images.py─▶ public/cut (torn scraps, paper, grain)
+                                         ▼
+                           src/v1/*.tsx scenes (every cue anchored to a spoken phrase)
+                                         │ remotion render
+                                         ▼
+                           out/*.mp4 ──master.py──▶ −14 LUFS, H.264 delivery file
+```
+
+Because every animation cue is tied to a phrase in the narration (`at('fired first')`), not to a
+second, re-recording the voice re-times the whole video with no code changes.
+
+## Emphasis markup in scripts
+
+- `*key idea*` — red and bold in the captions; usually gets a kinetic-type moment on screen.
+- `{vocab}` — red and underlined in the captions, and gets a **Vocabulary card** that shows the
+  definition word by word as the narrator reads it.
+
+Markers can span several words. They are stripped before the text is sent to the voice.
+
+## Commands
+
+```sh
+npm install
+pip install pillow numpy imageio-ffmpeg        # piper-tts too, for the offline stand-in voice
+
+# narration (ElevenLabs: put ELEVENLABS_API_KEY and VOICE_ID in .env or the environment)
+python3 tools/voice.py script/v1_cold_open.txt v1_cold_open
+python3 tools/voice.py script/v1_cold_open.txt v1_cold_open --piper    # stand-in voice, needs PIPER_MODEL
+
+python3 tools/sfx_eleven.py        # ElevenLabs sound effects (tools/sfx_synth.py makes stand-ins)
+python3 tools/prep_images.py       # rebuild cutouts after adding scans
+python3 tools/commons.py search "Peggy Eaton portrait"
+python3 tools/commons.py get "File:....jpg" public/img/name.jpg 1920
+
+npm run studio                      # live preview with a timeline scrubber
+npx remotion render src/index.ts V1-ColdOpen out/v1_cold_open.mp4 --crf=18
+python3 tools/master.py out/v1_cold_open.mp4 out/v1_cold_open_master.mp4
+node tools/stills.mjs V1-ColdOpen out/stills 4.8 10.5   # review frames
+```
+
+In a cloud session, point Remotion at the preinstalled browser:
+`--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
+
+Captions are a prop: render with `--props='{"captions":false}'` for a clean version.
+
+## Images
+
+All archival images are public domain or CC0, pulled from Wikimedia Commons with licence checks;
+`public/img/credits.json` records the source page, artist and licence for each. Every image on
+screen carries a small **PRIMARY SOURCE** tag naming what it is.
+
+Fonts (Abril Fatface, Alfa Slab One, Libre Caslon Text, IM Fell English SC) are vendored in
+`public/fonts` under the SIL Open Font License.

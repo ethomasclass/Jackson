@@ -5,3 +5,9 @@ __pycache__/
 node_modules/
 package-lock.json
 package.json
+# explainer videos: keep the Remotion project, not renders or secrets
+!video/package.json
+!video/package-lock.json
+video/out/
+video/.env
+video/public/cut/
