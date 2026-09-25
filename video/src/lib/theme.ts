@@ -23,6 +23,9 @@ const FACES: [string, string, string, string][] = [
   ['Libre Caslon Text', 'LibreCaslon-Italic', '400', 'italic'],
   ['IM Fell English SC', 'IMFellEnglishSC', '400', 'normal'],
   ['Pinyon Script', 'PinyonScript', '400', 'normal'],
+  // Video 2: circus-playbill wood type
+  ['Rye', 'Rye', '400', 'normal'],
+  ['Ultra', 'Ultra', '400', 'normal'],
 ];
 
 if (typeof document !== 'undefined') {
@@ -43,6 +46,21 @@ export const F = {
   italic: "'Libre Caslon Text', serif",
   sc: "'IM Fell English SC', serif",
   hand: "'Pinyon Script', cursive",
+  rye: "'Rye', serif",
+  ultra: "'Ultra', serif",
+};
+
+// Video 2: a hand-coloured toy-theater sheet.
+export const P = {
+  cream: '#F4E9CF',
+  card: '#F6EEDA',
+  ink: '#1A1512',
+  vermilion: '#D2381F',
+  royal: '#1F3F8F',
+  mustard: '#D9A21B',
+  emerald: '#1E7A4F',
+  night: '#0B1030',
+  wood: '#4A2E1C',
 };
 
 export const W = 1920;

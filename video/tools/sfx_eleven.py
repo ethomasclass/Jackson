@@ -36,6 +36,16 @@ SFX = {
               "party, loud and close.", 2.0),
     "rowdy_crowd": ("A big rowdy crowd inside a house: cheering, laughing, boots stomping on wooden floors, "
                     "no music, 1800s.", 5.0),
+    # Video 2: the toy theater
+    "sea_ambience": ("Calm open sea from the deck of a wooden sailing ship: gentle waves lapping the hull, soft "
+                     "wind, creaking timber and rigging, a distant gull. Steady and loopable, no music, no voices.", 12.0),
+    "broadside": ("A wooden warship firing a rolling broadside: several heavy black-powder cannons going off one "
+                  "after another, deep booms, splintering wood, long rumbling echo over water. No music, no voices.", 5.0),
+    "curtain": ("A heavy velvet theater curtain being drawn open on its rail: fabric swish and the rattle of "
+                "curtain rings sliding along a metal rod, close up.", 2.5),
+    "pulley": ("A painted wooden sign lowered on ropes from a theater fly loft: rope running through a wooden "
+               "pulley, a small creak and a soft wooden knock as it stops.", 1.5),
+    "toll": ("One deep, solemn ship's bell toll with a long ringing decay, very sparse.", 4.0),
 }
 
 

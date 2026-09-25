@@ -7,7 +7,7 @@ import type {Word} from '../lib/timing';
 const MAX_CHARS = 46;
 
 /** Split narration into caption chunks at sentence/clause ends, never longer than MAX_CHARS. */
-const chunk = (words: Word[]) => {
+export const chunk = (words: Word[]) => {
   const out: Word[][] = [];
   let cur: Word[] = [];
   let len = 0;

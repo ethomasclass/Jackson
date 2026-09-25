@@ -293,5 +293,54 @@
     "date": "1828",
     "licence": "Public domain",
     "page": "https://commons.wikimedia.org/wiki/File:P15138coll33_257_full_1828_Coffin_Handbill_An_account_of_some_of_the_bloody_deeds_of_General_Andrew_Jackson.jpg"
+  },
+  "v2/leopard_chesapeake_cozzens.jpg": {
+    "title": "File:Leopardchesapeake.jpg",
+    "artist": "Fred S. Cozzens",
+    "date": "1897",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Leopardchesapeake.jpg"
+  },
+  "v2/officers_swords.jpg": {
+    "title": "File:The officers of the Chesapeake offering their swords, 1807.jpg",
+    "artist": "Unknown authorUnknown author",
+    "date": "c. 1874",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:The_officers_of_the_Chesapeake_offering_their_swords,_1807.jpg"
+  },
+  "v2/barron_neagle.jpg": {
+    "title": "File:Commodore James Barron (1768-1851) 2022 NYR 19907 0347.jpg",
+    "artist": "John B. Neagle",
+    "date": "1829date QS:P571,+1829-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Commodore_James_Barron_(1768-1851)_2022_NYR_19907_0347.jpg"
+  },
+  "v2/george3_gainsborough.jpg": {
+    "title": "File:King George III - Gainsborough 1781.jpg",
+    "artist": "Thomas Gainsborough",
+    "date": "between 1780 and 1781date QS:P,+1780-00-00T00:00:00Z/8,P1319,+1780-00-00T00:00:00Z/9,P1326,+1781-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:King_George_III_-_Gainsborough_1781.jpg"
+  },
+  "v2/chesapeake_muller.jpg": {
+    "title": "File:USSChesapeake.jpg",
+    "artist": "F. Muller",
+    "date": "circa 1900date QS:P571,+1900-00-00T00:00:00Z/9,P1480,Q5727902.",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:USSChesapeake.jpg"
+  },
+  "v2/only_shot_1896.jpg": {
+    "title": "File:Onlyshotofchesapeake.jpg",
+    "artist": "Author has signed drawing but name is illegible at this resolution. Author not credited elsewhere in book.",
+    "date": "1896",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Onlyshotofchesapeake.jpg"
+  },
+  "v2/frigate_weedon.png": {
+    "title": "File:44-gun frigate in action (by Edwin Weedon).png",
+    "artist": "Edwin Weedon (c. 1818-1873), engraved by Joseph Swain (1820-1909)",
+    "date": "1860",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:44-gun_frigate_in_action_(by_Edwin_Weedon).png"
   }
 }

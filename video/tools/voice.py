@@ -28,7 +28,12 @@ CACHE = os.path.join(OUT, "cache")
 PRONOUNCE = {"Floride": "Flo-reed", "1806": "eighteen oh-six", "1812": "eighteen twelve", "1820": "eighteen twenty",
              "1824": "eighteen twenty-four", "1828": "eighteen twenty-eight", "1829": "eighteen twenty-nine",
              "1831": "eighteen thirty-one", "365,000": "three hundred sixty-five thousand",
-             "1.1": "one point one"}
+             "1.1": "one point one",
+             # Video 2
+             "1807": "eighteen oh-seven", "1809": "eighteen oh-nine", "1810": "eighteen ten",
+             "1811": "eighteen eleven", "1813": "eighteen thirteen", "1814": "eighteen fourteen",
+             "1815": "eighteen fifteen", "1816": "eighteen sixteen",
+             "1819": "eighteen nineteen"}
 
 
 def spoken(text):
