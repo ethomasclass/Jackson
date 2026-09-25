@@ -131,5 +131,44 @@
     "date": "",
     "licence": "Public domain",
     "page": "https://commons.wikimedia.org/wiki/File:ElectoralCollege1820-Large.png"
+  },
+  "foot_race_1824.jpg": {
+    "title": "A foot-race",
+    "artist": "Johnston, David Claypoole, 1799-1865.",
+    "date": "1824",
+    "licence": "No known restrictions on publication.",
+    "page": "https://www.loc.gov/item/2008661728/",
+    "source": "loc:2008661728"
+  },
+  "house_morse_1822.jpg": {
+    "title": "File:Samuel F. B. Morse, The House of Representatives, 1822, probably reworked 1823, NGA 166463.jpg",
+    "artist": "Samuel F. B. Morse",
+    "date": "1822, probably reworked 1823",
+    "licence": "CC0",
+    "page": "https://commons.wikimedia.org/wiki/File:Samuel_F._B._Morse,_The_House_of_Representatives,_1822,_probably_reworked_1823,_NGA_166463.jpg"
+  },
+  "kiss_of_judas_carracci.jpg": {
+    "title": "Kiss of Judas",
+    "artist": "Attributed to Ludovico Carracci\nItalian, 1555-1619",
+    "date": "n.d.",
+    "licence": "CC0 (Art Institute of Chicago)",
+    "page": "https://www.artic.edu/artworks/81857",
+    "source": "aic:81857"
+  },
+  "jackson_parton_1860_plate.jpg": {
+    "title": "Life of Andrew Jackson (page 7)",
+    "artist": "Parton, James, 1822-1891",
+    "date": "1860",
+    "licence": "public domain by age (1860)",
+    "page": "https://archive.org/details/lifeofandrewjack01partuoft/page/n7",
+    "source": "iabook:lifeofandrewjack01partuoft:7"
+  },
+  "rats_leaving_1831.jpg": {
+    "title": "The rats leaving a falling house",
+    "artist": "",
+    "date": "1831",
+    "licence": "No known restrictions on publication.",
+    "page": "https://www.loc.gov/item/2008661748/",
+    "source": "loc:2008661748"
   }
 }

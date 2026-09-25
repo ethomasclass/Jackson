@@ -67,9 +67,27 @@ Captions are a prop: render with `--props='{"captions":false}'` for a clean vers
 
 ## Images
 
-All archival images are public domain or CC0, pulled from Wikimedia Commons with licence checks;
-`public/img/credits.json` records the source page, artist and licence for each. Every image on
-screen carries a small **PRIMARY SOURCE** tag naming what it is.
+`tools/find_images.py` searches every open archive we can reach and only downloads what passes that
+archive's copyright test, recording title, artist, date, licence and source page in
+`public/img/credits.json`:
+
+| Source | Counts as usable |
+|---|---|
+| Wikimedia Commons | public domain, CC0 or CC BY (per file) |
+| Library of Congress (Prints & Photographs) | "No known restrictions on publication" |
+| The Met, Art Institute of Chicago, Cleveland Museum of Art | flagged public domain / CC0 |
+| Internet Archive (images and scanned books) | explicit PD/CC licence, or published before 1930 |
+
+```sh
+python3 tools/find_images.py search "King Andrew"                 # all sources; OK / SKIP / ?? per result
+python3 tools/find_images.py get loc:2008661753 public/img/king_andrew.jpg
+python3 tools/find_images.py books "Andrew Jackson"                # 1800s books full of engraved plates
+python3 tools/find_images.py pages lifeofandrewjack01partuoft 1 40 out/pages.jpg
+python3 tools/find_images.py get iabook:lifeofandrewjack01partuoft:7 public/img/plate.jpg
+```
+
+Library of Congress items often have only a small JPEG online, so the tool pulls the archival TIFF
+and converts it. Every image on screen carries a small **PRIMARY SOURCE** tag naming what it is.
 
 Fonts (Abril Fatface, Alfa Slab One, Libre Caslon Text, IM Fell English SC) are vendored in
 `public/fonts` under the SIL Open Font License.
