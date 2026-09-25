@@ -7,7 +7,7 @@ Paragraphs are voiced one at a time (ElevenLabs gets the neighbouring paragraphs
 delivery stays continuous) and joined with a short pause. The scenes are timed off the words.json,
 so swapping the voice re-times the whole video without touching the animation code.
 """
-import base64, json, os, re, subprocess, sys, tempfile, urllib.request, wave
+import base64, hashlib, json, os, re, subprocess, sys, tempfile, urllib.request, wave
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "public", "audio")
@@ -17,8 +17,12 @@ try:
 except ImportError:
     FFMPEG = "ffmpeg"
 RATE = 44100
-PARA_GAP = 0.55   # seconds of silence between paragraphs
+PARA_GAP = 0.9    # seconds of silence between paragraphs
+SENT_GAP = 0.45   # extra breath added after each sentence inside a paragraph
 LEAD_IN = 0.4     # silence before the first word
+SPEED = float(os.environ.get("VOICE_SPEED", "0.9"))  # ElevenLabs speed, 0.7-1.2
+STRETCH = float(os.environ.get("VOICE_STRETCH", "1.0"))  # local pitch-preserving tempo; <1 is slower (v2 ignores SPEED; try 0.93)
+CACHE = os.path.join(OUT, "cache")
 
 # Spoken forms for words the voices tend to misread. Keys are matched as whole words.
 PRONOUNCE = {"Floride": "Flo-reed", "1806": "eighteen oh-six", "1820": "eighteen twenty",
@@ -44,21 +48,42 @@ def env():
 def eleven(text, prev, nxt):
     """Returns (pcm16 mono bytes at RATE, [(char, start, end)])."""
     voice = os.environ["VOICE_ID"]
-    body = {"text": text, "model_id": os.environ.get("ELEVEN_MODEL", "eleven_multilingual_v2"),
-            "previous_text": prev, "next_text": nxt,
-            "voice_settings": {"stability": 0.45, "similarity_boost": 0.85, "style": 0.15,
-                               "use_speaker_boost": True, "speed": 1.0}}
+    model = os.environ.get("ELEVEN_MODEL", "eleven_v3")
+    if model.startswith("eleven_v3"):
+        # v3: most expressive model; stability is one of 0.0 creative / 0.5 natural / 1.0 robust,
+        # and it does not accept neighbouring-paragraph context yet.
+        body = {"text": text, "model_id": model,
+                "voice_settings": {"stability": 0.5, "similarity_boost": 0.85, "speed": SPEED}}
+    else:
+        body = {"text": text, "model_id": model, "previous_text": prev, "next_text": nxt,
+                "voice_settings": {"stability": 0.45, "similarity_boost": 0.85, "style": 0.15,
+                                   "use_speaker_boost": True, "speed": SPEED}}
+    # Responses are cached by request body so re-running (e.g. to change pauses) spends no credits.
+    key = hashlib.sha1(json.dumps([voice, body], sort_keys=True).encode()).hexdigest()[:16]
+    cached = os.path.join(CACHE, key + ".json")
+    if os.path.exists(cached):
+        return decode(json.load(open(cached)))
     req = urllib.request.Request(
-        f"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps?output_format=pcm_44100",
+        f"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps?output_format=mp3_44100_128",
         data=json.dumps(body).encode(), method="POST",
         headers={"xi-api-key": os.environ["ELEVENLABS_API_KEY"], "Content-Type": "application/json"})
     try:
         r = json.loads(urllib.request.urlopen(req, timeout=300).read())
     except urllib.error.HTTPError as e:
         sys.exit(f"ElevenLabs {e.code}: {e.read().decode()[:400]}")
+    os.makedirs(CACHE, exist_ok=True)
+    json.dump(r, open(cached, "w"))
+    return decode(r)
+
+
+def decode(r):
     a = r["alignment"]
     chars = list(zip(a["characters"], a["character_start_times_seconds"], a["character_end_times_seconds"]))
-    return base64.b64decode(r["audio_base64"]), chars
+    # MP3 works on every plan (raw PCM needs Pro); decode it to PCM here
+    pcm = subprocess.run([FFMPEG, "-v", "error", "-f", "mp3", "-i", "-", "-af", f"atempo={STRETCH}",
+                          "-f", "s16le", "-ac", "1", "-ar", str(RATE), "-"],
+                         input=base64.b64decode(r["audio_base64"]), capture_output=True, check=True).stdout
+    return pcm, [(c, s / STRETCH, e / STRETCH) for c, s, e in chars]
 
 
 def piper(text):
@@ -80,6 +105,26 @@ def piper(text):
         pcm += raw + b"\0\0" * int(RATE * 0.22)
         t += dur + 0.22
     return pcm, chars
+
+
+def add_pauses(pcm, chars, gap):
+    """Insert `gap` seconds of silence after every sentence that is followed by more speech,
+    cutting halfway between the sentence's last sound and the next word, and shift timings."""
+    out, shifted, prev_cut, shift = b"", [], 0, 0.0
+    cuts = []
+    for i, (c, s, e) in enumerate(chars):
+        if c in ".?!" and i + 1 < len(chars) and chars[i + 1][0].isspace():
+            nxt = next((cs for cc, cs, ce in chars[i + 1:] if not cc.isspace()), None)
+            if nxt is not None:
+                cuts.append((i, (e + nxt) / 2))
+    ci = 0
+    for i, (c, s, e) in enumerate(chars):
+        shifted.append((c, s + shift, e + shift))
+        if ci < len(cuts) and cuts[ci][0] == i:
+            cut = int(cuts[ci][1] * RATE) * 2
+            out += pcm[prev_cut:cut] + b"\0\0" * int(RATE * gap)
+            prev_cut, shift, ci = cut, shift + int(RATE * gap) / RATE, ci + 1
+    return out + pcm[prev_cut:], shifted
 
 
 def words_from_chars(display, chars, offset):
@@ -123,6 +168,30 @@ def parse_marks(para):
     return " ".join(words), kinds
 
 
+def forced_align(wav_path, spoken_text):
+    """Exact word timings from ElevenLabs forced alignment on the finished audio. v3's own
+    timestamps drift by up to ~0.7 s around its natural pauses; this does not. Cached by audio hash."""
+    data = open(wav_path, "rb").read()
+    key = hashlib.sha1(data + spoken_text.encode()).hexdigest()[:16]
+    cached = os.path.join(CACHE, "align_" + key + ".json")
+    if not os.path.exists(cached):
+        boundary = "----jacksonvideo" + key
+        body = (f"--{boundary}\r\nContent-Disposition: form-data; name=\"text\"\r\n\r\n{spoken_text}\r\n"
+                f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"n.wav\"\r\n"
+                f"Content-Type: audio/wav\r\n\r\n").encode() + data + f"\r\n--{boundary}--\r\n".encode()
+        req = urllib.request.Request("https://api.elevenlabs.io/v1/forced-alignment", data=body, method="POST",
+                                     headers={"xi-api-key": os.environ["ELEVENLABS_API_KEY"],
+                                              "Content-Type": f"multipart/form-data; boundary={boundary}"})
+        try:
+            r = json.loads(urllib.request.urlopen(req, timeout=600).read())
+        except urllib.error.HTTPError as e:
+            sys.exit(f"ElevenLabs alignment {e.code}: {e.read().decode()[:400]}")
+        os.makedirs(CACHE, exist_ok=True)
+        json.dump(r, open(cached, "w"))
+    r = json.load(open(cached))
+    return [(w["text"].strip(), w["start"], w["end"]) for w in r["words"] if w["text"].strip()]
+
+
 def main():
     env()
     src, name = sys.argv[1], sys.argv[2]
@@ -138,6 +207,7 @@ def main():
         else:
             audio, chars = eleven(spoken(p), spoken(paras[i - 1]) if i else "",
                                   spoken(paras[i + 1]) if i + 1 < len(paras) else "")
+            audio, chars = add_pauses(audio, chars, SENT_GAP)
         ws = words_from_chars(p, chars, offset)
         for w, k in zip(ws, marked[i][1]):
             if k: w["k"] = k
@@ -149,6 +219,16 @@ def main():
     wav = os.path.join(OUT, name + ".wav")
     with wave.open(wav, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(RATE); w.writeframes(pcm)
+    if not use_piper:
+        # replace the TTS timestamps with forced-alignment timings, word for word
+        aligned = forced_align(wav, " ".join(spoken(p) for p in paras))
+        j = 0
+        for w in words:
+            n = len(spoken(w["w"]).split())
+            grp = aligned[j:j + n]
+            j += n
+            w["s"], w["e"] = round(grp[0][1], 3), round(grp[-1][2], 3)
+        assert j == len(aligned), f"alignment word count mismatch: {j} vs {len(aligned)}"
     json.dump({"voice": "piper-placeholder" if use_piper else os.environ.get("VOICE_ID"),
                "duration": round(len(pcm) / 2 / RATE, 3), "words": words},
               open(os.path.join(OUT, name + ".words.json"), "w"), indent=0)

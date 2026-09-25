@@ -17,6 +17,12 @@ public/img (archival scans) ─prep_images.py─▶ public/cut (torn scraps, pap
                            out/*.mp4 ──master.py──▶ −14 LUFS, H.264 delivery file
 ```
 
+Narration uses ElevenLabs **v3** (`eleven_v3`, override with `ELEVEN_MODEL`) at speed 0.9 with
+a short breath added after each sentence (~160 words per minute). v3's own timestamps drift around
+its natural pauses, so the finished track is run through ElevenLabs **forced alignment** for exact
+word timings. Every ElevenLabs response is cached in `public/audio/cache/`, so re-running
+`voice.py` after changing pauses or the script only pays for paragraphs whose text changed.
+
 Because every animation cue is tied to a phrase in the narration (`at('fired first')`), not to a
 second, re-recording the voice re-times the whole video with no code changes.
 
