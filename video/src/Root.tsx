@@ -3,21 +3,40 @@ import {AbsoluteFill, Composition, Sequence} from 'remotion';
 import {FPS, H, W} from './lib/theme';
 import {ColdOpen, TITLE_SECONDS} from './v1/ColdOpen';
 import {Election1820, ELECTION_1820_SECONDS} from './v1/Election1820';
+import {Judas1824, JUDAS_1824_SECONDS} from './v1/Judas1824';
+import {Campaign1828, CAMPAIGN_1828_SECONDS} from './v1/Campaign1828';
+import {PunchBowl, PUNCH_BOWL_SECONDS} from './v1/PunchBowl';
+import {EndCard, END_CARD_SECONDS, Petticoat, PETTICOAT_SECONDS} from './v1/Petticoat';
 import coldOpen from '../public/audio/v1_cold_open.words.json';
 
-const COLD_OPEN_SECONDS = coldOpen.duration + TITLE_SECONDS;
+type Scene = {id: string; component: React.FC<{captions: boolean}>; seconds: number};
 
-/** Video 1 so far: every scene back to back. */
+/** Video 1 in order. Each scene is also its own composition for quick previews. */
+const V1_SCENES: Scene[] = [
+  {id: 'V1-ColdOpen', component: ColdOpen, seconds: coldOpen.duration + TITLE_SECONDS},
+  {id: 'V1-Election1820', component: Election1820, seconds: ELECTION_1820_SECONDS},
+  {id: 'V1-Judas1824', component: Judas1824, seconds: JUDAS_1824_SECONDS},
+  {id: 'V1-Campaign1828', component: Campaign1828, seconds: CAMPAIGN_1828_SECONDS},
+  {id: 'V1-PunchBowl', component: PunchBowl, seconds: PUNCH_BOWL_SECONDS},
+  {id: 'V1-Petticoat', component: Petticoat, seconds: PETTICOAT_SECONDS},
+  {id: 'V1-End', component: EndCard, seconds: END_CARD_SECONDS},
+];
+
+const frames = (s: Scene) => Math.ceil(s.seconds * FPS);
+
 const Video1: React.FC<{captions: boolean}> = ({captions}) => {
-  const s1 = Math.ceil(COLD_OPEN_SECONDS * FPS);
+  let from = 0;
   return (
     <AbsoluteFill>
-      <Sequence durationInFrames={s1}>
-        <ColdOpen captions={captions} />
-      </Sequence>
-      <Sequence from={s1} durationInFrames={Math.ceil(ELECTION_1820_SECONDS * FPS)}>
-        <Election1820 captions={captions} />
-      </Sequence>
+      {V1_SCENES.map((s) => {
+        const seq = (
+          <Sequence key={s.id} from={from} durationInFrames={frames(s)}>
+            <s.component captions={captions} />
+          </Sequence>
+        );
+        from += frames(s);
+        return seq;
+      })}
     </AbsoluteFill>
   );
 };
@@ -30,26 +49,11 @@ export const Root: React.FC = () => (
       width={W}
       height={H}
       fps={FPS}
-      durationInFrames={Math.ceil(COLD_OPEN_SECONDS * FPS) + Math.ceil(ELECTION_1820_SECONDS * FPS)}
+      durationInFrames={V1_SCENES.reduce((n, s) => n + frames(s), 0)}
       defaultProps={{captions: true}}
     />
-    <Composition
-      id="V1-ColdOpen"
-      component={ColdOpen}
-      width={W}
-      height={H}
-      fps={FPS}
-      durationInFrames={Math.ceil(COLD_OPEN_SECONDS * FPS)}
-      defaultProps={{captions: true}}
-    />
-    <Composition
-      id="V1-Election1820"
-      component={Election1820}
-      width={W}
-      height={H}
-      fps={FPS}
-      durationInFrames={Math.ceil(ELECTION_1820_SECONDS * FPS)}
-      defaultProps={{captions: true}}
-    />
+    {V1_SCENES.map((s) => (
+      <Composition key={s.id} id={s.id} component={s.component} width={W} height={H} fps={FPS} durationInFrames={frames(s)} defaultProps={{captions: true}} />
+    ))}
   </>
 );

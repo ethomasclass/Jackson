@@ -27,7 +27,8 @@ CACHE = os.path.join(OUT, "cache")
 # Spoken forms for words the voices tend to misread. Keys are matched as whole words.
 PRONOUNCE = {"Floride": "Flo-reed", "1806": "eighteen oh-six", "1812": "eighteen twelve", "1820": "eighteen twenty",
              "1824": "eighteen twenty-four", "1828": "eighteen twenty-eight", "1829": "eighteen twenty-nine",
-             "1831": "eighteen thirty-one"}
+             "1831": "eighteen thirty-one", "365,000": "three hundred sixty-five thousand",
+             "1.1": "one point one"}
 
 
 def spoken(text):

@@ -73,7 +73,7 @@ export const ChapterCard: React.FC<{number: string; title: string; year: string;
         >
           CHAPTER {number.toUpperCase()}
         </div>
-        <div style={{fontFamily: F.fat, fontSize: 150, color: C.ink, marginTop: 26, opacity: b, transform: `translateY(${(1 - b) * 30}px)`}}>
+        <div style={{fontFamily: F.fat, fontSize: Math.min(150, Math.floor(3500 / title.length)), color: C.ink, marginTop: 26, whiteSpace: 'nowrap', opacity: b, transform: `translateY(${(1 - b) * 30}px)`}}>
           {title}
         </div>
         <div style={{display: 'flex', alignItems: 'center', gap: 28, marginTop: 14, opacity: b}}>
@@ -91,5 +91,25 @@ export const ChapterCard: React.FC<{number: string; title: string; year: string;
 export const Sfx: React.FC<{src: string; at: number; volume?: number; frames?: number}> = ({src, at, volume = 0.6, frames = 150}) => (
   <Sequence from={at} durationInFrames={frames} layout="none">
     <Audio src={staticFile(`sfx/${src}.wav`)} volume={volume} />
+  </Sequence>
+);
+
+/**
+ * A music cue that starts at `at` (scene frames), fades in and out, and can be ducked.
+ * `level` is the steady volume under narration.
+ */
+export const Cue: React.FC<{src: string; at: number; until: number; level?: number; fadeIn?: number; fadeOut?: number}> = ({
+  src,
+  at,
+  until,
+  level = 0.15,
+  fadeIn = 20,
+  fadeOut = 30,
+}) => (
+  <Sequence from={at} durationInFrames={until - at + fadeOut} layout="none">
+    <Audio
+      src={staticFile(src)}
+      volume={(f) => interpolate(f, [0, fadeIn, until - at, until - at + fadeOut], [0, level, level, 0], clamp)}
+    />
   </Sequence>
 );

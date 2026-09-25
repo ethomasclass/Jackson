@@ -31,6 +31,11 @@ SFX = {
     "crowd_cheer": ("A small nineteenth-century crowd outdoors cheering and applauding politely, distant.", 3.0),
     "page_turn": ("A single page of an old book turned quickly, crisp paper flip.", 0.8),
     "gavel": ("A single wooden gavel strike on a sound block in a large hall.", 1.2),
+    # chapter 4
+    "smash": ("Several china plates and drinking glasses crashing and shattering on a wooden floor at a rowdy "
+              "party, loud and close.", 2.0),
+    "rowdy_crowd": ("A big rowdy crowd inside a house: cheering, laughing, boots stomping on wooden floors, "
+                    "no music, 1800s.", 5.0),
 }
 
 

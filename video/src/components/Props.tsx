@@ -152,6 +152,8 @@ export const Handwriting: React.FC<{text: string; at: number; dur?: number; size
         fontFamily: F.hand,
         fontSize: size,
         color,
+        // padding lets the script's overhanging strokes sit inside the reveal box
+        padding: '0 0.35em 0 0.1em',
         clipPath: `inset(-20% ${100 - p * 100}% -40% 0)`,
         whiteSpace: 'nowrap',
       }}
@@ -166,4 +168,37 @@ export const Counter: React.FC<{to: number; at: number; dur: number}> = ({to, at
   const frame = useCurrentFrame();
   const v = Math.round(interpolate(frame, [at, at + dur], [0, to], {...clamp, easing: (t) => 1 - Math.pow(1 - t, 3)}));
   return <>{frame < at ? 0 : v}</>;
+};
+
+/** Pictograph: one figure per `per` people, figures appear left to right. Partial last figure is cropped. */
+export const Pictograph: React.FC<{value: number; per: number; at: number; x: number; y: number; perRow?: number; color?: string; dur?: number}> = ({
+  value,
+  per,
+  at,
+  x,
+  y,
+  perRow = 12,
+  color = C.ink,
+  dur = 30,
+}) => {
+  const frame = useCurrentFrame();
+  if (frame < at) return null;
+  const n = value / per;
+  const shown = Math.min(n, (n * (frame - at)) / dur);
+  const whole = Math.ceil(shown);
+  return (
+    <div style={{position: 'absolute', left: x, top: y, width: perRow * 62}}>
+      {Array.from({length: whole}, (_, i) => {
+        const frac = Math.min(1, shown - i);
+        return (
+          <svg key={i} width={56} height={110} viewBox="-30 -95 60 140" style={{position: 'absolute', left: (i % perRow) * 62, top: Math.floor(i / perRow) * 118, clipPath: `inset(0 ${(1 - frac) * 100}% 0 0)`}}>
+            <rect x={-17} y={-92} width={34} height={30} fill={color} />
+            <rect x={-26} y={-64} width={52} height={7} rx={2} fill={color} />
+            <circle cx={0} cy={-42} r={16} fill={color} />
+            <path d="M-30,40 L-24,-18 Q0,-28 24,-18 L30,40 Z" fill={color} />
+          </svg>
+        );
+      })}
+    </div>
+  );
 };

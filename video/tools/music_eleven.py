@@ -22,6 +22,19 @@ CUES = {
                       "fiddle melody, soft fife, piano-forte, a relaxed walking pulse; pleasant and a little "
                       "too cozy, with a faint hint of mischief near the end. Instrumental only, no vocals, "
                       "leaves room for a narrator.", 90000),
+    "intrigue": ("Sly, suspenseful documentary underscore about a backroom political deal in 1825 Washington. "
+                 "Low clarinet and bassoon, sneaky pizzicato strings, a ticking harpsichord, a muted snare "
+                 "brushing in; tension that builds to an angry brass sting around the middle, then a brooding, "
+                 "suspicious tail. Instrumental only, no vocals, leaves room for a narrator.", 125000),
+    "campaign": ("Rowdy, energetic 1820s American campaign march for a history explainer: fife and field drum, "
+                 "a bright brass band, banjo and fiddle, hand claps and a crowd feel, playful and a bit chaotic. "
+                 "Instrumental only, no vocals, leaves room for a narrator.", 100000),
+    "grief": ("Quiet, grieving solo cello with a soft sustained string pad, slow and simple, for the death of a "
+              "beloved wife in 1828. Instrumental only, no vocals.", 40000),
+    "gossip": ("Playful, gossipy, mischievous documentary underscore about a scandal among 1830s Washington "
+               "high society: tiptoeing pizzicato strings, a fussy harpsichord, a sly clarinet, teacup-delicate "
+               "percussion, occasional dramatic 'gasp' string swells, building to a dramatic finish. "
+               "Instrumental only, no vocals, leaves room for a narrator.", 120000),
 }
 
 
