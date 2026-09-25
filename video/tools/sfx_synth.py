@@ -1,5 +1,5 @@
-"""Stand-in sound effects and music bed, synthesized so the pilot has a full mix before the
-ElevenLabs sound-effects pass (tools/sfx_eleven.py writes the same filenames and replaces these)."""
+"""Offline stand-in sound effects (no credits needed). tools/sfx_eleven.py writes the same
+filenames with real ElevenLabs effects; music cues come from tools/music_eleven.py."""
 import os, wave
 import numpy as np
 
@@ -102,4 +102,4 @@ def bed(sec=60):
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     save("shot", shot()); save("stamp", stamp()); save("whoosh", whoosh()); save("tick", tick())
-    save("boom", boom()); save("bed", bed(), stereo=True)
+    save("boom", boom())
