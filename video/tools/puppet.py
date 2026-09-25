@@ -22,6 +22,17 @@ PUPPETS = {
     "barron": ("barron_neagle.jpg", None, 0.5, 12),
     "george3": ("george3_gainsborough.jpg", (0.3, 0.1, 0.9, 0.98), 0.5, 12),
     "jefferson": ("../jefferson_peale.jpg", None, 0.5, 12),
+    "clay": ("../clay_jouett.jpg", None, 0.5, 12),
+    "calhoun": ("../calhoun_healy.jpg", None, 0.5, 12),
+    "madison": ("../madison_stuart.jpg", None, 0.5, 12),
+    "monroe": ("../monroe_stuart.jpg", None, 0.5, 12),
+    "jackson": ("../jackson_sully_1845.jpg", None, 0.5, 12),
+    "tenskwatawa": ("tenskwatawa_catlin.jpg", None, 0.5, 12),
+    "harrison": ("harrison_lambdin.jpg", None, 0.5, 12),
+    "dolley": ("dolley_stuart.jpg", None, 0.5, 12),
+    "key": ("key_wood.jpg", None, 0.5, 12),
+    "irving": ("irving_jarvis.jpg", None, 0.08, 12),
+    "constitution": ("constitution_chambers.jpg", (0.04, 0.1, 0.57, 0.86), 0.55, 10),
 }
 
 _session = None

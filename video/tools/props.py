@@ -58,6 +58,46 @@ def sailors():
         save(out, f"sailor_{j}")
 
 
+
+
+def people():
+    """Real people with no surviving likeness: shapes lifted off the green and filled solid black."""
+    im = Image.open(os.path.join(GEN, "people_silhouettes.png")).convert("RGB")
+    a = np.asarray(im).astype(int)
+    fg = ~((a[..., 1] > a[..., 0] + 40) & (a[..., 1] > a[..., 2] + 40))
+    fg = ndimage.binary_opening(fg, iterations=2)
+    # ignore the card margin around the green
+    h, w = fg.shape
+    fg[: int(h * 0.04)] = fg[-int(h * 0.04):] = False
+    fg[:, : int(w * 0.03)] = fg[:, -int(w * 0.03):] = False
+    fg = ndimage.binary_fill_holes(fg)
+    boxes, lab = blobs(fg, 4)
+    for j, ((ys, xs), i) in enumerate(boxes):
+        sil = (lab == i)[ys.start:ys.stop, xs.start:xs.stop]
+        pad = 24
+        m = Image.fromarray(np.pad(sil, pad).astype(np.uint8) * 255)
+        card = m.filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(8)).point(lambda v: 255 if v > 90 else 0)
+        out = Image.new("RGBA", m.size, CARD + (0,))
+        out.paste(Image.new("RGBA", m.size, CARD + (255,)), (0, 0), card.filter(ImageFilter.GaussianBlur(0.8)))
+        out.paste(Image.new("RGBA", m.size, (22, 18, 16, 255)), (0, 0), m.filter(ImageFilter.GaussianBlur(0.7)))
+        save(out, ["tecumseh", "sioussat", "mcgraw", "lafitte"][j])
+
+
+def flames():
+    """Painted flames on a cream card: keep the saturated paint and the ink around it."""
+    im = Image.open(os.path.join(GEN, "flames.png")).convert("RGB")
+    hsv = np.asarray(im.convert("HSV")).astype(int)
+    fg = (hsv[..., 1] > 90) & (hsv[..., 0] < 40)
+    fg = ndimage.binary_closing(fg, iterations=4)
+    fg = ndimage.binary_dilation(ndimage.binary_fill_holes(fg), iterations=3)   # take in the ink outline
+    boxes, lab = blobs(fg, 5)
+    for j, ((ys, xs), i) in enumerate(boxes):
+        m = Image.fromarray(((lab == i) * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1))
+        rgba = im.convert("RGBA"); rgba.putalpha(m)
+        save(rgba.crop((xs.start - 4, ys.start - 4, xs.stop + 4, ys.stop + 4)), f"flame_{j}")
+
+
 if __name__ == "__main__":
-    smoke()
-    sailors()
+    import sys
+    for step in sys.argv[1:] or ["smoke", "sailors", "people", "flames"]:
+        globals()[step]()

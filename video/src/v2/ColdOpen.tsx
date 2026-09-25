@@ -318,7 +318,6 @@ const TitlePlaybill: React.FC = () => {
       <Playbill
         at={4}
         lines={[
-          {at: 10, node: <div style={{fontFamily: F.slab, fontSize: 26, letterSpacing: 8, color: P.vermilion, whiteSpace: 'nowrap'}}>THE CLASSROOM THEATRE PRESENTS</div>},
           {at: 20, node: <Wood size={150} font="rye" at={20}>THE WAR</Wood>},
           {at: 30, node: <Wood size={112} font="ultra" color={P.vermilion} at={30}>NOBODY WON</Wood>},
           {at: 48, node: <Rule color={P.vermilion} />},

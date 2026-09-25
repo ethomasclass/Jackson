@@ -50,6 +50,45 @@ SCENERY = {
                            "round hats or bare heads, one with a pigtail; slumped, captive poses, heads down. Solid "
                            "matte black silhouettes only, no interior detail, on a completely flat solid pure green "
                            "(#00FF00) background.", "16:9"),
+    "deck": ("Backcloth: the main deck of an American merchant sailing ship at sea in 1810, seen from the quarterdeck "
+             "looking forward: masts, furled sails, rigging and ratlines, barrels and coiled rope, the sea and sky beyond "
+             "the rails. Leave the middle of the deck clear.", "16:9"),
+    "wabash_woods": ("Backcloth: the Wabash River valley in the Indiana Territory in autumn, 1811: tall oak and maple woods "
+                     "in mustard, vermilion and emerald, a winding river, open prairie grass, a pale sky. No buildings.", "16:9"),
+    "flames": ("A sheet of five separate painted cut-out flames for a toy theater, tall flickering tongues of fire in "
+               "vermilion, orange and mustard with black ink outlines, spread out with clear space between them, on a "
+               "completely flat solid pure green (#00FF00) background.", "16:9"),
+    "dc_night": ("Backcloth: Washington City at night in August 1814. Centre: the President's House as it looked before "
+                 "1814 - a plain, flat-fronted white sandstone Georgian mansion with a central pediment, rows of tall "
+                 "windows and a balustrade on the roof. The front wall is completely FLAT: only shallow pilasters "
+                 "carved into the wall, NO columns standing out from the building, NO porch, NO portico, NO curved bay. Unfinished muddy avenue, a "
+                 "few trees, a deep indigo night sky with stars and a low moon.", "16:9"),
+    "dining_room": ("Backcloth: a grand Federal-style dining room of 1814 by candlelight: a long table laid for a formal "
+                    "dinner with white cloth, silver, decanters and candlesticks; tall windows with swagged curtains; "
+                    "pale green walls. No people, no portraits on the walls.", "16:9"),
+    "harbor_night": ("Backcloth: the harbour of Baltimore at night in September 1814, seen from the water. Far away on a low "
+                     "point of land, a small star-shaped brick fort with a tall flagpole. Dark indigo sky with smoke, dark "
+                     "rippling water. Ominous. Leave the flagpole bare.", "16:9"),
+    "harbor_dawn": ("Backcloth: the same harbour of Baltimore at dawn: far away on a low point of land a small star-shaped "
+                    "brick fort with a tall bare flagpole; drifting grey smoke clearing; a glowing mustard and rose sunrise "
+                    "sky; calm water catching the light. Hopeful.", "16:9"),
+    "new_orleans_plain": ("Backcloth: the flat sugar-cane plain below New Orleans in January 1815: a broad muddy canal with "
+                          "an earth-and-log rampart along it, cypress trees hung with moss, the Mississippi River on the "
+                          "right, a grey winter sky with mist.", "16:9"),
+    "mill_interior": ("Backcloth: the interior of an English cotton mill in 1811: long rows of iron and wood power looms, "
+                      "overhead line shafts and leather belts, tall windows, bales of cotton, brick walls.", "16:9"),
+    "waltham_mill": ("Backcloth: a tall new red-brick five-storey cotton mill beside a dam and waterfall on the Charles River "
+                     "at Waltham, Massachusetts, 1814, with a small bell cupola; green New England hills and a bright sky.", "16:9"),
+    "catskills": ("Backcloth: the Catskill Mountains above the Hudson River valley, dreamy late afternoon light, a green "
+                  "wooded mountainside with rocks and a clearing in the foreground, blue ridges fading into the distance.", "16:9"),
+    "people_silhouettes": ("Four separate solid matte black paper silhouette cut-outs of real people from 1810-1815, full length, "
+                           "standing side by side with generous clear space between them, all facing slightly left: "
+                           "(1) a tall dignified Shawnee leader of 1812 in a cloth head wrap, a long hunting frock with a "
+                           "sash and leggings, one arm raised as if speaking to a council; (2) a French-born house doorkeeper "
+                           "in an 1814 tailcoat and knee breeches carrying a large rolled canvas; (3) a gardener of 1814 in a "
+                           "round wide-brimmed hat and work clothes; (4) a New Orleans privateer of 1815 in a caped greatcoat, "
+                           "tall hat and boots with a sword at his hip. Solid black silhouettes only, no interior detail, on a "
+                           "completely flat solid pure green (#00FF00) background, no stage, no floor.", "16:9"),
     "velvet": ("Close-up texture filling the whole frame: heavy crimson-vermilion stage curtain velvet hanging "
                "in deep vertical folds, lit from below by warm footlights, rich shadows in the folds. "
                "Photographic texture, no frame, no stage, nothing else.", "9:16"),
@@ -58,7 +97,7 @@ SCENERY = {
 
 def generate(name):
     prompt, aspect = SCENERY[name]
-    full = prompt if name == "velvet" else prompt + "\n\n" + STYLE.replace("no people, no ships.", "no people.") if name in ("proscenium", "drop_curtain", "smoke_puffs", "sailor_silhouettes") else prompt + "\n\n" + STYLE
+    full = prompt if name == "velvet" else prompt + "\n\n" + STYLE.replace("no people, no ships.", "no people.") if name in ("proscenium", "drop_curtain", "smoke_puffs", "sailor_silhouettes", "flames", "people_silhouettes") else prompt + "\n\n" + STYLE
     body = {"contents": [{"parts": [{"text": full}]}],
             "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": aspect, "imageSize": "2K"}}}
     req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent",

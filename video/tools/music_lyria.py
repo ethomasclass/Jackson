@@ -28,6 +28,22 @@ CUES = {
                   "distant muffled field drum like a heartbeat, a mournful solo fiddle line, sparse and grave. "
                   "In the second half it turns quietly questioning and builds tension toward something larger, "
                   "with a slow crescendo in the strings and a soft snare roll. " + BED),
+    "frontier": ("lyria-3.5",
+                 "A 95-second cue for the story of the Shawnee leader Tecumseh and his brother, Indiana Territory, "
+                 "1805-1811: dignified and serious, a slow solo cello and a low wooden flute over sustained strings, "
+                 "a soft, steady deep drum like a heartbeat; builds to urgency and alarm in the middle for a dawn battle, "
+                 "then falls to a grieving, burnt-out quiet. Respectful, no stereotypes, no chanting. " + BED),
+    "sea_battle": ("lyria-3.5",
+                   "A 75-second cue: a heroic, swashbuckling 1812 naval battle for a toy theater: brisk strings, "
+                   "brass fanfares, fife, field drums and timpani like cannon fire, a triumphant cheering ending. " + BED),
+    "fire": ("lyria-3.5",
+             "A 90-second cue: the night the British burned Washington, 1814. Opens urgent and anxious (hurried "
+             "tremolo strings, a ticking clock pulse), a tender quiet interlude for saving a treasured painting, then "
+             "dark and heavy as flames rise: low brass, timpani rolls, a descending minor theme. " + BED),
+    "dawn": ("lyria-3.5",
+             "A 65-second cue: night bombardment of a harbour fort, 1814: low rumbling timpani and anxious strings "
+             "waiting in the dark, then a slow sunrise swell into a warm, noble, hopeful chorale for brass and strings "
+             "as a flag is revealed still flying. " + BED),
     "title_fanfare": ("lyria-3-clip-preview",
                       "A short theatrical overture flourish for the title card of a toy-theater play: bright "
                       "brass fanfare, fife and field drums playing a martial 1812-era march phrase, cymbal crash, "
