@@ -114,10 +114,10 @@ export const ColdOpen: React.FC<{captions: boolean}> = ({captions}) => {
           seed={4}
           silhouette={(f) => interpolate(f, [at('So the Leopard'), at('So the Leopard') + 20], [0, 0.3], clamp)}
         >
-          <NameCard name="H.M.S. LEOPARD" sub="a British warship" at={at('Leopard') + 4} out={at('demands')} x="36%" y={90} red />
+          <NameCard name="H.M.S. LEOPARD" sub="a British warship" at={at('Leopard') + 4} out={at('demands')} x="36%" y={170} red />
         </Puppet>
-        <SourceTag text="U.S.S. Chesapeake, painting by F. Muller" at={at('Chesapeake') + 10} out={at('British warship')} x={300} y={250} />
-        <SourceTag text="stand-in: a British 50-gun ship, engraving, 1860" tag="PERIOD ENGRAVING" at={at('Leopard') + 10} out={at('demands')} x={980} y={250} />
+        <SourceTag text="U.S.S. Chesapeake, painting by F. Muller" at={at('Chesapeake') + 10} out={at('British warship')} x={300} y={350} />
+        <SourceTag text="stand-in: a British 50-gun ship, engraving, 1860" tag="PERIOD ENGRAVING" at={at('Leopard') + 10} out={at('demands')} x={1000} y={350} />
 
         {/* the four seized sailors: lifted off the Chesapeake, set down on the Leopard, carried away */}
         {deckC.map(([cx, cy], i) => (
@@ -151,7 +151,7 @@ export const ColdOpen: React.FC<{captions: boolean}> = ({captions}) => {
         <Puppet src="v2/puppets/barron.png" x={430} y={980} w={430} in={at('American captain') - 4} out={at('So the Leopard')} from="trap" bob={3} seed={2}>
           <NameCard name="JAMES BARRON" sub="commodore, commanding the Chesapeake" at={at('captain') + 2} x="78%" y={-40} rot={2} />
         </Puppet>
-        <SourceTag text="James Barron, portrait by John Neagle, 1829" at={at('captain') + 10} out={at('So the Leopard')} x={250} y={236} />
+        <SourceTag text="James Barron, portrait by John Neagle, 1829" at={at('captain') + 10} out={at('So the Leopard')} x={270} y={350} />
 
         {/* ---------------- the deserter ---------------- */}
         <Puppet src="v2/props/sailor_1.png" x={960} y={760} w={120} in={at('One of them')} out={lightsOut + 4} from="fly" to="fade" rod="above" bob={2} seed={7}>
@@ -160,10 +160,10 @@ export const ColdOpen: React.FC<{captions: boolean}> = ({captions}) => {
 
         {/* ---------------- paragraph two: King and President ---------------- */}
         <Puppet src="v2/puppets/george3.png" x={560} y={930} w={250} in={at('two countries')} out={at('And how')} from="left" bob={2} seed={3} move={[[at('fighting'), 790, 930]]} hit={[[at('fighting') + 4, 5, 0]]}>
-          <NameCard name="KING GEORGE III" sub="Britain" at={at('countries') + 6} out={at('fighting')} y={-50} />
+          <NameCard name="KING GEORGE III" sub="Britain" at={at('countries') + 6} out={at('fighting')} y={470} rot={3} />
         </Puppet>
         <Puppet src="v2/puppets/jefferson.png" x={1350} y={1000} w={420} in={at('countries')} out={at('And how')} from="right" bob={2} seed={5} move={[[at('fighting'), 1130, 1000]]} hit={[[at('fighting') + 4, -5, 0]]}>
-          <NameCard name="THOMAS JEFFERSON" sub="U.S. president in 1807" at={at('countries') + 14} out={at('fighting')} y={-50} />
+          <NameCard name="THOMAS JEFFERSON" sub="U.S. president in 1807" at={at('countries') + 14} out={at('fighting')} y={250} rot={-2} />
         </Puppet>
         <Puff at={at('fighting') + 4} x={965} y={520} w={320} i={2} drift={0} life={50} />
 
