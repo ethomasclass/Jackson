@@ -53,8 +53,15 @@ export const Theater: React.FC<{
   footlights?: number;
 }> = ({cam, shake = [], children, front, footlights = 1}) => {
   const frame = useCurrentFrame();
-  const [, z, x, y] = lerpKeys(frame, cam);
+  const [, kz, kx, ky] = lerpKeys(frame, cam);
   const s = shakeAt(frame, shake);
+  // The printed proscenium is exactly one frame, so the camera may never see past its edges:
+  // never zoom out below 1 (plus a margin for the shake and hand-held breath), and keep the
+  // centre far enough from each edge for the zoom.
+  const z = Math.max(kz, 1.05);
+  const halfW = 960 / z + 22, halfH = 540 / z + 16;
+  const x = Math.min(1920 - halfW, Math.max(halfW, kx));
+  const y = Math.min(1080 - halfH, Math.max(halfH, ky));
   // a hand-held breath so the stage is never frozen
   const bx = Math.sin(frame / 71) * 3, by = Math.cos(frame / 93) * 2;
   const tx = 960 - x * z + bx + s.dx;
