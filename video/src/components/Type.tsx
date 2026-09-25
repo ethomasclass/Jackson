@@ -104,23 +104,27 @@ export const VocabCard: React.FC<{
   term: string;
   say: string;
   pos: string;
-  /** narration phrase where the definition starts and its word count */
-  defFrom: string;
-  defWords: number;
+  /** narration phrase where the definition starts and its word count (read aloud, synced) */
+  defFrom?: string;
+  defWords?: number;
+  /** or a written definition the narrator does not read, faded in whole */
+  def?: string;
+  /** band label: VOCABULARY for words, KEY EVENT / KEY TERM for named things */
+  label?: string;
   at: number;
   out?: number;
   tl: Timeline;
   x: number;
   y: number;
   w?: number;
-}> = ({term, say, pos, defFrom, defWords, at, out, tl, x, y, w = 760}) => {
+  termSize?: number;
+}> = ({term, say, pos, defFrom, defWords = 0, def, label = 'VOCABULARY', at, out, tl, x, y, w = 760, termSize = 150}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   if (frame < at - 1 || (out !== undefined && frame > out + 30)) return null;
   const s = pop(frame, at, fps, 120, 16);
   const sOut = out === undefined ? 0 : pop(frame, out, fps, 140, 20);
-  const i0 = tl.idx(defFrom);
-  const defs = tl.words.slice(i0, i0 + defWords);
+  const defs = defFrom ? tl.words.slice(tl.idx(defFrom), tl.idx(defFrom) + defWords) : [];
   return (
     <div
       style={{
@@ -152,25 +156,29 @@ export const VocabCard: React.FC<{
           justifyContent: 'space-between',
         }}
       >
-        <span>VOCABULARY</span>
-        <span style={{fontFamily: F.sc, letterSpacing: 2}}>✦ word to know ✦</span>
+        <span>{label}</span>
+        {w >= 700 && <span style={{fontFamily: F.sc, letterSpacing: 2}}>{label === 'VOCABULARY' ? '✦ word to know ✦' : '✦ remember this ✦'}</span>}
       </div>
       <div style={{padding: '18px 44px 0'}}>
-        <div style={{fontFamily: F.fat, fontSize: 150, lineHeight: 1, color: C.ink}}>{term}</div>
+        <div style={{fontFamily: F.fat, fontSize: termSize, lineHeight: 1, color: C.ink}}>{term}</div>
         <div style={{fontFamily: F.italic, fontStyle: 'italic', fontSize: 36, color: C.inkSoft, marginTop: 6}}>
           {say} &nbsp;·&nbsp; {pos}
         </div>
         <div style={{height: 3, background: C.ink, margin: '20px 0 18px', width: 180}} />
         <div style={{fontFamily: F.body, fontSize: 46, lineHeight: 1.3, color: C.ink}}>
-          {defs.map((d, i) => {
-            const f = Math.round(d.s * fps);
-            const op = interpolate(frame, [f - 2, f + 4], [0.12, 1], clamp);
-            return (
-              <span key={i} style={{opacity: op}}>
-                {d.w}{' '}
-              </span>
-            );
-          })}
+          {def ? (
+            <span style={{opacity: interpolate(frame, [at + 10, at + 22], [0, 1], clamp)}}>{def}</span>
+          ) : (
+            defs.map((d, i) => {
+              const f = Math.round(d.s * fps);
+              const op = interpolate(frame, [f - 2, f + 4], [0.12, 1], clamp);
+              return (
+                <span key={i} style={{opacity: op}}>
+                  {d.w}{' '}
+                </span>
+              );
+            })
+          )}
         </div>
       </div>
     </div>

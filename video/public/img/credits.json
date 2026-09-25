@@ -54,5 +54,82 @@
     "date": "1845date QS:P571,+1845-00-00T00:00:00Z/9",
     "licence": "CC0",
     "page": "https://commons.wikimedia.org/wiki/File:Thomas_Sully,_Andrew_Jackson,_1845,_NGA_1128.jpg"
+  },
+  "monroe_stuart.jpg": {
+    "title": "File:Gilbert Stuart, James Monroe, c. 1817, NGA 56915.jpg",
+    "artist": "Gilbert Stuart",
+    "date": "circa 1817date QS:P571,+1817-00-00T00:00:00Z/9,P1480,Q5727902",
+    "licence": "CC0",
+    "page": "https://commons.wikimedia.org/wiki/File:Gilbert_Stuart,_James_Monroe,_c._1817,_NGA_56915.jpg"
+  },
+  "plumer_saint_memin.jpg": {
+    "title": "File:WPlumer.jpg",
+    "artist": "Charles Balthazar Julien F\u00e9vret de Saint-M\u00e9min",
+    "date": "1806",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:WPlumer.jpg"
+  },
+  "jqa_stuart_1818.jpg": {
+    "title": "File:John Quincy Adams by Gilbert Stuart, 1818.jpg",
+    "artist": "Gilbert Stuart",
+    "date": "1818date QS:P571,+1818-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:John_Quincy_Adams_by_Gilbert_Stuart,_1818.jpg"
+  },
+  "washington_stuart.jpg": {
+    "title": "File:George Washington by Gilbert Stuart, 1803.jpg",
+    "artist": "Gilbert Stuart",
+    "date": "1803date QS:P571,+1803-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:George_Washington_by_Gilbert_Stuart,_1803.jpg"
+  },
+  "jefferson_peale.jpg": {
+    "title": "File:Official Presidential portrait of Thomas Jefferson (by Rembrandt Peale, 1800).jpg",
+    "artist": "Rembrandt Peale",
+    "date": "1800",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Official_Presidential_portrait_of_Thomas_Jefferson_(by_Rembrandt_Peale,_1800).jpg"
+  },
+  "hamilton_trumbull.jpg": {
+    "title": "File:Alexander Hamilton MET DT222199.jpg",
+    "artist": "John Trumbull",
+    "date": "between 1804 and 1806date QS:P,+1804-00-00T00:00:00Z/8,P1319,+1804-00-00T00:00:00Z/9,P1326,+1806-00-00T00:00:00Z/9",
+    "licence": "CC0",
+    "page": "https://commons.wikimedia.org/wiki/File:Alexander_Hamilton_MET_DT222199.jpg"
+  },
+  "new_orleans_laclotte.jpg": {
+    "title": "File:Battle of New Orleans, Jean Hyacinthe de Laclotte.jpg",
+    "artist": "Painting by Jean Hyacinthe de Laclotte (1766 - 1829), a member of the Louisiana Militia who participated in the battle; painted by him after the victory based o",
+    "date": "1815date QS:P571,+1815-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Battle_of_New_Orleans,_Jean_Hyacinthe_de_Laclotte.jpg"
+  },
+  "hartford_convention.jpg": {
+    "title": "File:TheHartfordConventionOrLeapNoLeap.jpg",
+    "artist": "",
+    "date": "",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:TheHartfordConventionOrLeapNoLeap.jpg"
+  },
+  "crawford_bep.jpg": {
+    "title": "File:CRAWFORD, William H-Treasury (BEP engraved portrait).jpg",
+    "artist": "The Bureau of Engraving and Printing",
+    "date": "2014-06-19 17:55:49",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:CRAWFORD,_William_H-Treasury_(BEP_engraved_portrait).jpg"
+  },
+  "clay_jouett.jpg": {
+    "title": "File:Henry Clay (cropped).JPG",
+    "artist": "Matthew Harris Jouett",
+    "date": "1818date QS:P571,+1818-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Henry_Clay_(cropped).JPG"
+  },
+  "electoral_1820.png": {
+    "title": "File:ElectoralCollege1820-Large.png",
+    "artist": "United States Geological Survey",
+    "date": "",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:ElectoralCollege1820-Large.png"
   }
 }

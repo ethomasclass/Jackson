@@ -120,10 +120,11 @@ export const Label: React.FC<{
 };
 
 /** Small "primary source" credit tag — teaches students what they are looking at. */
-export const Source: React.FC<{text: string; at: number; until?: number; x?: number | string; y?: number | string}> = ({
+export const Source: React.FC<{text: string; at: number; until?: number; x?: number | string; y?: number | string; tag?: string}> = ({
   text,
   at,
   until = Infinity,
+  tag = 'PRIMARY SOURCE',
   x = 16,
   y = -44,
 }) => {
@@ -143,8 +144,8 @@ export const Source: React.FC<{text: string; at: number; until?: number; x?: num
         letterSpacing: 1,
       }}
     >
-      <span style={{background: C.red, color: C.paperLight, padding: '2px 10px', marginRight: 10, fontSize: 20}}>
-        PRIMARY SOURCE
+      <span style={{background: tag === 'PRIMARY SOURCE' ? C.red : C.inkSoft, color: C.paperLight, padding: '2px 10px', marginRight: 10, fontSize: 20}}>
+        {tag}
       </span>
       {text}
     </div>

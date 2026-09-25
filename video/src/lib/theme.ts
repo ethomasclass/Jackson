@@ -13,7 +13,8 @@ export const C = {
 };
 
 // Fonts are vendored in public/fonts (SIL Open Font License, from Google Fonts) so renders work
-// offline. Fat face = 1820s display type; slab = wood type; Caslon for reading; Fell small caps.
+// offline. Fat face = 1820s display type; slab = wood type; Caslon for reading; Fell small caps;
+// Pinyon Script for copperplate handwriting.
 const FACES: [string, string, string, string][] = [
   ['Abril Fatface', 'AbrilFatface', '400', 'normal'],
   ['Alfa Slab One', 'AlfaSlabOne', '400', 'normal'],
@@ -21,6 +22,7 @@ const FACES: [string, string, string, string][] = [
   ['Libre Caslon Text', 'LibreCaslon-Bold', '700', 'normal'],
   ['Libre Caslon Text', 'LibreCaslon-Italic', '400', 'italic'],
   ['IM Fell English SC', 'IMFellEnglishSC', '400', 'normal'],
+  ['Pinyon Script', 'PinyonScript', '400', 'normal'],
 ];
 
 if (typeof document !== 'undefined') {
@@ -40,6 +42,7 @@ export const F = {
   body: "'Libre Caslon Text', serif",
   italic: "'Libre Caslon Text', serif",
   sc: "'IM Fell English SC', serif",
+  hand: "'Pinyon Script', cursive",
 };
 
 export const W = 1920;

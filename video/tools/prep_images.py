@@ -130,6 +130,21 @@ def main():
     ph = Image.open(os.path.join(IMG, "presidents_house_1835.jpg")).crop((640, 540, 3420, 2440))
     scrap(ph, "presidents_house", seed=61, max_side=1800, rough=14)
 
+    # --- Video 1, scene 2: the election of 1820 ---
+    def portrait(src, name, box, seed, side=1400, rough=18):
+        scrap(Image.open(os.path.join(IMG, src)).crop(box), name, seed=seed, max_side=side, rough=rough)
+
+    portrait("monroe_stuart.jpg", "monroe", (0, 0, 1920, 2000), 71)
+    portrait("plumer_saint_memin.jpg", "plumer", (0, 0, 716, 714), 72, side=900)
+    portrait("jqa_stuart_1818.jpg", "jqa", (0, 0, 1920, 2100), 73)
+    portrait("washington_stuart.jpg", "washington", (0, 0, 1580, 1800), 74)
+    portrait("jefferson_peale.jpg", "jefferson", (0, 0, 1920, 2100), 75)
+    portrait("hamilton_trumbull.jpg", "hamilton", (90, 90, 1830, 2370), 76)
+    portrait("crawford_bep.jpg", "crawford", (150, 150, 1770, 2300), 77)
+    portrait("clay_jouett.jpg", "clay", (0, 0, 1920, 2200), 78)
+    portrait("new_orleans_laclotte.jpg", "new_orleans", (0, 0, 1920, 1547), 79, side=1800, rough=14)
+    portrait("hartford_convention.jpg", "hartford", (0, 0, 1200, 825), 80, side=1400, rough=12)
+
     p = Image.open(os.path.join(IMG, "pistols_met.jpg"))
     p.thumbnail((1800, 1800), Image.LANCZOS)
     cutout_on_light_bg(p).save(os.path.join(CUT, "pistols.png"), optimize=True)

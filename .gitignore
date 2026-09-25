@@ -11,3 +11,4 @@ package.json
 video/out/
 video/.env
 video/public/cut/
+video/public/music/*.wav

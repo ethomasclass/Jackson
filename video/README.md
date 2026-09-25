@@ -44,7 +44,9 @@ pip install pillow numpy imageio-ffmpeg        # piper-tts too, for the offline 
 python3 tools/voice.py script/v1_cold_open.txt v1_cold_open
 python3 tools/voice.py script/v1_cold_open.txt v1_cold_open --piper    # stand-in voice, needs PIPER_MODEL
 
-python3 tools/sfx_eleven.py        # ElevenLabs sound effects (tools/sfx_synth.py makes stand-ins)
+python3 tools/sfx_eleven.py        # ElevenLabs sound effects; originals kept in public/sfx/raw
+python3 tools/sfx_eleven.py --finish   # re-trim/normalise from the originals, no credits
+python3 tools/music_eleven.py good_feelings   # ElevenLabs music cue (~850 credits/minute)
 python3 tools/prep_images.py       # rebuild cutouts after adding scans
 python3 tools/commons.py search "Peggy Eaton portrait"
 python3 tools/commons.py get "File:....jpg" public/img/name.jpg 1920
@@ -57,6 +59,9 @@ node tools/stills.mjs V1-ColdOpen out/stills 4.8 10.5   # review frames
 
 In a cloud session, point Remotion at the preinstalled browser:
 `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
+
+Compositions: `V1` (the whole video so far), and one per scene (`V1-ColdOpen`,
+`V1-Election1820`) for quicker previews. Each chapter opens with a chapter card.
 
 Captions are a prop: render with `--props='{"captions":false}'` for a clean version.
 

@@ -76,7 +76,7 @@ export const ColdOpen: React.FC<{captions: boolean}> = ({captions}) => {
     <AbsoluteFill style={{background: C.paper, overflow: 'hidden'}}>
       <InkDefs />
       <Audio src={staticFile('audio/v1_cold_open.wav')} />
-      <Audio src={staticFile('sfx/bed.wav')} volume={bedVol} />
+      <Audio src={staticFile('music/cold_open.mp3')} volume={bedVol} />
 
       <AbsoluteFill style={{transform: `${shake} scale(${drift})`}}>
         <Paper />
