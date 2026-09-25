@@ -1,6 +1,6 @@
 import React from 'react';
 import {Img, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {IllustrationTag, SilverCoins} from '../components/Drawn';
+import {SilverCoins} from '../components/Drawn';
 import {Arrow, Figure, Handwriting} from '../components/Props';
 import {CHAPTER_SECONDS, SceneShell, Sfx} from '../components/Scene';
 import {Label, Scrap, Source} from '../components/Scrap';
@@ -165,7 +165,6 @@ const Body: React.FC<{tl: Timeline}> = ({tl}) => {
         <Label name="JUDAS" sub="betrayed Jesus" at={at('betrayed Jesus')} y="100%" />
       </Scrap>
       <SilverCoins at={at('thirty pieces')} out={D3} x={960} y={300} />
-      <IllustrationTag x={1000} y={170} at={at('thirty pieces')} out={D3} text="coins drawn for this video" />
       <JacksonLetter at={D3} out={E} />
 
       {/* ============ E: no proof, but belief wins ============ */}

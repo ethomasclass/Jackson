@@ -66,7 +66,7 @@ Compositions: `V1` (the whole video), and one per scene for quicker previews:
 
 Design vocabulary (reuse these for Videos 2 and 3): `Scrap` + `Label` + `Source` for archival images,
 `Stamp` for key words, `VocabCard` (VOCABULARY / KEY EVENT), `DateTag`, `Captions`, `Cue` for music
-changes inside a scene, and the drawn props in `src/components/Drawn.tsx` (tagged ILLUSTRATION).
+changes inside a scene, and the drawn props in `src/components/Drawn.tsx` (never tagged as primary sources).
 
 Captions are a prop: render with `--props='{"captions":false}'` for a clean version.
 

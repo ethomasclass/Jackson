@@ -21,7 +21,7 @@ af = (f"loudnorm={target}:measured_I={m['input_i']}:measured_TP={m['input_tp']}:
       # linear loudnorm can't always hold the peak target on its own; a gentle limiter guarantees it
       "alimiter=limit=-1.5dB:level=false,aresample=48000")
 subprocess.run([FF, "-hide_banner", "-y", "-i", src, "-af", af,
-                "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
+                "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-pix_fmt", "yuv420p",
                 "-vf", "scale=in_range=full:out_range=tv", "-color_range", "tv", "-movflags", "+faststart",
                 "-c:a", "aac", "-b:a", "192k", dst], check=True, capture_output=True)
 print(f"mastered {dst}  (input {m['input_i']} LUFS, {m['input_tp']} dBTP)")

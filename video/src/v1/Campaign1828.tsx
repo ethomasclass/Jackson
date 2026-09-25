@@ -1,6 +1,6 @@
 import React from 'react';
 import {Img, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {Coffins, IllustrationTag, PoolTable} from '../components/Drawn';
+import {Coffins, PoolTable} from '../components/Drawn';
 import {Figure, Pictograph} from '../components/Props';
 import {CHAPTER_SECONDS, Cue, SceneShell, Sfx} from '../components/Scene';
 import {Label, Scrap, Source} from '../components/Scrap';
@@ -109,7 +109,6 @@ const Body: React.FC<{tl: Timeline}> = ({tl}) => {
         <i>“a gambling device”</i>
       </Rise>
       <PoolTable at={at('gambling device') + 4} out={C3} x={200} y={460} w={620} />
-      <IllustrationTag x={220} y={430} at={at('gambling device') + 4} out={C3} text="pool table drawn for this video" />
       <Stamp text="IT WAS A POOL TABLE" at={at('pool table')} out={C3} x={700} y={860} size={48} color={C.paperLight} rot={-2}
         style={{background: C.ink, padding: '10px 22px 14px'}} />
       <Stamp text="HE PAID FOR IT HIMSELF" at={at('paid for it himself')} out={C3} x={1520} y={760} size={44} color={C.red} rot={3} />

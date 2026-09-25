@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {IllustrationTag, Invitation, LunchTable} from '../components/Drawn';
+import {Invitation, LunchTable} from '../components/Drawn';
 import {Grain, InkDefs, Paper} from '../components/Paper';
 import {Handwriting} from '../components/Props';
 import {CHAPTER_SECONDS, SceneShell} from '../components/Scene';
@@ -13,7 +13,7 @@ import narration from '../../public/audio/v1_s6_petticoat.words.json';
 
 const N = narration as Narration;
 export const PETTICOAT_SECONDS = CHAPTER_SECONDS + N.duration + 0.5;
-export const END_CARD_SECONDS = 9;
+export const END_CARD_SECONDS = 5;
 
 /** Chapter 5: The Petticoat Affair (1829-1831). */
 export const Petticoat: React.FC<{captions: boolean}> = ({captions}) => {
@@ -86,7 +86,6 @@ const Body: React.FC<{tl: Timeline}> = ({tl}) => {
       <Invitation at={Cb + 2} declineAt={at('refused to visit')} out={C2} x={120} y={170} rot={-6} to="Mrs. Eaton" />
       <Invitation at={Cb + 8} declineAt={at('refused to visit') + 8} out={C2} x={700} y={240} rot={3} to="Mrs. Eaton" />
       <Invitation at={Cb + 14} declineAt={at('invite her') + 2} out={C2} x={1280} y={160} rot={-2} to="Mrs. Eaton" />
-      <IllustrationTag x={120} y={110} at={Cb + 2} out={C2} text="invitations drawn for this video" />
       <Scrap src="cut/floride.png" x={260} y={200} w={300} rot={-3} in={C2} out={C3} from="left">
         <Label name="FLORIDE CALHOUN" sub="led the snub" at={at('Floride Calhoun')} y="100%" size={30} red />
       </Scrap>
@@ -107,7 +106,6 @@ const Body: React.FC<{tl: Timeline}> = ({tl}) => {
       />
       <Stamp text="THE UNITED STATES GOVERNMENT" at={at('the United States government')} out={D} x={710} y={820} size={52} color={C.paperLight} rot={-1.5}
         style={{background: C.ink, padding: '10px 24px 14px'}} />
-      <IllustrationTag x={340} y={160} at={C3} out={D} text="cafeteria drawn for this video" />
 
       {/* ============ D: Jackson takes it personally ============ */}
       <Scrap src="cut/jackson_sully.png" x={120} y={150} w={480} rot={-3} in={D} out={D2} from="left">
@@ -225,7 +223,6 @@ const Agenda: React.FC<{tl: Timeline; at: number; out: number}> = ({tl, at, out}
           <Handwriting text="Mrs. Eaton's reputation" at={tl.at('announce that') - 6} dur={24} size={64} />
           <div style={{fontFamily: F.slab, fontSize: 34, color: C.ink, margin: '20px 0 8px'}}>ITEM 2:</div>
           <div style={{fontFamily: F.italic, fontStyle: 'italic', fontSize: 36, color: C.fade}}>(nothing else)</div>
-          <IllustrationTag x={50} y={-44} at={tl.at('cabinet meeting')} text="recreated for this video" />
         </div>
       )}
       <Stamp text="INNOCENT" at={tl.at('innocent')} x={1300} y={760} size={110} color={C.red} rot={-8} />
@@ -260,12 +257,11 @@ const Ladder: React.FC<{at: number; out: number}> = ({at, out}) => {
   );
 };
 
-/** End of Part One: credits in broadside style. */
+/** End of Part One, in broadside style. */
 export const EndCard: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const a = pop(frame, 4, fps, 200, 18);
-  const b = interpolate(frame, [30, 50], [0, 1], clamp);
   return (
     <AbsoluteFill>
       <InkDefs />
@@ -278,12 +274,6 @@ export const EndCard: React.FC = () => {
         <div style={{fontFamily: F.fat, fontSize: 150, color: C.ink, transform: `scale(${1 + 0.4 * (1 - a)})`, opacity: a, filter: 'url(#ink)'}}>End of Part One</div>
         <div style={{background: C.red, color: C.paperLight, fontFamily: F.slab, fontSize: 40, letterSpacing: 8, padding: '10px 30px', margin: '10px 0 40px', opacity: a}}>
           TO BE CONTINUED IN PART TWO
-        </div>
-        <div style={{fontFamily: F.body, fontSize: 28, lineHeight: 1.5, color: C.inkSoft, maxWidth: 1400, opacity: b}}>
-          Images: Library of Congress · National Gallery of Art · The Metropolitan Museum of Art · Art Institute of Chicago ·
-          Saint Louis Art Museum · Tennessee State Library and Archives · Internet Archive · Wikimedia Commons
-          <br />
-          Items marked <b>ILLUSTRATION</b> or <b>RECREATION</b> were made for this video. Narration, music and sound effects made with ElevenLabs.
         </div>
       </AbsoluteFill>
       <Grain />

@@ -1,6 +1,6 @@
 import React from 'react';
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import {IllustrationTag, PunchTub} from '../components/Drawn';
+import {PunchTub} from '../components/Drawn';
 import {Handwriting} from '../components/Props';
 import {CHAPTER_SECONDS, Cue, SceneShell, Sfx} from '../components/Scene';
 import {Label, Scrap, Source} from '../components/Scrap';
@@ -64,9 +64,8 @@ const Body: React.FC<{tl: Timeline}> = ({tl}) => {
       <PunchTub at={A2 + 2} walk={at('out onto the lawn')} out={A3} x={300} y={420} s={1.1} />
       <PunchTub at={A2 + 8} walk={at('out onto the lawn') + 6} out={A3} x={700} y={470} s={0.95} tilt={-4} />
       <PunchTub at={A2 + 14} walk={at('out onto the lawn') + 12} out={A3} x={1060} y={430} s={1.05} tilt={3} />
-      <IllustrationTag x={300} y={330} at={A2 + 2} out={A3} text="punch tubs drawn for this video" />
       <Stamp text="TUBS OF PUNCH" at={at('tubs of punch')} out={A3} x={620} y={200} size={80} rot={-2} />
-      <Rise at={at('onto the lawn')} out={A3} x={1480} y={480} size={64} font={F.slab} color={C.red} style={{whiteSpace: 'nowrap'}}>
+      <Rise at={at('onto the lawn')} out={A3} x={1380} y={480} size={64} font={F.slab} color={C.red} style={{whiteSpace: 'nowrap'}}>
         ➜ THE LAWN
       </Rise>
       <Stamp text="CRISIS SOLVED:" at={at('a crisis was solved')} out={A3} x={960} y={760} size={52} rot={-1} />

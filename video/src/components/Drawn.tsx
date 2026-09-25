@@ -5,19 +5,8 @@ import {C, F} from '../lib/theme';
 
 /**
  * Objects drawn in an engraved line style to fill gaps the archives cannot (a pool table, a pile
- * of coins, a lunch table). Everything here is tagged ILLUSTRATION on screen, never PRIMARY SOURCE.
+ * of coins, a lunch table). They never carry a PRIMARY SOURCE tag.
  */
-
-export const IllustrationTag: React.FC<{x: number; y: number; at: number; out?: number; text?: string}> = ({x, y, at, out = Infinity, text = 'drawn for this video'}) => {
-  const frame = useCurrentFrame();
-  if (frame > out + 10) return null;
-  return (
-    <div style={{position: 'absolute', left: x, top: y, opacity: interpolate(frame, [at, at + 10], [0, 1], clamp) * (out === Infinity ? 1 : interpolate(frame, [out, out + 8], [1, 0], clamp)), fontFamily: F.sc, fontSize: 22, color: C.inkSoft, whiteSpace: 'nowrap'}}>
-      <span style={{background: C.inkSoft, color: C.paperLight, padding: '2px 10px', marginRight: 10, fontSize: 19}}>ILLUSTRATION</span>
-      {text}
-    </div>
-  );
-};
 
 /** Hatched shading lines clipped to a shape — the engraving look. */
 const Hatch: React.FC<{id: string; angle?: number; gap?: number; w?: number}> = ({id, angle = 45, gap = 7, w = 1.6}) => (
