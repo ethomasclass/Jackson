@@ -17,7 +17,9 @@ p = subprocess.run([FF, "-hide_banner", "-i", src, "-af", f"loudnorm={target}:pr
                    capture_output=True, text=True)
 m = json.loads(re.search(r"\{[^{}]*\"input_i\"[^{}]*\}", p.stderr).group(0))
 af = (f"loudnorm={target}:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}"
-      f":measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000")
+      f":measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,"
+      # linear loudnorm can't always hold the peak target on its own; a gentle limiter guarantees it
+      "alimiter=limit=-1.5dB:level=false,aresample=48000")
 subprocess.run([FF, "-hide_banner", "-y", "-i", src, "-af", af,
                 "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
                 "-vf", "scale=in_range=full:out_range=tv", "-color_range", "tv", "-movflags", "+faststart",

@@ -60,8 +60,13 @@ node tools/stills.mjs V1-ColdOpen out/stills 4.8 10.5   # review frames
 In a cloud session, point Remotion at the preinstalled browser:
 `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
 
-Compositions: `V1` (the whole video so far), and one per scene (`V1-ColdOpen`,
-`V1-Election1820`) for quicker previews. Each chapter opens with a chapter card.
+Compositions: `V1` (the whole video), and one per scene for quicker previews:
+`V1-ColdOpen`, `V1-Election1820`, `V1-Judas1824`, `V1-Campaign1828`, `V1-PunchBowl`,
+`V1-Petticoat`, `V1-End`. Each chapter opens with a chapter card. Scene order lives in `src/Root.tsx`.
+
+Design vocabulary (reuse these for Videos 2 and 3): `Scrap` + `Label` + `Source` for archival images,
+`Stamp` for key words, `VocabCard` (VOCABULARY / KEY EVENT), `DateTag`, `Captions`, `Cue` for music
+changes inside a scene, and the drawn props in `src/components/Drawn.tsx` (tagged ILLUSTRATION).
 
 Captions are a prop: render with `--props='{"captions":false}'` for a clean version.
 
