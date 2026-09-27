@@ -1,8 +1,8 @@
 // Demo reel for the chapter break: stand-in scenes (archival stills with a slow push) joined by breaks,
-// so the transition can be judged in motion before any chapter is built.
+// so the logo transition can be judged in motion before any chapter is built.
 import React from 'react';
 import {AbsoluteFill, Audio, Img, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
-import {BREAK_FRAMES, BreakInfo, ChapterCard, PageTurn, TURN} from './ChapterBreak';
+import {BREAK_FRAMES, LogoBreak, WIPE} from './LogoBreak';
 import {DarkPaper, Finish, Highlight, Note, PAL, Tag} from './look';
 
 type Still = {src: string; title?: string; note?: string; tag: string; card?: boolean; quiet?: boolean};
@@ -35,38 +35,32 @@ const StillScene: React.FC<{s: Still}> = ({s}) => {
   );
 };
 
-const SCENE = 84;
 
-type Item = {dur: number; node: React.ReactNode};
-
-const ITEMS: Item[] = [
-  {dur: SCENE, node: <StillScene s={{src: 'jackson_sully_1845.jpg', title: "THE PEOPLE'S PRESIDENT", note: '…or a king?', tag: 'Thomas Sully, 1845 · National Gallery of Art'}} />},
-  {dur: BREAK_FRAMES - TURN, node: <ChapterCard info={{n: 2, title: 'Dirty Boots', dates: '1767 – 1806', fromMin: 0, toMin: 1.22}} />},
-  {dur: SCENE, node: <StillScene s={{src: 'jackson_parton_1860_plate.jpg', card: true, title: 'THE WAXHAWS', note: 'both Carolinas claim him', tag: 'James Parton, Life of Andrew Jackson, 1860 · Internet Archive'}} />},
-  {dur: BREAK_FRAMES - TURN, node: <ChapterCard info={{n: 3, title: 'Old Hickory', dates: '1812 – 1815', fromMin: 1.22, toMin: 2.73}} />},
-  {dur: SCENE, node: <StillScene s={{src: 'new_orleans_laclotte.jpg', title: 'NEW ORLEANS', note: 'January 1815', tag: 'Jean Hyacinthe de Laclotte · Battle of New Orleans'}} />},
-  {dur: BREAK_FRAMES - TURN, node: <ChapterCard info={{n: 9, title: 'Let Him Enforce It', dates: '1830 – 1839', fromMin: 8.25, toMin: 10.12, quiet: true}} />},
-  {dur: SCENE, node: <StillScene s={{src: 'presidents_house_1835.jpg', title: 'WASHINGTON, 1830', note: 'the Indian Removal Act', quiet: true, tag: "President's House, 1835 · NYPL"}} />},
+const SCENES: Still[] = [
+  {src: 'jackson_sully_1845.jpg', title: "THE PEOPLE'S PRESIDENT", note: '…or a king?', tag: 'Thomas Sully, 1845 · National Gallery of Art'},
+  {src: 'jackson_parton_1860_plate.jpg', card: true, title: 'DIRTY BOOTS', note: 'the Waxhaws, 1767', tag: 'James Parton, Life of Andrew Jackson, 1860 · Internet Archive'},
+  {src: 'new_orleans_laclotte.jpg', title: 'OLD HICKORY', note: 'New Orleans, January 1815', tag: 'Jean Hyacinthe de Laclotte · Battle of New Orleans'},
+  {src: 'presidents_house_1835.jpg', title: 'LET HIM ENFORCE IT', note: 'Washington, 1830', quiet: true, tag: "President's House, 1835 · NYPL"},
 ];
 
-export const BREAK_DEMO_FRAMES = ITEMS.reduce((a, i) => a + i.dur, 0);
+const SCENE = 90;
+/** Each scene runs SCENE frames on its own; a break covers its last WIPE frames and the next scene's first WIPE. */
+const STEP = SCENE + BREAK_FRAMES - 2 * WIPE;
 
-export const BreakDemo: React.FC = () => {
-  const starts: number[] = [];
-  ITEMS.reduce((a, i) => (starts.push(a), a + i.dur), 0);
-  // Later items sit underneath; each item stays on top for TURN extra frames while it turns away.
-  const layers = ITEMS.map((it, i) => {
-    const last = i === ITEMS.length - 1;
-    return (
-      <Sequence key={i} from={starts[i]} durationInFrames={it.dur + (last ? 0 : TURN)}>
-        {last ? it.node : <PageTurn at={it.dur}>{it.node}</PageTurn>}
+export const BREAK_DEMO_FRAMES = SCENES.length * SCENE + (SCENES.length - 1) * (BREAK_FRAMES - 2 * WIPE);
+
+export const BreakDemo: React.FC = () => (
+  <AbsoluteFill style={{background: '#000'}}>
+    {SCENES.map((s, i) => (
+      <Sequence key={s.src} from={i * STEP} durationInFrames={SCENE}>
+        <StillScene s={s} />
       </Sequence>
-    );
-  }).reverse();
-  return (
-    <AbsoluteFill style={{background: '#000'}}>
-      {layers}
-      <Audio src={staticFile('music/good_feelings.mp3')} volume={(f) => interpolate(f, [0, 15, BREAK_DEMO_FRAMES - 20, BREAK_DEMO_FRAMES], [0, 0.15, 0.15, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})} />
-    </AbsoluteFill>
-  );
-};
+    ))}
+    {SCENES.slice(1).map((s, i) => (
+      <Sequence key={`b${i}`} from={i * STEP + SCENE - WIPE} durationInFrames={BREAK_FRAMES}>
+        <LogoBreak />
+      </Sequence>
+    ))}
+    <Audio src={staticFile('music/good_feelings.mp3')} volume={(f) => interpolate(f, [0, 15, BREAK_DEMO_FRAMES - 20, BREAK_DEMO_FRAMES], [0, 0.15, 0.15, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})} />
+  </AbsoluteFill>
+);
