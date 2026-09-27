@@ -15,7 +15,7 @@ The Bierce repo has no committed music; its Suno files were never pushed.
 | 1 | King Andrew the First | R `cold_open` | 1:16 | Strong. A mystery ostinato that builds, then ends on a questioning chord under the big question. |
 | — | Channel intro / title card | R `title_sting` | 0:30 (first ~10 s) | Strong. It's the channel sting. |
 | 2 | Dirty Boots | J1 `cold_open` | 1:02 | Strong. It was written for the 1806 duel. Start it at "Then came the Revolution" so the swell lands on the duel. |
-| 3 | Old Hickory | W `sea_battle` | 1:16 | Good. Duck it low under the Creek land-grab lines and the Florida lines. |
+| 3 | Old Hickory | W `sea_battle` | 1:16 | Good. Duck it low under the Creek land-grab lines. |
 | 4 | The Corrupt Bargain | J1 `intrigue` | 2:05 | Perfect. Line up its brass sting with "Judas of the West." |
 | 5 | King Mob | J1 `campaign` → J1 `grief` → J1 `campaign` | 1:40 / 0:40 | Perfect. `grief` plays solo under Rachel's death, then the march returns for the inauguration. |
 | 6 | To the Victors | J1 `good_feelings` | 1:30 | Good. Wry, with mischief near the end. |
