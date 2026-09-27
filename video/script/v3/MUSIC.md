@@ -25,7 +25,7 @@ The Bierce repo has no committed music; its Suno files were never pushed.
 | 10 | Let Him Enforce It (heavy) | W `frontier` → W `aftermath` | 1:36 / 0:59 | Good. Dignified and grave. `aftermath` carries the Trail of Tears. |
 | 11 | Same Man, Two Crowns | R `ending` | 1:01 | Perfect. It darkens to an unresolved chord that lands on "King." Start it about 30 s in. |
 
-**Unused but available:** R `revival`, `spirits`, `spirits_dark`, `nativism`, `temperance`, `dix`, `schools`, `curtain`, `utopia`, `abolition_a` (a solemn alternative for ch9); W `calm_sea`, `fire`, `dawn`, `title_fanfare`.
+**Unused but available:** R `revival`, `spirits`, `spirits_dark`, `nativism`, `temperance`, `dix`, `schools`, `curtain`, `utopia`, `abolition_a` (a solemn alternative for ch10); W `calm_sea`, `fire`, `dawn`, `title_fanfare`.
 
 **Gaps worth a new cue if budget allows:**
 
