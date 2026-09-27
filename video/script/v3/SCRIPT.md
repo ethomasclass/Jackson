@@ -1,6 +1,6 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,660 words · about 15:09
+**15 Minute History** · narration script · 2,673 words · about 15:13
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
@@ -90,7 +90,7 @@ But notice who "the people" means here. Women couldn't vote. Enslaved people cou
 
 Jackson's supporters also got organized, led by a sharp New York politician named Martin Van Buren. Their new party came to be called the Democratic Party. Same name as today's Democrats, but a very different party, with very different ideas.
 
-The 1828 rematch against Adams was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed flyers covered in coffins, accusing Jackson of executing his own soldiers. And they called Rachel a bigamist, a woman married to two men at once.
+The 1828 rematch against Adams was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed the "Coffin Handbill," a poster covered in black coffins, one for each militiaman Jackson had ordered executed for desertion during the War of 1812. And they called Rachel a bigamist, a woman married to two men at once.
 
 Jackson won big. But weeks before the inauguration, Rachel died, probably of a heart attack. Jackson was sure the attacks had killed her. At her funeral, he reportedly said, "May God Almighty forgive her murderers, as I know she forgave them. I never can."
 
@@ -102,7 +102,7 @@ King Mob. The first king in this story. Jackson's fans had a different word for 
 
 ---
 
-## 5:53 | To the Victors
+## 5:57 | To the Victors
 
 Once in office, Jackson went after the insiders. He argued that government jobs were "so plain and simple" that any intelligent citizen could do them, so people should rotate in and out. He called it rotation in office.
 
@@ -114,7 +114,7 @@ His supporters saw fresh blood. His critics saw a president building a governmen
 
 ---
 
-## 6:36 | The Petticoat Affair
+## 6:40 | The Petticoat Affair
 
 Then came a scandal. And this one tells you a lot about Jackson the man.
 
@@ -128,7 +128,7 @@ After that, he leaned even harder on unofficial advisers: newspaper editors, old
 
 ---
 
-## 7:56 | It Must Be Preserved
+## 8:00 | It Must Be Preserved
 
 Here's where the People's President starts to look like something else.
 
@@ -153,7 +153,7 @@ But the question, can a state just say no to the Union, came back thirty years l
 
 ---
 
-## 9:39 | The Monster
+## 9:43 | The Monster
 
 Next target: the Bank.
 
@@ -177,7 +177,7 @@ And that's when the cartoon shows up. King Andrew the First.
 
 ---
 
-## 11:19 | Let Him Enforce It
+## 11:23 | Let Him Enforce It
 
 The hardest part of Jackson's presidency is also the part that cost the most lives.
 
@@ -199,7 +199,7 @@ Some historians point out that Jackson believed removal was the only way to keep
 
 ---
 
-## 13:38 | Same Man, Two Crowns
+## 13:42 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
@@ -233,6 +233,7 @@ King.
   - **Rachel:** the marriage paperwork (ch2) becomes the bigamy attack (ch5), her death (ch5) drives Jackson's defense of Peggy Eaton (ch7), which sinks Calhoun before the toast (ch8).
 - **Vocab text cards (orange highlighter):**
   - Corrupt Bargain
+  - Coffin Handbill
   - suffrage
   - mudslinging
   - rotation in office / spoils system
@@ -327,6 +328,7 @@ King.
 - **Rachel's marriage:** Rachel and Jackson are said to have married in Natchez in 1791, though the record of that ceremony is thin. Lewis Robards' divorce was granted only in 1793, and they remarried in January 1794.
 - **Rachel's death:** December 22, 1828, likely a heart attack. The "forgive her murderers" line is a traditional account, so the script says "reportedly."
 - **Peggy Eaton:** John Timberlake died in April 1828. Peggy married Eaton on January 1, 1829. Floride Calhoun led the snub.
+- **Coffin Handbill (1828):** John Binns's handbill showed six coffins for six Tennessee militiamen executed in February 1815 after a court-martial for mutiny and desertion. Archival images are already in `public/img/` (`coffin_handbill_1828.jpg`, `coffin_broadside_1828.jpg`).
 - **Emily Donelson:** Rachel's niece and the White House hostess. She refused to call on Peggy, and Jackson sent her back to Tennessee in 1830 (she returned in 1831).
 - **1824 electoral votes:** Jackson 99, Adams 84, Crawford 41, Clay 37. That is 261 total, so 131 was a majority. Crawford had had a stroke in 1823.
 - **The House vote:** on February 9, 1825, Adams carried 13 of 24 states on the first ballot. The Kentucky legislature had asked its delegation to vote for Jackson, but most of the delegation voted for Adams.
