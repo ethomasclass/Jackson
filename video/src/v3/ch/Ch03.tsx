@@ -7,6 +7,7 @@ import {Highlight, INK, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {MapScene, Pin, PLACES, Region} from '../map';
 import {ChapterShell, chapterFrames, CropCard, fill, LEAD, makeTimeline, type Narration, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH03_FRAMES = chapterFrames(N, LEAD);
@@ -20,7 +21,7 @@ const Hickory: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_parton_1860_plate.jpg" size={P} x={180} y={120} w={560} h={800} fx={960} fy={1450} scale={0.62} rot={-2} at={1} />
+      <CropCard mask={MASKS.parton} src="img/jackson_parton_1860_plate.jpg" size={P} x={180} y={120} w={560} h={800} fx={960} fy={1450} scale={0.62} rot={-2} at={1} />
       {g >= t.at('War') && <Highlight text="THE WAR OF 1812" x={860} y={130} size={84} at={t.at('War')} seed={301} rot={-2} />}
       <Note text="the thing he was best at" x={880} y={270} size={52} rot={-3} at={t.at('best')} color="#ffffff" />
       <Note text="“tough as hickory wood”" x={880} y={440} size={56} rot={-3} at={t.at('tough')} />

@@ -3,10 +3,11 @@ import React from 'react';
 import {AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import words from '../../../public/audio/v3_ch01_cold_open.words.json';
 import {clamp} from '../../lib/anim';
-import {ColourReveal, Finish, Highlight, INK, JF, Loop, Note, PALETTES, PaletteCtx, Picture, StepCtx, Tag, useGFrame, usePal} from '../Kit';
+import {Finish, Highlight, INK, JF, Loop, Note, PALETTES, PaletteCtx, Picture, StepCtx, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, MapView, Sfx, WRITE} from '../common';
 import {ChannelIntro, INTRO_FRAMES} from '../Intro';
 import {CropCard, DrawnCrown, fill, makeTimeline, type Narration, type TL} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 const TITLE = 150;
@@ -22,7 +23,7 @@ const Cartoon: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={KA} x={170} y={40} w={660} h={1000} fx={508} fy={768} scale={0.65} rot={-1.5}>
+      <CropCard mask={MASKS.king_andrew} traceAt={t.at('man') - 2} src="img/v3/ch01/king_andrew_1833.jpg" size={KA} x={170} y={40} w={660} h={1000} fx={508} fy={768} scale={0.65} rot={-1.5}>
         {(S) => {
           const [cx, cy] = S(530, 225);
           const [sx, sy] = S(420, 330);
@@ -61,7 +62,8 @@ const President: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       <Picture src="img/jackson_sully_1845.jpg" place={place} size={SULLY} />
-      <ColourReveal src="img/jackson_sully_1845.jpg" place={place} size={SULLY} from={0.5} to={0.85} />
+      <Tint mask={MASKS.sully.alpha} place={place} size={SULLY} />
+      <Traced paths={MASKS.sully.data.shapes.subject} place={place} at={a + 4} dur={12} width={5} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0,0,0,0.7) 100%)'}} />
       <Note text="the president of the United States" x={100} y={120} size={52} rot={-3} at={t.at('president')} />
       {g >= t.at('Andrew Jackson') && <Highlight text="ANDREW JACKSON" x={100} y={820} size={110} at={t.at('Andrew Jackson')} seed={19} rot={-2} />}
@@ -98,7 +100,7 @@ const Later: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={KA} x={260} y={120} w={620} h={840} fx={530} fy={420} scale={z} rot={1.5}>
+      <CropCard mask={MASKS.king_andrew} src="img/v3/ch01/king_andrew_1833.jpg" size={KA} x={260} y={120} w={620} h={840} fx={530} fy={420} scale={z} rot={1.5}>
         {(S) => {
           const [cx, cy] = S(530, 225);
           return <Loop cx={cx} cy={cy} rx={120 * z} ry={80 * z} at={t.at('crown', 2) - 2} dur={8} width={7} seed={25} />;
@@ -119,7 +121,7 @@ const Question: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={300} w={560} h={700} fx={930} fy={1050} scale={0.55} rot={-2} at={t.at("So here's") - 1}>
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={300} w={560} h={700} fx={930} fy={1050} scale={0.55} rot={-2} at={t.at("So here's") - 1}>
         {(S) => {
           const [x0, y] = S(520, 330);
           const [x1] = S(1340, 330);
@@ -151,6 +153,8 @@ const Boots: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       <Picture src="img/v3/ch02/brave_boy_waxhaws.jpg" place={place} size={size} bw="grayscale(1) contrast(1.25)" />
+      <Tint mask={MASKS.brave_boy.alpha} place={place} size={size} />
+      <Traced paths={MASKS.brave_boy.data.shapes.subject} place={place} at={t.at('teenager') - 2} dur={10} width={5} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%)'}} />
       <Loop cx={bx} cy={by} rx={210 * s} ry={580 * s} tilt={-6} at={t.at('teenager') - 2} dur={8} width={6} seed={31} />
       <Loop cx={ox} cy={oy} rx={120 * s} ry={140 * s} at={t.at('officer') - 2} dur={8} width={6} seed={33} />

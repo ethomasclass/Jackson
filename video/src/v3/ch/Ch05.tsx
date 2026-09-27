@@ -9,6 +9,7 @@ import {Coffin, Person} from '../figures';
 import {PLACES} from '../map';
 import {Tiles} from '../tiles';
 import {chapterFrames, ChapterShell, CropCard, Definition, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, Quote, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH05_FRAMES = chapterFrames(N, LEAD);
@@ -120,7 +121,7 @@ const OneOfThem: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={[1920, 2288]} x={140} y={170} w={540} h={720} fx={960} fy={1000} scale={0.5} rot={-2} at={t.at('And here') - 1} />
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={[1920, 2288]} x={140} y={170} w={540} h={720} fx={960} fy={1000} scale={0.5} rot={-2} at={t.at('And here') - 1} />
       <Note text="a candidate who seemed like one of them:" x={760} y={140} size={46} rot={-3} at={t.at('seemed')} />
       <Note text="✓ no college" x={820} y={280} size={60} rot={-2} at={t.at('college')} color="#ffffff" />
       <Note text="✓ no rich family" x={820} y={380} size={60} rot={-2} at={t.at('rich')} color="#ffffff" />
@@ -189,7 +190,7 @@ const Bigamist: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/rachel_earl.jpg" size={[1920, 2286]} x={180} y={150} w={520} h={700} fx={960} fy={1000} scale={0.5} rot={-2} at={t.at('And they') - 1} />
+      <CropCard mask={MASKS.rachel} src="img/rachel_earl.jpg" size={[1920, 2286]} x={180} y={150} w={520} h={700} fx={960} fy={1000} scale={0.5} rot={-2} at={t.at('And they') - 1} />
       <Note text="that old marriage paperwork..." x={820} y={180} size={54} rot={-3} at={t.at('And they')} color="#ffffff" />
       {g >= t.at('bigamist') && <Highlight text="“BIGAMIST”" x={820} y={330} size={120} at={t.at('bigamist')} seed={523} rot={-4} />}
       <Definition term="big·a·mist" def="someone married to two people at once" at={t.at('married')} x={820} y={560} w={880} />
@@ -225,7 +226,7 @@ const Won: React.FC<{t: TL}> = ({t}) => {
 const Grief: React.FC<{t: TL}> = ({t}) => {
   const pal = usePal();
   return (
-    <Photo src="img/rachel_earl.jpg" size={[1920, 2286]} fx={960} fy={900} a={t.at('But weeks')} b={t.at('On inauguration')} z0={1.0} z1={1.08} bw="grayscale(1) contrast(1.15) brightness(0.8)" vignette={0.85}>
+    <Photo mask={MASKS.rachel} tint={null} src="img/rachel_earl.jpg" size={[1920, 2286]} fx={960} fy={900} a={t.at('But weeks')} b={t.at('On inauguration')} z0={1.0} z1={1.08} bw="grayscale(1) contrast(1.15) brightness(0.8)" vignette={0.85}>
       {() => (
         <>
           <Note text="December 1828: Rachel dies" x={100} y={90} size={56} rot={-3} at={t.at('Rachel', 2)} color="#ffffff" />
@@ -262,7 +263,7 @@ const KingMob: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch05/story_joseph.jpg" size={[3840, 4642]} x={150} y={170} w={480} h={640} fx={1920} fy={1900} scale={0.24} rot={-2} at={t.at('Supreme') - 1} />
+      <CropCard mask={MASKS.story} src="img/v3/ch05/story_joseph.jpg" size={[3840, 4642]} x={150} y={170} w={480} h={640} fx={1920} fy={1900} scale={0.24} rot={-2} at={t.at('Supreme') - 1} />
       <Note text="Justice Joseph Story" x={170} y={860} size={42} rot={-2} at={t.at('Joseph')} color="#ffffff" />
       <Quote text="the reign of KING MOB seemed triumphant." at={t.at('reign')} x={760} y={170} w={1050} size={70} who="Joseph Story, letter, March 1829" />
       {g >= t.at('King Mob', 2) && <Highlight text="KING MOB" x={780} y={530} size={140} at={t.at('King Mob', 2)} seed={531} rot={-3} />}

@@ -3,10 +3,11 @@ import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import words from '../../../public/audio/v3_ch02_the_boots.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, INK, JF, Loop, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
+import {Highlight, INK, JF, Loop, Note, Picture, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {MapScene, Pin, PLACES, Route} from '../map';
 import {ChapterShell, chapterFrames, CropCard, fill, hasFile, LEAD, makeTimeline, type Narration, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH02_FRAMES = chapterFrames(N, LEAD);
@@ -58,6 +59,8 @@ const Boy: React.FC<{t: TL; from: number; to: number; fx: number; fy: number; z0
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       <Picture src="img/v3/ch02/brave_boy_waxhaws.jpg" place={place} size={BOY} bw="grayscale(1) contrast(1.25)" />
+      <Tint mask={MASKS.brave_boy.alpha} place={place} size={BOY} />
+      <Traced paths={MASKS.brave_boy.data.shapes.subject} place={place} at={from + 4} dur={10} width={5} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%)'}} />
       {children?.(S, place.scale)}
       <Tag text="Currier & Ives, The Brave Boy of the Waxhaws, 1876 · Library of Congress" />
@@ -217,7 +220,7 @@ const Rachel: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/rachel_earl.jpg" size={R} x={140} y={150} w={520} h={680} fx={960} fy={1000} scale={0.52} rot={-2} at={t.at('And he fell') - 1} />
+      <CropCard mask={MASKS.rachel} src="img/rachel_earl.jpg" size={R} x={140} y={150} w={520} h={680} fx={960} fy={1000} scale={0.52} rot={-2} at={t.at('And he fell') - 1} />
       {g >= t.at('Rachel') && <Highlight text="RACHEL DONELSON ROBARDS" x={760} y={110} size={64} at={t.at('Rachel')} seed={219} rot={-2} />}
       <Note text="stuck in a miserable marriage" x={780} y={230} size={46} rot={-2} at={t.at('miserable')} color="#ffffff" />
       {g >= t.at('1791') && (

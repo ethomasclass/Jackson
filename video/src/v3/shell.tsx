@@ -4,7 +4,8 @@ import React from 'react';
 import {AbsoluteFill, Audio, getStaticFiles, Img, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {clamp} from '../lib/anim';
 import {makeTimeline, type Narration} from '../lib/timing';
-import {Finish, INK, JF, PALETTES, PaletteCtx, Picture, Place, StepCtx, useGFrame, usePal} from './Kit';
+import {Finish, INK, JF, PALETTES, PaletteCtx, Picture, Place, StepCtx, Tint, Traced, useGFrame, usePal} from './Kit';
+import type {MaskRef} from './masks';
 import {LogoBreak} from './LogoBreak';
 
 export type TL = ReturnType<typeof makeTimeline>;
@@ -34,14 +35,17 @@ export const useScene = (cuts: [number, React.ReactNode][]) => {
 };
 
 /** Full-bleed B&W archival picture with a slow push from z0 to z1 between frames a and b. */
-export const Photo: React.FC<{src: string; size: [number, number]; fx: number; fy: number; z0?: number; z1?: number; a: number; b: number; bw?: string; vignette?: number; children?: (p: Place) => React.ReactNode}> = ({
-  src, size, fx, fy, z0 = 1.02, z1 = 1.1, a, b, bw = 'grayscale(1) contrast(1.2)', vignette = 0.65, children,
+export const Photo: React.FC<{src: string; size: [number, number]; fx: number; fy: number; z0?: number; z1?: number; a: number; b: number; bw?: string; vignette?: number;
+  mask?: MaskRef; tint?: string | null; traceAt?: number; children?: (p: Place) => React.ReactNode}> = ({
+  src, size, fx, fy, z0 = 1.02, z1 = 1.1, a, b, bw = 'grayscale(1) contrast(1.2)', vignette = 0.65, mask, tint, traceAt, children,
 }) => {
   const frame = useCurrentFrame();
   const place = fill(size, fx, fy, interpolate(frame, [a, b], [z0, z1], clamp));
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       <Picture src={src} place={place} size={size} bw={bw} />
+      {mask && tint !== null && <Tint mask={mask.alpha} place={place} size={size} color={tint} />}
+      {mask && <Traced paths={mask.data.shapes.subject} place={place} at={traceAt ?? a + 4} dur={12} width={5} />}
       {children?.(place)}
       <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,${vignette}) 100%)`}} />
     </AbsoluteFill>
@@ -150,8 +154,8 @@ const LogoLead: React.FC = () => {
  * inside a w x h window at (x, y). `children(S)` get a source->screen mapper for overlays.
  */
 export const CropCard: React.FC<{src: string; size: [number, number]; x: number; y: number; w: number; h: number; fx: number; fy: number; scale: number; rot?: number; at?: number;
-  bw?: string; outline?: boolean; children?: (S: (sx: number, sy: number) => number[]) => React.ReactNode}> = ({
-  src, size, x, y, w, h, fx, fy, scale, rot = 0, at = -999, bw = 'grayscale(1) contrast(1.2)', outline = false, children,
+  bw?: string; outline?: boolean; mask?: MaskRef; tint?: string | null; traceAt?: number; children?: (S: (sx: number, sy: number) => number[]) => React.ReactNode}> = ({
+  src, size, x, y, w, h, fx, fy, scale, rot = 0, at = -999, bw = 'grayscale(1) contrast(1.2)', outline = false, mask, tint, traceAt, children,
 }) => {
   const g = useGFrame();
   const pal = usePal();
@@ -166,6 +170,8 @@ export const CropCard: React.FC<{src: string; size: [number, number]; x: number;
         transform: `scale(${0.6 + 0.4 * k}) rotate(${rot}deg)`, opacity: Math.min(1, k * 2), outline: outline ? `5px solid ${pal.mark}` : undefined, outlineOffset: 10}}>
         <div style={{position: 'absolute', left: 14, top: 14, width: w, height: h, overflow: 'hidden'}}>
           <Img src={staticFile(src)} style={{position: 'absolute', left, top, width: size[0] * scale, height: size[1] * scale, filter: bw}} />
+          {mask && tint !== null && <Tint mask={mask.alpha} place={{left, top, scale}} size={size} color={tint} />}
+          {mask && <Traced paths={mask.data.shapes.subject} place={{left, top, scale}} at={traceAt ?? (at > -999 ? at + 5 : 4)} dur={12} width={5} />}
         </div>
       </div>
       {k >= 1 && children?.(S)}

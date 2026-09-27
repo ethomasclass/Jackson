@@ -7,6 +7,7 @@ import {Highlight, INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit'
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {Stool} from '../figures';
 import {ChapterShell, chapterFrames, CropCard, Definition, DrawnCrown, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, PhotoCard, Quote, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH09_FRAMES = chapterFrames(N, LEAD);
@@ -84,7 +85,7 @@ const Recharter: React.FC<{t: TL}> = ({t}) => {
       <DarkPaper />
       {g >= t.at('In 1832') && <Highlight text="1832" x={100} y={70} size={100} at={t.at('In 1832')} seed={909} rot={-2} />}
       <Note text="four years early" x={430} y={100} size={56} rot={-3} at={t.at('four')} color="#ffffff" />
-      <CropCard src="img/clay_jouett.jpg" size={[1920, 2319]} x={130} y={280} w={330} h={430} fx={960} fy={1000} scale={0.27} rot={-3} at={t.at('Clay') - 1} />
+      <CropCard mask={MASKS.clay} tint={null} src="img/clay_jouett.jpg" size={[1920, 2319]} x={130} y={280} w={330} h={430} fx={960} fy={1000} scale={0.27} rot={-3} at={t.at('Clay') - 1} />
       {web ? <PhotoCard src="img/v3/ch09/webster.jpg" x={510} y={300} w={330} h={430} rot={2} at={t.at('Webster') - 1} /> : null}
       <Note text="Clay" x={200} y={750} size={48} rot={-2} at={t.at('Clay')} color="#ffffff" />
       {web && <Note text="Webster" x={580} y={770} size={48} rot={-2} at={t.at('Webster')} color="#ffffff" />}
@@ -102,7 +103,7 @@ const KillIt: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={[1920, 2288]} x={130} y={200} w={430} h={580} fx={960} fy={1000} scale={0.38} rot={-2} at={1} />
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={[1920, 2288]} x={130} y={200} w={430} h={580} fx={960} fy={1000} scale={0.38} rot={-2} at={1} />
       <Note text="Jackson to Van Buren:" x={660} y={140} size={52} rot={-3} at={t.at('told')} color="#ffffff" />
       <Quote text="The Bank is trying to kill me, but I will kill it!" at={t.at('trying')} x={660} y={250} w={1150} size={70} />
       {g >= t.at('vetoed') && <Stamp text="VETO" x={1250} y={560} at={t.at('vetoed')} size={170} color={pal.subject} rot={-10} />}
@@ -208,7 +209,7 @@ const Cartoon: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={420} y={40} w={600} h={1000} fx={508} fy={768} scale={0.65} rot={-1.5} at={t.at("that's") - 1} />
+      <CropCard mask={MASKS.king_andrew} src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={420} y={40} w={600} h={1000} fx={508} fy={768} scale={0.65} rot={-1.5} at={t.at("that's") - 1} />
       <Note text="and that's when" x={80} y={150} size={50} rot={-3} at={t.at('cartoon')} color="#ffffff" />
       <Note text="the cartoon shows up" x={100} y={240} size={50} rot={-3} at={t.at("cartoon")} color="#ffffff" />
       {g >= t.at('King') && <Highlight text="KING ANDREW" x={1120} y={380} size={84} at={t.at('King')} seed={919} rot={-3} />}

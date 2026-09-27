@@ -8,6 +8,7 @@ import {INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {MapScene, Pin, PLACES, Region, Route} from '../map';
 import {ChapterShell, chapterFrames, CropCard, Definition, fill, hasFile, LEAD, makeTimeline, type Narration, PhotoCard, Quote, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH10_FRAMES = chapterFrames(N, LEAD);
@@ -62,7 +63,7 @@ const Sequoyah: React.FC<{t: TL}> = ({t}) => (
   <AbsoluteFill>
     <DarkPaper />
     <CropCard src="img/v3/ch10/cherokee_phoenix.jpg" size={[2396, 3000]} x={1260} y={70} w={560} h={900} fx={1198} fy={1100} scale={0.35} rot={2} at={t.at('newspaper') - 1} />
-    <CropCard src="img/v3/ch10/sequoyah.jpg" size={[2142, 3000]} x={130} y={180} w={420} h={560} fx={1071} fy={1250} scale={0.25} rot={-2} at={t.at('Sequoyah') - 3} />
+    <CropCard mask={MASKS.sequoyah} tint={null} src="img/v3/ch10/sequoyah.jpg" size={[2142, 3000]} x={130} y={180} w={420} h={560} fx={1071} fy={1250} scale={0.25} rot={-2} at={t.at('Sequoyah') - 3} />
     <Note text="the Cherokee had..." x={600} y={100} size={50} rot={-3} at={t.at('The Cherokee', 2)} color="#ffffff" />
     <Note text="a written constitution" x={620} y={200} size={48} rot={-3} at={t.at('constitution')} />
     <Note text="their own newspaper" x={620} y={290} size={48} rot={-3} at={t.at('newspaper')} />
@@ -133,7 +134,7 @@ const Echota: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch10/john_ross.jpg" size={[2499, 3000]} x={1370} y={150} w={420} h={560} fx={1250} fy={1200} scale={0.26} rot={2} at={t.at('Principal') - 1} />
+      <CropCard mask={MASKS.ross} tint={null} src="img/v3/ch10/john_ross.jpg" size={[2499, 3000]} x={1370} y={150} w={420} h={560} fx={1250} fy={1200} scale={0.26} rot={2} at={t.at('Principal') - 1} />
       <Title text="THE TREATY OF NEW ECHOTA, 1835" x={100} y={70} at={t.at('Treaty')} size={72} />
       <Note text="a small group of Cherokee," x={110} y={190} size={46} rot={-2} at={t.at('small')} color="#ffffff" />
     <Note text="without their government's approval" x={130} y={270} size={46} rot={-2} at={t.at('without')} color="#ffffff" />

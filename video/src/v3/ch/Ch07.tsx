@@ -6,6 +6,7 @@ import {clamp} from '../../lib/anim';
 import {Highlight, INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {ChapterShell, chapterFrames, CropCard, Definition, DrawnCrown, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, PhotoCard, Quote, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH07_FRAMES = chapterFrames(N, LEAD);
@@ -18,7 +19,7 @@ const Widower: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={SULLY} x={180} y={160} w={540} h={720} fx={960} fy={1000} scale={0.5} rot={-2} at={1} />
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={SULLY} x={180} y={160} w={540} h={720} fx={960} fy={1000} scale={0.5} rot={-2} at={1} />
       {g >= t.at('scandal') && <Highlight text="A SCANDAL" x={840} y={180} size={110} at={t.at('scandal')} seed={701} rot={-3} />}
       <Note text="...and this one tells you a lot" x={840} y={360} size={48} rot={-3} at={t.at('tells')} color="#ffffff" />
       <Note text="about Jackson the man" x={870} y={440} size={48} rot={-3} at={t.at('man')} color="#ffffff" />
@@ -34,7 +35,7 @@ const Eatons: React.FC<{t: TL}> = ({t}) => {
     <AbsoluteFill>
       <DarkPaper />
       <CropCard src="img/john_eaton.jpg" size={[871, 1157]} x={140} y={220} w={420} h={560} fx={435} fy={520} scale={0.62} rot={-3} at={t.at('John') - 1} />
-      <CropCard src="img/peggy_eaton_brady.jpg" size={PEGGY} x={1340} y={200} w={440} h={600} fx={960} fy={1150} scale={0.42} rot={3} at={t.at('Peggy') - 1} />
+      <CropCard mask={MASKS.peggy} src="img/peggy_eaton_brady.jpg" size={PEGGY} x={1340} y={200} w={440} h={600} fx={960} fy={1150} scale={0.42} rot={3} at={t.at('Peggy') - 1} />
       <Note text="John Eaton" x={160} y={820} size={50} rot={-2} at={t.at('John')} color="#ffffff" />
       <Note text="Secretary of War, old friend" x={140} y={900} size={42} rot={-2} at={t.at('Secretary')} />
       {g >= t.at('married') && <Highlight text="JUST MARRIED" x={660} y={330} size={80} at={t.at('married')} seed={703} rot={-3} />}
@@ -82,8 +83,8 @@ const AllIn: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/rachel_earl.jpg" size={[1920, 2286]} x={130} y={150} w={380} h={500} fx={960} fy={1000} scale={0.36} rot={-3} at={t.at('To Jackson') - 1} />
-      <CropCard src="img/peggy_eaton_brady.jpg" size={PEGGY} x={560} y={200} w={380} h={500} fx={960} fy={1150} scale={0.34} rot={2} at={t.at('To Jackson') + 2} />
+      <CropCard mask={MASKS.rachel} tint={null} src="img/rachel_earl.jpg" size={[1920, 2286]} x={130} y={150} w={380} h={500} fx={960} fy={1000} scale={0.36} rot={-3} at={t.at('To Jackson') - 1} />
+      <CropCard mask={MASKS.peggy} src="img/peggy_eaton_brady.jpg" size={PEGGY} x={560} y={200} w={380} h={500} fx={960} fy={1150} scale={0.34} rot={2} at={t.at('To Jackson') + 2} />
       <Note text="Rachel all over again" x={160} y={740} size={60} rot={-3} at={t.at('Rachel')} color={pal.subject} />
       <Note text="torn apart by gossip" x={200} y={840} size={52} rot={-3} at={t.at('gossip')} color="#ffffff" />
       {g >= t.at('all in') && <Highlight text="SO HE WENT ALL IN" x={1030} y={150} size={70} at={t.at('all in')} seed={707} rot={-3} />}
@@ -131,7 +132,7 @@ const Rise: React.FC<{t: TL}> = ({t}) => {
     <AbsoluteFill>
       <DarkPaper />
       <CropCard src="img/van_buren_inman.jpg" size={[1920, 2313]} x={200} y={260} w={420} h={560} fx={960} fy={950} scale={0.38} rot={-2} at={t.at('Martin') - 1} />
-      <CropCard src="img/calhoun_healy.jpg" size={[1920, 2560]} x={1100} y={260} w={420} h={560} fx={960} fy={1000} scale={0.36} rot={2} at={t.at('Calhoun', 2) - 1} />
+      <CropCard mask={MASKS.calhoun} tint={null} src="img/calhoun_healy.jpg" size={[1920, 2560]} x={1100} y={260} w={420} h={560} fx={960} fy={1000} scale={0.36} rot={2} at={t.at('Calhoun', 2) - 1} />
       {arrow(720, 780, 300, up, pal.mark)}
       {arrow(1620, 300, 780, down, pal.subject)}
       <Note text="Van Buren: nice to the Eatons" x={160} y={120} size={48} rot={-3} at={t.at('nice')} color="#ffffff" />

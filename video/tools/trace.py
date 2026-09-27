@@ -20,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from voice import env  # noqa: E402
 
-OUT = os.path.join(HERE, "..", "public", "img", "jh", "masks")
+OUT = os.path.join(HERE, "..", "public", "img", "v3", "masks")
 COLOURS = {"magenta": lambda r, g, b: (r > 190) & (g < 90) & (b > 190),
            "green": lambda r, g, b: (g > 190) & (r < 130) & (b < 130)}
 

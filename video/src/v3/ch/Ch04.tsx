@@ -7,6 +7,7 @@ import {Highlight, JF, Note, Tag, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {Tiles} from '../tiles';
 import {ChapterShell, chapterFrames, CropCard, Definition, LEAD, makeTimeline, type Narration, Photo, Quote, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH04_FRAMES = chapterFrames(N, LEAD);
@@ -34,7 +35,7 @@ const Four: React.FC<{t: TL}> = ({t}) => {
         const at = t.at(c.cue, c.nth ?? 1) - 1;
         return (
           <React.Fragment key={c.name}>
-            <CropCard src={c.src} size={c.size} x={120 + i * 440} y={300} w={330} h={430} fx={960} fy={c.fy} scale={0.27} rot={i % 2 ? 2 : -2} at={at} />
+            <CropCard mask={i === 0 ? MASKS.sully : undefined} src={c.src} size={c.size} x={120 + i * 440} y={300} w={330} h={430} fx={960} fy={c.fy} scale={0.27} rot={i % 2 ? 2 : -2} at={at} />
             {g >= at && <div style={{position: 'absolute', left: 110 + i * 440, top: 770, width: 360, textAlign: 'center', fontFamily: JF.mono, fontSize: 24, letterSpacing: 2, color: '#f4efe6', textTransform: 'uppercase'}}>{c.name}</div>}
           </React.Fragment>
         );
@@ -129,7 +130,7 @@ const Chieftain: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/clay_jouett.jpg" size={[1920, 2319]} x={140} y={130} w={560} h={760} fx={960} fy={1050} scale={0.45} rot={-2} at={t.at('And Clay') - 1} />
+      <CropCard mask={MASKS.clay} src="img/clay_jouett.jpg" size={[1920, 2319]} x={140} y={130} w={560} h={760} fx={960} fy={1050} scale={0.45} rot={-2} at={t.at('And Clay') - 1} />
       <Note text="Clay could not stand Jackson" x={820} y={130} size={56} rot={-3} at={t.at('stand')} color="#ffffff" />
       <Quote text="military chieftain" at={t.at('military')} x={820} y={300} w={1000} size={96} />
       <Note text="(no business being president)" x={840} y={480} size={50} rot={-2} at={t.at('business')} color="#ffffff" />

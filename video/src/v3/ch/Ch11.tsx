@@ -3,10 +3,11 @@ import React from 'react';
 import {AbsoluteFill, Audio, Img, interpolate, random, Sequence, staticFile} from 'remotion';
 import words from '../../../public/audio/v3_ch11_king_andrew.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, JF, Loop, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
+import {Highlight, JF, Loop, Note, Picture, Tag, Tint, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {Person, Stool} from '../figures';
 import {ChapterShell, chapterFrames, CropCard, DrawnCrown, fill, LEAD, makeTimeline, type Narration, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH11_FRAMES = chapterFrames(N, LEAD);
@@ -17,7 +18,7 @@ const Back: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={300} w={560} h={700} fx={930} fy={1050} scale={0.55} rot={-2} at={1}>
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={300} w={560} h={700} fx={930} fy={1050} scale={0.55} rot={-2} at={1}>
         {(S) => {
           const [x0, y] = S(520, 330);
           const [x1] = S(1340, 330);
@@ -70,7 +71,7 @@ const Opposite: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={170} w={500} h={660} fx={960} fy={1000} scale={0.48} rot={-2} at={1} />
+      <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={170} w={500} h={660} fx={960} fy={1000} scale={0.48} rot={-2} at={1} />
       <Note text="but Jackson thought he was" x={740} y={100} size={48} rot={-3} at={t.at('never')} color="#ffffff" />
       <Note text="doing the opposite" x={760} y={180} size={48} rot={-3} at={t.at('opposite')} color="#ffffff" />
       <Note text="the one official chosen by the whole country" x={760} y={270} size={44} rot={-3} at={t.at('chosen')} />
@@ -83,23 +84,44 @@ const Opposite: React.FC<{t: TL}> = ({t}) => {
   );
 };
 
+/** The subject tint (as Kit's Tint) limited to the left or right half of the screen. The clip sits on the
+ *  blended layer itself, so the colour still blends with the picture underneath. */
+const HalfTint: React.FC<{place: {left: number; top: number; scale: number}; color: string; side: 'left' | 'right'}> = ({place, color, side}) => {
+  const w = SULLY[0] * place.scale;
+  const mid = 960 - place.left;
+  const m: React.CSSProperties = {
+    position: 'absolute', left: place.left, top: place.top, width: w, height: SULLY[1] * place.scale,
+    WebkitMaskImage: `url(${staticFile(MASKS.sully.alpha)})`, WebkitMaskSize: '100% 100%', maskImage: `url(${staticFile(MASKS.sully.alpha)})`, maskSize: '100% 100%',
+    clipPath: side === 'left' ? `inset(0 ${w - mid}px 0 0)` : `inset(0 0 0 ${mid}px)`,
+  } as React.CSSProperties;
+  return (
+    <>
+      <div style={{...m, background: color, mixBlendMode: 'color'}} />
+      <div style={{...m, background: color, mixBlendMode: 'multiply', opacity: 0.3}} />
+      <div style={{...m, background: color, mixBlendMode: 'screen', opacity: 0.28}} />
+    </>
+  );
+};
+
 /** One portrait, two labels. */
 const Split: React.FC<{t: TL}> = ({t}) => {
   const g = useGFrame();
   const pal = usePal();
   const place = fill(SULLY, 960, 900, 1.05);
   const S = (x: number, y: number) => [place.left + x * place.scale, place.top + y * place.scale];
-  const [x0, y] = S(470, 360);
-  const [x1] = S(1380, 360);
+  const [x0, y] = S(470, 560);
+  const [x1] = S(1380, 560);
   const mid = t.at('same');
   const reveal = interpolate(g, [mid, mid + 8], [0, 1], clamp);
   return (
     <AbsoluteFill style={{background: '#111', overflow: 'hidden'}}>
       <Picture src="img/jackson_sully_1845.jpg" place={place} size={SULLY} bw="grayscale(1) contrast(1.2) brightness(0.8)" />
+      {g >= t.at("People's", 2) && <HalfTint place={place} color={pal.mark} side="left" />}
+      {g >= t.at('King Andrew') && <HalfTint place={place} color={pal.subject} side="right" />}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(0,0,0,0.75) 100%)'}} />
       <div style={{position: 'absolute', left: 958, top: 0, width: 5, height: 1080 * reveal, background: '#f4efe6'}} />
       <AbsoluteFill style={{clipPath: 'inset(0 0 0 50%)'}}>
-        <DrawnCrown x0={x0} x1={x1} y={y} h={180} at={t.at('King Andrew') - 2} dur={12} width={9} color={pal.subject} />
+        <DrawnCrown x0={x0} x1={x1} y={y} h={140} at={t.at('King Andrew') - 2} dur={12} width={9} color={pal.subject} />
       </AbsoluteFill>
       {g >= t.at("People's", 2) && <Highlight text="THE PEOPLE'S PRESIDENT" x={40} y={880} size={62} at={t.at("People's", 2)} seed={1107} rot={-2} />}
       {g >= t.at('King Andrew') && <Highlight text="KING ANDREW" x={1160} y={880} size={80} at={t.at('King Andrew')} seed={1109} rot={-2} />}
@@ -132,13 +154,13 @@ const Kid: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch02/brave_boy_waxhaws.jpg" size={[3000, 2303]} x={120} y={170} w={700} h={620} fx={1500} fy={1050} scale={0.5} rot={-2} at={1}>
+      <CropCard mask={MASKS.brave_boy} src="img/v3/ch02/brave_boy_waxhaws.jpg" size={[3000, 2303]} x={120} y={170} w={700} h={620} fx={1500} fy={1050} scale={0.5} rot={-2} at={1}>
         {(S) => {
           const [bx, by] = S(1740, 1150);
           return <Loop cx={bx} cy={by} rx={100} ry={260} at={t.at('kid') - 2} dur={8} width={6} seed={1111} />;
         }}
       </CropCard>
-      <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1180} y={140} w={560} h={800} fx={508} fy={700} scale={0.55} rot={2} at={t.at('nickname') - 1} />
+      <CropCard mask={MASKS.king_andrew} src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1180} y={140} w={560} h={800} fx={508} fy={700} scale={0.55} rot={2} at={t.at('nickname') - 1} />
       <Note text="remember that kid?" x={140} y={860} size={62} rot={-3} at={t.at('Remember', 2)} color={pal.subject} />
       <Note text="spent his life fighting anyone who acted like a king" x={120} y={60} size={44} rot={-2} at={t.at('fighting')} color="#ffffff" />
       {g >= t.at('King Andrew', 2) && <Highlight text="KING ANDREW" x={1100} y={900} size={80} at={t.at('King Andrew', 2)} seed={1113} rot={-3} />}
@@ -165,7 +187,7 @@ const EverSince: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1380} y={120} w={460} h={820} fx={530} fy={500} scale={1.0} rot={2} at={1} bw="grayscale(1) contrast(1.2) brightness(0.7)" />
+      <CropCard mask={MASKS.king_andrew} tint={null} src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1380} y={120} w={460} h={820} fx={530} fy={500} scale={1.0} rot={2} at={1} bw="grayscale(1) contrast(1.2) brightness(0.7)" />
       <Note text="ever since Jackson," x={120} y={260} size={62} rot={-3} at={t.at('ever')} color="#ffffff" />
       <Note text="presidents have claimed to speak for the people" x={140} y={360} size={46} rot={-3} at={t.at('claimed')} />
       <Note text="and ever since Jackson," x={120} y={560} size={62} rot={-3} at={t.at('ever', 2)} color="#ffffff" />

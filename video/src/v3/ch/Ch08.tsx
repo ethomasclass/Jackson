@@ -8,6 +8,7 @@ import {DarkPaper, Sfx, WRITE} from '../common';
 import {Stool} from '../figures';
 import {MapScene, Pin, PLACES, Region, Route} from '../map';
 import {ChapterShell, chapterFrames, CropCard, Definition, fill, hasFile, LEAD, makeTimeline, type Narration, PhotoCard, Quote, Stamp, type TL, useScene} from '../shell';
+import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH08_FRAMES = chapterFrames(N, LEAD);
@@ -20,7 +21,7 @@ const BRITAIN = [4300, 1750];
 const Something: React.FC<{t: TL}> = ({t}) => (
   <AbsoluteFill>
     <DarkPaper />
-    <CropCard src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1280} y={120} w={480} h={820} fx={508} fy={700} scale={0.55} rot={3} at={1} bw="grayscale(1) contrast(1.2) brightness(0.6)" />
+    <CropCard mask={MASKS.king_andrew} src="img/v3/ch01/king_andrew_1833.jpg" size={[1017, 1536]} x={1280} y={120} w={480} h={820} fx={508} fy={700} scale={0.55} rot={3} at={1} bw="grayscale(1) contrast(1.2) brightness(0.6)" />
     <Note text="here's where the People's President" x={120} y={380} size={62} rot={-3} at={1} color="#ffffff" />
     <Note text="starts to look like something else..." x={150} y={490} size={62} rot={-3} at={t.at('starts')} color={usePal().subject} />
   </AbsoluteFill>
@@ -31,7 +32,7 @@ const System: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/clay_jouett.jpg" size={[1920, 2319]} x={110} y={180} w={400} h={520} fx={960} fy={1000} scale={0.32} rot={-2} at={1} />
+      <CropCard mask={MASKS.clay} src="img/clay_jouett.jpg" size={[1920, 2319]} x={110} y={180} w={400} h={520} fx={960} fy={1000} scale={0.32} rot={-2} at={1} />
       <Note text="Henry Clay's big plan:" x={110} y={60} size={48} rot={-3} at={t.at('big')} />
       {g >= t.at('American System') && <Highlight text="THE AMERICAN SYSTEM" x={640} y={140} size={76} at={t.at('American System')} seed={801} rot={-2} />}
       <Stool x={1160} y={300} show={[t.at('tariffs'), t.at('bank'), t.at('roads')]} scale={0.95} />
@@ -85,7 +86,7 @@ const Nullify: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <CropCard src="img/calhoun_healy.jpg" size={CALHOUN} x={120} y={170} w={460} h={610} fx={960} fy={1000} scale={0.38} rot={-2} at={t.at('Leading') - 1} />
+      <CropCard mask={MASKS.calhoun} src="img/calhoun_healy.jpg" size={CALHOUN} x={120} y={170} w={460} h={610} fx={960} fy={1000} scale={0.38} rot={-2} at={t.at('Leading') - 1} />
       <Note text="Jackson's own vice president" x={130} y={830} size={46} rot={-2} at={t.at('vice')} color="#ffffff" />
       {g >= t.at('John C') && <Highlight text="JOHN C. CALHOUN" x={690} y={90} size={84} at={t.at('John C')} seed={807} rot={-2} />}
       <Note text="of South Carolina" x={720} y={220} size={50} rot={-3} at={t.at('South Carolina')} />
