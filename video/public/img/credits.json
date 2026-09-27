@@ -468,5 +468,56 @@
     "date": "1835date QS:P571,+1835-00-00T00:00:00Z/9",
     "licence": "Public domain",
     "page": "https://commons.wikimedia.org/wiki/File:Francis_Alexander_-_Daniel_Webster_-_Google_Art_Project.jpg"
+  },
+  "v3/ch10/tocqueville.jpg": {
+    "title": "File:Portrait of Alexis de Tocqueville.jpg",
+    "artist": "Th\u00e9odore Chass\u00e9riau",
+    "date": "1850date QS:P571,+1850-00-00T00:00:00Z/9",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Portrait_of_Alexis_de_Tocqueville.jpg"
+  },
+  "v3/ch08/nullification_ordinance.jpg": {
+    "title": "File:An Ordinance of the State of South Carolina to nullify an act of the Congress of the United States entitled \"An Act... - NARA - 306392.tif",
+    "artist": "Unknown authorUnknown author or not provided",
+    "date": "8 March 1833date QS:P571,+1833-03-08T00:00:00Z/11",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:An_Ordinance_of_the_State_of_South_Carolina_to_nullify_an_act_of_the_Congress_of_the_United_States_entitled_%22An_Act..._-_NARA_-_306392.tif"
+  },
+  "../../../../../../tmp/claude-0/-home-user-Jackson/c015a5b3-d05a-5b55-87d3-c8c6bd856f45/scratchpad/hb_kendall.jpg": {
+    "title": "File:Battle of Tohopeka, prepared for Amos Kendall's Life of Andrew Jackson private, military, and civil (1844) 03.jpg",
+    "artist": "Harper Brothers, New York",
+    "date": "1844",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Battle_of_Tohopeka,_prepared_for_Amos_Kendall%27s_Life_of_Andrew_Jackson_private,_military,_and_civil_(1844)_03.jpg"
+  },
+  "v3/ch07/emily_donelson.jpg": {
+    "title": "File:Emily Donelson.jpg",
+    "artist": "Ralph Eleaser Whiteside Earl",
+    "date": "",
+    "licence": "Public domain",
+    "page": "https://commons.wikimedia.org/wiki/File:Emily_Donelson.jpg"
+  },
+  "v3/ch10/marshall.jpg": {
+    "title": "Chief Justice John Marshall",
+    "artist": "Asher Brown Durand",
+    "date": "1833",
+    "licence": "CC0 (The Met Open Access)",
+    "page": "https://www.metmuseum.org/art/collection/search/394421",
+    "source": "met:394421"
+  },
+  "../../../../../../tmp/claude-0/-home-user-Jackson/c015a5b3-d05a-5b55-87d3-c8c6bd856f45/scratchpad/kendall_fen.jpg": {
+    "title": "Amos Kendall, Postmaster General / from life & on stone by Chas. Fenderich, Washington ; printed by Lehman & Duval Lithrs. Phila.",
+    "artist": "Fenderich, Charles, lithographer, Lehman & Duval Lithrs., printer",
+    "date": "1837-01-01",
+    "licence": "No known restrictions on publication.",
+    "page": "https://www.loc.gov/item/2003655041/",
+    "source": "loc:2003655041"
+  },
+  "../../../../../../tmp/claude-0/-home-user-Jackson/c015a5b3-d05a-5b55-87d3-c8c6bd856f45/scratchpad/calhoun_npg.jpg": {
+    "title": "File:John C. Calhoun at National Portrait Gallery IMG 4384.JPG",
+    "artist": "Billy Hathorn",
+    "date": "2011-07-29",
+    "licence": "CC0",
+    "page": "https://commons.wikimedia.org/wiki/File:John_C._Calhoun_at_National_Portrait_Gallery_IMG_4384.JPG"
   }
 }
