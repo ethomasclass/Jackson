@@ -1,6 +1,6 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,513 words · about 14:10
+**15 Minute History** · narration script · 2,506 words · about 14:07
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
@@ -186,11 +186,11 @@ The Choctaw had been sent west starting in 1831. The French writer Alexis de Toc
 
 In 1838, after Jackson had left office, the U.S. Army forced about 16,000 Cherokee from their homes and marched them west. Thousands died from disease, cold and hunger, perhaps as many as one in four. It became known as the Trail of Tears.
 
-Historians like H. W. Brands point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Historians like Daniel Walker Howe call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
+Some historians point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Others call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
 
 ---
 
-## 12:35 | Same Man, Two Crowns
+## 12:33 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
@@ -247,7 +247,7 @@ King.
   - "fell still born" (1832)
   - Tocqueville's "neither tents nor wagons" (1831)
 - **Counter graphic:** 12 vetoes vs. 10 for all six earlier presidents combined.
-- **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. Brands on one side, Howe on the other.
+- **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. No historians named on screen. Just the two labels, same face.
 - **Final line:** "King." Hard cut to black on the word, then hold a beat of silence before the end card. Ties the modern echo back to the cartoon without naming any modern president.
 
 ## Pronunciation (for ElevenLabs)
@@ -277,7 +277,7 @@ King.
   - the Bank War
   - Indian Removal
   - the veto count
-  - Brands vs. Howe
+  - the two sides of the historians' debate (unnamed)
 - **Petticoat Affair:** cut to keep the runtime down. It could return as a one-line aside in ch7.
 
 ## Fact-check flags
@@ -293,7 +293,7 @@ These are places where the class readings, or popular memory, say something the 
 - **"John Marshall has made his decision; now let him enforce it":** first printed in Horace Greeley's *The American Conflict* (1864). The script says he "probably never said that." "Fell still born" is from Jackson's letter to John Coffee, April 7, 1832.
 - **Trail of Tears:** the Cherokee removal was 1838–39, under Van Buren. The script says "after Jackson had left office."
 - **Death toll:** "Perhaps as many as one in four" rests on estimates of about 4,000 deaths out of about 16,000. Estimates vary.
-- **Panic of 1837:** "Pet banks caused the Panic of 1837" is Howe's argument, not settled fact, so the script hedges.
+- **Panic of 1837:** "Pet banks caused the Panic of 1837" is one historian's argument (from the readings), not settled fact, so the script hedges.
 - **"Hang the first man…":** Jackson reportedly said it to a South Carolina congressman, and it is widely quoted. Kept as "reportedly."
 - **Van Buren standing on his chair:** from Van Buren's own autobiography.
 - **Calhoun and nullification:**
@@ -316,9 +316,12 @@ These are places where the class readings, or popular memory, say something the 
 
 ## Sources
 
+For research and fact-checking only. The narration names no modern historians or readings.
+
+
 - Class readings:
   - *6.1 Jackson Reading* (Controversial Presidency, Nullification, the Bank War, Native Americans, Power of the Presidency)
-  - *6.1 Harkness Readings*: H. W. Brands, "The People's President"; Daniel Walker Howe, "King Andrew"; "Jackson in His Own Words"
+  - *6.1 readings* (used for content only, not named in the video): H. W. Brands, "The People's President"; Daniel Walker Howe, "King Andrew"; "Jackson in His Own Words"
 - H. W. Brands, *Andrew Jackson: His Life and Times* (2005)
 - Daniel Walker Howe, *What Hath God Wrought* (2007)
 - Robert V. Remini, *Andrew Jackson* (3 vols.)
