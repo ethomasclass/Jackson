@@ -1,6 +1,6 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,599 words · about 14:49
+**15 Minute History** · narration script · 2,660 words · about 15:09
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
@@ -18,7 +18,7 @@ The caption says "King Andrew the First."
 
 That's the president of the United States. Andrew Jackson.
 
-Just four years earlier, Jackson rode into Washington as the champion of the common man. Every president before him came from the old elite of Virginia or Massachusetts. Jackson was an orphan from the backwoods. Thousands of ordinary people crammed into the White House to celebrate him. They called him the People's President.
+Just four years earlier, Jackson rode into Washington as the champion of the common man. Jackson was an orphan from the backwoods. Thousands of ordinary people crammed into the White House to celebrate him. They called him the People's President.
 
 Four years later, his enemies were drawing him in a crown.
 
@@ -28,9 +28,9 @@ And it starts with a teenager, a British officer, and a pair of dirty boots.
 
 ---
 
-## 1:02 | Dirty Boots
+## 0:58 | Dirty Boots
 
-Andrew Jackson was born in 1767 in the Waxhaws, backcountry right on the border of North and South Carolina. So close to the border that both states still claim him. His father died a few weeks before he was born. Not a great start.
+Andrew Jackson was born in 1767 in the Waxhaws, backcountry right on the border of North and South Carolina. His father died a few weeks before he was born. Not a great start.
 
 Then came the Revolution. At 13, Andrew was carrying messages for the Patriot militia. In 1781, British soldiers captured him, and an officer ordered him to clean his boots.
 
@@ -48,7 +48,7 @@ He also had a terrifying temper. In 1806, a quarrel that included an insult to R
 
 ---
 
-## 2:24 | Old Hickory
+## 2:16 | Old Hickory
 
 In the War of 1812, Jackson found the thing he was best at. His men said he was as tough as hickory wood, so they called him Old Hickory.
 
@@ -58,23 +58,31 @@ In January 1815, he won a lopsided victory at the Battle of New Orleans, and bec
 
 ---
 
-## 2:57 | The Corrupt Bargain
+## 2:49 | The Corrupt Bargain
 
-In 1824, he ran for president, and won the most popular votes and the most electoral votes.
+In 1824, Jackson ran for president. And it was a mess.
 
-But with four candidates, nobody got a majority, meaning more than half. So the Twelfth Amendment sent the election to the House of Representatives, run by Speaker Henry Clay, who had just lost the race himself.
+By then, there was basically only one party left, the Democratic-Republicans. So four men from the same party ran against each other: Jackson, John Quincy Adams, Treasury Secretary William Crawford, and Speaker of the House Henry Clay.
 
-Clay backed John Quincy Adams. The House chose Adams. And President Adams named Clay his Secretary of State, the usual stepping-stone to the presidency.
+Jackson won the most popular votes and the most electoral votes, 99. But he needed 131, a majority, meaning more than half.
+
+When nobody gets a majority, the Twelfth Amendment sends the election to the House of Representatives. Only the top three make the cut, and each state delegation gets one vote. Clay came in fourth, so he was out. But he was still Speaker of the House, the most powerful man in the room.
+
+And Clay could not stand Jackson. He called him a "military chieftain" who had no business being president. So Clay threw his support to Adams. Clay's home state, Kentucky, had told its congressmen to vote for Jackson. Most of them voted for Adams anyway. On the first ballot, Adams got exactly the thirteen states he needed.
+
+Days later, President Adams named Clay his Secretary of State, the usual stepping-stone to the presidency.
 
 Jackson called it the "Corrupt Bargain." He wrote that "the Judas of the West has closed the contract and will receive the thirty pieces of silver."
 
 Okay. Dramatic.
 
-There's no proof of an actual deal. But to Jackson, it proved Washington had been taken over by insiders who didn't care what the people wanted. Insiders versus the people. That idea drives his entire presidency.
+There's no proof of an actual deal. But to Jackson, it proved Washington had been taken over by insiders who didn't care what the people wanted. He quit the Senate and started running for 1828 almost immediately.
+
+Insiders versus the people. That idea drives his entire presidency.
 
 ---
 
-## 3:44 | King Mob
+## 4:18 | King Mob
 
 And "the people" were about to get a lot bigger. By the 1820s, state after state dropped the rule that only white men who owned property could vote. That's called expanding suffrage, the right to vote. In 1828, about three times as many people voted for president as in 1824.
 
@@ -94,7 +102,7 @@ King Mob. The first king in this story. Jackson's fans had a different word for 
 
 ---
 
-## 5:19 | To the Victors
+## 5:53 | To the Victors
 
 Once in office, Jackson went after the insiders. He argued that government jobs were "so plain and simple" that any intelligent citizen could do them, so people should rotate in and out. He called it rotation in office.
 
@@ -106,29 +114,25 @@ His supporters saw fresh blood. His critics saw a president building a governmen
 
 ---
 
-## 6:02 | The Petticoat Affair
+## 6:36 | The Petticoat Affair
 
-Then came a scandal. And this one was personal.
+Then came a scandal. And this one tells you a lot about Jackson the man.
 
-Jackson's Secretary of War and old friend, John Eaton, had just married Peggy Timberlake, the daughter of a Washington tavern keeper. Her first husband had died only months before, and gossip said she and Eaton had been close long before that.
+Jackson arrived in Washington a grieving widower. His old friend John Eaton, the new Secretary of War, had just married Peggy Timberlake, a tavern keeper's daughter with a reputation. Washington's society wives, led by the vice president's wife, Floride Calhoun, refused to have anything to do with her. It became known as the Petticoat Affair. A petticoat is a skirt worn under a dress. So, basically, the skirt scandal.
 
-Washington's society wives snubbed her. They skipped her dinners and wouldn't return her visits. Leading the snub was Floride Calhoun, the vice president's wife. It became known as the Petticoat Affair. A petticoat is a skirt worn under a dress. So, basically, the skirt scandal.
+To Jackson, it was Rachel all over again: a woman being torn apart by gossip. So he went all in. He called a cabinet meeting to declare Peggy "as chaste as a virgin." Which is not normally what cabinet meetings are for. When his own niece, who ran the White House for him, refused to visit Peggy, he sent her home to Tennessee.
 
-To Jackson, the gossip about Peggy sounded exactly like the gossip he believed had killed Rachel. He called a cabinet meeting and declared that Peggy Eaton was "as chaste as a virgin." Which is not normally what cabinet meetings are for.
+Loyal? Absolutely. Stubborn? Also absolutely. Martin Van Buren, who was nice to the Eatons, became Jackson's favorite. Calhoun, whose wife started it, did not. By 1831, the feud had wrecked the cabinet, and Jackson pushed out nearly all of it.
 
-The fight dragged on for two years. Martin Van Buren, a widower, was friendly to the Eatons and rose in Jackson's eyes. Calhoun sank. In 1831, Jackson broke the stalemate by pushing out nearly his entire cabinet.
-
-After that, he leaned even harder on a group of unofficial advisers: newspaper editors, old friends and political allies, mostly outside the official cabinet. Critics called them the Kitchen Cabinet, as if they came in through the back door.
-
-To Jackson, they were people he could trust. To his critics, it looked like a king listening to his court instead of his government.
+After that, he leaned even harder on unofficial advisers: newspaper editors, old friends and political allies. Critics called them the Kitchen Cabinet, as if they came in through the back door. To Jackson, they were people he could trust. To his critics, it looked like a king listening to his court instead of his government.
 
 ---
 
-## 7:20 | It Must Be Preserved
+## 7:56 | It Must Be Preserved
 
 Here's where the People's President starts to look like something else.
 
-Henry Clay had a big plan for the country called the American System: high tariffs to protect American factories, a national bank, and federal money for roads and canals, called internal improvements. Jackson ended up fighting all three.
+Henry Clay had a big plan called the American System: high tariffs to protect American factories, a national bank, and federal money for roads and canals, called internal improvements. Jackson fought all three.
 
 First, the tariff. In 1828, Congress passed an especially high tariff, a tax on imported goods like British cloth. Great for Northern factories. Terrible for the South, which bought most of its goods from abroad. Southerners called it the Tariff of Abominations.
 
@@ -138,19 +142,18 @@ In 1830, at a dinner honoring Jefferson's birthday, Jackson raised his glass, lo
 
 Calhoun answered: "The Union, next to our liberty, most dear."
 
-That's about as close as two politicians get to a fistfight at dinner.
 
 In 1832, South Carolina declared the tariffs void inside the state and threatened to leave the Union if the government pushed back. Calhoun resigned, the first vice president ever to quit.
 
-Jackson reportedly said he'd "hang the first man of them I can get my hands on." In an official proclamation, he wrote: "Disunion by armed force is treason." He asked Congress for the Force Bill, permission to use the army to collect the tax. Meanwhile, Henry Clay, of all people, worked out a compromise that slowly lowered the tariff. South Carolina backed down.
+In an official proclamation, Jackson wrote: "Disunion by armed force is treason." He asked Congress for the Force Bill, permission to use the army to collect the tax. Meanwhile, Henry Clay, of all people, worked out a compromise that slowly lowered the tariff. South Carolina backed down.
 
 To Jackson's supporters, he had saved the Union. To South Carolina, he was a tyrant threatening his own people with an army over a tax.
 
-And the question of whether a state could just say no to the Union didn't go away. Thirty years later, South Carolina asked it again. That time, the answer was the Civil War.
+But the question, can a state just say no to the Union, came back thirty years later. That time, the answer was the Civil War.
 
 ---
 
-## 9:16 | The Monster
+## 9:39 | The Monster
 
 Next target: the Bank.
 
@@ -174,13 +177,13 @@ And that's when the cartoon shows up. King Andrew the First.
 
 ---
 
-## 10:56 | Let Him Enforce It
+## 11:19 | Let Him Enforce It
 
 The hardest part of Jackson's presidency is also the part that cost the most lives.
 
 In 1830, tens of thousands of Native Americans still lived in the Southeast: the Cherokee, Creek, Choctaw, Chickasaw and Seminole nations. The Cherokee had a written constitution and their own newspaper, printed in a writing system created by a Cherokee man named Sequoyah. But white settlers wanted the land. Especially after gold was found in Georgia.
 
-In 1830, Jackson pushed the Indian Removal Act through Congress. It let the president trade land in the West for Native land in the East. It passed the House by just five votes. Jackson said removal would place "a dense and civilized population" on land "now occupied by a few savage hunters," and that moving west would protect Native people from the settlers pushing in on them.
+In 1830, Jackson pushed the Indian Removal Act through Congress. It let the president trade land in the West for Native land in the East. Jackson said removal would place "a dense and civilized population" on land "now occupied by a few savage hunters," and that moving west would protect Native people from the settlers pushing in on them.
 
 The Cherokee fought back in court. In 1832, in Worcester versus Georgia, the Supreme Court ruled that Georgia's laws had no force inside the Cherokee Nation.
 
@@ -196,7 +199,7 @@ Some historians point out that Jackson believed removal was the only way to keep
 
 ---
 
-## 13:19 | Same Man, Two Crowns
+## 13:38 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
@@ -302,7 +305,14 @@ King.
   - the veto message's Supreme Court argument
   - the Panic of 1837
   - the Marshall-quote print date
+  - "hang the first man"
+  - the five-vote House margin on the Removal Act
+  - the "both states claim him" line
+  - the "old elite of Virginia or Massachusetts" line
+  - the fistfight-at-dinner line
   - smaller trims throughout
+- **Election of 1824:** expanded, covering four candidates from one party, 99 of the 131 electoral votes needed, the top-three rule, one vote per state, Clay's "military chieftain," the Kentucky instruction, and Adams winning on the first ballot.
+- **Petticoat Affair:** shortened and rewritten around Jackson the grieving, loyal, stubborn widower, adding his niece being sent home.
 
 ## Fact-check flags
 
@@ -317,6 +327,12 @@ King.
 - **Rachel's marriage:** Rachel and Jackson are said to have married in Natchez in 1791, though the record of that ceremony is thin. Lewis Robards' divorce was granted only in 1793, and they remarried in January 1794.
 - **Rachel's death:** December 22, 1828, likely a heart attack. The "forgive her murderers" line is a traditional account, so the script says "reportedly."
 - **Peggy Eaton:** John Timberlake died in April 1828. Peggy married Eaton on January 1, 1829. Floride Calhoun led the snub.
+- **Emily Donelson:** Rachel's niece and the White House hostess. She refused to call on Peggy, and Jackson sent her back to Tennessee in 1830 (she returned in 1831).
+- **1824 electoral votes:** Jackson 99, Adams 84, Crawford 41, Clay 37. That is 261 total, so 131 was a majority. Crawford had had a stroke in 1823.
+- **The House vote:** on February 9, 1825, Adams carried 13 of 24 states on the first ballot. The Kentucky legislature had asked its delegation to vote for Jackson, but most of the delegation voted for Adams.
+- **"Military chieftain":** Clay's phrase, from his letter to Francis Brooke of January 28, 1825, published at the time.
+- **One party:** by 1824 the Federalists had faded nationally, so all four candidates were Democratic-Republicans.
+- **Back to running:** Tennessee's legislature re-nominated Jackson in October 1825, and he resigned his Senate seat that month.
 - **Cabinet meeting:** the September 10, 1829 meeting is where Jackson declared her "as chaste as a virgin."
 - **Cabinet shake-up, April 1831:** Van Buren and Eaton resigned, and Jackson asked for the others' resignations. All went except the Postmaster General.
 - **Kitchen Cabinet:** Amos Kendall, Francis P. Blair, William B. Lewis, A. J. Donelson and Van Buren. Opponents used the name from about 1831–32. The "back door" gloss explains the name; it is not a period quote.
@@ -334,7 +350,6 @@ These are places where the class readings, or popular memory, say something the 
 - **"John Marshall has made his decision; now let him enforce it":** first printed in Horace Greeley's *The American Conflict* (1864). The script says he "probably never said that." "Fell still born" is from Jackson's letter to John Coffee, April 7, 1832.
 - **Trail of Tears:** the Cherokee removal was 1838–39, under Van Buren. The script says "after Jackson had left office."
 - **Death toll:** "Perhaps as many as one in four" rests on estimates of about 4,000 deaths out of about 16,000. Estimates vary.
-- **"Hang the first man…":** Jackson reportedly said it to a South Carolina congressman, and it is widely quoted. Kept as "reportedly."
 - **Calhoun and nullification:**
   - Calhoun wrote the *South Carolina Exposition and Protest* (1828) anonymously.
   - He resigned as vice president on December 28, 1832, before the Force Bill and the Compromise Tariff (both signed March 2, 1833). The script keeps that order.
