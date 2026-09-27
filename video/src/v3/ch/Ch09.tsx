@@ -11,7 +11,7 @@ import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH09_FRAMES = chapterFrames(N, LEAD);
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 
 const Bank: React.FC<{t: TL}> = ({t}) => {
   const g = useGFrame();
@@ -152,7 +152,7 @@ const Squeeze: React.FC<{t: TL}> = ({t}) => {
   const a = t.at('Biddle hit');
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
-      {gen ? <Picture src="img/gen/v3_ch09_squeeze.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 300], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.7)" />
+      {gen ? <Picture src="img/gen/v3_ch09_squeeze.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 300], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.7)" />
         : <Picture src="img/v3/ch09/downfall_mother_bank.jpg" place={fill([3000, 2194], 1500, 1100, interpolate(frame, [a, a + 300], [1.02, 1.1], clamp))} size={[3000, 2194]} bw="grayscale(1) contrast(1.2) brightness(0.75)" />}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
       <Note text="Biddle hit back:" x={100} y={80} size={60} rot={-3} at={a} />

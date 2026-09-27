@@ -12,6 +12,7 @@ import peggy from '../../public/img/v3/masks/peggy.json';
 import story from '../../public/img/v3/masks/story.json';
 import sequoyah from '../../public/img/v3/masks/sequoyah.json';
 import ross from '../../public/img/v3/masks/ross.json';
+import toast from '../../public/img/v3/masks/toast.json';
 
 export type MaskRef = {alpha: string; data: MaskData};
 const ref = (name: string, d: unknown): MaskRef => ({alpha: `img/v3/masks/${name}_subject_a.png`, data: d as MaskData});
@@ -28,4 +29,6 @@ export const MASKS = {
   story: ref('story', story),
   sequoyah: ref('sequoyah', sequoyah),
   ross: ref('ross', ross),
+  /** Gemini mask pass (magenta) of the banquet painting: the man raising the glass. */
+  toast: {alpha: 'img/v3/masks/toast_magenta_a.png', data: {...(toast as unknown as MaskData), shapes: {subject: (toast as unknown as MaskData).shapes.magenta}}} as MaskRef,
 };

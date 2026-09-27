@@ -12,7 +12,7 @@ import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH10_FRAMES = chapterFrames(N, LEAD);
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 
 const NATIONS: {name: string; cue: string; pts: number[][]; label: number[]}[] = [
   {name: 'Cherokee', cue: 'Cherokee', pts: [[2020, 2640], [2150, 2600], [2280, 2640], [2260, 2760], [2150, 2800], [2050, 2760]], label: [2180, 2560]},
@@ -79,7 +79,7 @@ const Land: React.FC<{t: TL}> = ({t}) => {
   const a = t.at('But white');
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
-      {gen ? <Picture src="img/gen/v3_ch10_homestead.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 240], [1.02, 1.08], clamp))} size={GEN} bw="grayscale(1) contrast(1.15) brightness(0.8)" />
+      {gen ? <Picture src="img/gen/v3_ch10_homestead.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 240], [1.02, 1.08], clamp))} size={GEN} bw="grayscale(1) contrast(1.15) brightness(0.8)" />
         : <DarkPaper />}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
       <Note text="white settlers wanted the land" x={100} y={100} size={60} rot={-2} at={t.at('settlers')} color="#ffffff" />
@@ -155,7 +155,7 @@ const Choctaw: React.FC<{t: TL}> = ({t}) => {
   const a = t.at('The Choctaw');
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
-      {gen ? <Picture src="img/gen/v3_ch10_river.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 360], [1.02, 1.08], clamp))} size={GEN} bw="grayscale(1) contrast(1.1) brightness(0.65)" /> : <DarkPaper />}
+      {gen ? <Picture src="img/gen/v3_ch10_river.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 360], [1.02, 1.08], clamp))} size={GEN} bw="grayscale(1) contrast(1.1) brightness(0.65)" /> : <DarkPaper />}
       {!gen && toc && <PhotoCard src="img/v3/ch10/tocqueville.jpg" x={1400} y={140} w={380} h={500} rot={2} at={t.at('Tocqueville') - 1} />}
       <Note text="the Choctaw: sent west from 1831" x={100} y={90} size={54} rot={-2} at={t.at('Choctaw', 2)} color="#ffffff" />
       <Note text="Alexis de Tocqueville watched them cross the Mississippi" x={110} y={190} size={46} rot={-2} at={t.at('Tocqueville')} />

@@ -9,7 +9,7 @@ import {ChapterShell, chapterFrames, CropCard, Definition, fill, hasFile, LEAD, 
 
 const N = words as Narration;
 export const CH06_FRAMES = chapterFrames(N, LEAD);
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 
 const JOBS: [string, string, string][] = [
   ['POSTMASTER', 'held it 16 yrs', ''],
@@ -67,7 +67,7 @@ const Spoils: React.FC<{t: TL}> = ({t}) => {
   const seekers = hasFile('img/gen/v3_ch06_office_seekers.png');
   return (
     <AbsoluteFill style={{background: INK}}>
-      {seekers ? <Picture src="img/gen/v3_ch06_office_seekers.png" place={fill(GEN, 688, 384, 1.04)} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.55)" /> : <DarkPaper />}
+      {seekers ? <Picture src="img/gen/v3_ch06_office_seekers.png" place={fill(GEN, 600, 448, 1.04)} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.55)" /> : <DarkPaper />}
       {!seekers && <CropCard src="img/marcy_waldo.jpg" size={[1920, 2466]} x={1380} y={140} w={400} h={520} fx={960} fy={1000} scale={0.3} rot={2} at={t.at("senator's") - 1} />}
       <Note text="his critics called it..." x={100} y={70} size={54} rot={-3} at={t.at('critics')} />
       {g >= t.at('spoils') && <Highlight text="THE SPOILS SYSTEM" x={100} y={170} size={110} at={t.at('spoils')} seed={603} rot={-2} />}

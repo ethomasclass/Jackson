@@ -12,7 +12,7 @@ import {MASKS} from '../masks';
 const N = words as Narration;
 export const CH02_FRAMES = chapterFrames(N, LEAD);
 const BOY: [number, number] = [3000, 2303];
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 
 const Birth: React.FC<{t: TL}> = ({t}) => {
   const g = useGFrame();
@@ -40,7 +40,7 @@ const Birth: React.FC<{t: TL}> = ({t}) => {
 /** Optional Gemini painting of the backcountry cabin, used for "His father died" if it exists. */
 const Cabin: React.FC<{t: TL}> = ({t}) => {
   const frame = useCurrentFrame();
-  const place = fill(GEN, 688, 384, interpolate(frame, [t.at('His father'), t.at('Then came')], [1.02, 1.1], clamp));
+  const place = fill(GEN, 600, 448, interpolate(frame, [t.at('His father'), t.at('Then came')], [1.02, 1.1], clamp));
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       <Picture src="img/gen/v3_ch02_backcountry.png" place={place} size={GEN} bw="grayscale(1) contrast(1.2)" />

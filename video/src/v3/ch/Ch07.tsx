@@ -10,7 +10,7 @@ import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH07_FRAMES = chapterFrames(N, LEAD);
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 const SULLY: [number, number] = [1920, 2288];
 const PEGGY: [number, number] = [1920, 2661];
 
@@ -57,7 +57,7 @@ const Snub: React.FC<{t: TL}> = ({t}) => {
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       {gen ? (
         <>
-          <Picture src="img/gen/v3_ch07_snub.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 360], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.75)" />
+          <Picture src="img/gen/v3_ch07_snub.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 360], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.75)" />
           <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)'}} />
         </>
       ) : (
@@ -173,7 +173,7 @@ const Kitchen: React.FC<{t: TL}> = ({t}) => {
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       {gen ? (
         <>
-          <Picture src="img/gen/v3_ch07_kitchen_door.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 400], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.8)" />
+          <Picture src="img/gen/v3_ch07_kitchen_door.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 400], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.8)" />
           <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)'}} />
         </>
       ) : (

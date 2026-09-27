@@ -17,7 +17,7 @@ const TEAL = '#2FE0C4';
 const CORAL = '#FF6F61';
 const ORANGE = '#FF9F1C';
 const MAPSIZE: [number, number] = [4986, 4608];
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 
 const People: React.FC<{t: TL}> = ({t}) => {
   const g = useGFrame();
@@ -106,7 +106,7 @@ const Voters: React.FC<{t: TL}> = ({t}) => {
   const labels: [string, string, number][] = [['small farmers', 'farmers', 200], ['frontier settlers', 'Frontier', 720], ['city workers', 'Workers', 1380]];
   return (
     <AbsoluteFill style={{background: INK}}>
-      {gen ? <Picture src="img/gen/v3_ch05_new_voters.png" place={fill(GEN, 688, 384, 1.0)} size={GEN} bw="grayscale(1) contrast(1.2)" />
+      {gen ? <Picture src="img/gen/v3_ch05_new_voters.png" place={fill(GEN, 600, 448, 1.0)} size={GEN} bw="grayscale(1) contrast(1.2)" />
         : <Picture src="img/county_election_bingham.jpg" place={fill([1920, 1382], 960, 700, 1.05)} size={[1920, 1382]} bw="grayscale(1) contrast(1.2) brightness(0.8)" />}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
       <Note text="so who were the new voters?" x={100} y={80} size={56} rot={-3} at={t.at('So who')} />

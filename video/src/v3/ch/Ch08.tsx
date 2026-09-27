@@ -3,7 +3,7 @@ import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import words from '../../../public/audio/v3_ch08_federal_union.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
+import {Highlight, INK, JF, Note, Picture, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {Stool} from '../figures';
 import {MapScene, Pin, PLACES, Region, Route} from '../map';
@@ -12,7 +12,7 @@ import {MASKS} from '../masks';
 
 const N = words as Narration;
 export const CH08_FRAMES = chapterFrames(N, LEAD);
-const GEN: [number, number] = [1376, 768];
+const GEN: [number, number] = [1200, 896];
 const CALHOUN: [number, number] = [1920, 2560];
 /** South Carolina, roughly, in map pixels. */
 const SC = [[2430, 2700], [2560, 2660], [2700, 2700], [2800, 2790], [2830, 2840], [2760, 2930], [2690, 3010], [2620, 3060], [2520, 2990], [2450, 2860], [2400, 2760]];
@@ -105,11 +105,14 @@ const Toast: React.FC<{t: TL}> = ({t}) => {
   const g = useGFrame();
   const gen = hasFile('img/gen/v3_ch08_toast.png');
   const a = t.at('In 1830');
+  const tp = fill(GEN, 600, 448, interpolate(frame, [a, a + 400], [1.02, 1.12], clamp));
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       {gen ? (
         <>
-          <Picture src="img/gen/v3_ch08_toast.png" place={fill(GEN, 688, 384, interpolate(frame, [a, a + 400], [1.02, 1.12], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.6)" />
+          <Picture src="img/gen/v3_ch08_toast.png" place={tp} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.6)" />
+          <Tint mask={MASKS.toast.alpha} place={tp} size={GEN} />
+          <Traced paths={MASKS.toast.data.shapes.subject} place={tp} at={t.at('glass') - 2} dur={12} width={5} />
           <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
         </>
       ) : (
