@@ -1,12 +1,12 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,506 words · about 14:07
+**15 Minute History** · narration script · 2,700 words · about 15:19
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
 
 The narration files the voice pipeline reads are `video/script/v3/ch01_…txt` to `ch10_…txt`. This page is the same text, with timestamps.
-Timestamps assume the Reform Era pace (~185 wpm, with chapter 9 voiced slower at ~160 and the ending at ~175), plus about 10 seconds for the channel intro and title card after the cold open. Re-time after voicing.
+Timestamps assume the Reform Era pace (~185 wpm, with chapter 9 voiced slower at ~160 and the ending at ~175), plus about 10 seconds for the channel intro and title card after the cold open, and 1.3 seconds for each logo break between chapters. Re-time after voicing.
 
 ---
 
@@ -54,7 +54,7 @@ But he became a lawyer, moved west to Nashville, and started climbing. Land. Cot
 
 ---
 
-## 2:44 | Old Hickory
+## 2:46 | Old Hickory
 
 In the War of 1812, Jackson found the thing he was best at. His men said he was as tough as hickory wood, so they called him Old Hickory.
 
@@ -66,13 +66,15 @@ Then, in January 1815, came the Battle of New Orleans. A lopsided American win. 
 
 Didn't matter. Jackson became the most famous man in America almost overnight.
 
+And he didn't slow down. In 1818, chasing Seminole raiders, he invaded Spanish Florida, seized Spanish forts and executed two British subjects, without clear orders to do any of it. In Congress, a Kentucky congressman named Henry Clay blasted him for it. Jackson never forgot. Remember that name.
+
 ---
 
-## 3:28 | The Corrupt Bargain
+## 3:46 | The Corrupt Bargain
 
 So in 1824, he runs for president. And he wins the most popular votes and the most electoral votes.
 
-But four men were running, and nobody got a majority, meaning more than half. When that happens, the Twelfth Amendment sends the election to the House of Representatives. And the man running the House was Speaker Henry Clay, who had just lost the race himself.
+But four men were running, and nobody got a majority, meaning more than half. When that happens, the Twelfth Amendment sends the election to the House of Representatives. And the man running the House was our old friend Henry Clay, now the Speaker, who had just lost the race himself.
 
 Clay backed John Quincy Adams. The House chose Adams. And then President Adams named Clay his Secretary of State, the job everyone saw as the stepping-stone to the presidency.
 
@@ -86,11 +88,13 @@ Insiders versus the people. That idea is going to drive his entire presidency.
 
 ---
 
-## 4:21 | King Mob
+## 4:42 | King Mob
 
 And "the people" were about to get a lot bigger. In the early 1800s, most states only let white men who owned property vote. By the 1820s, state after state dropped the property rule. That's called expanding suffrage, the right to vote. In 1828, about three times as many people voted for president as in 1824.
 
 But notice who "the people" means here. Women couldn't vote. Enslaved people couldn't vote. In most states, free Black men couldn't either. Hold onto that.
+
+Jackson's supporters also got organized. Led by a sharp New York politician named Martin Van Buren, they built a new party, with its own newspapers, rallies and clubs in almost every state. The Democratic Party. Yes, that one.
 
 The 1828 rematch, Jackson against Adams, was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed flyers covered in black coffins, accusing Jackson of executing his own soldiers. They called his wife a bigamist. Jackson's side called Adams a corrupt aristocrat who spent public money on a pool table. He'd paid for it himself. Didn't matter.
 
@@ -104,25 +108,27 @@ King Mob. That's the first king in this story. Jackson's fans had a different wo
 
 ---
 
-## 5:41 | To the Victors
+## 6:16 | To the Victors
 
 Once in office, Jackson went after the insiders, some of whom had held government jobs for decades. He argued that most government jobs were "so plain and simple" that any intelligent citizen could do them, and that people should rotate in and out. He called it rotation in office.
 
 His critics called it the spoils system, from a senator's line, "to the victors belong the spoils." Translation: government jobs go to the people who helped you win.
 
-To be fair, Jackson didn't fire everybody. In his first year and a half, he replaced roughly one in ten federal officeholders. But the new hires were usually loyal Jackson men.
+To be fair, Jackson didn't fire everybody. In his first year and a half, he replaced roughly one in ten federal officeholders. But the new hires were usually loyal Jackson men. And over the next fifty years, the spoils system became a major source of corruption.
 
 His supporters saw fresh blood. His critics saw a president building a government that answered to him.
 
 ---
 
-## 6:22 | It Must Be Preserved
+## 7:02 | It Must Be Preserved
 
-Here's where the People's President starts to look like something else. And it starts with a tax.
+Here's where the People's President starts to look like something else.
 
-In 1828, Congress passed a high tariff, a tax on imported goods like British cloth. Great for Northern factories. Terrible for the South, which bought most of its goods from abroad. Southerners called it the Tariff of Abominations.
+Remember Henry Clay? He had a big plan for the country called the American System: high tariffs to protect American factories, a national bank to manage the money, and federal money for roads and canals, called internal improvements. Jackson ended up fighting all three. Let's start with the tariff.
 
-The loudest voice against it belonged to Jackson's own vice president, John C. Calhoun of South Carolina. Calhoun argued that the states created the federal government, so a state could nullify, or cancel, a federal law it believed was unconstitutional. And he made that argument anonymously. Which is basically your vice president running a burner account against you.
+In 1828, Congress passed an especially high tariff, a tax on imported goods like British cloth. Great for Northern factories. Terrible for the South, which bought most of its goods from abroad. Southerners called it the Tariff of Abominations.
+
+The loudest voice against it belonged to Jackson's own vice president, John C. Calhoun of South Carolina. Calhoun argued that the states created the federal government, so a state could nullify, or cancel, a federal law it believed was unconstitutional. He built on an idea Jefferson and Madison had floated back in 1798, in the Virginia and Kentucky Resolutions. And he made that argument anonymously. Which is basically your vice president running a burner account against you.
 
 In April 1830, at a dinner honoring Thomas Jefferson's birthday, Jackson raised his glass, looked right at Calhoun, and said: "Our Federal Union: it must be preserved."
 
@@ -138,15 +144,17 @@ He asked Congress for the Force Bill, permission to use the army to collect the 
 
 To Jackson's supporters, he had just saved the Union. To South Carolina, he was a tyrant threatening to send an army against his own people over a tax.
 
+And the bigger question, can a state just say no to the Union, didn't go away. Thirty years later, South Carolina asked it again. That time, the answer was the Civil War.
+
 ---
 
-## 8:15 | The Monster
+## 9:28 | The Monster
 
 Next target: a bank.
 
 The Second Bank of the United States held the government's money and could make it easier or harder for the whole country to borrow. It was mostly privately owned and run by a wealthy Philadelphian named Nicholas Biddle, whom nobody elected.
 
-Jackson called it "the monster." Part of that was personal. As a young man, he nearly went broke on paper IOUs, and ever since, he trusted gold and silver, not paper money. Which is pretty funny, considering whose face ended up on the twenty-dollar bill.
+Jackson called it "the monster." Part of that was personal. As a young man, he nearly went broke on paper IOUs, and ever since, he trusted gold and silver coins, called hard money, not paper. Which is pretty funny, considering whose face ended up on the twenty-dollar bill.
 
 In 1832, four years early, Henry Clay and Daniel Webster pushed a bill to renew the Bank's charter. It was an election year. They figured Jackson wouldn't dare veto it.
 
@@ -155,6 +163,8 @@ Jackson told Van Buren: "The Bank is trying to kill me, but I will kill it!"
 He vetoed it, and his veto message spoke straight to voters. The Bank, he said, helped "make the rich richer and the potent more powerful." He even argued that he didn't have to agree with the Supreme Court, which had already ruled the Bank constitutional.
 
 Voters backed him. Jackson crushed Clay in the 1832 election and took that as a mandate. He pulled the government's money out of the Bank and put it in state banks run by his allies. Critics called them "pet banks." When his Treasury Secretary refused to move the money, Jackson fired him and found one who would.
+
+Biddle hit back. He made loans harder to get, on purpose, hoping a squeeze on the economy would turn people against Jackson. It caused a short recession. A lot of people blamed Biddle instead.
 
 But the Senate did something it had never done before. In 1834, it officially censured Jackson, a formal statement condemning him for abusing his power. Jackson's answer: the president is "the direct representative of the American people." Translation: I'm the people. You're just Congress.
 
@@ -166,35 +176,29 @@ The Bank's charter ran out in 1836. A year later, the economy crashed in the Pan
 
 ---
 
-## 10:07 | Let Him Enforce It
+## 11:34 | Let Him Enforce It
 
 The hardest part of Jackson's presidency is also the part that cost the most lives.
 
-In 1830, tens of thousands of Native Americans still lived in the Southeast: the Cherokee, Creek, Choctaw, Chickasaw and Seminole nations. The Cherokee had a written constitution and their own newspaper, printed in a writing system created by a Cherokee man named Sequoyah.
-
-But white settlers wanted the land. Especially after gold was found in north Georgia in 1829.
+In 1830, tens of thousands of Native Americans still lived in the Southeast: the Cherokee, Creek, Choctaw, Chickasaw and Seminole nations. The Cherokee had a written constitution and their own newspaper, printed in a writing system created by a Cherokee man named Sequoyah. But white settlers wanted the land. Especially after gold was found in Georgia.
 
 In 1830, Jackson pushed the Indian Removal Act through Congress. It let the president trade land in the West for Native land in the East. It passed the House by just five votes. Jackson said removal would place "a dense and civilized population" on land "now occupied by a few savage hunters," and that moving west would protect Native people from the settlers pushing in on them.
 
 The Cherokee fought back in court. In 1832, in Worcester versus Georgia, the Supreme Court ruled that Georgia's laws had no force inside the Cherokee Nation.
 
-Georgia ignored the ruling. Jackson let it. You may have heard that he said, "John Marshall has made his decision; now let him enforce it." He probably never said that. It first shows up in print more than thirty years later. What he did write, in a private letter, was that the decision had "fell still born."
+Georgia ignored the ruling. Jackson let it. You may have heard that he said, "John Marshall has made his decision; now let him enforce it." He probably never said that. What he did write, in a private letter, was that the decision had "fell still born."
 
-In 1835, a small group of Cherokee, without their government's approval, signed a treaty giving up their homeland. Principal Chief John Ross gathered a petition against it with about 15,000 signatures. The Senate approved the treaty anyway, by one vote.
+In 1835, a small group of Cherokee signed away their homeland in the Treaty of New Echota, over the protests of Principal Chief John Ross. Over the next decade, tens of thousands of Native people were forced west. The Cherokee removal came in 1838, after Jackson had left office, and as many as one in four Cherokee died. It's known as the Trail of Tears, and it deserves a video of its own. We'll come back to it.
 
-The Choctaw had been sent west starting in 1831. The French writer Alexis de Tocqueville watched them cross the Mississippi River in the middle of winter. "They had neither tents nor wagons," he wrote. The Creek, Chickasaw and Seminole followed.
-
-In 1838, after Jackson had left office, the U.S. Army forced about 16,000 Cherokee from their homes and marched them west. Thousands died from disease, cold and hunger, perhaps as many as one in four. It became known as the Trail of Tears.
-
-Some historians point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Others call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
+For now, here's what it means for our question. Some historians point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Others call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
 
 ---
 
-## 12:33 | Same Man, Two Crowns
+## 13:42 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
-Look at the vetoes. Jackson vetoed twelve bills. The six presidents before him vetoed ten, combined. They mostly vetoed laws they thought broke the Constitution. Jackson vetoed laws he simply thought were bad ideas, like money for a road that happened to run through Henry Clay's Kentucky. Petty? Maybe.
+Look at the vetoes. Jackson vetoed twelve bills. The six presidents before him vetoed ten, combined. They mostly vetoed laws they thought broke the Constitution. Jackson vetoed laws he simply thought were bad ideas, like money for a road that happened to run through Henry Clay's Kentucky. Petty? Maybe. Newspapers started calling him "Andy Veto."
 
 But Jackson never thought he was acting like a king. He thought he was doing the opposite. The president was the only official chosen by the whole country. So when he overruled Congress, destroyed the Bank or shrugged at the Court, he believed he was protecting the people from the insiders.
 
@@ -245,7 +249,8 @@ King.
   - "the direct representative of the American people" (1834)
   - "a dense and civilized population…" (1830)
   - "fell still born" (1832)
-  - Tocqueville's "neither tents nor wagons" (1831)
+- **Trail of Tears:** touched on briefly in ch9 and flagged on screen as a future video ("coming soon" note, no date).
+- **Vocab added:** American System, internal improvements, hard money, Democratic Party, Andy Veto, Treaty of New Echota.
 - **Counter graphic:** 12 vetoes vs. 10 for all six earlier presidents combined.
 - **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. No historians named on screen. Just the two labels, same face.
 - **Final line:** "King." Hard cut to black on the word, then hold a beat of silence before the end card. Ties the modern echo back to the cartoon without naming any modern president.
@@ -281,6 +286,18 @@ King.
 - **Petticoat Affair:** cut to keep the runtime down. It could return as a one-line aside in ch7.
 
 ## Fact-check flags
+
+**Added in the content pass:**
+
+- **Florida, 1818:** in the First Seminole War, Jackson seized St. Marks and Pensacola and executed two British subjects, Arbuthnot and Ambrister. His orders were ambiguous at best, so the script says "without clear orders." Clay attacked him in the House in January 1819. That is where their feud started, according to the class reading.
+- **Democratic Party:** Van Buren organized the Jacksonian coalition in 1827–28. The name "Democratic Party" came into general use in the 1830s. "Yes, that one" is fair, since it is the direct ancestor of today's party.
+- **Spoils system:** the script says it became "a major source of corruption over the next fifty years." Civil-service reform came with the Pendleton Act (1883), after Garfield's assassination (1881).
+- **Biddle:** his 1833–34 credit contraction caused a short recession, and public anger largely turned on Biddle. By 1834 he eased off.
+- **"Andy Veto":** the nickname appears in the class reading. It was used by opposition papers.
+- **"Removal":** "tens of thousands" of Native people forced west in the 1830s is a safe figure; totals across all removals run higher.
+- **Civil War foreshadow:** South Carolina seceded in December 1860.
+- **Removed:** the Tocqueville quote was cut when chapter 9 was shortened. Save it for the Trail of Tears video.
+
 
 These are places where the class readings, or popular memory, say something the script deliberately doesn't:
 

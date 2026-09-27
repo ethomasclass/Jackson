@@ -2,7 +2,7 @@ Next target: a bank.
 
 The Second Bank of the United States held the government's money and could make it easier or harder for the whole country to borrow. It was mostly privately owned and run by a wealthy Philadelphian named Nicholas Biddle, whom nobody elected.
 
-Jackson called it "the monster." Part of that was personal. As a young man, he nearly went broke on paper IOUs, and ever since, he trusted gold and silver, not paper money. Which is pretty funny, considering whose face ended up on the twenty-dollar bill.
+Jackson called it "the monster." Part of that was personal. As a young man, he nearly went broke on paper IOUs, and ever since, he trusted gold and silver coins, called hard money, not paper. Which is pretty funny, considering whose face ended up on the twenty-dollar bill.
 
 In 1832, four years early, Henry Clay and Daniel Webster pushed a bill to renew the Bank's charter. It was an election year. They figured Jackson wouldn't dare veto it.
 
@@ -11,6 +11,8 @@ Jackson told Van Buren: "The Bank is trying to kill me, but I will kill it!"
 He vetoed it, and his veto message spoke straight to voters. The Bank, he said, helped "make the rich richer and the potent more powerful." He even argued that he didn't have to agree with the Supreme Court, which had already ruled the Bank constitutional.
 
 Voters backed him. Jackson crushed Clay in the 1832 election and took that as a mandate. He pulled the government's money out of the Bank and put it in state banks run by his allies. Critics called them "pet banks." When his Treasury Secretary refused to move the money, Jackson fired him and found one who would.
+
+Biddle hit back. He made loans harder to get, on purpose, hoping a squeeze on the economy would turn people against Jackson. It caused a short recession. A lot of people blamed Biddle instead.
 
 But the Senate did something it had never done before. In 1834, it officially censured Jackson, a formal statement condemning him for abusing his power. Jackson's answer: the president is "the direct representative of the American people." Translation: I'm the people. You're just Congress.
 
