@@ -1,6 +1,6 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,673 words · about 15:13
+**15 Minute History** · narration script · 2,757 words · about 15:40
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
@@ -62,7 +62,7 @@ In January 1815, he won a lopsided victory at the Battle of New Orleans, and bec
 
 In 1824, Jackson ran for president. And it was a mess.
 
-By then, there was basically only one party left, the Democratic-Republicans. So four men from the same party ran against each other: Jackson, John Quincy Adams, Treasury Secretary William Crawford, and Speaker of the House Henry Clay.
+Four men ran, all from the same party, the Democratic-Republicans: Jackson, John Quincy Adams, William Crawford and Henry Clay.
 
 Jackson won the most popular votes and the most electoral votes, 99. But he needed 131, a majority, meaning more than half.
 
@@ -82,9 +82,15 @@ Insiders versus the people. That idea drives his entire presidency.
 
 ---
 
-## 4:18 | King Mob
+## 4:12 | King Mob
 
-And "the people" were about to get a lot bigger. By the 1820s, state after state dropped the rule that only white men who owned property could vote. That's called expanding suffrage, the right to vote. In 1828, about three times as many people voted for president as in 1824.
+And "the people" were about to get a lot bigger.
+
+In the early 1800s, most states only let white men who owned property vote. But new western states like Indiana and Illinois let any white man vote, and older states started following. By 1828, most states had dropped the property rule. That's called expanding suffrage, the right to vote.
+
+And it wasn't just who could vote. It was what they could vote for. In 1824, six state legislatures still picked their state's electors themselves. By 1828, only two did. Almost everywhere else, the people chose.
+
+So who were these new voters? Small farmers. Frontier settlers. Workers in the cities. And here was a candidate who seemed like one of them: no college, no rich family, a backwoods orphan who made it on his own. At least, that's how his campaign told it.
 
 But notice who "the people" means here. Women couldn't vote. Enslaved people couldn't vote. In most states, free Black men couldn't either. Hold onto that.
 
@@ -92,17 +98,17 @@ Jackson's supporters also got organized, led by a sharp New York politician name
 
 The 1828 rematch against Adams was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed the "Coffin Handbill," a poster covered in black coffins, one for each militiaman Jackson had ordered executed for desertion during the War of 1812. And they called Rachel a bigamist, a woman married to two men at once.
 
-Jackson won big. But weeks before the inauguration, Rachel died, probably of a heart attack. Jackson was sure the attacks had killed her. At her funeral, he reportedly said, "May God Almighty forgive her murderers, as I know she forgave them. I never can."
+Jackson won big. About three times as many people voted as in 1824, and 56 percent of them picked Jackson. But weeks before the inauguration, Rachel died, probably of a heart attack. Jackson was sure the attacks had killed her. At her funeral, he reportedly said, "May God Almighty forgive her murderers, as I know she forgave them. I never can."
 
 Hold onto that. It's about to cause a scandal.
 
-On inauguration day, March 1829, thousands of fans followed him into the White House. They stood on the furniture in muddy boots, and the staff had to drag the punch out onto the lawn to lure everybody outside. Supreme Court Justice Joseph Story wrote that "the reign of King Mob seemed triumphant."
+On inauguration day, March 1829, thousands of fans followed him into the White House. They stood on the furniture in muddy boots until the staff lured them outside with the punch. Supreme Court Justice Joseph Story wrote that "the reign of King Mob seemed triumphant."
 
 King Mob. The first king in this story. Jackson's fans had a different word for it: democracy.
 
 ---
 
-## 5:57 | To the Victors
+## 6:24 | To the Victors
 
 Once in office, Jackson went after the insiders. He argued that government jobs were "so plain and simple" that any intelligent citizen could do them, so people should rotate in and out. He called it rotation in office.
 
@@ -114,7 +120,7 @@ His supporters saw fresh blood. His critics saw a president building a governmen
 
 ---
 
-## 6:40 | The Petticoat Affair
+## 7:07 | The Petticoat Affair
 
 Then came a scandal. And this one tells you a lot about Jackson the man.
 
@@ -128,7 +134,7 @@ After that, he leaned even harder on unofficial advisers: newspaper editors, old
 
 ---
 
-## 8:00 | It Must Be Preserved
+## 8:27 | It Must Be Preserved
 
 Here's where the People's President starts to look like something else.
 
@@ -153,7 +159,7 @@ But the question, can a state just say no to the Union, came back thirty years l
 
 ---
 
-## 9:43 | The Monster
+## 10:10 | The Monster
 
 Next target: the Bank.
 
@@ -177,7 +183,7 @@ And that's when the cartoon shows up. King Andrew the First.
 
 ---
 
-## 11:23 | Let Him Enforce It
+## 11:50 | Let Him Enforce It
 
 The hardest part of Jackson's presidency is also the part that cost the most lives.
 
@@ -199,7 +205,7 @@ Some historians point out that Jackson believed removal was the only way to keep
 
 ---
 
-## 13:42 | Same Man, Two Crowns
+## 14:09 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
@@ -261,6 +267,11 @@ King.
   - "May God Almighty forgive her murderers…" (1828, reportedly)
 - **Key concepts (full definition cards):** spoils system and Kitchen Cabinet, each with its own highlighter title and definition bar.
 - **Vocab added:** American System, internal improvements, hard money, Democratic Party (on screen: "not the same party as today's"), Andy Veto, Treaty of New Echota, Petticoat Affair.
+- **Suffrage graphic (ch5), "Who Gets to Vote?", in three beats:**
+  1. **The gate.** A row of voter figures waits behind a hand-drawn gate labeled "PROPERTY REQUIRED." On "new western states," Indiana and Illinois pins pop in on the Mitchell map inset. The gate's sign gets a teal cross-out on "dropped the property rule," and the line of figures pours through. SUFFRAGE gets a highlighter card.
+  2. **Who picks the electors.** The same state tiles as the ch4 electoral grid: 6 tiles marked "LEGISLATURE" in 1824 flip to "THE PEOPLE" until only 2 remain (Delaware and South Carolina), with a soft tick per flip.
+  3. **The new voters.** Farmer, settler and worker silhouettes stamp in. A tally climbs from about 365,000 (1824) to about 1.15 million (1828), with a teal "×3" note. Then 56% of the figures turn coral for Jackson.
+  - **Payoff.** The figures who couldn't vote (women, enslaved people, free Black men) are drawn in faint dashed outline beside the line. The same outlines return in ch11.
 - **Counter graphic:** 12 vetoes vs. 10 for all six earlier presidents combined.
 - **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. No historians named on screen. Just the two labels, same face.
 - **Final line:** "King." Hard cut to black on the word, then hold a beat of silence before the end card. Ties the modern echo back to the cartoon without naming any modern president.
@@ -328,6 +339,10 @@ King.
 - **Rachel's marriage:** Rachel and Jackson are said to have married in Natchez in 1791, though the record of that ceremony is thin. Lewis Robards' divorce was granted only in 1793, and they remarried in January 1794.
 - **Rachel's death:** December 22, 1828, likely a heart attack. The "forgive her murderers" line is a traditional account, so the script says "reportedly."
 - **Peggy Eaton:** John Timberlake died in April 1828. Peggy married Eaton on January 1, 1829. Floride Calhoun led the snub.
+- **Suffrage expansion:** Indiana (1816) and Illinois (1818) entered with voting open to all adult white men, not just property owners. "Most states had dropped the property rule by 1828" is the standard summary; some kept taxpaying requirements.
+- **Electors chosen by legislature:** six states in 1824 (DE, GA, LA, NY, SC, VT), two in 1828 (DE, SC).
+- **Turnout:** about 365,000 votes in 1824 and about 1.15 million in 1828, so "about three times." Jackson's 1828 share was about 56%, with 178 electoral votes to Adams's 83.
+- **"How his campaign told it":** by 1828 Jackson was a wealthy planter and slaveholder. The "self-made backwoodsman" image was real in part and marketed in part, so the script hedges.
 - **Coffin Handbill (1828):** John Binns's handbill showed six coffins for six Tennessee militiamen executed in February 1815 after a court-martial for mutiny and desertion. Archival images are already in `public/img/` (`coffin_handbill_1828.jpg`, `coffin_broadside_1828.jpg`).
 - **Emily Donelson:** Rachel's niece and the White House hostess. She refused to call on Peggy, and Jackson sent her back to Tennessee in 1830 (she returned in 1831).
 - **1824 electoral votes:** Jackson 99, Adams 84, Crawford 41, Clay 37. That is 261 total, so 131 was a majority. Crawford had had a stroke in 1823.
