@@ -2,7 +2,7 @@
 // so the logo transition can be judged in motion before any chapter is built.
 import React from 'react';
 import {AbsoluteFill, Audio, Img, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
-import {BREAK_FRAMES, LogoBreak, WIPE} from './LogoBreak';
+import {BREAK_FRAMES, FADE, LogoBreak} from './LogoBreak';
 import {DarkPaper, Finish, Highlight, Note, PAL, Tag} from './look';
 
 type Still = {src: string; title?: string; note?: string; tag: string; card?: boolean; quiet?: boolean};
@@ -44,10 +44,10 @@ const SCENES: Still[] = [
 ];
 
 const SCENE = 90;
-/** Each scene runs SCENE frames on its own; a break covers its last WIPE frames and the next scene's first WIPE. */
-const STEP = SCENE + BREAK_FRAMES - 2 * WIPE;
+/** Each scene runs SCENE frames on its own; a break covers its last FADE frames and the next scene's first FADE. */
+const STEP = SCENE + BREAK_FRAMES - 2 * FADE;
 
-export const BREAK_DEMO_FRAMES = SCENES.length * SCENE + (SCENES.length - 1) * (BREAK_FRAMES - 2 * WIPE);
+export const BREAK_DEMO_FRAMES = SCENES.length * SCENE + (SCENES.length - 1) * (BREAK_FRAMES - 2 * FADE);
 
 export const BreakDemo: React.FC = () => (
   <AbsoluteFill style={{background: '#000'}}>
@@ -57,7 +57,7 @@ export const BreakDemo: React.FC = () => (
       </Sequence>
     ))}
     {SCENES.slice(1).map((s, i) => (
-      <Sequence key={`b${i}`} from={i * STEP + SCENE - WIPE} durationInFrames={BREAK_FRAMES}>
+      <Sequence key={`b${i}`} from={i * STEP + SCENE - FADE} durationInFrames={BREAK_FRAMES}>
         <LogoBreak />
       </Sequence>
     ))}

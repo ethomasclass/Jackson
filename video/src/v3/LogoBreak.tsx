@@ -1,14 +1,16 @@
-// Chapter break: just the channel logo. A clock-hand sweep wipes the "15 Minute History" wordmark in over
-// the last shot, the coral quarter-hour wedge ticks round, and a second sweep uncovers the next chapter.
+// Chapter break: just the channel logo, kept quiet. The last shot fades to black, the "15 Minute History"
+// wordmark fades up small, its clock ticks softly round a quarter hour, and the next chapter fades up.
 // The wordmark is the one from the channel intro (Fix Everything, src/ch/Intro.tsx), same layout.
 import React from 'react';
-import {AbsoluteFill, Audio, Easing, interpolate, random, Sequence, staticFile, useCurrentFrame} from 'remotion';
-import {clamp, DarkPaper, Finish, FONT, Highlight, PAL, useGFrame} from './look';
+import {AbsoluteFill, Audio, interpolate, random, Sequence, staticFile, useCurrentFrame} from 'remotion';
+import {clamp, FONT, Highlight, PAL} from './look';
 
-/** Frames the sweep takes to cover the old shot, and to uncover the new one. */
-export const WIPE = 10;
-/** Whole break. The next chapter starts underneath at BREAK_FRAMES - WIPE. */
-export const BREAK_FRAMES = 44;
+/** Frames to fade the old shot to black, and to fade the next one up from black. */
+export const FADE = 10;
+/** Whole break. It overlaps the last FADE frames of one chapter and the first FADE of the next. */
+export const BREAK_FRAMES = 60;
+/** Frames where the clock ticks. */
+const TICKS = [22, 30, 38];
 
 const Sfx: React.FC<{at: number; src: string; volume: number}> = ({at, src, volume}) => (
   <Sequence from={at} durationInFrames={60} layout="none"><Audio src={staticFile(src)} volume={volume} /></Sequence>
@@ -39,10 +41,8 @@ const Clock: React.FC<{cx: number; cy: number; r: number; sweep: number}> = ({cx
   );
 };
 
-/** The wordmark, fully built except for the wedge, which sweeps from `sweepAt`. */
-const Wordmark: React.FC<{sweepAt: number}> = ({sweepAt}) => {
-  const g = useGFrame();
-  const sweep = interpolate(g, [sweepAt, sweepAt + 14], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)});
+/** The wordmark, fully built; the wedge shows `sweep` of a quarter hour. */
+const Wordmark: React.FC<{sweep: number}> = ({sweep}) => {
   return (
     <>
       <Clock cx={440} cy={540} r={250} sweep={sweep} />
@@ -55,51 +55,20 @@ const Wordmark: React.FC<{sweepAt: number}> = ({sweepAt}) => {
   );
 };
 
-/** Centre of the logo's clock on screen (the wordmark is scaled about 945,540); the sweeps pivot here. */
-const PIVOT = {x: 945 + (440 - 945) * 0.86, y: 540};
-
-/** Clockwise reveal from 12 o'clock around the clock: `deg` of the circle shown (0-360). */
-const sweepMask = (deg: number, invert = false): React.CSSProperties => {
-  const g = invert
-    ? `conic-gradient(from 0deg at ${PIVOT.x}px ${PIVOT.y}px, transparent 0deg ${deg}deg, #000 ${deg}deg 360deg)`
-    : `conic-gradient(from 0deg at ${PIVOT.x}px ${PIVOT.y}px, #000 0deg ${deg}deg, transparent ${deg}deg 360deg)`;
-  return {WebkitMaskImage: g, maskImage: g};
-};
-
-/** The clock hand riding the leading edge of a sweep. */
-const Hand: React.FC<{deg: number}> = ({deg}) => {
-  const a = ((deg - 90) * Math.PI) / 180;
-  return (
-    <svg style={{position: 'absolute', left: 0, top: 0}} width={1920} height={1080}>
-      <line x1={PIVOT.x} y1={PIVOT.y} x2={PIVOT.x + Math.cos(a) * 2000} y2={PIVOT.y + Math.sin(a) * 2000} stroke={PAL.cream} strokeWidth={9} strokeLinecap="round" />
-    </svg>
-  );
-};
-
 /** Lay this over the end of one chapter and the start of the next (see BreakDemo for the overlap). */
 export const LogoBreak: React.FC = () => {
   const f = useCurrentFrame();
-  const inDeg = interpolate(f, [0, WIPE], [0, 360], {...clamp, easing: Easing.inOut(Easing.quad)});
-  const outStart = BREAK_FRAMES - WIPE;
-  const outDeg = interpolate(f, [outStart, BREAK_FRAMES], [0, 360], {...clamp, easing: Easing.inOut(Easing.quad)});
-  const mask = f < outStart ? (inDeg < 360 ? sweepMask(inDeg) : {}) : sweepMask(outDeg, true);
-  const push = 0.86;
-  const edge = f < WIPE ? inDeg : f >= outStart ? outDeg : null;
+  // Fade to black, fade the logo up, tick the wedge round a quarter hour, fade out, fade up the next chapter.
+  const black = interpolate(f, [0, FADE, BREAK_FRAMES - FADE, BREAK_FRAMES], [0, 1, 1, 0], clamp);
+  const logo = interpolate(f, [FADE - 2, FADE + 8, BREAK_FRAMES - FADE - 8, BREAK_FRAMES - FADE], [0, 1, 1, 0], clamp);
+  // Three soft ticks, a third of a quarter hour each, the hand settling over 2 frames per tick.
+  const sweep = TICKS.reduce((acc, t) => acc + interpolate(f, [t, t + 2], [0, 1 / TICKS.length], clamp), 0);
   return (
-    <AbsoluteFill>
-      <AbsoluteFill style={{background: PAL.night, ...mask}}>
-        <DarkPaper />
-        <AbsoluteFill style={{transform: `scale(${push})`, transformOrigin: '945px 540px'}}>
-          <Wordmark sweepAt={WIPE - 2} />
-        </AbsoluteFill>
-        <Finish vignette={0.45} />
+    <AbsoluteFill style={{background: '#000', opacity: black}}>
+      <AbsoluteFill style={{opacity: logo, transform: 'scale(0.62)', transformOrigin: '945px 540px'}}>
+        <Wordmark sweep={sweep} />
       </AbsoluteFill>
-      {edge !== null && edge > 0 && edge < 360 && <Hand deg={edge} />}
-      <Sfx at={0} src="sfx/whoosh.wav" volume={0.35} />
-      <Sfx at={WIPE} src="sfx/tick.wav" volume={0.45} />
-      <Sfx at={WIPE + 6} src="sfx/tick.wav" volume={0.45} />
-      <Sfx at={WIPE + 12} src="sfx/tick.wav" volume={0.45} />
-      <Sfx at={outStart} src="sfx/whoosh.wav" volume={0.35} />
+      {TICKS.map((t) => <Sfx key={t} at={t} src="sfx/tick_soft.wav" volume={0.18} />)}
     </AbsoluteFill>
   );
 };
