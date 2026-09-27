@@ -1,6 +1,6 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,479 words · about 13:58
+**15 Minute History** · narration script · 2,513 words · about 14:10
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
@@ -204,9 +204,11 @@ And remember who "the people" didn't include. Native nations, enslaved people an
 
 Remember that kid who wouldn't clean a British officer's boots? He spent his whole life fighting anyone who acted like a king. And he ended up with the nickname King Andrew.
 
-So was he a champion of democracy, or a danger to it? Historians are still arguing.
+So was he a champion of democracy, or a danger to it? Historians are still arguing, and they probably always will.
 
-Now it's your turn.
+But here's the part that never went away. Ever since Jackson, presidents have claimed to speak for the people. And ever since Jackson, their opponents have had a word ready for that.
+
+King.
 
 ---
 
@@ -246,7 +248,7 @@ Now it's your turn.
   - Tocqueville's "neither tents nor wagons" (1831)
 - **Counter graphic:** 12 vetoes vs. 10 for all six earlier presidents combined.
 - **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. Brands on one side, Howe on the other.
-- **Final line:** "Now it's your turn." It sets up the class Harkness discussion. Hold on the question card for a beat.
+- **Final line:** "King." Hard cut to black on the word, then hold a beat of silence before the end card. Ties the modern echo back to the cartoon without naming any modern president.
 
 ## Pronunciation (for ElevenLabs)
 
