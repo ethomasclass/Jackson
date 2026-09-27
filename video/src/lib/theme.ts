@@ -23,6 +23,10 @@ const FACES: [string, string, string, string][] = [
   ['Libre Caslon Text', 'LibreCaslon-Italic', '400', 'italic'],
   ['IM Fell English SC', 'IMFellEnglishSC', '400', 'normal'],
   ['Pinyon Script', 'PinyonScript', '400', 'normal'],
+  // 15 Minute History faces (v3)
+  ['Nanum Pen Script', 'NanumPenScript', '400', 'normal'],
+  ['IBM Plex Mono', 'IBMPlexMono', '400', 'normal'],
+  ['Inter', 'Inter-600', '600', 'normal'],
 ];
 
 if (typeof document !== 'undefined') {
