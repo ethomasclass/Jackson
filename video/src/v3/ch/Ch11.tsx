@@ -72,8 +72,8 @@ const Opposite: React.FC<{t: TL}> = ({t}) => {
     <AbsoluteFill>
       <DarkPaper />
       <CropCard mask={MASKS.sully} src="img/jackson_sully_1845.jpg" size={SULLY} x={140} y={170} w={500} h={660} fx={960} fy={1000} scale={0.48} rot={-2} at={1} />
-      <Note text="but Jackson thought he was" x={740} y={100} size={48} rot={-3} at={t.at('never')} color="#ffffff" />
-      <Note text="doing the opposite" x={760} y={180} size={48} rot={-3} at={t.at('opposite')} color="#ffffff" />
+      <Note text="but Jackson never thought he was" x={740} y={100} size={48} rot={-3} at={t.at('never')} color="#ffffff" />
+      <Note text="acting like a king" x={760} y={180} size={48} rot={-3} at={t.at('acting')} color="#ffffff" />
       <Note text="the one official chosen by the whole country" x={760} y={270} size={44} rot={-3} at={t.at('chosen')} />
       <Note text="✓ overruled Congress" x={800} y={360} size={56} rot={-2} at={t.at('overruled')} color="#ffffff" />
       <Note text="✓ destroyed the Bank" x={800} y={450} size={56} rot={-2} at={t.at('destroyed')} color="#ffffff" />
