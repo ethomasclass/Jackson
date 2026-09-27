@@ -33,6 +33,5 @@ The Bierce repo has no committed music; its Suno files were never pushed.
 
 **Notes:**
 
-- J1 and W cues were never published on YouTube except inside those videos.
 - R `intrigue` is the same file as J1 `intrigue`.
 - Viewers of Fix Everything may recognize R `cold_open` and `ending`. That's fine as channel identity, and the Bierce video already reuses the sting.
