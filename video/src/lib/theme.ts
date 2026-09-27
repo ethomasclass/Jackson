@@ -27,6 +27,8 @@ const FACES: [string, string, string, string][] = [
   ['Nanum Pen Script', 'NanumPenScript', '400', 'normal'],
   ['IBM Plex Mono', 'IBMPlexMono', '400', 'normal'],
   ['Inter', 'Inter-600', '600', 'normal'],
+  ['Inter', 'Inter-800', '800', 'normal'],
+  ['Playfair Display', 'PlayfairDisplay-900', '900', 'normal'],
 ];
 
 if (typeof document !== 'undefined') {

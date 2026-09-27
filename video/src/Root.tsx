@@ -8,6 +8,8 @@ import {Campaign1828, CAMPAIGN_1828_SECONDS} from './v1/Campaign1828';
 import {PunchBowl, PUNCH_BOWL_SECONDS} from './v1/PunchBowl';
 import {EndCard, END_CARD_SECONDS, Petticoat, PETTICOAT_SECONDS} from './v1/Petticoat';
 import {BreakDemo, BREAK_DEMO_FRAMES} from './v3/BreakDemo';
+import {V3_CHAPTERS} from './v3/chapters';
+import {JFonts} from './v3/Kit';
 import coldOpen from '../public/audio/v1_cold_open.words.json';
 
 type Scene = {id: string; component: React.FC<{captions: boolean}>; seconds: number};
@@ -55,6 +57,9 @@ export const Root: React.FC = () => (
     />
     {V1_SCENES.map((s) => (
       <Composition key={s.id} id={s.id} component={s.component} width={W} height={H} fps={FPS} durationInFrames={frames(s)} defaultProps={{captions: true}} />
+    ))}
+    {V3_CHAPTERS.map((c) => (
+      <Composition key={c.id} id={c.id} width={W} height={H} fps={FPS} durationInFrames={c.frames} component={() => <JFonts><c.C /></JFonts>} />
     ))}
     <Composition id="V3-BreakDemo" component={BreakDemo} width={W} height={H} fps={FPS} durationInFrames={BREAK_DEMO_FRAMES} />
   </>
