@@ -17,24 +17,62 @@ try:
 except ImportError:
     FFMPEG = "ffmpeg"
 RATE = 44100
-PARA_GAP = 0.9    # seconds of silence between paragraphs
-SENT_GAP = 0.45   # extra breath added after each sentence inside a paragraph
+PARA_GAP = float(os.environ.get("VOICE_PARA_GAP", "0.9"))    # seconds of silence between paragraphs
+SENT_GAP = float(os.environ.get("VOICE_SENT_GAP", "0.45"))   # extra breath added after each sentence inside a paragraph
 LEAD_IN = 0.4     # silence before the first word
 SPEED = float(os.environ.get("VOICE_SPEED", "0.9"))  # ElevenLabs speed, 0.7-1.2
 STRETCH = float(os.environ.get("VOICE_STRETCH", "1.0"))  # local pitch-preserving tempo; <1 is slower (v2 ignores SPEED; try 0.93)
+MAX_PAUSE = float(os.environ.get("VOICE_MAX_PAUSE", "0"))  # >0: shorten the voice's own pauses to at most this (s)
 CACHE = os.path.join(OUT, "cache")
 
 # Spoken forms for words the voices tend to misread. Keys are matched as whole words.
-PRONOUNCE = {"Floride": "Flo-reed", "1806": "eighteen oh-six", "1812": "eighteen twelve", "1820": "eighteen twenty",
-             "1824": "eighteen twenty-four", "1828": "eighteen twenty-eight", "1829": "eighteen twenty-nine",
-             "1831": "eighteen thirty-one", "365,000": "three hundred sixty-five thousand",
-             "1.1": "one point one"}
+# (King Andrew, v3.) Numbers and years are spelled out by number_words() below.
+PRONOUNCE = {"Floride": "Flor-id", "Worcester": "Wooster", "Sequoyah": "Sih-kwoy-uh", "Tocqueville": "Toke-vill",
+             "Echota": "Eh-choh-tuh", "IOUs": "I-O-U's"}
+DOLLARS = {"1,000": "one thousand", "5,000": "five thousand", "10,000": "ten thousand"}
+
+ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen " \
+       "seventeen eighteen nineteen".split()
+TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+
+
+def two(n):
+    if n < 20:
+        return ONES[n]
+    return TENS[n // 10] + ("-" + ONES[n % 10] if n % 10 else "")
+
+
+def cardinal(n):
+    """0 - 999,999 in words ("one hundred thirty-one", "fifteen thousand")."""
+    if n >= 1000:
+        th, r = divmod(n, 1000)
+        return cardinal(th) + " thousand" + (" " + cardinal(r) if r else "")
+    if n >= 100:
+        h, r = divmod(n, 100)
+        return ONES[h] + " hundred" + (" " + two(r) if r else "")
+    return two(n)
+
+
+def year(n):
+    """1767 -> seventeen sixty-seven, 1806 -> eighteen oh-six, 1800 -> eighteen hundred."""
+    hi, lo = divmod(n, 100)
+    return two(hi) + (" hundred" if lo == 0 else " oh-" + ONES[lo] if lo < 10 else " " + two(lo))
+
+
+def number_words(text):
+    text = re.sub(r"\b1([78])00s\b", lambda m: two(int("1" + m.group(1))) + " hundreds", text)
+    text = re.sub(r"\b(1[78]\d)0s\b", lambda m: re.sub(r"y$", "ie", year(int(m.group(1) + "0"))) + "s", text)
+    text = re.sub(r"(?<![\d,])\b(1[78]\d\d)\b(?!,\d)", lambda m: year(int(m.group(1))), text)
+    text = re.sub(r"(?<![\d.])\b\d{1,3}(?:,\d{3})+\b|(?<![\d.,])\b\d+\b(?![.,]\d)", lambda m: cardinal(int(m.group().replace(",", ""))), text)
+    return text
 
 
 def spoken(text):
+    text = re.sub(r"\$([\d,]+)", lambda m: DOLLARS.get(m.group(1), m.group(1)) + " dollars", text)
+    text = re.sub(r"\bJanuary 1\b", "January first", text)
     for k, v in PRONOUNCE.items():
         text = re.sub(rf"\b{re.escape(k)}\b", v, text)
-    return text
+    return number_words(text)
 
 
 def env():
@@ -106,6 +144,37 @@ def piper(text):
         pcm += raw + b"\0\0" * int(RATE * 0.22)
         t += dur + 0.22
     return pcm, chars
+
+
+def tighten(pcm, chars, max_pause):
+    """Shorten every silence in the voice's own delivery that is longer than `max_pause` seconds
+    (cutting the middle out of it) and shift the character timings to match."""
+    import numpy as np
+    a = np.frombuffer(pcm, np.int16)
+    win = int(RATE * 0.02)
+    n = len(a) // win
+    quiet = np.sqrt((a[:n * win].astype(float).reshape(n, win) ** 2).mean(1)) < 250
+    cuts, i = [], 0                      # (start_sample, n_samples_removed)
+    while i < n:
+        if quiet[i]:
+            j = i
+            while j < n and quiet[j]: j += 1
+            run = (j - i) * win
+            keep = int(max_pause * RATE)
+            if run > keep and i > 0 and j < n:
+                cuts.append((i * win + keep // 2, run - keep))
+            i = j
+        else:
+            i += 1
+    out, prev = [], 0
+    for st, k in cuts:
+        out.append(a[prev:st]); prev = st + k
+    out.append(a[prev:])
+
+    def shift(t):
+        smp = t * RATE
+        return (smp - sum(min(k, max(0, smp - st)) for st, k in cuts)) / RATE
+    return np.concatenate(out).tobytes(), [(c, shift(s), shift(e)) for c, s, e in chars]
 
 
 def add_pauses(pcm, chars, gap):
@@ -208,6 +277,8 @@ def main():
         else:
             audio, chars = eleven(spoken(p), spoken(paras[i - 1]) if i else "",
                                   spoken(paras[i + 1]) if i + 1 < len(paras) else "")
+            if MAX_PAUSE > 0:
+                audio, chars = tighten(audio, chars, MAX_PAUSE)
             audio, chars = add_pauses(audio, chars, SENT_GAP)
         ws = words_from_chars(p, chars, offset)
         for w, k in zip(ws, marked[i][1]):
@@ -220,7 +291,7 @@ def main():
     wav = os.path.join(OUT, name + ".wav")
     with wave.open(wav, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(RATE); w.writeframes(pcm)
-    if not use_piper:
+    if not use_piper and not os.environ.get("VOICE_NO_ALIGN"):
         # replace the TTS timestamps with forced-alignment timings, word for word
         aligned = forced_align(wav, " ".join(spoken(p) for p in paras))
         j = 0
