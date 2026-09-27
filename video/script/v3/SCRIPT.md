@@ -1,12 +1,12 @@
 # King Andrew: How the People's President Got a Crown
 
-**15 Minute History** · narration script · 2,700 words · about 15:19
+**15 Minute History** · narration script · 3,173 words · about 17:57
 
 **Driving question (asked in the cold open, answered in the last chapter):** How did the People's President end up being called a king?
 **Answer:** the same actions earned both names. Jackson believed the president was the people's one true representative, so beating Congress, the Bank and the Court meant the people were winning. His opponents saw one man deciding that *he* was the people. Which name fits depended on where you stood, and on who counted as "the people."
 
-The narration files the voice pipeline reads are `video/script/v3/ch01_…txt` to `ch10_…txt`. This page is the same text, with timestamps.
-Timestamps assume the Reform Era pace (~185 wpm, with chapter 9 voiced slower at ~160 and the ending at ~175), plus about 10 seconds for the channel intro and title card after the cold open, and 1.3 seconds for each logo break between chapters. Re-time after voicing.
+The narration files the voice pipeline reads are `video/script/v3/ch01_…txt` to `ch11_…txt`. This page is the same text, with timestamps.
+Timestamps assume the Reform Era pace (~185 wpm, with chapter 10 voiced slower at ~160 and the ending at ~175), plus about 10 seconds for the channel intro and title card after the cold open, and 1.3 seconds for each logo break between chapters. Re-time after voicing.
 
 ---
 
@@ -50,11 +50,11 @@ Remember that kid. The one who wouldn't bow to the king's officer. He matters at
 
 As a teenager, Jackson studied law in Salisbury, North Carolina, where one local remembered him as "the most roaring, rollicking, game-cocking, horse-racing, card-playing, mischievous fellow that ever lived in Salisbury." So, not exactly a model student.
 
-But he became a lawyer, moved west to Nashville, and started climbing. Land. Cotton. A plantation called the Hermitage, worked by enslaved people. He married Rachel Donelson. And he built a reputation for a terrifying temper. In 1806, a quarrel over a horse-race bet and an insult to Rachel ended in a duel. Jackson took a bullet in the chest, stayed standing, and killed the other man. That bullet stayed in Jackson for the rest of his life.
+But he became a lawyer, moved west to Nashville, and started climbing. Land. Cotton. A plantation called the Hermitage, worked by enslaved people. And he fell for Rachel Donelson Robards, who was stuck in a miserable marriage. They married in 1791, believing her divorce was final. It wasn't. They had to redo the wedding in 1794. Years later, his enemies would make them pay for that paperwork. And he built a reputation for a terrifying temper. In 1806, a quarrel over a horse-race bet and an insult to Rachel ended in a duel. Jackson took a bullet in the chest, stayed standing, and killed the other man. That bullet stayed in Jackson for the rest of his life.
 
 ---
 
-## 2:46 | Old Hickory
+## 2:58 | Old Hickory
 
 In the War of 1812, Jackson found the thing he was best at. His men said he was as tough as hickory wood, so they called him Old Hickory.
 
@@ -70,7 +70,7 @@ And he didn't slow down. In 1818, chasing Seminole raiders, he invaded Spanish F
 
 ---
 
-## 3:46 | The Corrupt Bargain
+## 3:59 | The Corrupt Bargain
 
 So in 1824, he runs for president. And he wins the most popular votes and the most electoral votes.
 
@@ -88,17 +88,19 @@ Insiders versus the people. That idea is going to drive his entire presidency.
 
 ---
 
-## 4:42 | King Mob
+## 4:55 | King Mob
 
 And "the people" were about to get a lot bigger. In the early 1800s, most states only let white men who owned property vote. By the 1820s, state after state dropped the property rule. That's called expanding suffrage, the right to vote. In 1828, about three times as many people voted for president as in 1824.
 
 But notice who "the people" means here. Women couldn't vote. Enslaved people couldn't vote. In most states, free Black men couldn't either. Hold onto that.
 
-Jackson's supporters also got organized. Led by a sharp New York politician named Martin Van Buren, they built a new party, with its own newspapers, rallies and clubs in almost every state. The Democratic Party. Yes, that one.
+Jackson's supporters also got organized. Led by a sharp New York politician named Martin Van Buren, they built a new party, with its own newspapers, rallies and clubs in almost every state. It came to be called the Democratic Party. Same name as today's Democrats, but a very different party, with very different ideas.
 
-The 1828 rematch, Jackson against Adams, was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed flyers covered in black coffins, accusing Jackson of executing his own soldiers. They called his wife a bigamist. Jackson's side called Adams a corrupt aristocrat who spent public money on a pool table. He'd paid for it himself. Didn't matter.
+The 1828 rematch, Jackson against Adams, was one of the nastiest campaigns in American history. This is mudslinging: attacking the person instead of debating the issues. Adams's side printed flyers covered in black coffins, accusing Jackson of executing his own soldiers. And they dug up that old marriage paperwork and called Rachel a bigamist, a woman married to two men at once. Jackson's side called Adams a corrupt aristocrat who spent public money on a pool table. He'd paid for it himself. Didn't matter.
 
-Jackson won big. But that December, weeks before he took office, Rachel died. Jackson blamed his enemies for the rest of his life.
+Jackson won big. But that December, weeks before the inauguration, Rachel died, probably of a heart attack. She was reportedly buried in the white dress she'd bought to wear in Washington. Jackson was sure the attacks had killed her. At her funeral, he reportedly said, "May God Almighty forgive her murderers, as I know she forgave them. I never can."
+
+He never did. Hold onto that. It's about to cause a scandal.
 
 Then came inauguration day, March 1829. Thousands of fans followed him into the White House. They stood on the furniture in muddy boots and got so rowdy that the staff dragged the punch out onto the lawn to lure everybody outside.
 
@@ -108,11 +110,11 @@ King Mob. That's the first king in this story. Jackson's fans had a different wo
 
 ---
 
-## 6:16 | To the Victors
+## 6:55 | To the Victors
 
 Once in office, Jackson went after the insiders, some of whom had held government jobs for decades. He argued that most government jobs were "so plain and simple" that any intelligent citizen could do them, and that people should rotate in and out. He called it rotation in office.
 
-His critics called it the spoils system, from a senator's line, "to the victors belong the spoils." Translation: government jobs go to the people who helped you win.
+His critics called it the spoils system. The name comes from a senator's line, "to the victors belong the spoils," meaning the winner gets the prizes. In politics, that means government jobs go to the people who helped you win.
 
 To be fair, Jackson didn't fire everybody. In his first year and a half, he replaced roughly one in ten federal officeholders. But the new hires were usually loyal Jackson men. And over the next fifty years, the spoils system became a major source of corruption.
 
@@ -120,7 +122,25 @@ His supporters saw fresh blood. His critics saw a president building a governmen
 
 ---
 
-## 7:02 | It Must Be Preserved
+## 7:45 | The Petticoat Affair
+
+Then Washington got a scandal. And this one was personal.
+
+Jackson's Secretary of War and old friend, John Eaton, had just married Peggy O'Neale Timberlake, the daughter of a Washington tavern keeper. Her first husband had died at sea only months before. And the gossip said she and Eaton had been close long before that.
+
+Washington's society wives decided she didn't belong. They snubbed her at parties, skipped her dinners and wouldn't return her visits. Leading the snub was Floride Calhoun, the wife of the vice president. It became known as the Petticoat Affair. A petticoat is a skirt worn under a dress. So, basically, the skirt scandal.
+
+Jackson took it very personally. To him, the gossip about Peggy sounded exactly like the gossip he believed had killed Rachel. He collected evidence himself, called a cabinet meeting, and declared that Peggy Eaton was "as chaste as a virgin." Which is not normally what cabinet meetings are for.
+
+The fight dragged on for two years. Martin Van Buren, a widower with no wife to do any snubbing, was friendly to the Eatons, and he rose in Jackson's eyes. Calhoun sank. In 1831, Jackson finally broke the stalemate by pushing out nearly his entire cabinet.
+
+After that, Jackson leaned even harder on a group of unofficial advisers: newspaper editors, old friends and political allies, most of them outside the official cabinet. Critics called them the Kitchen Cabinet, as if they came in through the back door instead of the front.
+
+To Jackson, they were the people he could trust. To his critics, it looked like a king listening to his court instead of his government.
+
+---
+
+## 9:15 | It Must Be Preserved
 
 Here's where the People's President starts to look like something else.
 
@@ -148,7 +168,7 @@ And the bigger question, can a state just say no to the Union, didn't go away. T
 
 ---
 
-## 9:28 | The Monster
+## 11:41 | The Monster
 
 Next target: a bank.
 
@@ -176,25 +196,31 @@ The Bank's charter ran out in 1836. A year later, the economy crashed in the Pan
 
 ---
 
-## 11:34 | Let Him Enforce It
+## 13:46 | Let Him Enforce It
 
 The hardest part of Jackson's presidency is also the part that cost the most lives.
 
-In 1830, tens of thousands of Native Americans still lived in the Southeast: the Cherokee, Creek, Choctaw, Chickasaw and Seminole nations. The Cherokee had a written constitution and their own newspaper, printed in a writing system created by a Cherokee man named Sequoyah. But white settlers wanted the land. Especially after gold was found in Georgia.
+In 1830, tens of thousands of Native Americans still lived in the Southeast: the Cherokee, Creek, Choctaw, Chickasaw and Seminole nations. The Cherokee had a written constitution and their own newspaper, printed in a writing system created by a Cherokee man named Sequoyah.
+
+But white settlers wanted the land. Especially after gold was found in north Georgia in 1829.
 
 In 1830, Jackson pushed the Indian Removal Act through Congress. It let the president trade land in the West for Native land in the East. It passed the House by just five votes. Jackson said removal would place "a dense and civilized population" on land "now occupied by a few savage hunters," and that moving west would protect Native people from the settlers pushing in on them.
 
 The Cherokee fought back in court. In 1832, in Worcester versus Georgia, the Supreme Court ruled that Georgia's laws had no force inside the Cherokee Nation.
 
-Georgia ignored the ruling. Jackson let it. You may have heard that he said, "John Marshall has made his decision; now let him enforce it." He probably never said that. What he did write, in a private letter, was that the decision had "fell still born."
+Georgia ignored the ruling. Jackson let it. You may have heard that he said, "John Marshall has made his decision; now let him enforce it." He probably never said that. It first shows up in print more than thirty years later. What he did write, in a private letter, was that the decision had "fell still born."
 
-In 1835, a small group of Cherokee signed away their homeland in the Treaty of New Echota, over the protests of Principal Chief John Ross. Over the next decade, tens of thousands of Native people were forced west. The Cherokee removal came in 1838, after Jackson had left office, and as many as one in four Cherokee died. It's known as the Trail of Tears, and it deserves a video of its own. We'll come back to it.
+In 1835, a small group of Cherokee, without their government's approval, signed the Treaty of New Echota, giving up their homeland. Principal Chief John Ross gathered a petition against it with about 15,000 signatures. The Senate approved the treaty anyway, by one vote.
 
-For now, here's what it means for our question. Some historians point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Others call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
+The Choctaw had been sent west starting in 1831. The French writer Alexis de Tocqueville watched them cross the Mississippi River in the middle of winter. "They had neither tents nor wagons," he wrote. The Creek, Chickasaw and Seminole followed.
+
+In 1838, after Jackson had left office, the U.S. Army forced about 16,000 Cherokee from their homes, held them in camps, and marched them west. Thousands died from disease, cold and hunger, perhaps as many as one in four. In Cherokee, it is remembered as "the trail where they cried." In English, it became the Trail of Tears.
+
+Some historians point out that Jackson believed removal was the only way to keep Native nations from being destroyed. Others call it ethnic cleansing. Either way, a president watched a state defy the Supreme Court, and chose not to stop it.
 
 ---
 
-## 13:42 | Same Man, Two Crowns
+## 16:20 | Same Man, Two Crowns
 
 So let's go back to the question. How did the People's President end up being called a king?
 
@@ -218,13 +244,14 @@ King.
 
 ## Production notes
 
-- **Heavy chapter:** chapter 9 (Indian Removal) uses teal lines only. No coral tint, no jokes, no highlighter titles after the chapter card, slower voice. Chapter 10 comes back to normal color, but gently.
+- **Heavy chapter:** chapter 10 (Indian Removal) uses teal lines only. No coral tint, no jokes, no highlighter titles after the chapter card, slower voice. Chapter 11 comes back to normal color, but gently.
 - **Callbacks:**
   - The "King Andrew the First" cartoon opens the video, comes back at the end of chapter 8 ("that's when the cartoon shows up"), and returns in the final chapter.
-  - **The boots:** the boy who wouldn't bow to a king's officer (ch2) returns in ch10.
-  - **"Hold that thought":** the Creek land grab (ch3) sets up ch9.
-  - **"The people":** the ch5 note that "the people" didn't include everyone comes back in ch10.
-  - **The three kings:** King Mob (ch5), then the Whigs named after the party that fought kings (ch8), then King Andrew (ch10).
+  - **The boots:** the boy who wouldn't bow to a king's officer (ch2) returns in ch11.
+  - **"Hold that thought":** the Creek land grab (ch3) sets up ch10.
+  - **"The people":** the ch5 note that "the people" didn't include everyone comes back in ch11.
+  - **The three kings:** King Mob (ch5), then the Kitchen Cabinet as a king's "court" (ch7), then the Whigs named after the party that fought kings (ch9), then King Andrew (ch11).
+  - **Rachel:** the marriage paperwork (ch2) becomes the bigamy attack (ch5), her death (ch5) drives Jackson's defense of Peggy Eaton (ch7), which sinks Calhoun before the toast (ch8).
 - **Vocab text cards (orange highlighter):**
   - Corrupt Bargain
   - suffrage
@@ -249,8 +276,11 @@ King.
   - "the direct representative of the American people" (1834)
   - "a dense and civilized population…" (1830)
   - "fell still born" (1832)
-- **Trail of Tears:** touched on briefly in ch9 and flagged on screen as a future video ("coming soon" note, no date).
-- **Vocab added:** American System, internal improvements, hard money, Democratic Party, Andy Veto, Treaty of New Echota.
+  - Tocqueville's "neither tents nor wagons" (1831)
+  - "as chaste as a virgin" (1829)
+  - "May God Almighty forgive her murderers…" (1828, reportedly)
+- **Key concepts (full definition cards):** spoils system and Kitchen Cabinet, each with its own highlighter title and definition bar.
+- **Vocab added:** American System, internal improvements, hard money, Democratic Party (on screen: "not the same party as today's"), Andy Veto, Treaty of New Echota, Petticoat Affair.
 - **Counter graphic:** 12 vetoes vs. 10 for all six earlier presidents combined.
 - **Split-screen ending:** "People's President" vs. "King Andrew" on the same portrait. No historians named on screen. Just the two labels, same face.
 - **Final line:** "King." Hard cut to black on the word, then hold a beat of silence before the end card. Ties the modern echo back to the cartoon without naming any modern president.
@@ -283,20 +313,26 @@ King.
   - Indian Removal
   - the veto count
   - the two sides of the historians' debate (unnamed)
-- **Petticoat Affair:** cut to keep the runtime down. It could return as a one-line aside in ch7.
+- **Petticoat Affair:** now its own chapter (ch7), ending with the Kitchen Cabinet.
 
 ## Fact-check flags
 
 **Added in the content pass:**
 
 - **Florida, 1818:** in the First Seminole War, Jackson seized St. Marks and Pensacola and executed two British subjects, Arbuthnot and Ambrister. His orders were ambiguous at best, so the script says "without clear orders." Clay attacked him in the House in January 1819. That is where their feud started, according to the class reading.
-- **Democratic Party:** Van Buren organized the Jacksonian coalition in 1827–28. The name "Democratic Party" came into general use in the 1830s. "Yes, that one" is fair, since it is the direct ancestor of today's party.
+- **Democratic Party:** Van Buren organized the Jacksonian coalition in 1827–28. The name "Democratic Party" came into general use in the 1830s. The script says it shares a name with today's Democrats but was a very different party with very different ideas.
 - **Spoils system:** the script says it became "a major source of corruption over the next fifty years." Civil-service reform came with the Pendleton Act (1883), after Garfield's assassination (1881).
 - **Biddle:** his 1833–34 credit contraction caused a short recession, and public anger largely turned on Biddle. By 1834 he eased off.
 - **"Andy Veto":** the nickname appears in the class reading. It was used by opposition papers.
 - **"Removal":** "tens of thousands" of Native people forced west in the 1830s is a safe figure; totals across all removals run higher.
 - **Civil War foreshadow:** South Carolina seceded in December 1860.
-- **Removed:** the Tocqueville quote was cut when chapter 9 was shortened. Save it for the Trail of Tears video.
+- **Rachel's marriage:** Rachel and Jackson are said to have married in Natchez in 1791, though the record of that ceremony is thin. Lewis Robards' divorce was granted only in 1793, and they remarried in January 1794.
+- **Rachel's death:** December 22, 1828, likely a heart attack. The white-dress burial and the "forgive her murderers" line are traditional accounts, so the script says "reportedly."
+- **Peggy Eaton:** John Timberlake died in April 1828. Peggy married Eaton on January 1, 1829. Floride Calhoun led the snub.
+- **Cabinet meeting:** the September 10, 1829 meeting is where Jackson declared her "as chaste as a virgin."
+- **Cabinet shake-up, April 1831:** Van Buren and Eaton resigned, and Jackson asked for the others' resignations. All went except the Postmaster General.
+- **Kitchen Cabinet:** Amos Kendall, Francis P. Blair, William B. Lewis, A. J. Donelson and Van Buren. Opponents used the name from about 1831–32. The "back door" gloss explains the name; it is not a period quote.
+- **"The trail where they cried":** the common rendering of the Cherokee name *Nunna daul Tsuny*. The script says "remembered as."
 
 
 These are places where the class readings, or popular memory, say something the script deliberately doesn't:

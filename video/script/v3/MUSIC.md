@@ -10,26 +10,27 @@ Every cue below already exists. There's no new generation unless we fill a gap.
 
 The Bierce repo has no committed music; its Suno files were never pushed.
 
-| Ch | Time (est.) | Chapter | Cue | Length | Fit |
-|---|---|---|---|---|---|
-| 1 | 0:00–1:13 | King Andrew the First | R `cold_open` | 1:16 | Strong. A mystery ostinato that builds, then ends on a questioning chord under "How did the People's President end up being called a king?" |
-| — | after ch1 | Title card | R `title_sting` | 0:30 (use first ~10 s) | Strong. It's the channel sting (Bierce reuses it too). |
-| 2 | 1:13–2:44 | Dirty Boots | J1 `cold_open` | 1:02 | Strong. It was written for the 1806 Tennessee duel: cello drones and a lonely fiddle. Start it at "Then came the Revolution" so the swell lands on the duel. |
-| 3 | 2:44–3:28 | Old Hickory | W `sea_battle` | 1:16 | Good. Fife, drums and a triumphant ending for New Orleans. Duck it low under the Creek land-grab lines so the Creek land grab isn't played as a win. |
-| 4 | 3:28–4:21 | The Corrupt Bargain | J1 `intrigue` | 2:05 | Perfect. It was written for the 1825 backroom deal. Line up its brass sting with "Judas of the West." |
-| 5 | 4:21–5:41 | King Mob | J1 `campaign` then J1 `grief` | 1:40 / 0:40 | Perfect. The rowdy march runs through the mudslinging. Grief plays solo for Rachel, then `campaign` returns for the inauguration. |
-| 6 | 5:41–6:22 | To the Victors | J1 `good_feelings` | 1:30 | Good. Wry and cozy, with the mischief near the end, which suits the spoils system. |
-| 7 | 6:22–8:15 | It Must Be Preserved | R `abolition_b` | 1:49 | Good. A defiant build, timpani, chaos, then a stubborn resolve, which fits the nullification standoff. Keep it low under the "burner account" joke. |
-| 8 | 8:15–10:07 | The Monster | J1 `gossip` | 2:00 | OK. Playful and sly with dramatic swells, which suits "Subtle." and the cartoon reveal. This is the weakest match (see gaps). |
-| 9 | 10:07–12:35 | Let Him Enforce It (heavy) | W `frontier` then W `aftermath` | 1:36 / 0:59 | Good. Both are dignified and grave, with no stereotypes (the prompts say so). `frontier` has an urgent middle; place it under the treaty/Senate lines, not the march. `aftermath` carries the Trail of Tears. |
-| 10 | 12:35–14:07 | Same Man, Two Crowns | R `ending` | 1:01 | Perfect. Reflective, then it darkens to an unresolved chord that lands on "King." Start it about 30 s into the chapter; the first half plays under a quiet tail of `aftermath` or dry. |
+| Ch | Chapter | Cue | Length | Fit |
+|---|---|---|---|---|
+| 1 | King Andrew the First | R `cold_open` | 1:16 | Strong. A mystery ostinato that builds, then ends on a questioning chord under the big question. |
+| — | Channel intro / title card | R `title_sting` | 0:30 (first ~10 s) | Strong. It's the channel sting. |
+| 2 | Dirty Boots | J1 `cold_open` | 1:02 | Strong. It was written for the 1806 duel. Start it at "Then came the Revolution" so the swell lands on the duel. |
+| 3 | Old Hickory | W `sea_battle` | 1:16 | Good. Duck it low under the Creek land-grab lines and the Florida lines. |
+| 4 | The Corrupt Bargain | J1 `intrigue` | 2:05 | Perfect. Line up its brass sting with "Judas of the West." |
+| 5 | King Mob | J1 `campaign` → J1 `grief` → J1 `campaign` | 1:40 / 0:40 | Perfect. `grief` plays solo under Rachel's death, then the march returns for the inauguration. |
+| 6 | To the Victors | J1 `good_feelings` | 1:30 | Good. Wry, with mischief near the end. |
+| 7 | The Petticoat Affair | J1 `gossip` | 2:00 | Perfect. It was written for this scandal. |
+| 8 | It Must Be Preserved | R `abolition_b` | 1:49 | Good. A defiant build, then chaos, then a stubborn ending. |
+| 9 | The Monster | **gap** (fallback: J1 `intrigue` tail, or R `nativism` second half) | — | Weak. This is the one chapter that should get a new cue. |
+| 10 | Let Him Enforce It (heavy) | W `frontier` → W `aftermath` | 1:36 / 0:59 | Good. Dignified and grave. `aftermath` carries the Trail of Tears. |
+| 11 | Same Man, Two Crowns | R `ending` | 1:01 | Perfect. It darkens to an unresolved chord that lands on "King." Start it about 30 s in. |
 
 **Unused but available:** R `revival`, `spirits`, `spirits_dark`, `nativism`, `temperance`, `dix`, `schools`, `curtain`, `utopia`, `abolition_a` (a solemn alternative for ch9); W `calm_sea`, `fire`, `dawn`, `title_fanfare`.
 
 **Gaps worth a new cue if budget allows:**
 
-1. **Bank War (ch8):** a pompous, marching "duel with a monster" cue would beat `gossip`.
-2. **Indian Removal (ch9):** a single 2:30 cue written for this chapter would avoid stitching two cues.
+1. **Bank War (ch9):** a pompous, marching "duel with a monster" cue. `gossip` now belongs to the Petticoat Affair.
+2. **Indian Removal (ch10):** a single 2:30 cue written for this chapter would avoid stitching two cues.
 
 **Notes:**
 
