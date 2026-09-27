@@ -32,6 +32,12 @@ JOBS = {
     "story": ("img/v3/ch05/story_joseph.jpg", None, "isnet-general-use"),
     "sequoyah": ("img/v3/ch10/sequoyah.jpg", None, "isnet-general-use"),
     "ross": ("img/v3/ch10/john_ross.jpg", None, "isnet-general-use"),
+    # Gemini paintings whose mask passes came back redrawn (not pixel-aligned), so masked here instead
+    "voters_a": ("img/gen/v3_ch05_new_voters.png", (80, 120, 420, 850), "isnet-general-use"),
+    "voters_b": ("img/gen/v3_ch05_new_voters.png", (470, 120, 760, 850), "isnet-general-use"),
+    "voters_c": ("img/gen/v3_ch05_new_voters.png", (840, 120, 1140, 850), "isnet-general-use"),
+    "snub": ("img/gen/v3_ch07_snub.png", (100, 320, 360, 770), "isnet-general-use"),
+    "kitchen": ("img/gen/v3_ch07_kitchen_door.png", (720, 300, 1150, 830), "isnet-general-use"),
 }
 
 

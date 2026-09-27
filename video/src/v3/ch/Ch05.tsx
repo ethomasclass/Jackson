@@ -1,15 +1,15 @@
 // Chapter 5 · King Mob (expanding suffrage, the 1828 campaign, Rachel, the inauguration)
 import React from 'react';
-import {AbsoluteFill, Audio, interpolate, Sequence, staticFile} from 'remotion';
+import {AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import words from '../../../public/audio/v3_ch05_the_people.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, INK, JF, Loop, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
+import {Highlight, INK, JF, Loop, Note, Picture, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {Coffin, Person} from '../figures';
 import {PLACES} from '../map';
 import {Tiles} from '../tiles';
 import {chapterFrames, ChapterShell, CropCard, Definition, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, Quote, Stamp, type TL, useScene} from '../shell';
-import {MASKS} from '../masks';
+import {MASKS, type MaskRef} from '../masks';
 
 const N = words as Narration;
 export const CH05_FRAMES = chapterFrames(N, LEAD);
@@ -99,18 +99,27 @@ const Electors: React.FC<{t: TL}> = ({t}) => {
   );
 };
 
-/** Beat 3: the new voters. */
+/** Beat 3: the new voters. Each man in the painting is tinted as he is named. */
 const Voters: React.FC<{t: TL}> = ({t}) => {
+  const frame = useCurrentFrame();
   const g = useGFrame();
   const gen = hasFile('img/gen/v3_ch05_new_voters.png');
-  const labels: [string, string, number][] = [['small farmers', 'farmers', 200], ['frontier settlers', 'Frontier', 720], ['city workers', 'Workers', 1380]];
+  const a = t.at('So who');
+  const place = fill(GEN, 600, 448, interpolate(frame, [a, t.at('And here')], [1.0, 1.04], clamp));
+  const men: [string, string, number, MaskRef][] = [['small farmers', 'farmers', 130, MASKS.voters_a], ['frontier settlers', 'Frontier', 700, MASKS.voters_b], ['city workers', 'Workers', 1340, MASKS.voters_c]];
   return (
-    <AbsoluteFill style={{background: INK}}>
-      {gen ? <Picture src="img/gen/v3_ch05_new_voters.png" place={fill(GEN, 600, 448, 1.0)} size={GEN} bw="grayscale(1) contrast(1.2)" />
+    <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
+      {gen ? <Picture src="img/gen/v3_ch05_new_voters.png" place={place} size={GEN} bw="grayscale(1) contrast(1.2)" />
         : <Picture src="img/county_election_bingham.jpg" place={fill([1920, 1382], 960, 700, 1.05)} size={[1920, 1382]} bw="grayscale(1) contrast(1.2) brightness(0.8)" />}
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
-      <Note text="so who were the new voters?" x={100} y={80} size={56} rot={-3} at={t.at('So who')} />
-      {labels.map(([txt, cue, x]) => g >= t.at(cue) ? <Highlight key={txt} text={txt.toUpperCase()} x={x - 100} y={880} size={52} at={t.at(cue)} seed={511 + x} rot={-2} /> : null)}
+      {gen && men.map(([, cue, , m]) => g >= t.at(cue) ? (
+        <React.Fragment key={cue}>
+          <Tint mask={m.alpha} place={place} size={GEN} />
+          <Traced paths={m.data.shapes.subject} place={place} at={t.at(cue)} dur={8} width={5} />
+        </React.Fragment>
+      ) : null)}
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(0,0,0,0.6) 100%)'}} />
+      <Note text="so who were the new voters?" x={100} y={60} size={56} rot={-3} at={a} />
+      {men.map(([txt, cue, x]) => g >= t.at(cue) ? <Highlight key={txt} text={txt.toUpperCase()} x={x} y={900} size={52} at={t.at(cue)} seed={511 + x} rot={-2} /> : null)}
       <Tag text={gen ? 'Illustration · new voters, 1828' : 'George Caleb Bingham, The County Election, 1852 · Saint Louis Art Museum'} />
     </AbsoluteFill>
   );

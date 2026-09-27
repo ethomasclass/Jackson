@@ -3,7 +3,7 @@ import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import words from '../../../public/audio/v3_ch07_petticoat_affair.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
+import {Highlight, INK, JF, Note, Picture, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
 import {ChapterShell, chapterFrames, CropCard, Definition, DrawnCrown, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, PhotoCard, Quote, type TL, useScene} from '../shell';
 import {MASKS} from '../masks';
@@ -53,11 +53,14 @@ const Snub: React.FC<{t: TL}> = ({t}) => {
   const pal = usePal();
   const gen = hasFile('img/gen/v3_ch07_snub.png');
   const a = t.at("Washington's society");
+  const sp = fill(GEN, 600, 448, interpolate(frame, [a, a + 360], [1.02, 1.1], clamp));
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       {gen ? (
         <>
-          <Picture src="img/gen/v3_ch07_snub.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 360], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.75)" />
+          <Picture src="img/gen/v3_ch07_snub.png" place={sp} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.75)" />
+          <Tint mask={MASKS.snub.alpha} place={sp} size={GEN} />
+          <Traced paths={MASKS.snub.data.shapes.subject} place={sp} at={a + 6} dur={12} width={5} />
           <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)'}} />
         </>
       ) : (
@@ -169,11 +172,14 @@ const Kitchen: React.FC<{t: TL}> = ({t}) => {
   const gen = hasFile('img/gen/v3_ch07_kitchen_door.png');
   const blair = hasFile('img/v3/ch07/francis_blair.jpg');
   const a = t.at('After that');
+  const kp = fill(GEN, 600, 448, interpolate(frame, [a, a + 400], [1.02, 1.1], clamp));
   return (
     <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
       {gen ? (
         <>
-          <Picture src="img/gen/v3_ch07_kitchen_door.png" place={fill(GEN, 600, 448, interpolate(frame, [a, a + 400], [1.02, 1.1], clamp))} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.8)" />
+          <Picture src="img/gen/v3_ch07_kitchen_door.png" place={kp} size={GEN} bw="grayscale(1) contrast(1.2) brightness(0.8)" />
+          <Tint mask={MASKS.kitchen.alpha} place={kp} size={GEN} />
+          <Traced paths={MASKS.kitchen.data.shapes.subject} place={kp} at={t.at('Kitchen') - 2} dur={12} width={5} />
           <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)'}} />
         </>
       ) : (
