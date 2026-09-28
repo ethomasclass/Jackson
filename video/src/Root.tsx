@@ -10,6 +10,7 @@ import {EndCard, END_CARD_SECONDS, Petticoat, PETTICOAT_SECONDS} from './v1/Pett
 import {BreakDemo, BREAK_DEMO_FRAMES} from './v3/BreakDemo';
 import {V3_CHAPTERS} from './v3/chapters';
 import {JFonts} from './v3/Kit';
+import {THUMB_FRAMES, V3ThumbA, V3ThumbB, V3ThumbC} from './v3/Thumbnail';
 import coldOpen from '../public/audio/v1_cold_open.words.json';
 
 type Scene = {id: string; component: React.FC<{captions: boolean}>; seconds: number};
@@ -60,6 +61,9 @@ export const Root: React.FC = () => (
     ))}
     {V3_CHAPTERS.map((c) => (
       <Composition key={c.id} id={c.id} width={W} height={H} fps={FPS} durationInFrames={c.frames} component={() => <JFonts><c.C /></JFonts>} />
+    ))}
+    {([['V3-Thumb-A', V3ThumbA], ['V3-Thumb-B', V3ThumbB], ['V3-Thumb-C', V3ThumbC]] as [string, React.FC][]).map(([id, C]) => (
+      <Composition key={id} id={id} width={W} height={H} fps={FPS} durationInFrames={THUMB_FRAMES} component={() => <JFonts><C /></JFonts>} />
     ))}
     <Composition id="V3-BreakDemo" component={BreakDemo} width={W} height={H} fps={FPS} durationInFrames={BREAK_DEMO_FRAMES} />
   </>
