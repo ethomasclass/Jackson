@@ -10,6 +10,7 @@ import {MASKS} from './masks';
 export const THUMB_FRAMES = 150;
 const TEAL = '#2FE0C4';
 const CORAL = '#FF6F61';
+const GOLD = '#FF9F1C';
 const SULLY: [number, number] = [1920, 2288];
 
 /** Channel logo, top-left (YouTube covers the bottom-right with the running time). */
@@ -42,19 +43,30 @@ const SideTint: React.FC<{place: Place; color: string; mid: number; side: 'left'
   );
 };
 
-/** A · Same face, two answers: teal People's President, coral King Andrew with a drawn crown. */
+/** A · Same face, two answers: Jackson cut out on the desk, teal People's President / coral King Andrew,
+ *  a gold crown sized to and resting on his head, titles below the chin so the face stays clear. */
 const ThumbA: React.FC = () => {
-  const place = fill(SULLY, 960, 820, 1.02);
+  const place: Place = {left: 960 - 972 * 0.55, top: 80, scale: 0.55};
+  const S = (x: number, y: number) => [place.left + x * place.scale, place.top + y * place.scale];
+  // Hair top in the source runs about y 145-250 across x 650-1150; the base rests just into it.
+  const [x0, y] = S(660, 275);
+  const [x1] = S(1200, 275);
+  const cut: React.CSSProperties = {WebkitMaskImage: `url(${staticFile(MASKS.sully.alpha)})`, WebkitMaskSize: '100% 100%', maskImage: `url(${staticFile(MASKS.sully.alpha)})`, maskSize: '100% 100%'} as React.CSSProperties;
   return (
-    <AbsoluteFill style={{background: INK, overflow: 'hidden'}}>
-      <Picture src="img/jackson_sully_1845.jpg" place={place} size={SULLY} bw="grayscale(1) contrast(1.25) brightness(0.85)" />
+    <AbsoluteFill style={{background: '#15130f', overflow: 'hidden'}}>
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 40%, #2a2620 0%, #16140f 70%, #0d0c09 100%)'}} />
+      <div style={{position: 'absolute', left: place.left, top: place.top, width: SULLY[0] * place.scale, height: SULLY[1] * place.scale, ...cut, filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.6))'}}>
+        <Picture src="img/jackson_sully_1845.jpg" place={{left: 0, top: 0, scale: place.scale}} size={SULLY} bw="grayscale(1) contrast(1.25) brightness(0.9)" />
+      </div>
       <SideTint place={place} color={TEAL} mid={960} side="left" />
       <SideTint place={place} color={CORAL} mid={960} side="right" />
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(0,0,0,0.7) 100%)'}} />
+      <Traced paths={MASKS.sully.data.shapes.subject} place={place} at={0} dur={1} width={7} color="#f4efe6" />
       <div style={{position: 'absolute', left: 956, top: 0, width: 8, height: 1080, background: '#f4efe6'}} />
-      <DrawnCrown x0={1060} x1={1500} y={300} h={150} at={0} dur={1} width={14} color={CORAL} />
-      <Highlight text="HERO" x={70} y={800} size={170} at={0} seed={71} rot={-3} />
-      <Highlight text="OR KING?" x={1000} y={800} size={170} at={0} seed={73} rot={-2} />
+      <AbsoluteFill style={{filter: 'drop-shadow(0 0 3px #0d0c09) drop-shadow(0 6px 10px rgba(0,0,0,0.8))'}}>
+        <DrawnCrown x0={x0} x1={x1} y={y} h={125} at={0} dur={1} width={15} color={GOLD} />
+      </AbsoluteFill>
+      <Highlight text="HERO" x={170} y={855} size={150} at={0} seed={71} rot={-3} />
+      <Highlight text="OR KING?" x={1010} y={855} size={150} at={0} seed={73} rot={-2} />
       <Logo />
       <Finish vignette={0.3} />
     </AbsoluteFill>
