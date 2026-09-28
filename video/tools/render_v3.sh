@@ -8,6 +8,7 @@ CH=${*:-"01 02 03 04 05 06 07 08 09 10 11"}
 for n in $CH; do
   npx remotion render src/index.ts V3-Ch$n out/v3/ch$n.mp4 --crf=18 --browser-executable=$REMOTION_CHROME --log=error || exit 1
   echo "rendered ch$n"
+  rm -rf /tmp/remotion-webpack-bundle-*   # each render leaves a ~500 MB copy of public/ behind
 done
 LIST=out/v3/list.txt; : > $LIST
 for n in 01 02 03 04 05 06 07 08 09 10 11; do echo "file '$(pwd)/out/v3/ch$n.mp4'" >> $LIST; done

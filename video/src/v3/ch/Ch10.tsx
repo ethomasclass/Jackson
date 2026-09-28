@@ -120,8 +120,8 @@ const Court: React.FC<{t: TL}> = ({t}) => {
           {k > 0 && <div style={{position: 'absolute', left: -10, top: 60, height: 8, width: 1250 * k, background: pal.mark, transform: 'rotate(-3deg)'}} />}
         </div>
       )}
-      <Note text="probably never said" x={1100} y={500} size={52} rot={-4} at={s} />
-      <Quote text="fell still born" at={t.at('fell')} x={110} y={820} w={900} size={60} who="Jackson, letter to John Coffee, April 1832" />
+      <Note text="probably never said" x={880} y={730} size={52} rot={-4} at={s} />
+      <Quote text="fell still born" at={t.at('fell')} x={110} y={850} w={900} size={60} who="Jackson, letter to John Coffee, April 1832" />
       {marshall && <Tag text="John Marshall, Chief Justice · portrait" />}
     </AbsoluteFill>
   );

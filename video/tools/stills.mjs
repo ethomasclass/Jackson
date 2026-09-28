@@ -1,6 +1,7 @@
 // Render review stills at given seconds with one bundle:  node tools/stills.mjs V1-ColdOpen outdir 4.8 10.5 ...
 import {bundle} from '@remotion/bundler';
 import {renderStill, selectComposition} from '@remotion/renderer';
+import fs from 'node:fs';
 import path from 'node:path';
 
 const [id, out, ...secs] = process.argv.slice(2);
@@ -12,3 +13,4 @@ for (const s of secs) {
   await renderStill({composition, serveUrl, frame, output: path.join(out, `${id}_${s}.jpg`), imageFormat: 'jpeg', browserExecutable});
   console.log('still', s);
 }
+fs.rmSync(serveUrl, {recursive: true, force: true}); // bundles copy all of public/ (~500 MB)

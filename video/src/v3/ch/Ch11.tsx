@@ -5,7 +5,7 @@ import words from '../../../public/audio/v3_ch11_king_andrew.words.json';
 import {clamp} from '../../lib/anim';
 import {Highlight, JF, Loop, Note, Picture, Tag, Tint, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
-import {Person, Stool} from '../figures';
+import {Person, SystemCards} from '../figures';
 import {ChapterShell, chapterFrames, CropCard, DrawnCrown, fill, LEAD, makeTimeline, type Narration, Stamp, type TL, useScene} from '../shell';
 import {MASKS} from '../masks';
 
@@ -59,7 +59,7 @@ const Vetoes: React.FC<{t: TL}> = ({t}) => {
       {g >= p + 10 && <Stamp text="10" x={1690} y={400} at={p + 10} size={110} color="#f4efe6" />}
       <Note text="they mostly vetoed laws that broke the Constitution" x={110} y={600} size={44} rot={-2} at={t.at('broke')} color="#ffffff" />
       <Note text="Jackson: laws he thought were bad ideas" x={110} y={690} size={50} rot={-2} at={t.at('bad')} />
-      <Stool x={1620} y={640} show={[0, 0, 0]} knock={[-99, -99, t.at('road')]} scale={0.45} />
+      <SystemCards x={1440} y={620} show={[0, 0, 0]} knock={[-99, -99, t.at('road')]} scale={0.42} />
       <Note text="a road that ran through Clay's Kentucky" x={110} y={790} size={46} rot={-2} at={t.at('road')} color="#ffffff" />
       {g >= t.at('Andy') && <Highlight text="“ANDY VETO”" x={110} y={890} size={90} at={t.at('Andy')} seed={1105} rot={-3} />}
     </AbsoluteFill>

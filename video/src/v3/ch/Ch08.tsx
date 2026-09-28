@@ -5,7 +5,7 @@ import words from '../../../public/audio/v3_ch08_federal_union.words.json';
 import {clamp} from '../../lib/anim';
 import {Highlight, INK, JF, Note, Picture, Tag, Tint, Traced, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
-import {Stool} from '../figures';
+import {SystemCards} from '../figures';
 import {MapScene, Pin, PLACES, Region, Route} from '../map';
 import {ChapterShell, chapterFrames, CropCard, Definition, fill, hasFile, LEAD, makeTimeline, type Narration, PhotoCard, Quote, Stamp, type TL, useScene} from '../shell';
 import {MASKS} from '../masks';
@@ -35,7 +35,7 @@ const System: React.FC<{t: TL}> = ({t}) => {
       <CropCard mask={MASKS.clay} src="img/clay_jouett.jpg" size={[1920, 2319]} x={110} y={180} w={400} h={520} fx={960} fy={1000} scale={0.32} rot={-2} at={1} />
       <Note text="Henry Clay's big plan:" x={110} y={60} size={48} rot={-3} at={t.at('big')} />
       {g >= t.at('American System') && <Highlight text="THE AMERICAN SYSTEM" x={640} y={140} size={76} at={t.at('American System')} seed={801} rot={-2} />}
-      <Stool x={1160} y={300} show={[t.at('tariffs'), t.at('bank'), t.at('roads')]} scale={0.95} />
+      <SystemCards x={600} y={300} show={[t.at('tariffs'), t.at('bank'), t.at('roads')]} />
       <Definition term="in·ter·nal im·prove·ments" def="federally funded roads and canals" at={t.at('internal')} x={110} y={780} w={760} />
       <Note text="Jackson fought all three." x={140} y={940} size={60} rot={-3} at={t.at('fought')} color={usePal().subject} />
       <Tag text="Matthew Harris Jouett, Henry Clay, c. 1818" />

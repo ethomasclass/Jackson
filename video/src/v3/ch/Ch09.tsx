@@ -5,7 +5,7 @@ import words from '../../../public/audio/v3_ch09_the_monster.words.json';
 import {clamp} from '../../lib/anim';
 import {Highlight, INK, JF, Note, Picture, Tag, useGFrame, usePal} from '../Kit';
 import {DarkPaper, Sfx, WRITE} from '../common';
-import {Stool} from '../figures';
+import {SystemCards} from '../figures';
 import {ChapterShell, chapterFrames, CropCard, Definition, DrawnCrown, fill, hasFile, LEAD, makeTimeline, type Narration, Photo, PhotoCard, Quote, Stamp, type TL, useScene} from '../shell';
 import {MASKS} from '../masks';
 
@@ -20,7 +20,7 @@ const Bank: React.FC<{t: TL}> = ({t}) => {
   return (
     <AbsoluteFill>
       <DarkPaper />
-      <Stool x={1500} y={90} show={[0, 0, 0]} knock={[-99, t.at("Next") + 10, 1e7]} scale={0.55} />
+      <SystemCards x={1400} y={70} show={[0, 0, 0]} knock={[-99, t.at("Next") + 10, 1e7]} scale={0.45} />
       <Note text="next target:" x={100} y={70} size={56} rot={-3} at={1} />
       {g >= t.at('Bank') && <Highlight text="THE BANK" x={480} y={60} size={100} at={t.at('Bank')} seed={901} rot={-2} />}
       {bld && <PhotoCard src="img/v3/ch09/second_bank.jpg" x={110} y={250} w={640} h={430} rot={-2} at={t.at('Second') - 1} />}

@@ -76,3 +76,51 @@ export const Stool: React.FC<{x: number; y: number; show: number[]; knock?: numb
     </div>
   );
 };
+
+/**
+ * Clay's American System as three index cards with teal line drawings: TARIFFS (a crate of imported goods),
+ * A NATIONAL BANK (the Greek-columned bank), ROADS & CANALS (a winding road). Card i draws on at show[i];
+ * at knock[i] a coral X is slashed across it and it dims.
+ */
+export const SystemCards: React.FC<{x: number; y: number; show: number[]; knock?: number[]; scale?: number}> = ({x, y, show, knock = [1e7, 1e7, 1e7], scale = 1}) => {
+  const g = useGFrame();
+  const T = '#2FE0C4';
+  const C = '#FF6F61';
+  const icons = [
+    // crate with cross-bracing, a "TAX" tag and a bolt of cloth on top
+    'M 60 120 L 240 120 L 240 240 L 60 240 Z M 60 120 L 240 240 M 240 120 L 60 240 M 90 120 L 90 100 Q 150 70 210 100 L 210 120 M 110 100 Q 150 85 190 100',
+    // pediment, entablature, six columns, steps
+    'M 50 110 L 150 60 L 250 110 Z M 45 110 L 255 110 L 255 124 L 45 124 Z M 70 124 L 70 220 M 102 124 L 102 220 M 134 124 L 134 220 M 166 124 L 166 220 M 198 124 L 198 220 M 230 124 L 230 220 M 40 220 L 260 220 L 260 234 L 40 234 Z M 30 234 L 270 234 L 270 248 L 30 248 Z',
+    // road winding to the horizon, with a dashed centre line and a milestone
+    'M 30 250 C 120 210 60 170 150 140 C 210 120 190 100 240 80 M 110 250 C 180 215 140 175 205 145 C 245 128 238 106 262 88 M 70 250 C 150 212 100 172 178 142 M 40 90 L 270 90 M 60 175 L 60 205 L 80 205 L 80 175 Z',
+  ];
+  const labels = ['TARIFFS', 'A NATIONAL BANK', 'ROADS & CANALS'];
+  return (
+    <div style={{position: 'absolute', left: x, top: y, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
+      {labels.map((label, i) => {
+        if (g < show[i]) return null;
+        const draw = interpolate(g, [show[i], show[i] + 10], [0, 1], clamp);
+        const pop = interpolate(g, [show[i], show[i] + 3, show[i] + 6], [0.6, 1.08, 1], clamp);
+        const k = interpolate(g, [knock[i], knock[i] + 6], [0, 1], clamp);
+        return (
+          <div key={label} style={{position: 'absolute', left: i * 340, top: 0, width: 300, height: 360, transform: `scale(${pop}) rotate(${(i - 1) * 2 + k * 6}deg)`, opacity: 1 - k * 0.35}}>
+            <div style={{position: 'absolute', inset: 0, background: '#1d1a15', border: '3px solid rgba(244,239,230,0.55)', boxShadow: '0 16px 30px rgba(0,0,0,0.6)',
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '100% 30px'}} />
+            <svg style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}} width={300} height={300}>
+              <path d={icons[i]} fill="none" stroke={T} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - draw} />
+              {k > 0 && (
+                <>
+                  <line x1={20} y1={20} x2={20 + 260 * Math.min(1, k * 2)} y2={20 + 300 * Math.min(1, k * 2)} stroke={C} strokeWidth={16} strokeLinecap="round" />
+                  {k > 0.5 && <line x1={280} y1={20} x2={280 - 260 * (k * 2 - 1)} y2={20 + 300 * (k * 2 - 1)} stroke={C} strokeWidth={16} strokeLinecap="round" />}
+                </>
+              )}
+            </svg>
+            <div style={{position: 'absolute', left: 0, right: 0, top: 280, textAlign: 'center', fontFamily: '"Abril Fatface", serif', fontSize: 32, color: '#111', lineHeight: 1}}>
+              <span style={{background: '#FF9F1C', padding: '6px 12px', boxDecorationBreak: 'clone'}}>{label}</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
