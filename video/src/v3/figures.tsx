@@ -115,7 +115,7 @@ export const SystemCards: React.FC<{x: number; y: number; show: number[]; knock?
                 </>
               )}
             </svg>
-            <div style={{position: 'absolute', left: 0, right: 0, top: 280, textAlign: 'center', fontFamily: '"Abril Fatface", serif', fontSize: 32, color: '#111', lineHeight: 1}}>
+            <div style={{position: 'absolute', left: 0, right: 0, top: 285, textAlign: 'center', fontFamily: '"Abril Fatface", serif', fontSize: 26, color: '#111', lineHeight: 1, whiteSpace: 'nowrap'}}>
               <span style={{background: '#FF9F1C', padding: '6px 12px', boxDecorationBreak: 'clone'}}>{label}</span>
             </div>
           </div>
