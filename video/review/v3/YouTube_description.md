@@ -57,7 +57,7 @@ Historical images: Library of Congress, Wikimedia Commons, Internet Archive, the
 ## Tags (paste into the Tags field)
 
 ```
-andrew jackson, king andrew, jacksonian democracy, andrew jackson explained, age of jackson, people's president, corrupt bargain, election of 1824, election of 1828, expanded suffrage, spoils system, kitchen cabinet, petticoat affair, nullification crisis, tariff of abominations, bank war, second bank of the united states, indian removal act, trail of tears, worcester v georgia, john c calhoun, henry clay, martin van buren, apush, apush period 4, us history, american history
+andrew jackson, king andrew, jacksonian democracy, andrew jackson explained, age of jackson, people's president, corrupt bargain, election of 1824, election of 1828, expanded suffrage, spoils system, kitchen cabinet, petticoat affair, nullification crisis, tariff of abominations, bank war, second bank of the united states, indian removal act, trail of tears, worcester v georgia, john c calhoun, henry clay, martin van buren, apush, apush period 4, us history
 ```
 
 ## Upload settings
