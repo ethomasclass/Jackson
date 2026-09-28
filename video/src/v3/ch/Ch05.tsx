@@ -67,7 +67,7 @@ const Gate: React.FC<{t: TL}> = ({t}) => {
           );
         }}
       </CropCard>
-      <Note text="new western states: any white man" x={1180} y={600} size={44} rot={-3} at={t.at('any')} />
+      <Note text="new western states: any white man" x={940} y={600} size={44} rot={-3} at={t.at('any')} />
       {g >= t.at('suffrage') && <Highlight text="EXPANDING SUFFRAGE" x={100} y={930} size={70} at={t.at('suffrage')} seed={507} rot={-2} />}
       <Definition term="suf·frage" def="the right to vote" at={t.at('right')} x={880} y={950} w={700} />
     </AbsoluteFill>

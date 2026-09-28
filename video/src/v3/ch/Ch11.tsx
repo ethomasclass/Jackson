@@ -78,7 +78,7 @@ const Opposite: React.FC<{t: TL}> = ({t}) => {
       <Note text="✓ overruled Congress" x={800} y={360} size={56} rot={-2} at={t.at('overruled')} color="#ffffff" />
       <Note text="✓ destroyed the Bank" x={800} y={450} size={56} rot={-2} at={t.at('destroyed')} color="#ffffff" />
       <Note text="✓ shrugged at the Court" x={800} y={540} size={56} rot={-2} at={t.at('shrugged')} color="#ffffff" />
-      <Note text="= protecting the people from the insiders" x={760} y={690} size={52} rot={-3} at={t.at('protecting')} color={pal.mark} />
+      <Note text="= protecting the people from the insiders" x={740} y={690} size={48} rot={-3} at={t.at('protecting')} color={pal.mark} />
       <Tag text="Thomas Sully, Andrew Jackson, 1845 · National Gallery of Art" />
     </AbsoluteFill>
   );
@@ -128,7 +128,7 @@ const Split: React.FC<{t: TL}> = ({t}) => {
       <Note text="same man, same things" x={640} y={60} size={60} rot={-3} at={mid} color="#ffffff" />
       <Note text="it depended on where you stood" x={560} y={160} size={52} rot={-3} at={t.at('depended')} />
       <Note text="agree: the people are finally winning" x={40} y={770} size={42} rot={-3} at={t.at('agreed')} color={pal.mark} />
-      <Note text="disagree: one man decided he WAS the people" x={990} y={770} size={40} rot={-3} at={t.at("didn't")} color={pal.subject} />
+      <Note text="disagree: one man decided he WAS the people" x={980} y={770} size={36} rot={-3} at={t.at("didn't")} color={pal.subject} />
       <Tag text="Thomas Sully, Andrew Jackson, 1845 · National Gallery of Art" />
     </AbsoluteFill>
   );

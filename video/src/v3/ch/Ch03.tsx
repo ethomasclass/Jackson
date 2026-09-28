@@ -50,7 +50,7 @@ const Creek: React.FC<{t: TL}> = ({t}) => {
             <Note text="the Red Sticks: Creek warriors fighting American expansion" x={100} y={320} size={44} rot={-2} at={t.at('Red')} color="#ffffff" />
             {g >= t.at('23') && <Highlight text="~23 MILLION ACRES" x={1080} y={760} size={76} at={t.at('23')} seed={307} rot={-2} />}
             <Note text="including land of Creeks who fought on his side" x={620} y={890} size={44} rot={-2} at={t.at('including')} color="#ffffff" />
-            <Note text="hold that thought." x={1300} y={120} size={64} rot={-4} at={t.at('Hold')} color={pal.subject} />
+            <Note text="hold that thought." x={1180} y={120} size={64} rot={-4} at={t.at('Hold')} color={pal.subject} />
           </>
         );
       }}

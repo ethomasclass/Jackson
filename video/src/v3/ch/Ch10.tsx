@@ -139,7 +139,7 @@ const Echota: React.FC<{t: TL}> = ({t}) => {
       <Note text="a small group of Cherokee," x={110} y={190} size={46} rot={-2} at={t.at('small')} color="#ffffff" />
     <Note text="without their government's approval" x={130} y={270} size={46} rot={-2} at={t.at('without')} color="#ffffff" />
       <Note text="signed away their homeland" x={130} y={350} size={50} rot={-2} at={t.at('homeland')} />
-      <Note text="Principal Chief John Ross" x={1370} y={760} size={48} rot={-2} at={t.at('Principal')} color="#ffffff" />
+      <Note text="Principal Chief John Ross" x={1190} y={760} size={48} rot={-2} at={t.at('Principal')} color="#ffffff" />
       {g >= n0 && <div style={{position: 'absolute', left: 120, top: 440, fontFamily: JF.display, fontSize: 150, color: '#f4efe6', textShadow: '0 6px 22px #000'}}>{n.toLocaleString('en-US')}</div>}
       <Note text="signatures against it" x={140} y={630} size={56} rot={-2} at={n0} />
       <Note text="the Senate approved it anyway: by one vote" x={120} y={800} size={52} rot={-2} at={t.at('anyway')} color="#ffffff" />

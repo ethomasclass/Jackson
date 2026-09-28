@@ -85,7 +85,7 @@ const Crowd: React.FC<{t: TL}> = ({t}) => {
       {g >= t.at('earlier') && <Highlight text="1829" x={100} y={90} size={100} at={t.at('earlier')} seed={21} rot={-2} />}
       <Note text="champion of the common man" x={110} y={240} size={54} rot={-3} at={t.at('champion')} />
       <Note text="an orphan from the backwoods" x={110} y={330} size={54} rot={-3} at={t.at('orphan')} color="#ffffff" />
-      <Note text="thousands crammed into the White House" x={760} y={890} size={52} rot={-2} at={t.at('crammed')} />
+      <Note text="thousands crammed into the White House" x={620} y={890} size={52} rot={-2} at={t.at('crammed')} />
       {g >= t.at("People's President") && <Highlight text="THE PEOPLE'S PRESIDENT" x={180} y={520} size={100} at={t.at("People's President")} seed={23} rot={-2} />}
       <Tag text="Robert Cruikshank, The President's Levee, or All Creation Going to the White House, 1841 · Library of Congress" />
     </AbsoluteFill>

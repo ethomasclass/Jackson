@@ -89,7 +89,7 @@ const Fair: React.FC<{t: TL}> = ({t}) => {
       <Jobs t={t} swap={t.at('one in ten') + 4} />
       <Note text="first year and a half" x={1300} y={200} size={46} rot={-3} at={t.at('year')} color="#ffffff" />
       <Note text="...usually loyal Jackson men" x={120} y={860} size={52} rot={-3} at={t.at('loyal')} />
-      <Note text="next 50 years: a major source of corruption" x={120} y={950} size={52} rot={-3} at={t.at('corruption')} color={pal.subject} />
+      <Note text="next 50 years: a major source of corruption" x={120} y={930} size={52} rot={-3} at={t.at('corruption')} color={pal.subject} />
     </AbsoluteFill>
   );
 };

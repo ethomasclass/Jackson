@@ -93,7 +93,7 @@ const AllIn: React.FC<{t: TL}> = ({t}) => {
       {g >= t.at('all in') && <Highlight text="SO HE WENT ALL IN" x={1030} y={150} size={70} at={t.at('all in')} seed={707} rot={-3} />}
       <Note text="a cabinet meeting, to declare Peggy..." x={1040} y={300} size={44} rot={-3} at={t.at('cabinet meeting')} color="#ffffff" />
       <Quote text="as chaste as a virgin." at={t.at('chaste')} x={1040} y={400} w={820} size={70} />
-      <Note text="(not normally what cabinet meetings are for)" x={1000} y={640} size={42} rot={-3} at={t.at('Which')} color={pal.subject} />
+      <Note text="(not normally what cabinet meetings are for)" x={900} y={640} size={38} rot={-3} at={t.at('Which')} color={pal.subject} />
       <Tag text="Earl, Rachel Jackson, c. 1827 · Peggy Eaton, Brady studio · Library of Congress" />
     </AbsoluteFill>
   );

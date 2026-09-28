@@ -65,7 +65,7 @@ const Trade: React.FC<{t: TL}> = ({t}) => {
           <>
             {g >= a && <Highlight text="THE TARIFF" x={90} y={70} size={90} at={a} seed={803} rot={-2} />}
             <Definition term="tar·iff" def="a tax on imported goods" at={t.at('tax')} x={100} y={220} w={620} />
-            <Note text="to & from Britain →" x={1380} y={110} size={50} rot={-3} at={cloth - 4} color="#ffffff" />
+            <Note text="to & from Britain →" x={1240} y={110} size={50} rot={-3} at={cloth - 4} color="#ffffff" />
             <Note text="British cloth →" x={1300} y={220} size={50} rot={-3} at={cloth} color={pal.box} />
             <Pin x={bx} y={by} at={t.at('Northern')} />
             <Note text="Northern factories: great!" x={820} y={340} size={50} rot={-3} at={t.at('Northern')} />
@@ -185,7 +185,7 @@ const TwoViews: React.FC<{t: TL}> = ({t}) => {
       <Note text="with an army, over a tax" x={1050} y={520} size={44} rot={-3} at={t.at('army', 2)} color="#ffffff" />
       <Note text="can a state just say no to the Union?" x={120} y={820} size={54} rot={-3} at={t.at('question')} />
       {g >= t.at('thirty') && <Stamp text="1860" x={1380} y={690} at={t.at('thirty')} size={110} color={pal.subject} />}
-      <Note text="the answer: the Civil War" x={1250} y={860} size={54} rot={-3} at={t.at('Civil')} color={pal.subject} />
+      <Note text="the answer: the Civil War" x={1080} y={860} size={54} rot={-3} at={t.at('Civil')} color={pal.subject} />
     </AbsoluteFill>
   );
 };

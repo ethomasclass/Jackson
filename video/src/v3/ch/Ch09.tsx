@@ -26,7 +26,7 @@ const Bank: React.FC<{t: TL}> = ({t}) => {
       {bld && <PhotoCard src="img/v3/ch09/second_bank.jpg" x={110} y={250} w={640} h={430} rot={-2} at={t.at('Second') - 1} />}
       <Note text="the Second Bank of the United States" x={bld ? 820 : 110} y={260} size={50} rot={-3} at={t.at('Second')} color="#ffffff" />
       <Note text="held the government's money" x={bld ? 840 : 130} y={360} size={48} rot={-3} at={t.at('held')} />
-      <Note text="made borrowing easier or harder for everyone" x={bld ? 840 : 130} y={450} size={44} rot={-3} at={t.at('easier')} />
+      <Note text="made borrowing easier or harder for everyone" x={bld ? 820 : 130} y={450} size={40} rot={-3} at={t.at('easier')} />
       <Note text="mostly privately owned" x={bld ? 840 : 130} y={560} size={48} rot={-3} at={t.at('privately')} color="#ffffff" />
       {biddle && <PhotoCard src="img/v3/ch09/biddle.jpg" x={1380} y={560} w={330} h={420} rot={3} at={t.at('Nicholas') - 1} />}
       {g >= t.at('Nicholas') && <Highlight text="NICHOLAS BIDDLE" x={110} y={720} size={76} at={t.at('Nicholas')} seed={903} rot={-2} />}
