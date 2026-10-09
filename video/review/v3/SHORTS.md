@@ -6,9 +6,13 @@ Code: `video/src/v3/shorts/` (`Short.tsx` = the shared vertical shell, one file 
 
 ## Short 1 · He wouldn't bow to a king (test)
 
-**File:** `renders/shorts/King_Andrew_Short_1_Bow_to_a_King.mp4` (46 s, −14 LUFS)
+**File:** `renders/shorts/King_Andrew_Short_1_Bow_to_a_King.mp4` (54 s, −14 LUFS)
 **Narration:** ch02 0:00–0:35 (born in the Waxhaws → the boots → "no family left") + ch11 1:02–1:11 ("Remember that kid… the nickname King Andrew.")
-**Music:** the chapter 2 cue (`cold_open.mp3`) · **Pictures:** Brave Boy of the Waxhaws (1876), Sully portrait (1845), "King Andrew the First" (1833)
++ a new 7-second outro in the same voice clone (`script/v3/shorts/outro_subscribe.txt` → `public/audio/v3_short_outro_subscribe.wav`):
+"Want the rest of the story? Watch the full video, King Andrew, right here on the channel. And subscribe for more 15 Minute History."
+**Outro picture:** the King Andrew thumbnail on a card ("the full video is linked below"), then the wordmark and SUBSCRIBE with an arrow down to YouTube's subscribe button.
+**Music:** `campaign.mp3` (j_campaign, the rowdy 1820s campaign march) at 0.12, dipped to 40% under "by the end of the war… no family left"
+**Pictures:** Brave Boy of the Waxhaws (1876), Sully portrait (1845), "King Andrew the First" (1833), the King Andrew thumbnail
 
 **Title**
 ```
@@ -36,3 +40,4 @@ At 13, Andrew Jackson refused to clean a British officer's boots, and carried th
 - **Payoff images whose head sits at the very top:** put them on a card in the middle band, not full-bleed, or the headline covers the face.
 - **Captions:** up to 3 words, breaking at punctuation, the spoken word in teal (Inter 800, 70 px).
 - Clips are cut in the pauses between words, with a 0.2 s breath between clips.
+- **Every short ends on the outro**: the same recorded line works for all five King Andrew shorts (it names the full video, not the topic). Swap the music per short: something fun under the story, dipped under any sad beat.

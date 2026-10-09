@@ -100,7 +100,8 @@ export const shortFrames = (clips: Clip[]) => {
 };
 
 /** Narration clips, a music bed, captions, the persistent headline, grain. `children` = the pictures (short time). */
-export const ShortShell: React.FC<{clips: Clip[]; headline: [string, string]; music: {src: string; volume: number}; cuts: number[]; children: React.ReactNode}> = ({clips, headline, music, cuts, children}) => {
+/** `duck`: frame ranges where the music drops to `duckTo` of its level (e.g. under a sad beat). */
+export const ShortShell: React.FC<{clips: Clip[]; headline: [string, string]; music: {src: string; volume: number; startFrom?: number; duck?: [number, number][]; duckTo?: number}; cuts: number[]; children: React.ReactNode}> = ({clips, headline, music, cuts, children}) => {
   const placed = layout(clips);
   const n = joinWords(clips);
   const total = shortFrames(clips);
@@ -118,7 +119,11 @@ export const ShortShell: React.FC<{clips: Clip[]; headline: [string, string]; mu
               <Audio src={staticFile(`audio/${c.stem}.wav`)} startFrom={Math.round(c.from * 30)} endAt={Math.round(c.from * 30) + c.len} />
             </Sequence>
           ))}
-          <Audio src={staticFile(music.src)} volume={(f) => interpolate(f, [0, 10, total - 40, total], [0, music.volume, music.volume, 0], clamp)} />
+          <Audio src={staticFile(music.src)} startFrom={music.startFrom ?? 0} volume={(f) => {
+            const base = interpolate(f, [0, 10, total - 40, total], [0, music.volume, music.volume, 0], clamp);
+            const k = (music.duck ?? []).reduce((m, [a, b]) => Math.min(m, interpolate(f, [a - 15, a, b, b + 20], [1, music.duckTo ?? 0.45, music.duckTo ?? 0.45, 1], clamp)), 1);
+            return base * k;
+          }} />
           {cuts.map((f) => <Sfx key={f} at={f} src="sfx/whoosh.wav" volume={0.26} />)}
         </AbsoluteFill>
       </StepCtx.Provider>

@@ -1,11 +1,14 @@
 // Short 1 · "He wouldn't bow to a king…": the boots story (ch02, 0–35 s) and its payoff (ch11: "Remember that kid…
-// he ended up with the nickname King Andrew."). ~46 s.
+// he ended up with the nickname King Andrew."), then a short new outro in the same voice: watch the full video, subscribe. ~54 s.
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import ch02 from '../../../public/audio/v3_ch02_the_boots.words.json';
 import ch11 from '../../../public/audio/v3_ch11_king_andrew.words.json';
+import outro from '../../../public/audio/v3_short_outro_subscribe.words.json';
 import {clamp} from '../../lib/anim';
-import {Highlight, INK, JF, Loop, Note, Picture, Tint, Traced, useGFrame, usePal} from '../Kit';
+import {Arrow, Highlight, INK, JF, Loop, Note, Picture, Tint, Traced, useGFrame, usePal} from '../Kit';
+import {Card, DarkPaper} from '../common';
+import {Wordmark} from '../Intro';
 import {CropCard, makeTimeline, type Narration, Stamp, type TL, useScene} from '../shell';
 import {MASKS, type MaskRef} from '../masks';
 import {type Clip, fillV, joinWords, ShortShell, shortFrames, TagV} from './Short';
@@ -13,6 +16,7 @@ import {type Clip, fillV, joinWords, ShortShell, shortFrames, TagV} from './Shor
 const CLIPS: Clip[] = [
   {stem: 'v3_ch02_the_boots', words: ch02 as Narration, from: 0.0, to: 35.05},
   {stem: 'v3_ch11_king_andrew', words: ch11 as Narration, from: 62.0, to: 71.3},
+  {stem: 'v3_short_outro_subscribe', words: outro as Narration, from: 0, to: (outro as Narration).duration},
 ];
 export const SHORT_BOOTS_FRAMES = shortFrames(CLIPS);
 
@@ -117,7 +121,7 @@ const Family: React.FC<{t: TL}> = ({t}) => {
     ['Elizabeth, his mother', 'died 1781', t.at('mother')],
   ];
   return (
-    <Boy fx={1740} fy={1150} z0={1.25} z1={1.32} a={t.at('By the end')} b={t.at('Remember')} dim={0.35}>
+    <Boy fx={1740} fy={950} z0={1.25} z1={1.32} a={t.at('By the end')} b={t.at('Remember')} dim={0.35}>
       {() => (
         <>
           {rows.map(([who, when, cross], i) => {
@@ -165,6 +169,32 @@ const Crown: React.FC<{t: TL}> = ({t}) => {
   );
 };
 
+/** Outro 1: "Want the rest of the story? Watch the full video, King Andrew…" with the long video's thumbnail. */
+const Watch: React.FC<{t: TL}> = ({t}) => (
+  <AbsoluteFill>
+    <DarkPaper />
+    <Note text="want the rest of the story?" x={80} y={520} size={56} rot={-3} at={t.at('Want')} />
+    <Card src="img/v3/shorts/king_andrew_thumb_A.png" x={90} y={640} w={880} rot={-2} at={t.at('Watch') - 1} filter="none" />
+    <Note text="the full video is linked below" x={140} y={1150} size={46} rot={-3} at={t.at('right here')} color="#ffffff" />
+  </AbsoluteFill>
+);
+
+/** Outro 2: "And subscribe for more 15 Minute History." The wordmark, SUBSCRIBE on orange tape, an arrow down. */
+const Subscribe: React.FC<{t: TL}> = ({t}) => {
+  const g = useGFrame();
+  const s = 0.56;
+  return (
+    <AbsoluteFill>
+      <DarkPaper />
+      <div style={{position: 'absolute', left: 85 - 190 * s, top: 560 - 290 * s, width: 1920, height: 1080, transform: `scale(${s})`, transformOrigin: '0 0'}}>
+        <Wordmark clockAt={-100} numAt={-100} minAt={-100} hisAt={-100} />
+      </div>
+      {g >= t.at('subscribe') && <Highlight text="SUBSCRIBE" x={110} y={930} size={130} at={t.at('subscribe')} seed={925} rot={-3} />}
+      <Arrow x1={760} y1={1090} x2={600} y2={1215} bow={-30} at={t.at('subscribe') + 6} />
+    </AbsoluteFill>
+  );
+};
+
 const Body: React.FC<{t: TL}> = ({t}) => {
   const at = t.at;
   const cuts: [number, React.ReactNode][] = [
@@ -176,16 +206,18 @@ const Body: React.FC<{t: TL}> = ({t}) => {
     [at('Remember') - 1, <Kid t={t} />],
     [at('He spent') - 1, <Life t={t} />],
     [at('And he ended') - 1, <Crown t={t} />],
+    [at('Want') - 1, <Watch t={t} />],
+    [at('And subscribe') - 1, <Subscribe t={t} />],
   ];
   return <>{useScene(cuts)}</>;
 };
 
 const N = joinWords(CLIPS);
 const T = makeTimeline(N, 30);
-const CUTS = ['Then came', 'Andrew said', 'So the officer', 'By the end', 'Remember', 'He spent', 'And he ended'].map((p) => T.at(p) - 1);
+const CUTS = ['Then came', 'Andrew said', 'So the officer', 'By the end', 'Remember', 'He spent', 'And he ended', 'Want', 'And subscribe'].map((p) => T.at(p) - 1);
 
 export const ShortBoots: React.FC = () => (
-  <ShortShell clips={CLIPS} headline={["HE WOULDN'T BOW", 'TO A KING…']} music={{src: 'music/cold_open.mp3', volume: 0.14}} cuts={CUTS}>
+  <ShortShell clips={CLIPS} headline={["HE WOULDN'T BOW", 'TO A KING…']} music={{src: 'music/campaign.mp3', volume: 0.12, duck: [[T.at('By the end'), T.at('Remember')]], duckTo: 0.4}} cuts={CUTS}>
     <Body t={T} />
   </ShortShell>
 );
