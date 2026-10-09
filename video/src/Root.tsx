@@ -11,6 +11,8 @@ import {BreakDemo, BREAK_DEMO_FRAMES} from './v3/BreakDemo';
 import {V3_CHAPTERS} from './v3/chapters';
 import {JFonts} from './v3/Kit';
 import {THUMB_FRAMES, V3ThumbA, V3ThumbB, V3ThumbC} from './v3/Thumbnail';
+import {SH, SW} from './v3/shorts/Short';
+import {SHORT_BOOTS_FRAMES, ShortBoots} from './v3/shorts/ShortBoots';
 import coldOpen from '../public/audio/v1_cold_open.words.json';
 
 type Scene = {id: string; component: React.FC<{captions: boolean}>; seconds: number};
@@ -65,6 +67,7 @@ export const Root: React.FC = () => (
     {([['V3-Thumb-A', V3ThumbA], ['V3-Thumb-B', V3ThumbB], ['V3-Thumb-C', V3ThumbC]] as [string, React.FC][]).map(([id, C]) => (
       <Composition key={id} id={id} width={W} height={H} fps={FPS} durationInFrames={THUMB_FRAMES} component={() => <JFonts><C /></JFonts>} />
     ))}
+    <Composition id="Short-Boots" width={SW} height={SH} fps={FPS} durationInFrames={SHORT_BOOTS_FRAMES} component={() => <JFonts><ShortBoots /></JFonts>} />
     <Composition id="V3-BreakDemo" component={BreakDemo} width={W} height={H} fps={FPS} durationInFrames={BREAK_DEMO_FRAMES} />
   </>
 );
