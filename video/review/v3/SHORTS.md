@@ -14,15 +14,18 @@ Code: `video/src/v3/shorts/` (`Short.tsx` = the shared vertical shell, one file 
 **Music:** `campaign.mp3` (j_campaign, the rowdy 1820s campaign march) at 0.12, dipped to 40% under "by the end of the war… no family left"
 **Pictures:** Brave Boy of the Waxhaws (1876), Sully portrait (1845), "King Andrew the First" (1833), the King Andrew thumbnail
 
-**Title**
+**Caption (title)**
 ```
-He Wouldn't Bow to a King… So Why Did They Call Him One?
+He Wouldn't Bow to a King… So Why Did They Call Him One? 👑
 ```
-Alternate: `The Boy Who Wouldn't Bow to a King`
+Alternate (fits the feed without truncating): `The Boy Who Wouldn't Bow to a King 👑`
 
 **Description**
 ```
-At 13, Andrew Jackson refused to clean a British officer's boots, and carried the scar for life. Decades later, his enemies were calling him King Andrew. Full story: <link to the King Andrew video>
+At 13, Andrew Jackson refused to clean a British officer's boots, and carried the scar for life. Decades later, his enemies were calling him "King Andrew." How did that happen?
+
+▶ Watch the full 15-minute story: <link to King Andrew>
+🔔 Subscribe for more 15 Minute History.
 
 #AndrewJackson #APUSH #history
 ```
