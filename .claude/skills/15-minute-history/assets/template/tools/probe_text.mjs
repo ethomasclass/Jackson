@@ -11,8 +11,10 @@ const browserExecutable = process.env.REMOTION_CHROME || null;
 const inputProps = {probe: true};
 const hits = [];
 const counts = {};
+const sizes = {};
 for (const id of ids) {
   const composition = await selectComposition({serveUrl, id, browserExecutable, inputProps});
+  sizes[id] = [composition.width, composition.height];
   const outputDir = path.resolve('out/probe_frames');
   fs.mkdirSync(outputDir, {recursive: true});
   await renderFrames({composition, serveUrl, inputProps, browserExecutable, outputDir, imageFormat: 'none', everyNthFrame: nth, frameRange: process.env.FRAMES ? process.env.FRAMES.split('-').map(Number) : null, concurrency: 2, timeoutInMilliseconds: 180000,
@@ -23,7 +25,7 @@ for (const id of ids) {
 // Collapse repeats of the same text into one line with its frame range.
 // Text wholly outside the frame is never seen (e.g. a map label the camera has panned past); only partial cuts count.
 const seen = new Map();
-for (const h of hits.filter((h) => h.r > 0 && h.l < 1920 && h.b > 0 && h.t < 1080)) {
+for (const h of hits.filter((h) => h.r > 0 && h.l < sizes[h.id][0] && h.b > 0 && h.t < sizes[h.id][1])) {
   const k = h.id + '|' + h.text;
   const s = seen.get(k);
   if (!s) seen.set(k, {...h, f0: h.f, f1: h.f, maxOver: h.over});
