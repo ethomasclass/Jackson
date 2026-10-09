@@ -1,6 +1,6 @@
 # King Andrew: YouTube Shorts
 
-Vertical (1080×1920) shorts cut from the long video's own narration, pictures and music. Nothing new was generated.
+Vertical (1080×1920) shorts cut from the long video's own narration, pictures and music. The only new asset is the 7-second outro line (watch the full video, subscribe), voiced with the same clone.
 Code: `video/src/v3/shorts/` (`Short.tsx` = the shared vertical shell, one file per short). Render with
 `npx remotion render src/index.ts Short-Boots out/shorts/raw.mp4` then `python3 tools/master.py` (−14 LUFS).
 
